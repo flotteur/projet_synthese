@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" manifest="app.manifest">
+<head>
+  <meta charset="utf-8">
+  <title>TP1</title>
+ 
+  <link href="css/style.css" type="text/css" rel="stylesheet" />
+</head>
+<body  style="text-align:center;" >
+	<table id="my_table_2" class="table2">
+	<tr>
+		<td class="td_table2" style="width:20%;">
+			Page de redirection
+		</td> 
+	</tr>
+	<tr>
+		<td class="td_table2"><p class="p1">Travaille Pratique #1</p></td> 
+	</tr>
+	</table>	
+	
+<script type="text/javascript">
+
+//Tag désuet
+//<frame>, <frameset>, <noframes>, <acronym>, <font>, <big>, <center>, <strike>. 
+
+//Nouveau Tag Html 5
+//<canvas>, <audio>, <video>, <mark>, <time>, <meter>, <progress>, <section>, <header>, or <article>? 
+
+
+autreBrowser=true;
+
+//timer8  = window.setInterval( "window.clearInterval(timer8),alert(navigator.userAgent);,div1.value='2222222222222222233333333333333333333333333333'", 2000 )
+
+
+/*
+ma=mac
+wi=windows
+li=linux
+ia=iPad
+ip=iPod
+io=iPhone
+an=Android
+
+*/
+	var str_ua = navigator.userAgent;
+	if(str_ua.indexOf("Macintosh") != -1){
+		autreBrowser=false;
+		window.location = "mobile.html?siteMode=ma";
+	}		
+	if(str_ua.indexOf("Windows") != -1){
+		autreBrowser=false;
+		window.location = "mobile.html?siteMode=wi";
+	}		
+	if(str_ua.indexOf("Linux") != -1){
+		autreBrowser=false;
+		window.location = "mobile.html?siteMode=li";
+	}		
+	if(str_ua.indexOf("iPad") != -1){
+		autreBrowser=false;
+		window.location = "mobile.html?siteMode=ia";
+	}			
+	if(str_ua.indexOf("iPod") != -1){
+		autreBrowser=false;
+		window.location = "mobile.html?siteMode=ip";
+	}		
+	if(str_ua.indexOf("iPhone") != -1){
+		autreBrowser=false;
+		window.location = "mobile.html?siteMode=io";
+	}			
+	if(str_ua.indexOf("Android") != -1){
+		autreBrowser=false;
+		window.location = "mobile.html?siteMode=an";
+	}			
+		
+	if (autreBrowser==true) 
+	{
+		//alert("autre browser");	
+		window.location = "mobile.html?siteMode=wi";
+	}	
+		
+	
+	
+</script>		
+</body>
+</html>		
+		
