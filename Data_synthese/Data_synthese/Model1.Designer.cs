@@ -1,0 +1,2 @@
+﻿// Seeing this comment implies that the code generation for file 'C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\Data_synthese\Data_synthese\Model1.edmx'
+// failed. See the ErrorList for details.

@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="synthese_dbModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="synthese_dbModelStoreContainer">
+          <EntitySet Name="crioiseaux" EntityType="synthese_dbModel.Store.crioiseaux" store:Type="Tables" Schema="synthese_db" />
+          <EntitySet Name="observations" EntityType="synthese_dbModel.Store.observations" store:Type="Tables" Schema="synthese_db" />
+          <EntitySet Name="oiseaux" EntityType="synthese_dbModel.Store.oiseaux" store:Type="Tables" Schema="synthese_db" />
+          <EntitySet Name="photos" EntityType="synthese_dbModel.Store.photos" store:Type="Tables" Schema="synthese_db" />
+          <EntitySet Name="usagers" EntityType="synthese_dbModel.Store.usagers" store:Type="Tables" Schema="synthese_db" />
+          <AssociationSet Name="FK_OiseauCriOiseau" Association="synthese_dbModel.Store.FK_OiseauCriOiseau">
+            <End Role="oiseaux" EntitySet="oiseaux" />
+            <End Role="crioiseaux" EntitySet="crioiseaux" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OiseauObservation" Association="synthese_dbModel.Store.FK_OiseauObservation">
+            <End Role="oiseaux" EntitySet="oiseaux" />
+            <End Role="observations" EntitySet="observations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OiseauPhoto" Association="synthese_dbModel.Store.FK_OiseauPhoto">
+            <End Role="oiseaux" EntitySet="oiseaux" />
+            <End Role="photos" EntitySet="photos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsagerObservation" Association="synthese_dbModel.Store.FK_UsagerObservation">
+            <End Role="usagers" EntitySet="usagers" />
+            <End Role="observations" EntitySet="observations" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="crioiseaux">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Son" Type="longblob" Nullable="false" />
+          <Property Name="Description" Type="varchar" Nullable="false" />
+          <Property Name="OiseauId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="observations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DateObservation" Type="varchar" Nullable="false" />
+          <Property Name="Position" Type="varchar" Nullable="false" />
+          <Property Name="IDUsager" Type="varchar" Nullable="false" />
+          <Property Name="IDOiseau" Type="varchar" Nullable="false" />
+          <Property Name="OiseauId" Type="int" Nullable="false" />
+          <Property Name="UsagerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="oiseaux">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Espece" Type="varchar" Nullable="false" />
+          <Property Name="Description" Type="varchar" Nullable="false" />
+          <Property Name="IDPhoto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="photos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="longblob" Nullable="false" />
+          <Property Name="Description" Type="varchar" Nullable="false" />
+          <Property Name="OiseauId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usagers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NomUsager" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="MotPasse" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Administrateur" Type="bool" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_OiseauCriOiseau">
+          <End Role="oiseaux" Type="synthese_dbModel.Store.oiseaux" Multiplicity="1" />
+          <End Role="crioiseaux" Type="synthese_dbModel.Store.crioiseaux" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oiseaux">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="crioiseaux">
+              <PropertyRef Name="OiseauId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OiseauObservation">
+          <End Role="oiseaux" Type="synthese_dbModel.Store.oiseaux" Multiplicity="1" />
+          <End Role="observations" Type="synthese_dbModel.Store.observations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oiseaux">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="observations">
+              <PropertyRef Name="OiseauId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OiseauPhoto">
+          <End Role="oiseaux" Type="synthese_dbModel.Store.oiseaux" Multiplicity="1" />
+          <End Role="photos" Type="synthese_dbModel.Store.photos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oiseaux">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="photos">
+              <PropertyRef Name="OiseauId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsagerObservation">
+          <End Role="usagers" Type="synthese_dbModel.Store.usagers" Multiplicity="1" />
+          <End Role="observations" Type="synthese_dbModel.Store.observations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usagers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="observations">
+              <PropertyRef Name="UsagerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="synthese_dbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="synthese_dbEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="crioiseau1" EntityType="synthese_dbModel.crioiseau" />
+          <EntitySet Name="observation1" EntityType="synthese_dbModel.observation" />
+          <EntitySet Name="oiseau1" EntityType="synthese_dbModel.oiseau" />
+          <EntitySet Name="photo1" EntityType="synthese_dbModel.photo" />
+          <EntitySet Name="usager1" EntityType="synthese_dbModel.usager" />
+          <AssociationSet Name="FK_OiseauCriOiseau" Association="synthese_dbModel.FK_OiseauCriOiseau">
+            <End Role="oiseau1" EntitySet="oiseau1" />
+            <End Role="crioiseau1" EntitySet="crioiseau1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OiseauObservation" Association="synthese_dbModel.FK_OiseauObservation">
+            <End Role="oiseau1" EntitySet="oiseau1" />
+            <End Role="observation1" EntitySet="observation1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsagerObservation" Association="synthese_dbModel.FK_UsagerObservation">
+            <End Role="usager1" EntitySet="usager1" />
+            <End Role="observation1" EntitySet="observation1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OiseauPhoto" Association="synthese_dbModel.FK_OiseauPhoto">
+            <End Role="oiseau1" EntitySet="oiseau1" />
+            <End Role="photo1" EntitySet="photo1" />
+          </AssociationSet>
+          <EntitySet Name="MessageSet" EntityType="synthese_dbModel.Message" />
+          <AssociationSet Name="usagerMessage" Association="synthese_dbModel.usagerMessage">
+            <End Role="usager" EntitySet="usager1" />
+            <End Role="Message" EntitySet="MessageSet" />
+          </AssociationSet>
+          <EntitySet Name="AlerteSet" EntityType="synthese_dbModel.Alerte" />
+          <AssociationSet Name="Alerteobservation" Association="synthese_dbModel.Alerteobservation">
+            <End Role="Alerte" EntitySet="AlerteSet" />
+            <End Role="observation" EntitySet="observation1" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="crioiseau">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Binary" Name="Son" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="OiseauId" Nullable="false" />
+          <NavigationProperty Name="oiseau" Relationship="synthese_dbModel.FK_OiseauCriOiseau" FromRole="crioiseau1" ToRole="oiseau1" />
+        </EntityType>
+        <EntityType Name="observation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="DateObservation" Nullable="false" />
+          <Property Type="GeographyPoint" Name="Position" Nullable="false" />
+          <Property Type="Int32" Name="IDUsager" Nullable="false" />
+          <Property Type="Int32" Name="IDOiseau" Nullable="false" />
+          <NavigationProperty Name="oiseau" Relationship="synthese_dbModel.FK_OiseauObservation" FromRole="observation1" ToRole="oiseau1" />
+          <NavigationProperty Name="usager" Relationship="synthese_dbModel.FK_UsagerObservation" FromRole="observation1" ToRole="usager1" />
+          <NavigationProperty Name="Alerte" Relationship="synthese_dbModel.Alerteobservation" FromRole="observation" ToRole="Alerte" />
+          <Property Type="Int32" Name="AlerteId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="oiseau">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Espece" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="IDPhoto" Nullable="false" />
+          <NavigationProperty Name="crioiseaux" Relationship="synthese_dbModel.FK_OiseauCriOiseau" FromRole="oiseau1" ToRole="crioiseau1" />
+          <NavigationProperty Name="observations" Relationship="synthese_dbModel.FK_OiseauObservation" FromRole="oiseau1" ToRole="observation1" />
+          <NavigationProperty Name="photos" Relationship="synthese_dbModel.FK_OiseauPhoto" FromRole="oiseau1" ToRole="photo1" />
+        </EntityType>
+        <EntityType Name="photo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Binary" Name="Image" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="OiseauId" Nullable="false" />
+          <NavigationProperty Name="oiseau" Relationship="synthese_dbModel.FK_OiseauPhoto" FromRole="photo1" ToRole="oiseau1" />
+        </EntityType>
+        <EntityType Name="usager">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="NomUsager" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MotPasse" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Administrateur" Nullable="false" />
+          <NavigationProperty Name="observations" Relationship="synthese_dbModel.FK_UsagerObservation" FromRole="usager1" ToRole="observation1" />
+          <NavigationProperty Name="Message" Relationship="synthese_dbModel.usagerMessage" FromRole="usager" ToRole="Message" />
+        </EntityType>
+        <Association Name="FK_OiseauCriOiseau">
+          <End Type="synthese_dbModel.oiseau" Role="oiseau1" Multiplicity="0..1" />
+          <End Type="synthese_dbModel.crioiseau" Role="crioiseau1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oiseau1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="crioiseau1">
+              <PropertyRef Name="OiseauId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OiseauObservation">
+          <End Type="synthese_dbModel.oiseau" Role="oiseau1" Multiplicity="0..1" />
+          <End Type="synthese_dbModel.observation" Role="observation1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oiseau1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="observation1">
+              <PropertyRef Name="OiseauId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsagerObservation">
+          <End Type="synthese_dbModel.usager" Role="usager1" Multiplicity="1" />
+          <End Type="synthese_dbModel.observation" Role="observation1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usager1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="observation1">
+              <PropertyRef Name="UsagerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OiseauPhoto">
+          <End Type="synthese_dbModel.oiseau" Role="oiseau1" Multiplicity="1" />
+          <End Type="synthese_dbModel.photo" Role="photo1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oiseau1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="photo1">
+              <PropertyRef Name="OiseauId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Texte" Nullable="false" />
+          <Property Type="DateTime" Name="DateHeure" Nullable="false" />
+          <Property Type="Int32" Name="IDUsager" Nullable="false" />
+          <NavigationProperty Name="usager" Relationship="synthese_dbModel.usagerMessage" FromRole="Message" ToRole="usager" />
+          <Property Type="Int32" Name="usagerId" Nullable="false" />
+        </EntityType>
+        <Association Name="usagerMessage">
+          <End Type="synthese_dbModel.usager" Role="usager" Multiplicity="0..1" />
+          <End Type="synthese_dbModel.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usager">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="usagerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Alerte">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="IDObservation" Nullable="false" />
+          <NavigationProperty Name="observation" Relationship="synthese_dbModel.Alerteobservation" FromRole="Alerte" ToRole="observation" />
+        </EntityType>
+        <Association Name="Alerteobservation">
+          <End Type="synthese_dbModel.Alerte" Role="Alerte" Multiplicity="0..1" />
+          <End Type="synthese_dbModel.observation" Role="observation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alerte">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="observation">
+              <PropertyRef Name="AlerteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="synthese_dbModelStoreContainer" CdmEntityContainer="synthese_dbEntities">
+    <EntitySetMapping Name="crioiseau1">
+            <EntityTypeMapping TypeName="synthese_dbModel.crioiseau">
+              <MappingFragment StoreEntitySet="crioiseaux">
+                <ScalarProperty Name="OiseauId" ColumnName="OiseauId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Son" ColumnName="Son" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="observation1">
+            <EntityTypeMapping TypeName="synthese_dbModel.observation">
+              <MappingFragment StoreEntitySet="observations">
+                <ScalarProperty Name="IDOiseau" ColumnName="IDOiseau" />
+                <ScalarProperty Name="IDUsager" ColumnName="IDUsager" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="DateObservation" ColumnName="DateObservation" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="oiseau1">
+            <EntityTypeMapping TypeName="synthese_dbModel.oiseau">
+              <MappingFragment StoreEntitySet="oiseaux">
+                <ScalarProperty Name="IDPhoto" ColumnName="IDPhoto" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Espece" ColumnName="Espece" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="photo1">
+            <EntityTypeMapping TypeName="synthese_dbModel.photo">
+              <MappingFragment StoreEntitySet="photos">
+                <ScalarProperty Name="OiseauId" ColumnName="OiseauId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usager1">
+            <EntityTypeMapping TypeName="synthese_dbModel.usager">
+              <MappingFragment StoreEntitySet="usagers">
+                <ScalarProperty Name="Administrateur" ColumnName="Administrateur" />
+                <ScalarProperty Name="MotPasse" ColumnName="MotPasse" />
+                <ScalarProperty Name="NomUsager" ColumnName="NomUsager" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="DefaultDatabaseSchema" Value="synthese_db" />
+        <DesignerProperty Name="DDLGenerationTemplate" Value="$(VSEFTools)\DBGen\SSDLToMySQL.tt" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1" DisplayType="true" >
+        <EntityTypeShape EntityType="synthese_dbModel.crioiseau" Width="1.625" PointX="4.375" PointY="13.625" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="synthese_dbModel.observation" Width="2.125" PointX="9.125" PointY="10.375" Height="2.7494921874999996" />
+        <EntityTypeShape EntityType="synthese_dbModel.oiseau" Width="1.75" PointX="6.375" PointY="10.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="synthese_dbModel.photo" Width="1.625" PointX="4.25" PointY="10.875" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="synthese_dbModel.usager" Width="1.5" PointX="10.375" PointY="13.75" Height="2.1725878906249996" />
+        <AssociationConnector Association="synthese_dbModel.FK_OiseauCriOiseau" >
+          <ConnectorPoint PointX="6.375" PointY="13.114889322916667" />
+          <ConnectorPoint PointX="6" PointY="13.625" />
+        </AssociationConnector>
+        <AssociationConnector Association="synthese_dbModel.FK_OiseauObservation" >
+          <ConnectorPoint PointX="8.125" PointY="11.932444661458334" />
+          <ConnectorPoint PointX="9.125" PointY="11.932444661458334" />
+        </AssociationConnector>
+        <AssociationConnector Association="synthese_dbModel.FK_UsagerObservation" >
+          <ConnectorPoint PointX="10.8125" PointY="13.75" />
+          <ConnectorPoint PointX="10.8125" PointY="13.1244921875" />
+        </AssociationConnector>
+        <AssociationConnector Association="synthese_dbModel.FK_OiseauPhoto" >
+          <ConnectorPoint PointX="6.375" PointY="11.865143229166666" />
+          <ConnectorPoint PointX="5.875" PointY="11.865143229166666" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="synthese_dbModel.Message" Width="1.5" PointX="13.25" PointY="13.875" Height="1.7879850260416657" />
+        <AssociationConnector Association="synthese_dbModel.usagerMessage">
+          <ConnectorPoint PointX="11.875" PointY="14.8987939453125" />
+          <ConnectorPoint PointX="13.25" PointY="14.8987939453125" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="synthese_dbModel.Alerte" Width="1.875" PointX="12.125" PointY="10.875" Height="1.5956835937499996" />
+        <AssociationConnector Association="synthese_dbModel.Alerteobservation">
+          <ConnectorPoint PointX="12.125" PointY="11.672841796875" />
+          <ConnectorPoint PointX="11.25" PointY="11.672841796875" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

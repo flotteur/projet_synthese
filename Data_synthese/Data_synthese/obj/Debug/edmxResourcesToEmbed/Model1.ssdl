@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="synthese_dbModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="synthese_dbModelStoreContainer">
+    <EntitySet Name="crioiseaux" EntityType="synthese_dbModel.Store.crioiseaux" store:Type="Tables" Schema="synthese_db" />
+    <EntitySet Name="observations" EntityType="synthese_dbModel.Store.observations" store:Type="Tables" Schema="synthese_db" />
+    <EntitySet Name="oiseaux" EntityType="synthese_dbModel.Store.oiseaux" store:Type="Tables" Schema="synthese_db" />
+    <EntitySet Name="photos" EntityType="synthese_dbModel.Store.photos" store:Type="Tables" Schema="synthese_db" />
+    <EntitySet Name="usagers" EntityType="synthese_dbModel.Store.usagers" store:Type="Tables" Schema="synthese_db" />
+    <AssociationSet Name="FK_OiseauCriOiseau" Association="synthese_dbModel.Store.FK_OiseauCriOiseau">
+      <End Role="oiseaux" EntitySet="oiseaux" />
+      <End Role="crioiseaux" EntitySet="crioiseaux" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OiseauObservation" Association="synthese_dbModel.Store.FK_OiseauObservation">
+      <End Role="oiseaux" EntitySet="oiseaux" />
+      <End Role="observations" EntitySet="observations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OiseauPhoto" Association="synthese_dbModel.Store.FK_OiseauPhoto">
+      <End Role="oiseaux" EntitySet="oiseaux" />
+      <End Role="photos" EntitySet="photos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsagerObservation" Association="synthese_dbModel.Store.FK_UsagerObservation">
+      <End Role="usagers" EntitySet="usagers" />
+      <End Role="observations" EntitySet="observations" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="crioiseaux">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Son" Type="longblob" Nullable="false" />
+    <Property Name="Description" Type="varchar" Nullable="false" />
+    <Property Name="OiseauId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="observations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DateObservation" Type="varchar" Nullable="false" />
+    <Property Name="Position" Type="varchar" Nullable="false" />
+    <Property Name="IDUsager" Type="varchar" Nullable="false" />
+    <Property Name="IDOiseau" Type="varchar" Nullable="false" />
+    <Property Name="OiseauId" Type="int" Nullable="false" />
+    <Property Name="UsagerId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="oiseaux">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Espece" Type="varchar" Nullable="false" />
+    <Property Name="Description" Type="varchar" Nullable="false" />
+    <Property Name="IDPhoto" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="photos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Image" Type="longblob" Nullable="false" />
+    <Property Name="Description" Type="varchar" Nullable="false" />
+    <Property Name="OiseauId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="usagers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NomUsager" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="MotPasse" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Administrateur" Type="bool" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_OiseauCriOiseau">
+    <End Role="oiseaux" Type="synthese_dbModel.Store.oiseaux" Multiplicity="1" />
+    <End Role="crioiseaux" Type="synthese_dbModel.Store.crioiseaux" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="oiseaux">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="crioiseaux">
+        <PropertyRef Name="OiseauId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OiseauObservation">
+    <End Role="oiseaux" Type="synthese_dbModel.Store.oiseaux" Multiplicity="1" />
+    <End Role="observations" Type="synthese_dbModel.Store.observations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="oiseaux">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="observations">
+        <PropertyRef Name="OiseauId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OiseauPhoto">
+    <End Role="oiseaux" Type="synthese_dbModel.Store.oiseaux" Multiplicity="1" />
+    <End Role="photos" Type="synthese_dbModel.Store.photos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="oiseaux">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="photos">
+        <PropertyRef Name="OiseauId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsagerObservation">
+    <End Role="usagers" Type="synthese_dbModel.Store.usagers" Multiplicity="1" />
+    <End Role="observations" Type="synthese_dbModel.Store.observations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usagers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="observations">
+        <PropertyRef Name="UsagerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

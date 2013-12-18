@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="synthese_dbModelStoreContainer" CdmEntityContainer="synthese_dbEntities">
+    <EntitySetMapping Name="crioiseau1">
+      <EntityTypeMapping TypeName="synthese_dbModel.crioiseau1">
+        <MappingFragment StoreEntitySet="crioiseaux">
+          <ScalarProperty Name="OiseauId" ColumnName="OiseauId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Son" ColumnName="Son" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="observation1">
+      <EntityTypeMapping TypeName="synthese_dbModel.observation1">
+        <MappingFragment StoreEntitySet="observations">
+          <ScalarProperty Name="UsagerId" ColumnName="UsagerId" />
+          <ScalarProperty Name="OiseauId" ColumnName="OiseauId" />
+          <ScalarProperty Name="IDOiseau" ColumnName="IDOiseau" />
+          <ScalarProperty Name="IDUsager" ColumnName="IDUsager" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="DateObservation" ColumnName="DateObservation" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="oiseau1">
+      <EntityTypeMapping TypeName="synthese_dbModel.oiseau1">
+        <MappingFragment StoreEntitySet="oiseaux">
+          <ScalarProperty Name="IDPhoto" ColumnName="IDPhoto" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Espece" ColumnName="Espece" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="photo1">
+      <EntityTypeMapping TypeName="synthese_dbModel.photo1">
+        <MappingFragment StoreEntitySet="photos">
+          <ScalarProperty Name="OiseauId" ColumnName="OiseauId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usager1">
+      <EntityTypeMapping TypeName="synthese_dbModel.usager1">
+        <MappingFragment StoreEntitySet="usagers">
+          <ScalarProperty Name="Administrateur" ColumnName="Administrateur" />
+          <ScalarProperty Name="MotPasse" ColumnName="MotPasse" />
+          <ScalarProperty Name="NomUsager" ColumnName="NomUsager" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
