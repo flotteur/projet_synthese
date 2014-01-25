@@ -1,58 +1,150 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="synthese_dbModelStoreContainer" CdmEntityContainer="synthese_dbEntities">
-    <EntitySetMapping Name="crioiseau1">
-      <EntityTypeMapping TypeName="synthese_dbModel.crioiseau1">
-        <MappingFragment StoreEntitySet="crioiseaux">
-          <ScalarProperty Name="OiseauId" ColumnName="OiseauId" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
+    <EntitySetMapping Name="CriOiseau">
+      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.CriOiseau)">
+        <MappingFragment StoreEntitySet="CriOiseau">
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Son" ColumnName="Son" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="observation1">
-      <EntityTypeMapping TypeName="synthese_dbModel.observation1">
-        <MappingFragment StoreEntitySet="observations">
-          <ScalarProperty Name="UsagerId" ColumnName="UsagerId" />
-          <ScalarProperty Name="OiseauId" ColumnName="OiseauId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="IDOiseau" ColumnName="IDOiseau" />
-          <ScalarProperty Name="IDUsager" ColumnName="IDUsager" />
-          <ScalarProperty Name="Position" ColumnName="Position" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Observation">
+      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.Observation)">
+        <MappingFragment StoreEntitySet="Observation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="DateObservation" ColumnName="DateObservation" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="IDUsager" ColumnName="IDUsager" />
+          <ScalarProperty Name="IDOiseau" ColumnName="IDOiseau" />
+          <ScalarProperty Name="IDAlerte" ColumnName="IDAlerte" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="oiseau1">
-      <EntityTypeMapping TypeName="synthese_dbModel.oiseau1">
-        <MappingFragment StoreEntitySet="oiseaux">
-          <ScalarProperty Name="IDPhoto" ColumnName="IDPhoto" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
+    <EntitySetMapping Name="Oiseau">
+      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.Oiseau)">
+        <MappingFragment StoreEntitySet="Oiseau">
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Espece" ColumnName="Espece" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="photo1">
-      <EntityTypeMapping TypeName="synthese_dbModel.photo1">
-        <MappingFragment StoreEntitySet="photos">
-          <ScalarProperty Name="OiseauId" ColumnName="OiseauId" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IDPhoto" ColumnName="IDPhoto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Photo">
+      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.Photo)">
+        <MappingFragment StoreEntitySet="Photo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IDOiseau" ColumnName="IDOiseau" />
+          <ScalarProperty Name="ImageMiniature" ColumnName="ImageMiniature" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="usager1">
-      <EntityTypeMapping TypeName="synthese_dbModel.usager1">
-        <MappingFragment StoreEntitySet="usagers">
-          <ScalarProperty Name="Administrateur" ColumnName="Administrateur" />
-          <ScalarProperty Name="MotPasse" ColumnName="MotPasse" />
+    <EntitySetMapping Name="Usager">
+      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.Usager)">
+        <MappingFragment StoreEntitySet="Usager">
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="NomUsager" ColumnName="NomUsager" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MotPasse" ColumnName="MotPasse" />
+          <ScalarProperty Name="Administrateur" ColumnName="Administrateur" />
+          <ScalarProperty Name="IDObservation" ColumnName="IDObservation" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Message">
+      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.MessageUsager)">
+        <MappingFragment StoreEntitySet="Message">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Texte" ColumnName="Texte" />
+          <ScalarProperty Name="DateHeure" ColumnName="DateHeure" />
+          <ScalarProperty Name="IDUsager" ColumnName="IDUsager" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Alerte">
+      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.Alerte)">
+        <MappingFragment StoreEntitySet="Alerte">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IDObservation" ColumnName="IDObservation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhotoObservationSet">
+      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.PhotoObservation)">
+        <MappingFragment StoreEntitySet="PhotoObservationSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IDObservation" ColumnName="IDObservation" />
+          <ScalarProperty Name="ImageMiniature" ColumnName="ImageMiniature" />
+          <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MessageObservationSet">
+      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.MessageObservation)">
+        <MappingFragment StoreEntitySet="MessageObservationSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Texte" ColumnName="Texte" />
+          <ScalarProperty Name="DateHeure" ColumnName="DateHeure" />
+          <ScalarProperty Name="IDObservation" ColumnName="IDObservation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SonObservationSet">
+      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.SonObservation)">
+        <MappingFragment StoreEntitySet="SonObservationSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Son" ColumnName="Son" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IDObservation" ColumnName="IDObservation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Alerteobservation" TypeName="synthese_dbModel.Alerteobservation" StoreEntitySet="Alerte">
+      <EndProperty Name="observation">
+        <ScalarProperty Name="Id" ColumnName="observation_Id" />
+      </EndProperty>
+      <EndProperty Name="Alerte">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PhotoObservationObservation" TypeName="synthese_dbModel.PhotoObservationObservation" StoreEntitySet="PhotoObservationSet">
+      <EndProperty Name="Observation">
+        <ScalarProperty Name="Id" ColumnName="Observation_Id" />
+      </EndProperty>
+      <EndProperty Name="PhotoObservation">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Observation_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MessageObservationObservation" TypeName="synthese_dbModel.MessageObservationObservation" StoreEntitySet="MessageObservationSet">
+      <EndProperty Name="Observation">
+        <ScalarProperty Name="Id" ColumnName="Observation_Id" />
+      </EndProperty>
+      <EndProperty Name="MessageObservation">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SonObservationObservation" TypeName="synthese_dbModel.SonObservationObservation" StoreEntitySet="SonObservationSet">
+      <EndProperty Name="Observation">
+        <ScalarProperty Name="Id" ColumnName="Observation_Id" />
+      </EndProperty>
+      <EndProperty Name="SonObservation">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MessageUsagerUsager" TypeName="synthese_dbModel.MessageUsagerUsager" StoreEntitySet="Message">
+      <EndProperty Name="Usager">
+        <ScalarProperty Name="Id" ColumnName="Usager_Id" />
+      </EndProperty>
+      <EndProperty Name="MessageUsager">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

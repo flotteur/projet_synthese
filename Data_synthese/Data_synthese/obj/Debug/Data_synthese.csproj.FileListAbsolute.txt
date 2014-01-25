@@ -22,3 +22,10 @@ C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthe
 C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\Data_synthese\Data_synthese\obj\Debug\Data_synthese.csprojResolveAssemblyReference.cache
 C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\Data_synthese\Data_synthese\obj\Debug\Data_synthese.dll
 C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\Data_synthese\Data_synthese\obj\Debug\Data_synthese.pdb
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Data_synthese\bin\Debug\Data_synthese.dll.config
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Data_synthese\bin\Debug\Data_synthese.dll
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Data_synthese\bin\Debug\Data_synthese.pdb
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Data_synthese\bin\Debug\EntityFramework.dll
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Data_synthese\bin\Debug\EntityFramework.xml
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Data_synthese\obj\Debug\Data_synthese.dll
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Data_synthese\obj\Debug\Data_synthese.pdb
