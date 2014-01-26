@@ -56,12 +56,13 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Message">
-      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.MessageUsager)">
+      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.Message)">
         <MappingFragment StoreEntitySet="Message">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Texte" ColumnName="Texte" />
           <ScalarProperty Name="DateHeure" ColumnName="DateHeure" />
           <ScalarProperty Name="IDUsager" ColumnName="IDUsager" />
+          <ScalarProperty Name="IDObservation" ColumnName="IDObservation" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -82,16 +83,6 @@
           <ScalarProperty Name="IDObservation" ColumnName="IDObservation" />
           <ScalarProperty Name="ImageMiniature" ColumnName="ImageMiniature" />
           <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="MessageObservationSet">
-      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.MessageObservation)">
-        <MappingFragment StoreEntitySet="MessageObservationSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Texte" ColumnName="Texte" />
-          <ScalarProperty Name="DateHeure" ColumnName="DateHeure" />
-          <ScalarProperty Name="IDObservation" ColumnName="IDObservation" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -122,14 +113,6 @@
       </EndProperty>
       <Condition ColumnName="Observation_Id" IsNull="false" />
     </AssociationSetMapping>
-    <AssociationSetMapping Name="MessageObservationObservation" TypeName="synthese_dbModel.MessageObservationObservation" StoreEntitySet="MessageObservationSet">
-      <EndProperty Name="Observation">
-        <ScalarProperty Name="Id" ColumnName="Observation_Id" />
-      </EndProperty>
-      <EndProperty Name="MessageObservation">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="SonObservationObservation" TypeName="synthese_dbModel.SonObservationObservation" StoreEntitySet="SonObservationSet">
       <EndProperty Name="Observation">
         <ScalarProperty Name="Id" ColumnName="Observation_Id" />
@@ -145,6 +128,7 @@
       <EndProperty Name="MessageUsager">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="Usager_Id" IsNull="false" />
     </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

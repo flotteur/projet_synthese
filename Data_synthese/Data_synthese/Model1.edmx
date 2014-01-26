@@ -14,7 +14,6 @@
     <EntitySet Name="Message" EntityType="synthese_dbModel.Store.Message" store:Type="Tables" Schema="synthese_db" />
     <EntitySet Name="Alerte" EntityType="synthese_dbModel.Store.Alerte" store:Type="Tables" Schema="synthese_db" />
     <EntitySet Name="PhotoObservationSet" EntityType="synthese_dbModel.Store.PhotoObservationSet" store:Type="Tables" Schema="synthese_db" />
-    <EntitySet Name="MessageObservationSet" EntityType="synthese_dbModel.Store.MessageObservationSet" store:Type="Tables" Schema="synthese_db" />
     <EntitySet Name="SonObservationSet" EntityType="synthese_dbModel.Store.SonObservationSet" store:Type="Tables" Schema="synthese_db" />
     <AssociationSet Name="FK_OiseauCriOiseau" Association="synthese_dbModel.Store.FK_OiseauCriOiseau">
       <End Role="oiseau1" EntitySet="Oiseau" />
@@ -40,10 +39,6 @@
       <End Role="PhotoObservation" EntitySet="PhotoObservationSet" />
       <End Role="Observation" EntitySet="Observation" />
     </AssociationSet>
-    <AssociationSet Name="MessageObservationObservation" Association="synthese_dbModel.Store.MessageObservationObservation">
-      <End Role="MessageObservation" EntitySet="MessageObservationSet" />
-      <End Role="Observation" EntitySet="Observation" />
-    </AssociationSet>
     <AssociationSet Name="SonObservationObservation" Association="synthese_dbModel.Store.SonObservationObservation">
       <End Role="SonObservation" EntitySet="SonObservationSet" />
       <End Role="Observation" EntitySet="Observation" />
@@ -51,6 +46,10 @@
     <AssociationSet Name="MessageUsagerUsager" Association="synthese_dbModel.Store.MessageUsagerUsager">
       <End Role="MessageUsager" EntitySet="Message" />
       <End Role="Usager" EntitySet="Usager" />
+    </AssociationSet>
+    <AssociationSet Name="ObservationMessage" Association="synthese_dbModel.Store.ObservationMessage">
+      <End Role="Observation" EntitySet="Observation" />
+      <End Role="Message" EntitySet="Message" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="CriOiseau">
@@ -110,7 +109,8 @@
     <Property Name="Texte" Type="varchar" Nullable="false" />
     <Property Name="DateHeure" Type="datetime" Nullable="false" />
     <Property Name="IDUsager" Type="int" Nullable="false" />
-    <Property Name="Usager_Id" Type="int" Nullable="false" />
+    <Property Name="IDObservation" Type="int" Nullable="true" />
+    <Property Name="Usager_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Alerte">
     <Key>
@@ -131,16 +131,6 @@
     <Property Name="ImageMiniature" Type="longblob" Nullable="false" />
     <Property Name="Commentaire" Type="varchar" Nullable="false" />
     <Property Name="Observation_Id" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="MessageObservationSet">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Texte" Type="varchar" Nullable="false" />
-    <Property Name="DateHeure" Type="datetime" Nullable="false" />
-    <Property Name="IDObservation" Type="int" Nullable="false" />
-    <Property Name="Observation_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="SonObservationSet">
     <Key>
@@ -224,18 +214,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="MessageObservationObservation">
-    <End Role="MessageObservation" Type="synthese_dbModel.Store.MessageObservationSet" Multiplicity="*" />
-    <End Role="Observation" Type="synthese_dbModel.Store.Observation" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Observation">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="MessageObservation">
-        <PropertyRef Name="Observation_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="SonObservationObservation">
     <End Role="SonObservation" Type="synthese_dbModel.Store.SonObservationSet" Multiplicity="*" />
     <End Role="Observation" Type="synthese_dbModel.Store.Observation" Multiplicity="1" />
@@ -250,13 +228,25 @@
   </Association>
   <Association Name="MessageUsagerUsager">
     <End Role="MessageUsager" Type="synthese_dbModel.Store.Message" Multiplicity="*" />
-    <End Role="Usager" Type="synthese_dbModel.Store.Usager" Multiplicity="1" />
+    <End Role="Usager" Type="synthese_dbModel.Store.Usager" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Usager">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="MessageUsager">
         <PropertyRef Name="Usager_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ObservationMessage">
+    <End Role="Observation" Type="synthese_dbModel.Store.Observation" Multiplicity="0..1" />
+    <End Role="Message" Type="synthese_dbModel.Store.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Observation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="IDObservation" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -282,7 +272,7 @@
             <End Role="oiseau1" EntitySet="Oiseau" />
             <End Role="photo1" EntitySet="Photo" />
           </AssociationSet>
-          <EntitySet Name="Message" EntityType="synthese_dbModel.MessageUsager" />
+          <EntitySet Name="Message" EntityType="synthese_dbModel.Message" />
           <EntitySet Name="Alerte" EntityType="synthese_dbModel.Alerte" />
           <AssociationSet Name="Alerteobservation" Association="synthese_dbModel.Alerteobservation">
             <End Role="Alerte" EntitySet="Alerte" />
@@ -297,11 +287,6 @@
             <End Role="PhotoObservation" EntitySet="PhotoObservationSet" />
             <End Role="Observation" EntitySet="Observation" />
           </AssociationSet>
-          <EntitySet Name="MessageObservationSet" EntityType="synthese_dbModel.MessageObservation" />
-          <AssociationSet Name="MessageObservationObservation" Association="synthese_dbModel.MessageObservationObservation">
-            <End Role="MessageObservation" EntitySet="MessageObservationSet" />
-            <End Role="Observation" EntitySet="Observation" />
-          </AssociationSet>
           <EntitySet Name="SonObservationSet" EntityType="synthese_dbModel.SonObservation" />
           <AssociationSet Name="SonObservationObservation" Association="synthese_dbModel.SonObservationObservation">
             <End Role="SonObservation" EntitySet="SonObservationSet" />
@@ -310,6 +295,10 @@
           <AssociationSet Name="MessageUsagerUsager" Association="synthese_dbModel.MessageUsagerUsager">
             <End Role="MessageUsager" EntitySet="Message" />
             <End Role="Usager" EntitySet="Usager" />
+          </AssociationSet>
+          <AssociationSet Name="ObservationMessage" Association="synthese_dbModel.ObservationMessage">
+            <End Role="Observation" EntitySet="Observation" />
+            <End Role="Message" EntitySet="Message" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="CriOiseau">
@@ -336,8 +325,8 @@
           <Property Type="Int32" Name="IDAlerte" Nullable="true" />
           <NavigationProperty Name="usager" Relationship="synthese_dbModel.observationusager" FromRole="observation" ToRole="usager" />
           <NavigationProperty Name="PhotoObservation" Relationship="synthese_dbModel.PhotoObservationObservation" FromRole="Observation" ToRole="PhotoObservation" />
-          <NavigationProperty Name="MessageObservation" Relationship="synthese_dbModel.MessageObservationObservation" FromRole="Observation" ToRole="MessageObservation" />
           <NavigationProperty Name="SonObservation" Relationship="synthese_dbModel.SonObservationObservation" FromRole="Observation" ToRole="SonObservation" />
+          <NavigationProperty Name="Message" Relationship="synthese_dbModel.ObservationMessage" FromRole="Observation" ToRole="Message" />
         </EntityType>
         <EntityType Name="Oiseau">
           <Key>
@@ -410,7 +399,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="MessageUsager">
+        <EntityType Name="Message">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -419,6 +408,8 @@
           <Property Type="DateTime" Name="DateHeure" Nullable="false" />
           <Property Type="Int32" Name="IDUsager" Nullable="false" />
           <NavigationProperty Name="Usager" Relationship="synthese_dbModel.MessageUsagerUsager" FromRole="MessageUsager" ToRole="Usager" />
+          <NavigationProperty Name="Observation" Relationship="synthese_dbModel.ObservationMessage" FromRole="Message" ToRole="Observation" />
+          <Property Type="Int32" Name="IDObservation" Nullable="true" />
         </EntityType>
         <EntityType Name="Alerte">
           <Key>
@@ -460,20 +451,6 @@
           <End Type="synthese_dbModel.PhotoObservation" Role="PhotoObservation" Multiplicity="*" />
           <End Type="synthese_dbModel.Observation" Role="Observation" Multiplicity="0..1" />
         </Association>
-        <EntityType Name="MessageObservation">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Texte" Nullable="false" />
-          <Property Type="DateTime" Name="DateHeure" Nullable="false" />
-          <Property Type="Int32" Name="IDObservation" Nullable="false" />
-          <NavigationProperty Name="Observation" Relationship="synthese_dbModel.MessageObservationObservation" FromRole="MessageObservation" ToRole="Observation" />
-        </EntityType>
-        <Association Name="MessageObservationObservation">
-          <End Type="synthese_dbModel.MessageObservation" Role="MessageObservation" Multiplicity="*" />
-          <End Type="synthese_dbModel.Observation" Role="Observation" Multiplicity="1" />
-        </Association>
         <EntityType Name="SonObservation">
           <Key>
             <PropertyRef Name="Id" />
@@ -489,8 +466,20 @@
           <End Type="synthese_dbModel.Observation" Role="Observation" Multiplicity="1" />
         </Association>
         <Association Name="MessageUsagerUsager">
-          <End Type="synthese_dbModel.MessageUsager" Role="MessageUsager" Multiplicity="*" />
-          <End Type="synthese_dbModel.Usager" Role="Usager" Multiplicity="1" />
+          <End Type="synthese_dbModel.Message" Role="MessageUsager" Multiplicity="*" />
+          <End Type="synthese_dbModel.Usager" Role="Usager" Multiplicity="0..1" />
+        </Association>
+        <Association Name="ObservationMessage">
+          <End Type="synthese_dbModel.Observation" Role="Observation" Multiplicity="0..1" />
+          <End Type="synthese_dbModel.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Observation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="IDObservation" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -553,12 +542,13 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Message">
-      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.MessageUsager)">
+      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.Message)">
         <MappingFragment StoreEntitySet="Message">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Texte" ColumnName="Texte" />
           <ScalarProperty Name="DateHeure" ColumnName="DateHeure" />
           <ScalarProperty Name="IDUsager" ColumnName="IDUsager" />
+          <ScalarProperty Name="IDObservation" ColumnName="IDObservation" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -579,16 +569,6 @@
           <ScalarProperty Name="IDObservation" ColumnName="IDObservation" />
           <ScalarProperty Name="ImageMiniature" ColumnName="ImageMiniature" />
           <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="MessageObservationSet">
-      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.MessageObservation)">
-        <MappingFragment StoreEntitySet="MessageObservationSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Texte" ColumnName="Texte" />
-          <ScalarProperty Name="DateHeure" ColumnName="DateHeure" />
-          <ScalarProperty Name="IDObservation" ColumnName="IDObservation" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -619,14 +599,6 @@
       </EndProperty>
       <Condition ColumnName="Observation_Id" IsNull="false" />
     </AssociationSetMapping>
-    <AssociationSetMapping Name="MessageObservationObservation" TypeName="synthese_dbModel.MessageObservationObservation" StoreEntitySet="MessageObservationSet">
-      <EndProperty Name="Observation">
-        <ScalarProperty Name="Id" ColumnName="Observation_Id" />
-      </EndProperty>
-      <EndProperty Name="MessageObservation">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="SonObservationObservation" TypeName="synthese_dbModel.SonObservationObservation" StoreEntitySet="SonObservationSet">
       <EndProperty Name="Observation">
         <ScalarProperty Name="Id" ColumnName="Observation_Id" />
@@ -642,6 +614,7 @@
       <EndProperty Name="MessageUsager">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="Usager_Id" IsNull="false" />
     </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
@@ -665,55 +638,53 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Model1" DisplayType="true" >
-        <EntityTypeShape EntityType="synthese_dbModel.CriOiseau" Width="1.625" PointX="4.375" PointY="13.625" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="synthese_dbModel.CriOiseau" Width="1.625" PointX="2.875" PointY="7.25" Height="1.9802864583333317" />
         <EntityTypeShape EntityType="synthese_dbModel.Observation" Width="2.125" PointX="9.125" PointY="10.375" Height="2.7494921874999996" />
-        <EntityTypeShape EntityType="synthese_dbModel.Oiseau" Width="1.75" PointX="6.375" PointY="9.625" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="synthese_dbModel.Photo" Width="1.625" PointX="4.25" PointY="10.875" Height="2.1725878906249996" />
-        <EntityTypeShape EntityType="synthese_dbModel.Usager" Width="1.5" PointX="9.875" PointY="14.125" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="synthese_dbModel.Oiseau" Width="1.75" PointX="6.25" PointY="7.5" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="synthese_dbModel.Photo" Width="1.625" PointX="3.75" PointY="10" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="synthese_dbModel.Usager" Width="1.5" PointX="9.5" PointY="7.375" Height="2.3648893229166674" />
         <AssociationConnector Association="synthese_dbModel.FK_OiseauCriOiseau" >
-          <ConnectorPoint PointX="6.71875" PointY="11.989889322916667" />
-          <ConnectorPoint PointX="6.71875" PointY="13.78125" />
-          <ConnectorPoint PointX="6" PointY="13.78125" />
+          <ConnectorPoint PointX="6.25" PointY="8.03125" />
+          <ConnectorPoint PointX="4.5" PointY="8.03125" />
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.FK_OiseauObservation" >
-          <ConnectorPoint PointX="8.125" PointY="11.182444661458334" />
-          <ConnectorPoint PointX="9.125" PointY="11.182444661458334" />
+          <ConnectorPoint PointX="8" PointY="9.8336393229166674" />
+          <ConnectorPoint PointX="9.28125" PointY="9.8336393229166674" />
+          <ConnectorPoint PointX="9.28125" PointY="10.375" />
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.FK_OiseauPhoto" >
-          <ConnectorPoint PointX="6.375" PointY="11.432444661458334" />
-          <ConnectorPoint PointX="5.875" PointY="11.432444661458334" />
+          <ConnectorPoint PointX="6.25" PointY="9.578837890625" />
+          <ConnectorPoint PointX="4.96875" PointY="9.578837890625" />
+          <ConnectorPoint PointX="4.96875" PointY="10" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="synthese_dbModel.MessageUsager" Width="1.5" PointX="13.25" PointY="14.375" Height="1.9802864583333353" />
-        <EntityTypeShape EntityType="synthese_dbModel.Alerte" Width="1.875" PointX="12.25" PointY="9.875" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="synthese_dbModel.Message" Width="1.5" PointX="13.125" PointY="8.75" Height="1.9802864583333353" />
+        <EntityTypeShape EntityType="synthese_dbModel.Alerte" Width="1.875" PointX="12.75" PointY="12.625" Height="1.5956835937499996" />
         <AssociationConnector Association="synthese_dbModel.Alerteobservation">
-          <ConnectorPoint PointX="12.25" PointY="10.922841796875" />
-          <ConnectorPoint PointX="11.25" PointY="10.922841796875" />
+          <ConnectorPoint PointX="12.75" PointY="13.1631982421875" />
+          <ConnectorPoint PointX="11.25" PointY="13.1631982421875" />
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.observationusager">
-          <ConnectorPoint PointX="10.5625" PointY="13.509095052083334" />
-          <ConnectorPoint PointX="10.5625" PointY="14.125" />
+          <ConnectorPoint PointX="10.25" PointY="10.375" />
+          <ConnectorPoint PointX="10.25" PointY="9.7398893229166674" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="synthese_dbModel.PhotoObservation" Width="2.125" PointX="7.125" PointY="14" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="synthese_dbModel.PhotoObservation" Width="2.125" PointX="4.125" PointY="13.375" Height="2.3648893229166674" />
         <AssociationConnector Association="synthese_dbModel.PhotoObservationObservation">
-          <ConnectorPoint PointX="8.1875" PointY="14" />
-          <ConnectorPoint PointX="8.1875" PointY="13.625" />
-          <ConnectorPoint PointX="8.75" PointY="13.625" />
-          <ConnectorPoint PointX="8.75" PointY="12.377021856770835" />
-          <ConnectorPoint PointX="9.125" PointY="12.377021856770835" />
+          <ConnectorPoint PointX="6.25" PointY="14.720643403645834" />
+          <ConnectorPoint PointX="10.1875" PointY="14.720643403645834" />
+          <ConnectorPoint PointX="10.1875" PointY="13.701396484375" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="synthese_dbModel.MessageObservation" Width="1.875" PointX="9" PointY="7.625" Height="1.9802864583333317" />
-        <AssociationConnector Association="synthese_dbModel.MessageObservationObservation">
-          <ConnectorPoint PointX="10" PointY="9.6052864583333317" />
-          <ConnectorPoint PointX="10" PointY="10.375" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="synthese_dbModel.SonObservation" Width="2.75" PointX="12.375" PointY="12.125" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="synthese_dbModel.SonObservation" Width="2.75" PointX="5.875" PointY="10.875" Height="1.9802864583333317" />
         <AssociationConnector Association="synthese_dbModel.SonObservationObservation">
-          <ConnectorPoint PointX="12.375" PointY="12.9131982421875" />
-          <ConnectorPoint PointX="11.25" PointY="12.9131982421875" />
+          <ConnectorPoint PointX="8.625" PointY="11.865143229166666" />
+          <ConnectorPoint PointX="9.125" PointY="11.865143229166666" />
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.MessageUsagerUsager">
-          <ConnectorPoint PointX="13.25" PointY="15.365143229166668" />
-          <ConnectorPoint PointX="11.375" PointY="15.365143229166668" />
+          <ConnectorPoint PointX="13.125" PointY="9.2449446614583337" />
+          <ConnectorPoint PointX="11" PointY="9.2449446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="synthese_dbModel.ObservationMessage">
+          <ConnectorPoint PointX="11.25" PointY="10.744944661458334" />
+          <ConnectorPoint PointX="13.125" PointY="10.744944661458334" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

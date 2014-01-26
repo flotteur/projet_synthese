@@ -25,9 +25,9 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("synthese_dbModel", "Alerteobservation", "Alerte", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data_synthese.Alerte), "observation", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data_synthese.Observation))]
 [assembly: EdmRelationshipAttribute("synthese_dbModel", "observationusager", "observation", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data_synthese.Observation), "usager", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data_synthese.Usager), true)]
 [assembly: EdmRelationshipAttribute("synthese_dbModel", "PhotoObservationObservation", "PhotoObservation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data_synthese.PhotoObservation), "Observation", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data_synthese.Observation))]
-[assembly: EdmRelationshipAttribute("synthese_dbModel", "MessageObservationObservation", "MessageObservation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data_synthese.MessageObservation), "Observation", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data_synthese.Observation))]
 [assembly: EdmRelationshipAttribute("synthese_dbModel", "SonObservationObservation", "SonObservation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data_synthese.SonObservation), "Observation", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data_synthese.Observation))]
-[assembly: EdmRelationshipAttribute("synthese_dbModel", "MessageUsagerUsager", "MessageUsager", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data_synthese.MessageUsager), "Usager", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data_synthese.Usager))]
+[assembly: EdmRelationshipAttribute("synthese_dbModel", "MessageUsagerUsager", "MessageUsager", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data_synthese.Message), "Usager", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data_synthese.Usager))]
+[assembly: EdmRelationshipAttribute("synthese_dbModel", "ObservationMessage", "Observation", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data_synthese.Observation), "Message", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data_synthese.Message), true)]
 
 #endregion
 
@@ -162,18 +162,18 @@ namespace Data_synthese
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<MessageUsager> Message
+        public ObjectSet<Message> Message
         {
             get
             {
                 if ((_Message == null))
                 {
-                    _Message = base.CreateObjectSet<MessageUsager>("Message");
+                    _Message = base.CreateObjectSet<Message>("Message");
                 }
                 return _Message;
             }
         }
-        private ObjectSet<MessageUsager> _Message;
+        private ObjectSet<Message> _Message;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -206,22 +206,6 @@ namespace Data_synthese
             }
         }
         private ObjectSet<PhotoObservation> _PhotoObservationSet;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<MessageObservation> MessageObservationSet
-        {
-            get
-            {
-                if ((_MessageObservationSet == null))
-                {
-                    _MessageObservationSet = base.CreateObjectSet<MessageObservation>("MessageObservationSet");
-                }
-                return _MessageObservationSet;
-            }
-        }
-        private ObjectSet<MessageObservation> _MessageObservationSet;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -286,9 +270,9 @@ namespace Data_synthese
         /// <summary>
         /// Deprecated Method for adding a new object to the Message EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToMessage(MessageUsager messageUsager)
+        public void AddToMessage(Message message)
         {
-            base.AddObject("Message", messageUsager);
+            base.AddObject("Message", message);
         }
     
         /// <summary>
@@ -305,14 +289,6 @@ namespace Data_synthese
         public void AddToPhotoObservationSet(PhotoObservation photoObservation)
         {
             base.AddObject("PhotoObservationSet", photoObservation);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the MessageObservationSet EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToMessageObservationSet(MessageObservation messageObservation)
-        {
-            base.AddObject("MessageObservationSet", messageObservation);
         }
     
         /// <summary>
@@ -636,205 +612,28 @@ namespace Data_synthese
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="synthese_dbModel", Name="MessageObservation")]
+    [EdmEntityTypeAttribute(NamespaceName="synthese_dbModel", Name="Message")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class MessageObservation : EntityObject
+    public partial class Message : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new MessageObservation object.
-        /// </summary>
-        /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="texte">Initial value of the Texte property.</param>
-        /// <param name="dateHeure">Initial value of the DateHeure property.</param>
-        /// <param name="iDObservation">Initial value of the IDObservation property.</param>
-        public static MessageObservation CreateMessageObservation(global::System.Int32 id, global::System.String texte, global::System.DateTime dateHeure, global::System.Int32 iDObservation)
-        {
-            MessageObservation messageObservation = new MessageObservation();
-            messageObservation.Id = id;
-            messageObservation.Texte = texte;
-            messageObservation.DateHeure = dateHeure;
-            messageObservation.IDObservation = iDObservation;
-            return messageObservation;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 Id
-        {
-            get
-            {
-                return _Id;
-            }
-            set
-            {
-                if (_Id != value)
-                {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
-                    OnIdChanged();
-                }
-            }
-        }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
-        partial void OnIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Texte
-        {
-            get
-            {
-                return _Texte;
-            }
-            set
-            {
-                OnTexteChanging(value);
-                ReportPropertyChanging("Texte");
-                _Texte = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Texte");
-                OnTexteChanged();
-            }
-        }
-        private global::System.String _Texte;
-        partial void OnTexteChanging(global::System.String value);
-        partial void OnTexteChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime DateHeure
-        {
-            get
-            {
-                return _DateHeure;
-            }
-            set
-            {
-                OnDateHeureChanging(value);
-                ReportPropertyChanging("DateHeure");
-                _DateHeure = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("DateHeure");
-                OnDateHeureChanged();
-            }
-        }
-        private global::System.DateTime _DateHeure;
-        partial void OnDateHeureChanging(global::System.DateTime value);
-        partial void OnDateHeureChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 IDObservation
-        {
-            get
-            {
-                return _IDObservation;
-            }
-            set
-            {
-                OnIDObservationChanging(value);
-                ReportPropertyChanging("IDObservation");
-                _IDObservation = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("IDObservation");
-                OnIDObservationChanged();
-            }
-        }
-        private global::System.Int32 _IDObservation;
-        partial void OnIDObservationChanging(global::System.Int32 value);
-        partial void OnIDObservationChanged();
-
-        #endregion
-
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("synthese_dbModel", "MessageObservationObservation", "Observation")]
-        public Observation Observation
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Observation>("synthese_dbModel.MessageObservationObservation", "Observation").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Observation>("synthese_dbModel.MessageObservationObservation", "Observation").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Observation> ObservationReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Observation>("synthese_dbModel.MessageObservationObservation", "Observation");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Observation>("synthese_dbModel.MessageObservationObservation", "Observation", value);
-                }
-            }
-        }
-
-        #endregion
-
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="synthese_dbModel", Name="MessageUsager")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class MessageUsager : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new MessageUsager object.
+        /// Create a new Message object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="texte">Initial value of the Texte property.</param>
         /// <param name="dateHeure">Initial value of the DateHeure property.</param>
         /// <param name="iDUsager">Initial value of the IDUsager property.</param>
-        public static MessageUsager CreateMessageUsager(global::System.Int32 id, global::System.String texte, global::System.DateTime dateHeure, global::System.Int32 iDUsager)
+        public static Message CreateMessage(global::System.Int32 id, global::System.String texte, global::System.DateTime dateHeure, global::System.Int32 iDUsager)
         {
-            MessageUsager messageUsager = new MessageUsager();
-            messageUsager.Id = id;
-            messageUsager.Texte = texte;
-            messageUsager.DateHeure = dateHeure;
-            messageUsager.IDUsager = iDUsager;
-            return messageUsager;
+            Message message = new Message();
+            message.Id = id;
+            message.Texte = texte;
+            message.DateHeure = dateHeure;
+            message.IDUsager = iDUsager;
+            return message;
         }
 
         #endregion
@@ -939,6 +738,30 @@ namespace Data_synthese
         private global::System.Int32 _IDUsager;
         partial void OnIDUsagerChanging(global::System.Int32 value);
         partial void OnIDUsagerChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> IDObservation
+        {
+            get
+            {
+                return _IDObservation;
+            }
+            set
+            {
+                OnIDObservationChanging(value);
+                ReportPropertyChanging("IDObservation");
+                _IDObservation = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IDObservation");
+                OnIDObservationChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _IDObservation;
+        partial void OnIDObservationChanging(Nullable<global::System.Int32> value);
+        partial void OnIDObservationChanged();
 
         #endregion
 
@@ -979,6 +802,44 @@ namespace Data_synthese
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Usager>("synthese_dbModel.MessageUsagerUsager", "Usager", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("synthese_dbModel", "ObservationMessage", "Observation")]
+        public Observation Observation
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Observation>("synthese_dbModel.ObservationMessage", "Observation").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Observation>("synthese_dbModel.ObservationMessage", "Observation").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Observation> ObservationReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Observation>("synthese_dbModel.ObservationMessage", "Observation");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Observation>("synthese_dbModel.ObservationMessage", "Observation", value);
                 }
             }
         }
@@ -1298,28 +1159,6 @@ namespace Data_synthese
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("synthese_dbModel", "MessageObservationObservation", "MessageObservation")]
-        public EntityCollection<MessageObservation> MessageObservation
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MessageObservation>("synthese_dbModel.MessageObservationObservation", "MessageObservation");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MessageObservation>("synthese_dbModel.MessageObservationObservation", "MessageObservation", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("synthese_dbModel", "SonObservationObservation", "SonObservation")]
         public EntityCollection<SonObservation> SonObservation
         {
@@ -1332,6 +1171,28 @@ namespace Data_synthese
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SonObservation>("synthese_dbModel.SonObservationObservation", "SonObservation", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("synthese_dbModel", "ObservationMessage", "Message")]
+        public EntityCollection<Message> Message
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Message>("synthese_dbModel.ObservationMessage", "Message");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Message>("synthese_dbModel.ObservationMessage", "Message", value);
                 }
             }
         }
@@ -2360,17 +2221,17 @@ namespace Data_synthese
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("synthese_dbModel", "MessageUsagerUsager", "MessageUsager")]
-        public EntityCollection<MessageUsager> MessageUsager
+        public EntityCollection<Message> MessageUsager
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MessageUsager>("synthese_dbModel.MessageUsagerUsager", "MessageUsager");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Message>("synthese_dbModel.MessageUsagerUsager", "MessageUsager");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MessageUsager>("synthese_dbModel.MessageUsagerUsager", "MessageUsager", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Message>("synthese_dbModel.MessageUsagerUsager", "MessageUsager", value);
                 }
             }
         }

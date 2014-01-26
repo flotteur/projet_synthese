@@ -18,7 +18,7 @@
       <End Role="oiseau1" EntitySet="Oiseau" />
       <End Role="photo1" EntitySet="Photo" />
     </AssociationSet>
-    <EntitySet Name="Message" EntityType="synthese_dbModel.MessageUsager" />
+    <EntitySet Name="Message" EntityType="synthese_dbModel.Message" />
     <EntitySet Name="Alerte" EntityType="synthese_dbModel.Alerte" />
     <AssociationSet Name="Alerteobservation" Association="synthese_dbModel.Alerteobservation">
       <End Role="Alerte" EntitySet="Alerte" />
@@ -33,11 +33,6 @@
       <End Role="PhotoObservation" EntitySet="PhotoObservationSet" />
       <End Role="Observation" EntitySet="Observation" />
     </AssociationSet>
-    <EntitySet Name="MessageObservationSet" EntityType="synthese_dbModel.MessageObservation" />
-    <AssociationSet Name="MessageObservationObservation" Association="synthese_dbModel.MessageObservationObservation">
-      <End Role="MessageObservation" EntitySet="MessageObservationSet" />
-      <End Role="Observation" EntitySet="Observation" />
-    </AssociationSet>
     <EntitySet Name="SonObservationSet" EntityType="synthese_dbModel.SonObservation" />
     <AssociationSet Name="SonObservationObservation" Association="synthese_dbModel.SonObservationObservation">
       <End Role="SonObservation" EntitySet="SonObservationSet" />
@@ -46,6 +41,10 @@
     <AssociationSet Name="MessageUsagerUsager" Association="synthese_dbModel.MessageUsagerUsager">
       <End Role="MessageUsager" EntitySet="Message" />
       <End Role="Usager" EntitySet="Usager" />
+    </AssociationSet>
+    <AssociationSet Name="ObservationMessage" Association="synthese_dbModel.ObservationMessage">
+      <End Role="Observation" EntitySet="Observation" />
+      <End Role="Message" EntitySet="Message" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="CriOiseau">
@@ -72,8 +71,8 @@
     <Property Type="Int32" Name="IDAlerte" Nullable="true" />
     <NavigationProperty Name="usager" Relationship="synthese_dbModel.observationusager" FromRole="observation" ToRole="usager" />
     <NavigationProperty Name="PhotoObservation" Relationship="synthese_dbModel.PhotoObservationObservation" FromRole="Observation" ToRole="PhotoObservation" />
-    <NavigationProperty Name="MessageObservation" Relationship="synthese_dbModel.MessageObservationObservation" FromRole="Observation" ToRole="MessageObservation" />
     <NavigationProperty Name="SonObservation" Relationship="synthese_dbModel.SonObservationObservation" FromRole="Observation" ToRole="SonObservation" />
+    <NavigationProperty Name="Message" Relationship="synthese_dbModel.ObservationMessage" FromRole="Observation" ToRole="Message" />
   </EntityType>
   <EntityType Name="Oiseau">
     <Key>
@@ -146,7 +145,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="MessageUsager">
+  <EntityType Name="Message">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -155,6 +154,8 @@
     <Property Type="DateTime" Name="DateHeure" Nullable="false" />
     <Property Type="Int32" Name="IDUsager" Nullable="false" />
     <NavigationProperty Name="Usager" Relationship="synthese_dbModel.MessageUsagerUsager" FromRole="MessageUsager" ToRole="Usager" />
+    <NavigationProperty Name="Observation" Relationship="synthese_dbModel.ObservationMessage" FromRole="Message" ToRole="Observation" />
+    <Property Type="Int32" Name="IDObservation" Nullable="true" />
   </EntityType>
   <EntityType Name="Alerte">
     <Key>
@@ -196,20 +197,6 @@
     <End Type="synthese_dbModel.PhotoObservation" Role="PhotoObservation" Multiplicity="*" />
     <End Type="synthese_dbModel.Observation" Role="Observation" Multiplicity="0..1" />
   </Association>
-  <EntityType Name="MessageObservation">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="String" Name="Texte" Nullable="false" />
-    <Property Type="DateTime" Name="DateHeure" Nullable="false" />
-    <Property Type="Int32" Name="IDObservation" Nullable="false" />
-    <NavigationProperty Name="Observation" Relationship="synthese_dbModel.MessageObservationObservation" FromRole="MessageObservation" ToRole="Observation" />
-  </EntityType>
-  <Association Name="MessageObservationObservation">
-    <End Type="synthese_dbModel.MessageObservation" Role="MessageObservation" Multiplicity="*" />
-    <End Type="synthese_dbModel.Observation" Role="Observation" Multiplicity="1" />
-  </Association>
   <EntityType Name="SonObservation">
     <Key>
       <PropertyRef Name="Id" />
@@ -225,7 +212,19 @@
     <End Type="synthese_dbModel.Observation" Role="Observation" Multiplicity="1" />
   </Association>
   <Association Name="MessageUsagerUsager">
-    <End Type="synthese_dbModel.MessageUsager" Role="MessageUsager" Multiplicity="*" />
-    <End Type="synthese_dbModel.Usager" Role="Usager" Multiplicity="1" />
+    <End Type="synthese_dbModel.Message" Role="MessageUsager" Multiplicity="*" />
+    <End Type="synthese_dbModel.Usager" Role="Usager" Multiplicity="0..1" />
+  </Association>
+  <Association Name="ObservationMessage">
+    <End Type="synthese_dbModel.Observation" Role="Observation" Multiplicity="0..1" />
+    <End Type="synthese_dbModel.Message" Role="Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Observation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="IDObservation" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

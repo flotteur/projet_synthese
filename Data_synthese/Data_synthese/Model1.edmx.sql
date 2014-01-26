@@ -5,7 +5,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 01/25/2014 09:48:36
+-- Date Created: 01/26/2014 07:43:55
 -- Generated from EDMX file: C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Data_synthese\Model1.edmx
 -- Target version: 2.0.0.0
 -- --------------------------------------------------
@@ -19,9 +19,11 @@
 --    ALTER TABLE `CriOiseau` DROP CONSTRAINT `FK_OiseauCriOiseau`;
 --    ALTER TABLE `Observation` DROP CONSTRAINT `FK_OiseauObservation`;
 --    ALTER TABLE `Photo` DROP CONSTRAINT `FK_OiseauPhoto`;
---    ALTER TABLE `Message` DROP CONSTRAINT `FK_usagerMessage`;
---    ALTER TABLE `Observation` DROP CONSTRAINT `FK_Alerteobservation`;
+--    ALTER TABLE `Alerte` DROP CONSTRAINT `FK_Alerteobservation`;
 --    ALTER TABLE `Usager` DROP CONSTRAINT `FK_observationusager`;
+--    ALTER TABLE `PhotoObservationSet` DROP CONSTRAINT `FK_PhotoObservationObservation`;
+--    ALTER TABLE `SonObservationSet` DROP CONSTRAINT `FK_SonObservationObservation`;
+--    ALTER TABLE `Message` DROP CONSTRAINT `FK_MessageUsagerUsager`;
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -34,6 +36,8 @@ SET foreign_key_checks = 0;
     DROP TABLE IF EXISTS `Usager`;
     DROP TABLE IF EXISTS `Message`;
     DROP TABLE IF EXISTS `Alerte`;
+    DROP TABLE IF EXISTS `PhotoObservationSet`;
+    DROP TABLE IF EXISTS `SonObservationSet`;
 SET foreign_key_checks = 1;
 
 -- --------------------------------------------------
@@ -104,7 +108,8 @@ CREATE TABLE `Message`(
 	`Texte` varchar (1000) NOT NULL, 
 	`DateHeure` datetime NOT NULL, 
 	`IDUsager` int NOT NULL, 
-	`Usager_Id` int NOT NULL);
+	`IDObservation` int, 
+	`Usager_Id` int);
 
 ALTER TABLE `Message` ADD PRIMARY KEY (Id);
 
@@ -131,18 +136,6 @@ CREATE TABLE `PhotoObservationSet`(
 	`Observation_Id` int);
 
 ALTER TABLE `PhotoObservationSet` ADD PRIMARY KEY (Id);
-
-
-
-
-CREATE TABLE `MessageObservationSet`(
-	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
-	`Texte` varchar (1000) NOT NULL, 
-	`DateHeure` datetime NOT NULL, 
-	`IDObservation` int NOT NULL, 
-	`Observation_Id` int NOT NULL);
-
-ALTER TABLE `MessageObservationSet` ADD PRIMARY KEY (Id);
 
 
 
@@ -255,21 +248,6 @@ CREATE INDEX `IX_FK_PhotoObservationObservation`
     ON `PhotoObservationSet`
     (`Observation_Id`);
 
--- Creating foreign key on `Observation_Id` in table 'MessageObservationSet'
-
-ALTER TABLE `MessageObservationSet`
-ADD CONSTRAINT `FK_MessageObservationObservation`
-    FOREIGN KEY (`Observation_Id`)
-    REFERENCES `Observation`
-        (`Id`)
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_MessageObservationObservation'
-
-CREATE INDEX `IX_FK_MessageObservationObservation` 
-    ON `MessageObservationSet`
-    (`Observation_Id`);
-
 -- Creating foreign key on `Observation_Id` in table 'SonObservationSet'
 
 ALTER TABLE `SonObservationSet`
@@ -299,6 +277,21 @@ ADD CONSTRAINT `FK_MessageUsagerUsager`
 CREATE INDEX `IX_FK_MessageUsagerUsager` 
     ON `Message`
     (`Usager_Id`);
+
+-- Creating foreign key on `IDObservation` in table 'Message'
+
+ALTER TABLE `Message`
+ADD CONSTRAINT `FK_ObservationMessage`
+    FOREIGN KEY (`IDObservation`)
+    REFERENCES `Observation`
+        (`Id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ObservationMessage'
+
+CREATE INDEX `IX_FK_ObservationMessage` 
+    ON `Message`
+    (`IDObservation`);
 
 -- --------------------------------------------------
 -- Script has ended

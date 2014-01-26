@@ -9,7 +9,6 @@
     <EntitySet Name="Message" EntityType="synthese_dbModel.Store.Message" store:Type="Tables" Schema="synthese_db" />
     <EntitySet Name="Alerte" EntityType="synthese_dbModel.Store.Alerte" store:Type="Tables" Schema="synthese_db" />
     <EntitySet Name="PhotoObservationSet" EntityType="synthese_dbModel.Store.PhotoObservationSet" store:Type="Tables" Schema="synthese_db" />
-    <EntitySet Name="MessageObservationSet" EntityType="synthese_dbModel.Store.MessageObservationSet" store:Type="Tables" Schema="synthese_db" />
     <EntitySet Name="SonObservationSet" EntityType="synthese_dbModel.Store.SonObservationSet" store:Type="Tables" Schema="synthese_db" />
     <AssociationSet Name="FK_OiseauCriOiseau" Association="synthese_dbModel.Store.FK_OiseauCriOiseau">
       <End Role="oiseau1" EntitySet="Oiseau" />
@@ -35,10 +34,6 @@
       <End Role="PhotoObservation" EntitySet="PhotoObservationSet" />
       <End Role="Observation" EntitySet="Observation" />
     </AssociationSet>
-    <AssociationSet Name="MessageObservationObservation" Association="synthese_dbModel.Store.MessageObservationObservation">
-      <End Role="MessageObservation" EntitySet="MessageObservationSet" />
-      <End Role="Observation" EntitySet="Observation" />
-    </AssociationSet>
     <AssociationSet Name="SonObservationObservation" Association="synthese_dbModel.Store.SonObservationObservation">
       <End Role="SonObservation" EntitySet="SonObservationSet" />
       <End Role="Observation" EntitySet="Observation" />
@@ -46,6 +41,10 @@
     <AssociationSet Name="MessageUsagerUsager" Association="synthese_dbModel.Store.MessageUsagerUsager">
       <End Role="MessageUsager" EntitySet="Message" />
       <End Role="Usager" EntitySet="Usager" />
+    </AssociationSet>
+    <AssociationSet Name="ObservationMessage" Association="synthese_dbModel.Store.ObservationMessage">
+      <End Role="Observation" EntitySet="Observation" />
+      <End Role="Message" EntitySet="Message" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="CriOiseau">
@@ -105,7 +104,8 @@
     <Property Name="Texte" Type="varchar" Nullable="false" />
     <Property Name="DateHeure" Type="datetime" Nullable="false" />
     <Property Name="IDUsager" Type="int" Nullable="false" />
-    <Property Name="Usager_Id" Type="int" Nullable="false" />
+    <Property Name="IDObservation" Type="int" Nullable="true" />
+    <Property Name="Usager_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Alerte">
     <Key>
@@ -126,16 +126,6 @@
     <Property Name="ImageMiniature" Type="longblob" Nullable="false" />
     <Property Name="Commentaire" Type="varchar" Nullable="false" />
     <Property Name="Observation_Id" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="MessageObservationSet">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Texte" Type="varchar" Nullable="false" />
-    <Property Name="DateHeure" Type="datetime" Nullable="false" />
-    <Property Name="IDObservation" Type="int" Nullable="false" />
-    <Property Name="Observation_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="SonObservationSet">
     <Key>
@@ -219,18 +209,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="MessageObservationObservation">
-    <End Role="MessageObservation" Type="synthese_dbModel.Store.MessageObservationSet" Multiplicity="*" />
-    <End Role="Observation" Type="synthese_dbModel.Store.Observation" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Observation">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="MessageObservation">
-        <PropertyRef Name="Observation_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="SonObservationObservation">
     <End Role="SonObservation" Type="synthese_dbModel.Store.SonObservationSet" Multiplicity="*" />
     <End Role="Observation" Type="synthese_dbModel.Store.Observation" Multiplicity="1" />
@@ -245,13 +223,25 @@
   </Association>
   <Association Name="MessageUsagerUsager">
     <End Role="MessageUsager" Type="synthese_dbModel.Store.Message" Multiplicity="*" />
-    <End Role="Usager" Type="synthese_dbModel.Store.Usager" Multiplicity="1" />
+    <End Role="Usager" Type="synthese_dbModel.Store.Usager" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Usager">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="MessageUsager">
         <PropertyRef Name="Usager_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ObservationMessage">
+    <End Role="Observation" Type="synthese_dbModel.Store.Observation" Multiplicity="0..1" />
+    <End Role="Message" Type="synthese_dbModel.Store.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Observation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="IDObservation" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
