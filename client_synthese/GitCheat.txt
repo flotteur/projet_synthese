@@ -1,4 +1,7 @@
-Commandes Git les plus utilisées
+Commandes Git les plus utilisées en mode console
+
+https://www.youtube.com/watch?v=0fKg7e37bQE
+
 
 git clone le_url
 git status
