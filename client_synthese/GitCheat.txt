@@ -1,0 +1,19 @@
+Commandes Git les plus utilisées
+
+git clone le_url
+git status
+git add index.html
+ou
+git add .
+ou
+git add -A
+
+git commit -m "un message"
+ou
+git commit (sans message ça ouvre vim. Faire :wq pour sortir )
+
+git push
+
+git pull
+
+git (pour voir le Help)
