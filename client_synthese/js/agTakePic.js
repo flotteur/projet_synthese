@@ -80,7 +80,16 @@ MaCamera.prototype.activateCamera = function() {
     if (takePicture && showPicture) {
         // Set events
         takePicture.onchange = function (event) {
-            // Get a reference to the taken picture or chosen file
+           
+//document.getElementById('idTRInputDeLaPhoto').style.display='block';
+
+
+
+
+
+
+
+		   // Get a reference to the taken picture or chosen file
             var files = event.target.files,
                 file;
             if (files && files.length > 0) {
@@ -91,12 +100,18 @@ MaCamera.prototype.activateCamera = function() {
 
                     // Create ObjectURL
                     var imgURL = URL.createObjectURL(file);
-//alert(imgURL);
+					
+
                     // Set img src to ObjectURL
                     showPicture.src = imgURL;
 
                     // Revoke ObjectURL
                     URL.revokeObjectURL(imgURL);
+					
+					//alert("323232323");
+					
+					showPicture.onload=function(){onClickAjouterUneAutrePhoto();};
+					
                 }
                 catch (e) {
                     try {
@@ -106,6 +121,8 @@ MaCamera.prototype.activateCamera = function() {
                             showPicture.src = event.target.result;
                         };
                         fileReader.readAsDataURL(file);
+						
+						
                     }
                     catch (e) {
                         // Display error message
@@ -115,7 +132,19 @@ MaCamera.prototype.activateCamera = function() {
                         }
                     }
                 }
+				
+				varGlobalNomImage = document.getElementById('take-picture').files[0].name;
+				document.getElementById('id_ObservDiskName_data').value = varGlobalNomImage;
+				
+				
+				
             }
+	//alert("2222222");
+				
+		
+		destroyTagInputFilePourLaPhotoPrincipale();
+			
+		
         };
     }
 	

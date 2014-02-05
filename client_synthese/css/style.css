@@ -30,7 +30,7 @@ html, body {
 /* THE TWO ABOUT SUB-PAGES */
 
 
-#liste_fichiers1, #liste_cartes1, #a_setting, #my_login {
+#id_div_liste_fichiers1, #ecran_observation1, #liste_observation1, #a_setting, #my_login {
   background-color: #D5D6D7;
   margin: 15px 10px 17px 10px;
   -webkit-box-shadow: rgba(255, 255, 255, 0.15) 0 1px 0;
@@ -41,15 +41,15 @@ html, body {
   padding: 1em;
 }
 
-#liste_fichiers1 h2, #liste_cartes1 h2 {
+#id_div_liste_fichiers1 h2, #liste_observation1 h2, #ecran_observation1 h2 {
     margin-top: 0;
 }
 
-#liste_fichiers1 a, #liste_cartes1 a {
+#id_div_liste_fichiers1 a, #liste_observation1 a, #ecran_observation1 a {
     color: #3B59BB;
 }
 
-#liste_fichiers1 blockquote, #liste_cartes1 blockquote {
+#id_div_liste_fichiers1 blockquote, #liste_observation1 blockquote , #ecran_observation1 blockquote{
     margin-left: 0;
     margin-top: 2em;
     font-style: italic;
@@ -434,7 +434,7 @@ background-color: green;
 }
 
 
-div.listViewCartes  {
+div.list_View_Observ  {
 	position:relative;
 }
 div.listViewDocCoord  {

@@ -8,7 +8,7 @@ function addFichiersListViewCell(le_id, le_non_fich, le_url, la_descrip, la_date
 	newDiv1.setAttribute("class", "la_liste1");
 	newDiv1.setAttribute("align", "left");
 	
-	newDiv1.id="liste_fichiers1";	
+	newDiv1.id="id_div_liste_fichiers1";	
 	
 	//newDiv1.addEventListener('click', test55, false)
 	newDiv1.addEventListener('click',function(){affichePageFichier(le_id, le_non_fich, le_url, la_descrip, la_date_eng)},false);

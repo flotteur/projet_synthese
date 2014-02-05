@@ -38,9 +38,9 @@ AgListeDesDocCoord.prototype.saveToLocalStorage = function() {
 }
 
 
-AgListeDesDocCoord.prototype.getFromLocalStorage = function() {
+AgListeDesDocCoord.prototype.getDocCoordFromLocalStorage = function() {
 	
-	//alert("getFromLocalStorage");
+	//alert("getDocCoordFromLocalStorage");
 	//alert(this.myArrayObject.length);
 		
 	var objMyName = localStorage.getItem("lsMyName2");
@@ -77,19 +77,7 @@ AgListeDesDocCoord.prototype.getFromLocalStorage = function() {
 	}
 
 	
-	/*
-	
-	//alert("getFromLocalStorage");
-	this.myName = localStorage.getItem("lsMyName2");
-	//alert(this.myName);
-	this.myArrayObject = JSON.parse(localStorage.getItem("lsArrayDesPositions2"));
-	*/
-	/*
-	for (var i=0; i<myArrayObject.length; i++){
-		var personObject = myArrayObject[i];
-		alert("strDocName: " + personObject.strDocName, "strDocCoord: " + personObject.strDocCoord, "strDocDate: " + personObject.strDocDate);
-	}
-	*/
+
 }
 
 
@@ -100,7 +88,7 @@ AgListeDesDocCoord.prototype.addDocCoordCell = function(le_non_fich, la_coord, l
 	newDiv1.setAttribute("class", "listViewDocCoord");
 	newDiv1.setAttribute("align", "left");
 	
-	newDiv1.id="liste_fichiers1";	
+	newDiv1.id="id_div_liste_fichiers1";	
 	
 	//newDiv1.addEventListener('click', test55, false)
 	//newDiv1.addEventListener('click',function(){affichePageFichier(le_id, le_non_fich, le_url, la_descrip, la_date_eng)},false);
@@ -127,7 +115,7 @@ AgListeDesDocCoord.prototype.addDocCoordCell = function(le_non_fich, la_coord, l
 
 	var newDivTouch = document.createElement("div");
 	newDivTouch.setAttribute("class", "divTouch");
-	newDivTouch.addEventListener('click',function(){afficheEcranCarte(le_CarteDescrip, le_CarteDiskName, le_datURLPicture, le_index)},false);
+	newDivTouch.addEventListener('click',function(){afficheListViewObservations(le_CarteDescrip, le_CarteDiskName, le_datURLPicture, le_index)},false);
 	
 	
 	

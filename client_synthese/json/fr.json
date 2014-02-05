@@ -1,11 +1,11 @@
 {
-	"liste_des_fichiers":			"Liste des fichiers",
-	"liste_des_cartes":				"Liste des cartes d'affaire", 
-	"parametres":					"Paramètres",
-	"str_id_utilisateur":			"Utilisateur", 
-	"str_id_motDePasse":			"Mot de passe",		
-	"str_actualiser":				"Actualiser"	
-	
+	"str_bouton_liste_des_fichiers":		"Liste des fichiers",
+	"str_bouton_liste_des_observs":			"Liste des observations", 
+	"str_bouton_parametres":				"Paramètres",
+	"str_label_utilisateur":				"Utilisateur", 
+	"str_label_motDePasse":					"Mot de passe",		
+	"str_bouton_actualiser":				"Actualiser",	
+	"str_bouton_ajout_observation":			"Ajouter une observation"
 }
 
 
