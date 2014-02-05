@@ -1,4 +1,4 @@
-Commandes Git les plus utilis�es en mode console
+Commandes Git les plus utilisees en mode console
 
 https://www.youtube.com/watch?v=0fKg7e37bQE
 
@@ -12,7 +12,7 @@ git add -A
 
 git commit -m "un message"
 ou
-git commit (sans message �a ouvre vim. Faire :wq pour sortir )
+git commit (sans message ca ouvre vim. Faire :wq pour sortir )
 
 git push
 
