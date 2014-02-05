@@ -1,7 +1,6 @@
-Commandes Git les plus utilisées en mode console
+Commandes Git les plus utilisees en mode console
 
 https://www.youtube.com/watch?v=0fKg7e37bQE
-
 
 
 git clone le_url
@@ -14,7 +13,7 @@ git add -A
 
 git commit -m "un message"
 ou
-git commit (sans message ça ouvre vim. Faire :wq pour sortir )
+git commit (sans message ca ouvre vim. Faire :wq pour sortir )
 
 git push
 
@@ -22,6 +21,8 @@ git pull
 
 git (pour voir le Help)
 
+<<<<<<< HEAD
 
 
 cd D:\DataAll\DataCegep\Session_XX9_TravailleDeSyntheseFin\TP1_Partie_2_Application_Pour_ornitologues\projet_synthese
+
