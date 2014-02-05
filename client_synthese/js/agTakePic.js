@@ -110,7 +110,7 @@ MaCamera.prototype.activateCamera = function() {
 					
 					//alert("323232323");
 					
-					showPicture.onload=function(){onClickAjouterUneAutrePhoto();};
+					//showPicture.onload=function(){onClickAjouterUneAutrePhoto();};
 					
                 }
                 catch (e) {
