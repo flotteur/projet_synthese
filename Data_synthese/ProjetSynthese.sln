@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BO_Synthese", "BO_Synthese\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entites_Synthese", "Entites_Synthese\Entites_Synthese.csproj", "{47FE8F85-D7F3-4CA6-B57A-6C65FD848810}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_ClientSynthèse", "WPF_ClientSynthèse\WPF_ClientSynthèse.csproj", "{B2EB8021-B89E-4FD2-A968-24C39D0E0EBE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_ClientSynthese", "WPF_ClientSynthèse\WPF_ClientSynthese.csproj", "{B2EB8021-B89E-4FD2-A968-24C39D0E0EBE}"
 	ProjectSection(ProjectDependencies) = postProject
 		{B8A79EFF-48ED-4C95-A194-F616A1919C55} = {B8A79EFF-48ED-4C95-A194-F616A1919C55}
 	EndProjectSection
