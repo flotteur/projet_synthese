@@ -19,7 +19,7 @@
           <ScalarProperty Name="Position" ColumnName="Position" />
           <ScalarProperty Name="IDUsager" ColumnName="IDUsager" />
           <ScalarProperty Name="IDOiseau" ColumnName="IDOiseau" />
-          <ScalarProperty Name="IDAlerte" ColumnName="IDAlerte" />
+          <ScalarProperty Name="UsagerId" ColumnName="UsagerId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -51,7 +51,7 @@
           <ScalarProperty Name="NomUsager" ColumnName="NomUsager" />
           <ScalarProperty Name="MotPasse" ColumnName="MotPasse" />
           <ScalarProperty Name="Administrateur" ColumnName="Administrateur" />
-          <ScalarProperty Name="IDObservation" ColumnName="IDObservation" />
+          <ScalarProperty Name="Courriel" ColumnName="Courriel" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -96,14 +96,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="Alerteobservation" TypeName="synthese_dbModel.Alerteobservation" StoreEntitySet="Alerte">
-      <EndProperty Name="observation">
-        <ScalarProperty Name="Id" ColumnName="observation_Id" />
-      </EndProperty>
-      <EndProperty Name="Alerte">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
+    <EntitySetMapping Name="AlertesUsagersSet">
+      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.AlertesUsagers)">
+        <MappingFragment StoreEntitySet="AlertesUsagersSet">
+          <ScalarProperty Name="IDUsager" ColumnName="IDUsager" />
+          <ScalarProperty Name="IDAlerte" ColumnName="IDAlerte" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="PhotoObservationObservation" TypeName="synthese_dbModel.PhotoObservationObservation" StoreEntitySet="PhotoObservationSet">
       <EndProperty Name="Observation">
         <ScalarProperty Name="Id" ColumnName="Observation_Id" />
@@ -129,6 +129,30 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
       <Condition ColumnName="Usager_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AlertesUsagersAlerte" TypeName="synthese_dbModel.AlertesUsagersAlerte" StoreEntitySet="Alerte">
+      <EndProperty Name="AlertesUsagers">
+        <ScalarProperty Name="IDUsager" ColumnName="AlertesUsagers_IDUsager" />
+      </EndProperty>
+      <EndProperty Name="Alerte">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AlertesUsagersUsager" TypeName="synthese_dbModel.AlertesUsagersUsager" StoreEntitySet="Usager">
+      <EndProperty Name="AlertesUsagers">
+        <ScalarProperty Name="IDUsager" ColumnName="AlertesUsagers_IDUsager" />
+      </EndProperty>
+      <EndProperty Name="Usager">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AlerteOiseau" TypeName="synthese_dbModel.AlerteOiseau" StoreEntitySet="Alerte">
+      <EndProperty Name="Oiseau">
+        <ScalarProperty Name="Id" ColumnName="Oiseau_Id" />
+      </EndProperty>
+      <EndProperty Name="Alerte">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

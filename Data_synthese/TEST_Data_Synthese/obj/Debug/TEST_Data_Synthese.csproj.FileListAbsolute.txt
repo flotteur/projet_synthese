@@ -1,0 +1,14 @@
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\TEST_Data_Synthese\bin\Debug\TEST_Data_Synthese.dll.config
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\TEST_Data_Synthese\bin\Debug\TEST_Data_Synthese.dll
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\TEST_Data_Synthese\bin\Debug\TEST_Data_Synthese.pdb
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\TEST_Data_Synthese\bin\Debug\Data_synthese.dll
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\TEST_Data_Synthese\bin\Debug\Entites_Synthese.dll
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\TEST_Data_Synthese\bin\Debug\EntityFramework.dll
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\TEST_Data_Synthese\bin\Debug\Data_synthese.pdb
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\TEST_Data_Synthese\bin\Debug\Entites_Synthese.pdb
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\TEST_Data_Synthese\bin\Debug\EntityFramework.xml
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\TEST_Data_Synthese\bin\Debug\Data_synthese_Accessor.dll
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\TEST_Data_Synthese\bin\Debug\Data_synthese_Accessor.pdb
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\TEST_Data_Synthese\obj\Debug\TEST_Data_Synthese.csprojResolveAssemblyReference.cache
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\TEST_Data_Synthese\obj\Debug\TEST_Data_Synthese.dll
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\TEST_Data_Synthese\obj\Debug\TEST_Data_Synthese.pdb
