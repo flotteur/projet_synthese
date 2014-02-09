@@ -26,3 +26,5 @@ git (pour voir le Help)
 
 cd D:\DataAll\DataCegep\Session_XX9_TravailleDeSyntheseFin\TP1_Partie_2_Application_Pour_ornitologues\projet_synthese
 
+aaaaaa
+BBBBBB
