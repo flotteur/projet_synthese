@@ -60,6 +60,17 @@ function hide_settings() {
 
 
 
+function show_dicti() {
+	
+	ecran_recherche = document.getElementById('ecran_recherche');
+	show_element(ecran_recherche);
+}
+function hide_dicti() {
+	ecran_recherche = document.getElementById('ecran_recherche');
+	hide_element(ecran_recherche);
+}
+
+
 
 function show_back_button() {
 	
