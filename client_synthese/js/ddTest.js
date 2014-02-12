@@ -31,13 +31,14 @@ function tick() {
     
     // stop if down to zero
     if (secondsRemaining === 0) {        
-        alert('FINI!');
+        alert('Termin\351!');
         clearInterval(intervalHandle);
         
         document.getElementById("inputArea").style.display = "block";
+        
         // couleur au départ du compteur
         timeDisplay.setAttribute("style","font-size: 5em; color: #FF00FF; background-color: #D5D6D7;");
-     }
+      }
      
     // subtract from seconds remaining
     secondsRemaining--;
@@ -48,8 +49,17 @@ function tick() {
 
 function startCountdown() {
     
+   
     // get contents of the "minutes" text box
     var minutes = document.getElementById("minutes").value;
+ 
+ 
+     if (document.getElementById("inputArea").style.display == "none") {        
+        alert("Pause...");
+        return;
+      }
+    
+    
     
     // check if not a number
     if (isNaN(minutes)) {
@@ -76,6 +86,11 @@ window.onload =  function () {
     inputMinutes.setAttribute("id", "minutes");
     inputMinutes.setAttribute("type", "text");
    
+ 
     // add to the DOM, to the div called "inputArea"
     document.getElementById("inputArea").appendChild(inputMinutes);
+    inputMinutes.setAttribute("size", 20);
+     
+    inputMinutes.value = "2";
+    
 };
