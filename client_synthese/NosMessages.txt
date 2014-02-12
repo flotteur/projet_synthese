@@ -1,0 +1,6 @@
+
+
+Bon bien voici un fichier qu'on peut utiliser pour se laisser des messages, commentaires ou questions.
+
+Mon premier message: J'ai détruit gitcheat2.txt :)
+
