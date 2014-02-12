@@ -59,7 +59,6 @@ function startCountdown() {
         return;
       }
     
-    
 
     // check if not a number
     if (isNaN(minutes)) {
