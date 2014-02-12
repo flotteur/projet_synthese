@@ -62,12 +62,12 @@ function hide_settings() {
 
 function show_dicti() {
 	
-	ecran_recherche = document.getElementById('ecran_recherche');
-	show_element(ecran_recherche);
+	x = document.getElementById('ecran_recherche');
+	show_element(x);
 }
 function hide_dicti() {
-	ecran_recherche = document.getElementById('ecran_recherche');
-	hide_element(ecran_recherche);
+	x = document.getElementById('ecran_recherche');
+	hide_element(x);
 }
 
 
@@ -148,6 +148,8 @@ function hide_all() {
 	hide_menu1();
 	//hide_liste_des_fichiers();
 	
+	hide_dicti()
+	//hide_rechreche_dictionnaire();
 	
 	
 	hideLogin();
