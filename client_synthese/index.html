@@ -121,7 +121,7 @@
  
 	</div> 	  
 
-
+<!---------------------------------------------------------------->
 <!--  Écran du menu  -->
 	
 	<div id="le_menu1" class="screen hidden">
@@ -160,7 +160,7 @@
 	</div> 
 	
 	
- 
+<!---------------------------------------------------------------->
 <!--  Écran d'obsevations  -->	
 	
    <div id="ecran_observation" class="screen hidden">
@@ -321,6 +321,8 @@
     </div>      	
 	
 	
+<!---------------------------------------------------------------->
+<!--  Écran fichier ??  -->	
 	
 	<div id="ecran_fichier" class="screen hidden" >
 		<ul class="buttons">
@@ -414,6 +416,7 @@
 	
 	
  
+<!---------------------------------------------------------------->
 <!--  Écran paramètres  -->		 
       
         <div id="a_setting" class="screen hidden" style="text-align:center;" >
@@ -502,21 +505,30 @@
  
  
  
- <!--  Écran recherche dans le dictionnaire -->
+<!---------------------------------------------------------------->
+<!--  Écran recherche dans le dictionnaire -->
  
  
- 	<div id="ecran_recherche" class="screen hidden" style="text-align:center;" >
-        <h2>Dictionnaire</h2>
-		<table id="my_table_5" style="margin-left:auto;margin-right:auto;max-width:300px;width:100%;" >
-		<col style="width:40%;">        
-		<col style="width:60%;">
-		<tr>
-			<h3 id="time">0:00</h3>
+    <div id="ecran_recherche" class="screen hidden" style="text-align:center;" >
+       
+	<table id="my_table_5" style="margin-left:auto;margin-right:auto;max-width:300px;width:100%;" >
+	    <col style="width:40%;">        
+	    <col style="width:60%;">
+		
+	    <h2>Dictionnaire</h2>
+	    
+	    <div id="container">
+	      <div id="inputArea">
+	      </div>
+      	      <h1 id="time">0:00</h1>     
+	    </div> 
 
-		</tr>		
-		
-		
-		</table>	
+	    <ul class="buttons">
+		<li>
+		   <a href="#" id="" onclick="leGps1.startWatchGps();" class="switch_screen">Démarrer la recherche</a>
+		</li>	
+	    </ul>	
+	</table>	
 	
 		
     </div> 

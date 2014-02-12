@@ -442,6 +442,33 @@ div.listViewDocCoord  {
 }
 
 
+/* TEST DENIS ----------------------------------------------------------------*/
+
+   #time {
+        font-family: sans-serif;
+        color: #FF00FF;
+        background: center;        
+   }
+   
+  /* #container {     
+       width: 500px;
+       margin: auto;
+   }*/
+   
+   h1 {
+    font-size: 5em;
+    background: #CCCCCC;
+     }
+
+/* TEST DENIS ----------------------------------------------------------------*/
+
+
+
+
+
+
+
+
 /* ANIMATIONS - DELAY HIDE ----------------------------------------------------------------*/
 
 #le_menu1
