@@ -154,16 +154,26 @@
 			  <a href="#liste_fichiers1" id="id_bouton_liste_fichiers1" 
 			  onclick="hide_all();agXMLHttpReqFichiers('http://ks365406.kimsufi.com/fpilote/tp1/files.json');show_liste_des_fichiers();show_back_button();" 
 			  class="switch_screen">Documents</a>
-			</li>			
+			</li>
+			
 			<li>
-			  <a href="#a_setting"  id="id_bouton_setting" onclick="hide_all();show_settings();show_back_button();" class="switch_screen">Paramètres</a>
-			</li>	
+			  <a href="#a_setting"  id="id_bouton_setting"
+			     onclick="hide_all();show_settings();show_back_button();"
+			     class="switch_screen">Paramètres</a>
+			</li>
+			
+			<li>
+			  <a href="#ecran_recherche"  id="id_bouton_recherche"
+			     onclick="hide_all();show_settings();show_back_button();"
+			     class="switch_screen">Recherche dans le dictionnaire</a>
+			</li>
+			
 		</ul>
 	</div> 
 	
 	
  
-<!--  E1  -->
+<!--  Écran d'obsevations  -->
 
 	
 	
@@ -514,7 +524,12 @@
     </div> 
  
  
- 	 <div class="screen hidden" style="text-align:center;" id="a_setting">
+ 
+ 
+ <!--  Recherche dans le dictionnaire -->
+ 
+ 
+ 	 <div class="screen hidden" style="text-align:center;" id="ecran_recherche">
         <h2>Paramètres</h2>
 		<table id="my_table_5" style="margin-left:auto;margin-right:auto;max-width:300px;width:100%;" >
 		<col style="width:40%;">        
