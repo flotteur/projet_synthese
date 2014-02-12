@@ -152,7 +152,7 @@
 			
 			<li>
 			  <a href="#ecran_recherche"  id="id_bouton_recherche"
-			     onclick="hide_all();show_settings();show_back_button();"
+			     onclick="hide_all();show_settings();show_back_button();" 
 			     class="switch_screen">Recherche dans le dictionnaire</a>
 			</li>
 			
@@ -163,7 +163,7 @@
  
 <!--  Écran d'obsevations  -->	
 	
-   <div class="screen hidden" id="ecran_observation">
+   <div id="ecran_observation" class="screen hidden">
         <h3 style="color:white;">Écran - Observations</h3>
 		<table id="my_table_5" class="table2">
 		<col style="width:40%;">        
@@ -414,9 +414,9 @@
 	
 	
  
-	 
-	 
-	 <div class="screen hidden" style="text-align:center;" id="a_setting">
+<!--  Écran paramètres  -->		 
+      
+        <div id="a_setting" class="screen hidden" style="text-align:center;" >
         <h2>Paramètres</h2>
 		<table id="my_table_5" style="margin-left:auto;margin-right:auto;max-width:300px;width:100%;" >
 		<col style="width:40%;">        
@@ -502,16 +502,16 @@
  
  
  
- <!--  Recherche dans le dictionnaire -->
+ <!--  Écran recherche dans le dictionnaire -->
  
  
- 	 <div class="screen hidden" style="text-align:center;" id="ecran_recherche">
-        <h2>Paramètres</h2>
+ 	<div id="ecran_recherche" class="screen hidden" style="text-align:center;" >
+        <h2>Dictionnaire</h2>
 		<table id="my_table_5" style="margin-left:auto;margin-right:auto;max-width:300px;width:100%;" >
 		<col style="width:40%;">        
 		<col style="width:60%;">
 		<tr>
-			<h1 id="time">0:00</h1>
+			<h3 id="time">0:00</h3>
 
 		</tr>		
 		
