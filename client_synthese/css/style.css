@@ -30,7 +30,7 @@ html, body {
 /* THE TWO ABOUT SUB-PAGES */
 
 
-#id_div_liste_fichiers1, #ecran_observation1, #liste_observation1, #a_setting, #my_login {
+#id_div_liste_fichiers1, #ecran_observation1, #liste_observation1, #ecran_recherche, #a_setting, #my_login {
   background-color: #D5D6D7;
   margin: 15px 10px 17px 10px;
   -webkit-box-shadow: rgba(255, 255, 255, 0.15) 0 1px 0;

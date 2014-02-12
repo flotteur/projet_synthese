@@ -130,7 +130,7 @@
 
 
 	
-	<!-- 
+	<!--  
 
 	-->
 	
@@ -154,12 +154,28 @@
 			  <a href="#liste_fichiers1" id="id_bouton_liste_fichiers1" 
 			  onclick="hide_all();agXMLHttpReqFichiers('http://ks365406.kimsufi.com/fpilote/tp1/files.json');show_liste_des_fichiers();show_back_button();" 
 			  class="switch_screen">Documents</a>
-			</li>			
+			</li>
+			
 			<li>
-			  <a href="#a_setting"  id="id_bouton_setting" onclick="hide_all();show_settings();show_back_button();" class="switch_screen">Paramètres</a>
-			</li>	
+			  <a href="#a_setting"  id="id_bouton_setting"
+			     onclick="hide_all();show_settings();show_back_button();"
+			     class="switch_screen">Paramètres</a>
+			</li>
+			
+			<li>
+			  <a href="#ecran_recherche"  id="id_bouton_recherche"
+			     onclick="hide_all();show_settings();show_back_button();"
+			     class="switch_screen">Recherche dans le dictionnaire</a>
+			</li>
+			
 		</ul>
 	</div> 
+	
+	
+ 
+<!--  Écran d'obsevations  -->
+
+	
 	
    <div class="screen hidden" id="ecran_observation">
         <h3 style="color:white;">Écran - Observations</h3>
@@ -505,6 +521,103 @@
 	
 		
     </div> 
+ 
+ 
+ 
+ 
+ <!--  Recherche dans le dictionnaire -->
+ 
+ 
+ 	 <div class="screen hidden" style="text-align:center;" id="ecran_recherche">
+        <h2>Paramètres</h2>
+		<table id="my_table_5" style="margin-left:auto;margin-right:auto;max-width:300px;width:100%;" >
+		<col style="width:40%;">        
+		<col style="width:60%;">
+		<tr>
+			<td style="text-align:left;" id="xxxxxxx">Langue:</td> 
+
+		</tr>		
+		<tr>
+			<td style="text-align:right;">
+			
+				<SELECT class="SELECTBLUE" 
+				onMouseWheel="return false;"
+				onchange="" style="width:120px;" name="AccessKm">
+				<OPTION selected VALUE="fr">Français</OPTION>
+				<OPTION VALUE="en">Englais</OPTION>
+				<OPTION VALUE="es">Espagnole</OPTION>		
+							
+				</SELECT>	
+			
+			</td> 
+		</tr>				
+		<tr>
+			<td style="text-align:left;">Téléchargements:</td> 
+		</tr>
+		<tr>
+			<td style="text-align:right;">
+				<button onclick="onClickButtonListDocCoord();"  style="right:10px;width:170px;" class="">Coordonnées GPS</button>
+			</td> 
+		</tr>
+
+		<tr>
+			<td style="text-align:left;">Données:</td> 
+		</tr>
+		<tr>
+			<td style="text-align:right;">
+				<button onclick="localStorage.clear();"  style="right:10px;width:170px;" class="">Effacer le Local Storage</button>
+			</td> 
+		</tr>		
+		<tr>
+			<td style="text-align:left;">Accélération:</td> 
+		</tr>	
+		<tr>
+			<td id="id_accel_data" style="text-align:right;">
+				
+			</td> 
+		</tr>		
+		<tr>
+			<td style="text-align:left;">Scanner:</td> 
+		</tr>			
+		<tr>
+			<td style="text-align:right;">
+				<a href="http://zxing.appspot.com/scan?ret=http://www.intranet-creation.com/cegep/tp1/index.html?code={CODE}">Scan</a>
+			</td> 
+		</tr>			
+		<tr>
+			<td style="text-align:left;vertical-align:top;">Navigateur:</td> 
+				
+		</tr>	
+		<tr>
+			
+			<td  id="id_navUserAgent" style="text-align:left;"></td> 	
+		</tr>	
+		
+		
+
+		<tr>
+			<td style="text-align:left;">Test lien:</td> 
+		</tr>	
+		<tr>
+			<td style="text-align:right;">
+				<a href="http://www.google.ca/" onclick = "alert('yesssss');" id="id_test_lien">Test lien</a>
+			</td> 
+		</tr>	
+
+		
+		
+		</table>	
+	
+		
+    </div> 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
    
 <!-- 
  &SCAN_FORMATS=UPC_A,EAN_13 
