@@ -130,7 +130,7 @@
 
 
 	
-	<!-- 
+	<!--  
 
 	-->
 	
@@ -160,6 +160,12 @@
 			</li>	
 		</ul>
 	</div> 
+	
+	
+ 
+<!--  E1  -->
+
+	
 	
    <div class="screen hidden" id="ecran_observation">
         <h3 style="color:white;">Écran - Observations</h3>
@@ -506,6 +512,98 @@
 	
 		
     </div> 
+ 
+ 
+ 	 <div class="screen hidden" style="text-align:center;" id="a_setting">
+        <h2>Paramètres</h2>
+		<table id="my_table_5" style="margin-left:auto;margin-right:auto;max-width:300px;width:100%;" >
+		<col style="width:40%;">        
+		<col style="width:60%;">
+		<tr>
+			<td style="text-align:left;" id="xxxxxxx">Langue:</td> 
+
+		</tr>		
+		<tr>
+			<td style="text-align:right;">
+			
+				<SELECT class="SELECTBLUE" 
+				onMouseWheel="return false;"
+				onchange="" style="width:120px;" name="AccessKm">
+				<OPTION selected VALUE="fr">Français</OPTION>
+				<OPTION VALUE="en">Englais</OPTION>
+				<OPTION VALUE="es">Espagnole</OPTION>		
+							
+				</SELECT>	
+			
+			</td> 
+		</tr>				
+		<tr>
+			<td style="text-align:left;">Téléchargements:</td> 
+		</tr>
+		<tr>
+			<td style="text-align:right;">
+				<button onclick="onClickButtonListDocCoord();"  style="right:10px;width:170px;" class="">Coordonnées GPS</button>
+			</td> 
+		</tr>
+
+		<tr>
+			<td style="text-align:left;">Données:</td> 
+		</tr>
+		<tr>
+			<td style="text-align:right;">
+				<button onclick="localStorage.clear();"  style="right:10px;width:170px;" class="">Effacer le Local Storage</button>
+			</td> 
+		</tr>		
+		<tr>
+			<td style="text-align:left;">Accélération:</td> 
+		</tr>	
+		<tr>
+			<td id="id_accel_data" style="text-align:right;">
+				
+			</td> 
+		</tr>		
+		<tr>
+			<td style="text-align:left;">Scanner:</td> 
+		</tr>			
+		<tr>
+			<td style="text-align:right;">
+				<a href="http://zxing.appspot.com/scan?ret=http://www.intranet-creation.com/cegep/tp1/index.html?code={CODE}">Scan</a>
+			</td> 
+		</tr>			
+		<tr>
+			<td style="text-align:left;vertical-align:top;">Navigateur:</td> 
+				
+		</tr>	
+		<tr>
+			
+			<td  id="id_navUserAgent" style="text-align:left;"></td> 	
+		</tr>	
+		
+		
+
+		<tr>
+			<td style="text-align:left;">Test lien:</td> 
+		</tr>	
+		<tr>
+			<td style="text-align:right;">
+				<a href="http://www.google.ca/" onclick = "alert('yesssss');" id="id_test_lien">Test lien</a>
+			</td> 
+		</tr>	
+
+		
+		
+		</table>	
+	
+		
+    </div> 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
    
 <!-- 
  &SCAN_FORMATS=UPC_A,EAN_13 
