@@ -61,10 +61,10 @@
 		<col style="width:60%;">		
 		
 		<tr>
-			<td class="td_table2" style="width:20%;">
-				<img style="width:60px;" src="http://www.gloucester.nsw.gov.au/Images/UserUploadedImages/155/Documents-icon.png" />
-			</td> 
-			<td class="td_table2" style="color:blach;">Travaille d'équipe - Observation d'oiseaux<br>1290645</td> 
+		    <td class="td_table2" style="width:20%;">
+		    <img style="width:60px;" src="http://www.gloucester.nsw.gov.au/Images/UserUploadedImages/155/Documents-icon.png" />
+		    </td> 
+		    <td class="td_table2" style="color:blach;">Travail d'équipe - Observation d'oiseaux<br>Pointe-Pelée</td> 
 		</tr>
 	
 	
@@ -117,10 +117,7 @@
 	</div> 	  
 
 
-	
-	<!--  
-
-	-->
+<!--  Écran du menu  -->
 	
 	<div id="le_menu1" class="screen hidden">
 		<ul class="buttons">
@@ -130,8 +127,6 @@
 			  class="switch_screen">Ajouter une observation</a>
 			</li>		
 		
-		
-
 			<li>
 			  <a href="#liste_observation1" id="id_bouton_liste_des_observations" 
 			  onclick="onClickButtonMenuListViewObserv();" 
@@ -161,9 +156,7 @@
 	
 	
  
-<!--  Écran d'obsevations  -->
-
-	
+<!--  Écran d'obsevations  -->	
 	
    <div class="screen hidden" id="ecran_observation">
         <h3 style="color:white;">Écran - Observations</h3>
@@ -275,25 +268,15 @@
    
 
 </audio>
+    	</td> 
+			
+	</tr>				
 		
-	
-
-	
-			</td> 
-			
-			
-			
-			
-		</tr>				
-		
-		
-			
-		
-		<tr>
-			<td class="tddata"> 
-				<button id="" onclick="load2Player();" >LOAD SON2</button>
-			</td> 
-		</tr>			
+	<tr>	
+	<td class="tddata"> 
+	<button id="" onclick="load2Player();" >LOAD SON2</button>
+	</td> 
+	</tr>			
 		
 		<tr>
 			<td class="tddata"> 
@@ -420,7 +403,8 @@
 
 	
     <div class="screen hidden" id="liste_observation1">
-      
+        <h2>Liste des observations</h2>
+        <p>bla bla bla.</p>
     </div> 
 	
 	
@@ -522,76 +506,9 @@
 		<col style="width:40%;">        
 		<col style="width:60%;">
 		<tr>
-			<td style="text-align:left;" id="xxxxxxx">Langue:</td> 
+			<h1 id="time">0:00</h1>
 
 		</tr>		
-		<tr>
-			<td style="text-align:right;">
-			
-				<SELECT class="SELECTBLUE" 
-				onMouseWheel="return false;"
-				onchange="" style="width:120px;" name="AccessKm">
-				<OPTION selected VALUE="fr">Français</OPTION>
-				<OPTION VALUE="en">Englais</OPTION>
-				<OPTION VALUE="es">Espagnole</OPTION>		
-							
-				</SELECT>	
-			
-			</td> 
-		</tr>				
-		<tr>
-			<td style="text-align:left;">Téléchargements:</td> 
-		</tr>
-		<tr>
-			<td style="text-align:right;">
-				<button onclick="onClickButtonListDocCoord();"  style="right:10px;width:170px;" class="">Coordonnées GPS</button>
-			</td> 
-		</tr>
-
-		<tr>
-			<td style="text-align:left;">Données:</td> 
-		</tr>
-		<tr>
-			<td style="text-align:right;">
-				<button onclick="localStorage.clear();"  style="right:10px;width:170px;" class="">Effacer le Local Storage</button>
-			</td> 
-		</tr>		
-		<tr>
-			<td style="text-align:left;">Accélération:</td> 
-		</tr>	
-		<tr>
-			<td id="id_accel_data" style="text-align:right;">
-				
-			</td> 
-		</tr>		
-		<tr>
-			<td style="text-align:left;">Scanner:</td> 
-		</tr>			
-		<tr>
-			<td style="text-align:right;">
-				<a href="http://zxing.appspot.com/scan?ret=http://www.intranet-creation.com/cegep/tp1/index.html?code={CODE}">Scan</a>
-			</td> 
-		</tr>			
-		<tr>
-			<td style="text-align:left;vertical-align:top;">Navigateur:</td> 
-				
-		</tr>	
-		<tr>
-			
-			<td  id="id_navUserAgent" style="text-align:left;"></td> 	
-		</tr>	
-		
-		
-
-		<tr>
-			<td style="text-align:left;">Test lien:</td> 
-		</tr>	
-		<tr>
-			<td style="text-align:right;">
-				<a href="http://www.google.ca/" onclick = "alert('yesssss');" id="id_test_lien">Test lien</a>
-			</td> 
-		</tr>	
-
 		
 		
 		</table>	
