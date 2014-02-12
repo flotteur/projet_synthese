@@ -2,14 +2,13 @@
 var secondsRemaining;
 var intervalHandle;
 
-function resetPage() {
-    document.getElementById("inputArea").style.display = "block";
-}
+
+
 
 function tick() {
-    // grab the h1
-    var timeDisplay = document.getElementById("time");
-    
+  
+     var timeDisplay = document.getElementById("time");
+  
     // turn seconds into mm:ss
     var min = Math.floor(secondsRemaining / 60);
     var sec = secondsRemaining - (min * 60);
@@ -24,32 +23,37 @@ function tick() {
     timeDisplay.innerHTML = message;
     
     
-     // changement de coueur à la dernière minute !!!
+     // changement de couleur pour la dernière minute !!!
     if (secondsRemaining < 60) {
-      // var elem = document.getElementById("elem");  
-      //timeDisplay.setAttribute("style","width: 500px; background-color: yellow;");
-      //timeDisplay.style.width = "800px";
-      timeDisplay.setAttribute("style","width: 500px; color: #FF6666; background-color: #6666FF;");
-      //timeDisplay.style.color='red';
-    }
+        timeDisplay.setAttribute("style","font-size: 6em; color: #fc0008; background-color: #c2b8ee;");
+     }
+    
     
     // stop if down to zero
-    if (secondsRemaining === 0) {
-        alert("Done!");
+    if (secondsRemaining === 0) {        
+        alert('FINI!');
         clearInterval(intervalHandle);
-        resetPage();
-    }
+        
+        document.getElementById("inputArea").style.display = "block";
+        // couleur au départ du compteur
+        timeDisplay.setAttribute("style","font-size: 5em; color: #FF00FF; background-color: #D5D6D7;");
+     }
+     
     // subtract from seconds remaining
     secondsRemaining--;
 }
 
+
+
+
 function startCountdown() {
+    
     // get contents of the "minutes" text box
     var minutes = document.getElementById("minutes").value;
     
     // check if not a number
     if (isNaN(minutes)) {
-        alert("Please enter a number!");
+        alert("Entrez une valeur numérique svp!");
         return;
     }
     
@@ -59,25 +63,19 @@ function startCountdown() {
     intervalHandle = setInterval(tick, 100);
     // hide the form
     document.getElementById("inputArea").style.display = "none";
+
 }
 
-// as soon as the page is loaded...
-window.onload =  function () {
-    
-    // create input text box and give it an id of "minutes"
+
+
+// as soon as the page is loaded... créé à la volée
+window.onload =  function () {  
+   // create input text box and give it an id of "minutes"
     var inputMinutes = document.createElement("input");
+    
     inputMinutes.setAttribute("id", "minutes");
     inputMinutes.setAttribute("type", "text");
-    
-    // create a button
-    var startButton = document.createElement("input");
-    startButton.setAttribute("type", "button");
-    startButton.setAttribute("value", "Initialiser le compteur en lui donnant une valeur");
-    startButton.onclick = function () {
-        startCountdown();
-    };
-    
+   
     // add to the DOM, to the div called "inputArea"
     document.getElementById("inputArea").appendChild(inputMinutes);
-    document.getElementById("inputArea").appendChild(startButton);
 };

@@ -447,18 +447,12 @@ div.listViewDocCoord  {
    #time {
         font-family: sans-serif;
         color: #FF00FF;
-        background: center;        
+        background: center;
+	font-size: 5em;
+	background: #D5D6D7;	
    }
    
-  /* #container {     
-       width: 500px;
-       margin: auto;
-   }*/
-   
-   h1 {
-    font-size: 5em;
-    background: #CCCCCC;
-     }
+  
 
 /* TEST DENIS ----------------------------------------------------------------*/
 
