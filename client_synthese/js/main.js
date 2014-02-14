@@ -60,6 +60,17 @@ function hide_settings() {
 
 
 
+function show_dicti() {
+	
+	x = document.getElementById('ecran_recherche');
+	show_element(x);
+}
+function hide_dicti() {
+	x = document.getElementById('ecran_recherche');
+	hide_element(x);
+}
+
+
 
 function show_back_button() {
 	
@@ -137,6 +148,8 @@ function hide_all() {
 	hide_menu1();
 	//hide_liste_des_fichiers();
 	
+	hide_dicti()
+	//hide_rechreche_dictionnaire();
 	
 	
 	hideLogin();
