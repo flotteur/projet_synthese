@@ -14,6 +14,7 @@ namespace WCF_Synthese
     {
 
         [OperationContract]
+        [WebInvoke(UriTemplate="jambon/{id}", BodyStyle=WebMessageBodyStyle.WrappedRequest,  ResponseFormat=WebMessageFormat.Xml)]
         UsagerWCF GetUsager(int pID);
                 
     }
