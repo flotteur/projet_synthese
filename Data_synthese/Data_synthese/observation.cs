@@ -14,18 +14,24 @@ namespace Data_synthese
     
     public partial class observation
     {
+        public observation()
+        {
+            this.photoobservations = new HashSet<photoobservation>();
+            this.sonobservations = new HashSet<sonobservation>();
+            this.message = new HashSet<message>();
+        }
+    
         public int Id { get; set; }
         public System.DateTime DateObservation { get; set; }
-        public int Position { get; set; }
+        public Nullable<int> PositionLong { get; set; }
         public int IDUsager { get; set; }
         public int IDOiseau { get; set; }
-        public int UsagerId { get; set; }
-        public int SonObservationId { get; set; }
-        public int PhotoObservationId { get; set; }
+        public string PositionLat { get; set; }
     
         public virtual oiseau oiseaux { get; set; }
-        public virtual photoobservation photoobservations { get; set; }
-        public virtual sonobservation sonobservations { get; set; }
+        public virtual ICollection<photoobservation> photoobservations { get; set; }
+        public virtual ICollection<sonobservation> sonobservations { get; set; }
         public virtual usager usagers { get; set; }
+        public virtual ICollection<message> message { get; set; }
     }
 }

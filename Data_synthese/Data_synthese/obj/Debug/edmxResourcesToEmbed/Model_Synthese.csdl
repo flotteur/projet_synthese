@@ -51,6 +51,10 @@
       <End Role="oiseaux" EntitySet="oiseau" />
       <End Role="photos" EntitySet="photo" />
     </AssociationSet>
+    <AssociationSet Name="observationmessage" Association="synthese_dbModel.observationmessage">
+      <End Role="observation" EntitySet="observation" />
+      <End Role="message" EntitySet="message" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="alerte">
     <Key>
@@ -59,7 +63,7 @@
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="Int32" Name="IDObservation" Nullable="false" />
     <Property Type="Int32" Name="IDUsager" Nullable="false" />
-    <Property Type="Int32" Name="OiseauId" Nullable="false" />
+    <Property Type="Int32" Name="IDOiseau" Nullable="false" />
     <NavigationProperty Name="alertesusagers" Relationship="synthese_dbModel.FK_Alertes_AlertesUsagers" FromRole="alertes" ToRole="alertesusagers" />
     <NavigationProperty Name="oiseaux" Relationship="synthese_dbModel.FK_Alertes_Oiseaux" FromRole="alertes" ToRole="oiseaux" />
   </EntityType>
@@ -77,8 +81,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="Binary" Name="Son" Nullable="false" MaxLength="Max" FixedLength="false" />
-    <Property Type="String" Name="Description" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Type="Binary" Name="Son" MaxLength="Max" FixedLength="false" />
+    <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Type="Int32" Name="IDOiseau" Nullable="false" />
     <NavigationProperty Name="oiseaux" Relationship="synthese_dbModel.FK_CriOiseaux_Oiseaux" FromRole="crioiseaux" ToRole="oiseaux" />
   </EntityType>
@@ -92,6 +96,7 @@
     <Property Type="Int32" Name="IDUsager" Nullable="false" />
     <Property Type="Int32" Name="IDObservation" />
     <NavigationProperty Name="usagers" Relationship="synthese_dbModel.FK_Usagers_Messages" FromRole="messages" ToRole="usagers" />
+    <NavigationProperty Name="observation" Relationship="synthese_dbModel.observationmessage" FromRole="message" ToRole="observation" />
   </EntityType>
   <EntityType Name="observation">
     <Key>
@@ -99,24 +104,23 @@
     </Key>
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="DateTime" Name="DateObservation" Nullable="false" />
-    <Property Type="Int32" Name="Position" Nullable="false" />
+    <Property Type="Int32" Name="PositionLong" Nullable="true" />
     <Property Type="Int32" Name="IDUsager" Nullable="false" />
     <Property Type="Int32" Name="IDOiseau" Nullable="false" />
-    <Property Type="Int32" Name="UsagerId" Nullable="false" />
-    <Property Type="Int32" Name="SonObservationId" Nullable="false" />
-    <Property Type="Int32" Name="PhotoObservationId" Nullable="false" />
     <NavigationProperty Name="oiseaux" Relationship="synthese_dbModel.FK_Observations_Oiseaux" FromRole="observations" ToRole="oiseaux" />
     <NavigationProperty Name="photoobservations" Relationship="synthese_dbModel.FK_Observations_PhotoObservations" FromRole="observations" ToRole="photoobservations" />
     <NavigationProperty Name="sonobservations" Relationship="synthese_dbModel.FK_Observations_SonObservations" FromRole="observations" ToRole="sonobservations" />
     <NavigationProperty Name="usagers" Relationship="synthese_dbModel.FK_Observations_Usagers" FromRole="observations" ToRole="usagers" />
+    <NavigationProperty Name="message" Relationship="synthese_dbModel.observationmessage" FromRole="observation" ToRole="message" />
+    <Property Type="String" Name="PositionLat" Nullable="true" />
   </EntityType>
   <EntityType Name="oiseau">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="String" Name="Espece" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="Description" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Espece" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="true" />
+    <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="true" />
     <Property Type="Int32" Name="IDPhoto" Nullable="false" />
     <NavigationProperty Name="alertes" Relationship="synthese_dbModel.FK_Alertes_Oiseaux" FromRole="oiseaux" ToRole="alertes" />
     <NavigationProperty Name="crioiseaux" Relationship="synthese_dbModel.FK_CriOiseaux_Oiseaux" FromRole="oiseaux" ToRole="crioiseaux" />
@@ -128,11 +132,11 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="Binary" Name="Image" Nullable="false" MaxLength="Max" FixedLength="false" />
-    <Property Type="String" Name="Description" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Type="Binary" Name="Image" MaxLength="Max" FixedLength="false" Nullable="true" />
+    <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="true" />
     <Property Type="Int32" Name="IDObservation" Nullable="false" />
-    <Property Type="Binary" Name="ImageMiniature" Nullable="false" MaxLength="Max" FixedLength="false" />
-    <Property Type="String" Name="Commentaire" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="Binary" Name="ImageMiniature" MaxLength="Max" FixedLength="false" Nullable="true" />
+    <Property Type="String" Name="Commentaire" MaxLength="200" FixedLength="false" Unicode="false" Nullable="true" />
     <NavigationProperty Name="observations" Relationship="synthese_dbModel.FK_Observations_PhotoObservations" FromRole="photoobservations" ToRole="observations" />
   </EntityType>
   <EntityType Name="photo">
@@ -140,10 +144,10 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="Binary" Name="Image" Nullable="false" MaxLength="Max" FixedLength="false" />
-    <Property Type="String" Name="Description" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Type="Binary" Name="Image" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Type="Int32" Name="IDOiseau" Nullable="false" />
-    <Property Type="Binary" Name="ImageMiniature" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Type="Binary" Name="ImageMiniature" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="oiseaux" Relationship="synthese_dbModel.FK_Photos_Oiseaux" FromRole="photos" ToRole="oiseaux" />
   </EntityType>
   <EntityType Name="sonobservation">
@@ -151,8 +155,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="Binary" Name="Son" Nullable="false" MaxLength="Max" FixedLength="false" />
-    <Property Type="String" Name="Description" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Type="Binary" Name="Son" MaxLength="Max" FixedLength="false" Nullable="true" />
+    <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Type="Int32" Name="IDObservation" Nullable="false" />
     <NavigationProperty Name="observations" Relationship="synthese_dbModel.FK_Observations_SonObservations" FromRole="sonobservations" ToRole="observations" />
   </EntityType>
@@ -164,9 +168,8 @@
     <Property Type="String" Name="NomUsager" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="MotPasse" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Type="Boolean" Name="Administrateur" Nullable="false" />
-    <Property Type="String" Name="Courriel" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Courriel" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Type="Int32" Name="IDUsager" Nullable="false" />
-    <Property Type="Int32" Name="MessageId" Nullable="false" />
     <NavigationProperty Name="alertesusagers" Relationship="synthese_dbModel.FK_Usagers_AlertesUsagers" FromRole="usagers" ToRole="alertesusagers" />
     <NavigationProperty Name="messages" Relationship="synthese_dbModel.FK_Usagers_Messages" FromRole="usagers" ToRole="messages" />
     <NavigationProperty Name="observations" Relationship="synthese_dbModel.FK_Observations_Usagers" FromRole="usagers" ToRole="observations" />
@@ -191,7 +194,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="alertes">
-        <PropertyRef Name="OiseauId" />
+        <PropertyRef Name="IDOiseau" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -220,14 +223,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Usagers_Messages">
-    <End Type="synthese_dbModel.message" Role="messages" Multiplicity="1" />
-    <End Type="synthese_dbModel.usager" Role="usagers" Multiplicity="*" />
+    <End Type="synthese_dbModel.message" Role="messages" Multiplicity="*" />
+    <End Type="synthese_dbModel.usager" Role="usagers" Multiplicity="1" />
     <ReferentialConstraint>
-      <Principal Role="messages">
+      <Principal Role="usagers">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="usagers">
-        <PropertyRef Name="MessageId" />
+      <Dependent Role="messages">
+        <PropertyRef Name="IDUsager" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -244,26 +247,26 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Observations_PhotoObservations">
-    <End Type="synthese_dbModel.photoobservation" Role="photoobservations" Multiplicity="1" />
-    <End Type="synthese_dbModel.observation" Role="observations" Multiplicity="*" />
+    <End Type="synthese_dbModel.photoobservation" Role="photoobservations" Multiplicity="*" />
+    <End Type="synthese_dbModel.observation" Role="observations" Multiplicity="1" />
     <ReferentialConstraint>
-      <Principal Role="photoobservations">
+      <Principal Role="observations">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="observations">
-        <PropertyRef Name="PhotoObservationId" />
+      <Dependent Role="photoobservations">
+        <PropertyRef Name="IDObservation" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Observations_SonObservations">
-    <End Type="synthese_dbModel.sonobservation" Role="sonobservations" Multiplicity="1" />
-    <End Type="synthese_dbModel.observation" Role="observations" Multiplicity="*" />
+    <End Type="synthese_dbModel.sonobservation" Role="sonobservations" Multiplicity="*" />
+    <End Type="synthese_dbModel.observation" Role="observations" Multiplicity="1" />
     <ReferentialConstraint>
-      <Principal Role="sonobservations">
+      <Principal Role="observations">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="observations">
-        <PropertyRef Name="SonObservationId" />
+      <Dependent Role="sonobservations">
+        <PropertyRef Name="IDObservation" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -275,7 +278,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="observations">
-        <PropertyRef Name="UsagerId" />
+        <PropertyRef Name="IDUsager" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -288,6 +291,18 @@
       </Principal>
       <Dependent Role="photos">
         <PropertyRef Name="IDOiseau" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="observationmessage">
+    <End Type="synthese_dbModel.observation" Role="observation" Multiplicity="0..1" />
+    <End Type="synthese_dbModel.message" Role="message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="observation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="message">
+        <PropertyRef Name="IDObservation" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

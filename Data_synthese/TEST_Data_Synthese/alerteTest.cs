@@ -119,20 +119,7 @@ namespace TEST_Data_Synthese
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
-        /// <summary>
-        ///A test for OiseauId
-        ///</summary>
-        [TestMethod()]
-        public void OiseauIdTest()
-        {
-            alerte target = new alerte(); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            target.OiseauId = expected;
-            actual = target.OiseauId;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
+       
 
         /// <summary>
         ///A test for alertesusagers
