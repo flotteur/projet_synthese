@@ -17,7 +17,7 @@ namespace Data_synthese
         public int Id { get; set; }
         public int IDObservation { get; set; }
         public int IDUsager { get; set; }
-        public int OiseauId { get; set; }
+        public int IDOiseau { get; set; }
     
         public virtual alertesusager alertesusagers { get; set; }
         public virtual oiseau oiseaux { get; set; }

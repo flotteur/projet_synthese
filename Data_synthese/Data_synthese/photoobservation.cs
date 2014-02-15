@@ -14,11 +14,6 @@ namespace Data_synthese
     
     public partial class photoobservation
     {
-        public photoobservation()
-        {
-            this.observations = new HashSet<observation>();
-        }
-    
         public int Id { get; set; }
         public byte[] Image { get; set; }
         public string Description { get; set; }
@@ -26,6 +21,6 @@ namespace Data_synthese
         public byte[] ImageMiniature { get; set; }
         public string Commentaire { get; set; }
     
-        public virtual ICollection<observation> observations { get; set; }
+        public virtual observation observations { get; set; }
     }
 }

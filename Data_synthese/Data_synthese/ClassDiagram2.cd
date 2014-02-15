@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Data_synthese.Classes.DatabaseObject" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAEABACABAAAAAQAAAIAQAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\DatabaseObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Data_synthese.Classes.Encription" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAIAAACAgCAAAAAABAAAA=</HashCode>
+      <FileName>Classes\Encription.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data_synthese.synthese_dbEntities" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAABAIQAAABAAAAQAAAAAEAAAAAKAAAAAAgAAACA=</HashCode>
+      <FileName>Model1.Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data_synthese.alerte" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAgAAAAAAAABAAAAAAAAAAAAAABACAAAAAAAAAAE=</HashCode>
+      <FileName>alerte.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data_synthese.alertesusager" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAEAACAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>alertesusager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data_synthese.crioiseau" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAAAAAAAAQACAAAAAAAAAAE=</HashCode>
+      <FileName>crioiseau.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data_synthese.message" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAgAAACIAABAAAAAAQAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>message.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data_synthese.observation" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAABAACBAAAABAEAAAAAAAAAAABACAAAAAAAAACE=</HashCode>
+      <FileName>observation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data_synthese.oiseau" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAIAAgABIAAAAAAAAEAAAAAAAAAAAGAAAAAAA=</HashCode>
+      <FileName>oiseau.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data_synthese.photo" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAIAAAgAAAAAAAAAAAAAAAAABACAAAAAAAAAAE=</HashCode>
+      <FileName>photo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data_synthese.photoobservation" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAhAIAAAgABAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>photoobservation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data_synthese.sonobservation" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAgAAAAAgABAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>sonobservation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data_synthese.usager" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAAAAABBAIAACAAAAAAAAABABAAAAAAAIAAA=</HashCode>
+      <FileName>usager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

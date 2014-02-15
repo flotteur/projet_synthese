@@ -32,3 +32,6 @@ C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthe
 C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Data_synthese\obj\Debug\Data_synthese.csprojResolveAssemblyReference.cache
 C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Data_synthese\obj\Debug\Data_synthese.dll
 C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Data_synthese\obj\Debug\Data_synthese.pdb
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Data_synthese\bin\Debug\MySql.Data.dll
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Data_synthese\bin\Debug\MySql.Data.Entity.dll
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Data_synthese\bin\Debug\MySql.Web.dll

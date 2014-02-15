@@ -14,16 +14,11 @@ namespace Data_synthese
     
     public partial class sonobservation
     {
-        public sonobservation()
-        {
-            this.observations = new HashSet<observation>();
-        }
-    
         public int Id { get; set; }
         public byte[] Son { get; set; }
         public string Description { get; set; }
         public int IDObservation { get; set; }
     
-        public virtual ICollection<observation> observations { get; set; }
+        public virtual observation observations { get; set; }
     }
 }

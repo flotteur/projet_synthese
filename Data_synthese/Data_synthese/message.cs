@@ -14,17 +14,13 @@ namespace Data_synthese
     
     public partial class message
     {
-        public message()
-        {
-            this.usagers = new HashSet<usager>();
-        }
-    
         public int Id { get; set; }
         public string Texte { get; set; }
         public System.DateTime DateHeure { get; set; }
         public int IDUsager { get; set; }
         public Nullable<int> IDObservation { get; set; }
     
-        public virtual ICollection<usager> usagers { get; set; }
+        public virtual usager usagers { get; set; }
+        public virtual observation observation { get; set; }
     }
 }

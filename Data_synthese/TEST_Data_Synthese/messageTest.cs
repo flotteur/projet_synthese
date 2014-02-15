@@ -150,19 +150,6 @@ namespace TEST_Data_Synthese
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
-        /// <summary>
-        ///A test for usagers
-        ///</summary>
-        [TestMethod()]
-        public void usagersTest()
-        {
-            message target = new message(); // TODO: Initialize to an appropriate value
-            ICollection<usager> expected = null; // TODO: Initialize to an appropriate value
-            ICollection<usager> actual;
-            target.usagers = expected;
-            actual = target.usagers;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
+       
     }
 }
