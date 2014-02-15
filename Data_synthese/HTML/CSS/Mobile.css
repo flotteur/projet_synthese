@@ -1,0 +1,195 @@
+/* 
+    Document   : Transition
+    Created on : 5 févr. 2013, 20:27:46
+    Author     : rferland
+    Description:
+        Purpose of the stylesheet follows.
+*/
+body
+{
+    /*background-image:url("../images/CB06.jpg");*/
+    background-color:#fff;
+    /*background-repeat: no-repeat;*/
+}
+
+li.animated
+{
+    -webkit-transition-property: background-color, color;
+    -webkit-transition-duration: 500ms;
+    -moz-transition-property: background-color, color;
+    -moz-transition-duration: 500ms;
+    -o-transition-property: background-color, color;
+    -o-transition-duration: 500ms;
+    -ms-transition-property: background-color, color;
+    -ms-transition-duration: 500ms;
+    transition-property: background-color, color;
+    transition-duration: 500ms;
+    background-color: green;
+    color: white;
+}
+
+li.animated:hover 
+{
+    background-color: yellow;
+    color: black;
+}
+
+Toolbar
+      .toolbar { 
+        box-sizing: border-box ; 
+        -webkit-box-sizing: border-box ; 
+        -moz-box-sizing: border-box ;
+        border-bottom: 1px solid #2d3642 ;
+        border-top: 1px solid #000000 ;
+        padding: 10px ;
+        height: 45px ;
+        background: url(/images/toolbar.png) #6d84a2 repeat-x ;
+        display: block ;
+       }
+
+      Toolbar Title
+      .toolbar > h1 {
+        position: absolute ;
+        overflow: hidden ;
+        left: 50% ;
+        margin: 1px 0 0 -75px ;
+        height: 45px ;
+        font-size: 20px ;
+        width: 150px ;
+        font-weight: bold ;
+        text-shadow: rgba(0, 0, 0, 0.4) 0px -1px 0 ;
+        text-align: center ;
+        text-overflow: ellipsis ;
+        white-space: nowrap ;
+        color: #FFFFFF ;
+        border-bottom: none ;
+      }
+
+      button
+      .button {
+        position: absolute ;
+        overflow: hidden ;
+        top: 8px ;
+        right: 6px ;
+        margin: 0 ;
+        border-width: 0 5px ;
+        padding: 0 3px ;
+        width: auto ;
+        height: 88 px ;
+        line-height: 30px ;
+        font-family: inherit ;
+        font-size: 14px ;
+        font-weight: bold ;
+        color: #FFFFFF ;
+        text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0 ;
+        text-overflow: ellipsis ;
+        text-decoration: none ;
+        white-space: nowrap ;
+        background: none ;
+        -webkit-border-image: url(/images/toolButton.png) 0 5 0 5 ;
+        
+          border-radius: 20;
+      }
+
+      backButton
+      .backButton {
+        position: absolute ;
+        overflow: hidden ;
+        top: 8px ;
+        left: 6px ;
+        margin: 0 ;
+        height: 30px ;
+        max-width: 45px ;
+        line-height: 30px ;
+        font-family: inherit ;
+        font-size: 12px ;
+        font-weight: bold ;
+        color: #FFFFFF  ;
+        text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0 ;
+        text-overflow: ellipsis ;
+        text-decoration: none ;
+        white-space: nowrap ;
+        background: none ;
+        -webkit-border-image: url(/images/toolButton.png) 0 5 0 5 ;
+        padding: 0 ;
+        border-width: 0 8px 0 14px ;
+        -webkit-border-image: url(/images/backButton.png) 0 8 0 14 ;
+      }
+
+
+#animatedBlock 
+{
+    height: 100px;
+    width: 100px;
+    display: block;
+    position: absolute;
+    top: 200px;
+    left: 200px;
+    background-color: red;
+
+    -moz-animation-delay: 300ms;
+    -moz-animation-name: pulsating-animation;
+    -moz-animation-duration: 10s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: ease-in;
+    -moz-animation-direction: normal;
+    -moz-animation-play-state: running;
+    -moz-animation-direction: alternate;
+
+    -webkit-animation-delay: 300ms;
+    -webkit-animation-name: pulsating-animation;
+    -webkit-animation-duration: 10s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-direction: normal;
+    -webkit-animation-play-state: running;
+    -webkit-animation-direction: alternate;
+}
+
+input{
+    
+    border-radius: 5px;
+    font-family:system;
+    font-size: 14px;
+}
+
+@-webkit-keyframes pulsating-animation
+{
+    0% 
+    {
+    height: 100px;
+    width: 100px;
+}
+
+100%
+{
+    height: 300px;
+    width: 300px;
+}
+}
+
+@-moz-keyframes pulsating-animation{
+    0% 
+    {
+    height: 100px;
+    width: 100px;
+}
+
+100%
+{
+    height: 300px;
+    width: 300px;
+}
+}
+
+
+
+.header {
+
+    left: 0px;
+}
+
+.footer {
+
+    right: 0px;;
+}
