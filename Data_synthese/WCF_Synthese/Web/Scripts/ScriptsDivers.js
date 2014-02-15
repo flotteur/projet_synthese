@@ -1,6 +1,6 @@
 ﻿
 function CallService() {
-    XMLHttpRequest("http://localhost/WCF_Synthese/ServiceWCF_Synthese.svc", { "pID": "2" }, Callback, onError);
+    XMLHttpRequest("http://diq.ca/synthese/servicewcf_synthese.svc/getusager/1", { "pID": "2" }, Callback, onError);
 }
 function Callback(result) {
     alert(result); // string
@@ -18,3 +18,31 @@ function init() {
     }
 }
 
+var ID;
+function GetUsager() {
+    ID = 1;
+    $.ajax({
+        cache: false,
+        type: "GET",
+        async: false,
+        dataType: "json",
+        jsonp:true,
+        url: "http://diq.ca/synthese/servicewcf_synthese.svc/GetUsager/1" ,
+        contentType: "application/json; charset=utf-8",
+        processData: false,
+        statusCode: {
+            default: function () {
+                alert(status);
+            }
+        },
+        success: function (data) {
+
+            alert("Success");
+           
+                   },
+        error: function (xhr, textStatus) {
+            alert(xhr.responseText);
+        }
+    });
+
+}

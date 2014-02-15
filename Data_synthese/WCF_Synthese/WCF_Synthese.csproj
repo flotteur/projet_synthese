@@ -75,7 +75,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Service1.svc" />
     <Content Include="Web\index.html" />
     <Content Include="ServiceWCF_Synthese.svc" />
     <Content Include="Web.config">
@@ -90,10 +89,7 @@
     <Content Include="Web\Scripts\ScriptsDivers.js" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IService1.cs" />
-    <Compile Include="Service1.svc.cs">
-      <DependentUpon>Service1.svc</DependentUpon>
-    </Compile>
+    <Compile Include="EntitesWCF\EntiteWCFBase.cs" />
     <Compile Include="ServiceWCF_Synthese.svc.cs">
       <DependentUpon>ServiceWCF_Synthese.svc</DependentUpon>
     </Compile>

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using BO_Synthese;
-using Entites_Synthese;
+using Entites_Synthese;     
+using WCF_Synthese.EntitesWCF;
 
 namespace WCF_Synthese
 {
@@ -35,8 +36,10 @@ namespace WCF_Synthese
            // }
 
             retour = new UsagerWCF() ;
+            retour.ID = int.Parse(pID);
             retour.Courriel = "Courriel";
-            return retour;
+            return null;
+            //return retour ;
         }
              
     }

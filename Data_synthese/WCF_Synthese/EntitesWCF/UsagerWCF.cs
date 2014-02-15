@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 
-namespace WCF_Synthese
+namespace WCF_Synthese.EntitesWCF
 {
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
 
