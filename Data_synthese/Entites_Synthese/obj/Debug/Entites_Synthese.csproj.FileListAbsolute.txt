@@ -1,4 +1,0 @@
-C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Entites_Synthese\bin\Debug\Entites_Synthese.dll
-C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Entites_Synthese\bin\Debug\Entites_Synthese.pdb
-C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Entites_Synthese\obj\Debug\Entites_Synthese.dll
-C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Entites_Synthese\obj\Debug\Entites_Synthese.pdb
