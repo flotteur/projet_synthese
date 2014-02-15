@@ -134,66 +134,7 @@ namespace TEST_Data_Synthese
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
-        /// <summary>
-        ///A test for PhotoObservationId
-        ///</summary>
-        [TestMethod()]
-        public void PhotoObservationIdTest()
-        {
-            observation target = new observation(); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            target.PhotoObservationId = expected;
-            actual = target.PhotoObservationId;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for Position
-        ///</summary>
-        [TestMethod()]
-        public void PositionTest()
-        {
-            observation target = new observation(); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            target.Position = expected;
-            actual = target.Position;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for SonObservationId
-        ///</summary>
-        [TestMethod()]
-        public void SonObservationIdTest()
-        {
-            observation target = new observation(); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            target.SonObservationId = expected;
-            actual = target.SonObservationId;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for UsagerId
-        ///</summary>
-        [TestMethod()]
-        public void UsagerIdTest()
-        {
-            observation target = new observation(); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            target.UsagerId = expected;
-            actual = target.UsagerId;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
+              
         /// <summary>
         ///A test for oiseaux
         ///</summary>
@@ -209,36 +150,8 @@ namespace TEST_Data_Synthese
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
-        /// <summary>
-        ///A test for photoobservations
-        ///</summary>
-        [TestMethod()]
-        public void photoobservationsTest()
-        {
-            observation target = new observation(); // TODO: Initialize to an appropriate value
-            photoobservation expected = null; // TODO: Initialize to an appropriate value
-            photoobservation actual;
-            target.photoobservations = expected;
-            actual = target.photoobservations;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for sonobservations
-        ///</summary>
-        [TestMethod()]
-        public void sonobservationsTest()
-        {
-            observation target = new observation(); // TODO: Initialize to an appropriate value
-            sonobservation expected = null; // TODO: Initialize to an appropriate value
-            sonobservation actual;
-            target.sonobservations = expected;
-            actual = target.sonobservations;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
+       
+       
         /// <summary>
         ///A test for usagers
         ///</summary>

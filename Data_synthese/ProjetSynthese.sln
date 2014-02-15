@@ -17,16 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data_synthese", "Data_synthese\Data_synthese.csproj", "{143B386C-C9E6-4AAC-BCB5-39E47E054EA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data_synthese", "Data_synthese\Data_synthese.csproj", "{143B386C-C9E6-4AAC-BCB5-39E47E054EA1}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCF_Synthese", "WCF_Synthese\WCF_Synthese.csproj", "{B8A79EFF-48ED-4C95-A194-F616A1919C55}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BO_Synthese", "BO_Synthese\BO_Synthese.csproj", "{36296657-BD9F-4B9E-B872-56AB1935147C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entites_Synthese", "Entites_Synthese\Entites_Synthese.csproj", "{47FE8F85-D7F3-4CA6-B57A-6C65FD848810}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_ClientSynthese", "WPF_ClientSynthèse\WPF_ClientSynthese.csproj", "{B2EB8021-B89E-4FD2-A968-24C39D0E0EBE}"
-	ProjectSection(ProjectDependencies) = postProject
-		{B8A79EFF-48ED-4C95-A194-F616A1919C55} = {B8A79EFF-48ED-4C95-A194-F616A1919C55}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEST_Data_Synthese", "TEST_Data_Synthese\TEST_Data_Synthese.csproj", "{22BE62F2-88FA-46FB-B1C2-74AF23E9E9B4}"
 EndProject
@@ -80,16 +77,6 @@ Global
 		{47FE8F85-D7F3-4CA6-B57A-6C65FD848810}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{47FE8F85-D7F3-4CA6-B57A-6C65FD848810}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{47FE8F85-D7F3-4CA6-B57A-6C65FD848810}.Release|x86.ActiveCfg = Release|Any CPU
-		{B2EB8021-B89E-4FD2-A968-24C39D0E0EBE}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{B2EB8021-B89E-4FD2-A968-24C39D0E0EBE}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{B2EB8021-B89E-4FD2-A968-24C39D0E0EBE}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{B2EB8021-B89E-4FD2-A968-24C39D0E0EBE}.Debug|x86.ActiveCfg = Debug|x86
-		{B2EB8021-B89E-4FD2-A968-24C39D0E0EBE}.Debug|x86.Build.0 = Debug|x86
-		{B2EB8021-B89E-4FD2-A968-24C39D0E0EBE}.Release|Any CPU.ActiveCfg = Release|x86
-		{B2EB8021-B89E-4FD2-A968-24C39D0E0EBE}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{B2EB8021-B89E-4FD2-A968-24C39D0E0EBE}.Release|Mixed Platforms.Build.0 = Release|x86
-		{B2EB8021-B89E-4FD2-A968-24C39D0E0EBE}.Release|x86.ActiveCfg = Release|x86
-		{B2EB8021-B89E-4FD2-A968-24C39D0E0EBE}.Release|x86.Build.0 = Release|x86
 		{22BE62F2-88FA-46FB-B1C2-74AF23E9E9B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{22BE62F2-88FA-46FB-B1C2-74AF23E9E9B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22BE62F2-88FA-46FB-B1C2-74AF23E9E9B4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

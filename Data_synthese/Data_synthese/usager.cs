@@ -16,6 +16,7 @@ namespace Data_synthese
     {
         public usager()
         {
+            this.messages = new HashSet<message>();
             this.observations = new HashSet<observation>();
         }
     
@@ -25,10 +26,9 @@ namespace Data_synthese
         public bool Administrateur { get; set; }
         public string Courriel { get; set; }
         public int IDUsager { get; set; }
-        public int MessageId { get; set; }
     
         public virtual alertesusager alertesusagers { get; set; }
-        public virtual message messages { get; set; }
+        public virtual ICollection<message> messages { get; set; }
         public virtual ICollection<observation> observations { get; set; }
     }
 }

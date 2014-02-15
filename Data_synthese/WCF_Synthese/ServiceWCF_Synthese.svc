@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="WCF_Synthese.ServiceWCF_Synthese" CodeBehind="ServiceWCF_Synthese.svc.cs" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="WCF_Synthese.ServiceWCF_Synthese"  CodeBehind="ServiceWCF_Synthese.svc.cs" %>

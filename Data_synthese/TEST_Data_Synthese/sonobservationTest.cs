@@ -135,19 +135,6 @@ namespace TEST_Data_Synthese
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
-        /// <summary>
-        ///A test for observations
-        ///</summary>
-        [TestMethod()]
-        public void observationsTest()
-        {
-            sonobservation target = new sonobservation(); // TODO: Initialize to an appropriate value
-            ICollection<observation> expected = null; // TODO: Initialize to an appropriate value
-            ICollection<observation> actual;
-            target.observations = expected;
-            actual = target.observations;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
+       
     }
 }

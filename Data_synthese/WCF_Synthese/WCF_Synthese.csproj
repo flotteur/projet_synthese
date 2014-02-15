@@ -20,6 +20,11 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,14 +48,15 @@
     <Reference Include="BO_Synthese, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\BO_Synthese\bin\Release\BO_Synthese.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Entites_Synthese, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Entites_Synthese\bin\Release\Entites_Synthese.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -61,7 +67,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -70,6 +75,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Web\index.html" />
     <Content Include="ServiceWCF_Synthese.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -80,14 +86,16 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Web\Scripts\ScriptsDivers.js" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntitesWCF\EntiteWCFBase.cs" />
     <Compile Include="ServiceWCF_Synthese.svc.cs">
       <DependentUpon>ServiceWCF_Synthese.svc</DependentUpon>
     </Compile>
     <Compile Include="IServiceWCF_Synthese.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UsagerWCF.cs" />
+    <Compile Include="EntitesWCF\UsagerWCF.cs" />
     <Compile Include="Utilitaires.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -116,7 +124,6 @@
           <CustomServerUrl>
           </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
-          <EnableWcfTestClientForSVCDefaultValue>True</EnableWcfTestClientForSVCDefaultValue>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

@@ -1,0 +1,8 @@
+[Bb]in
+[Dd]ebug*/
+obj/
+[Rr]elease*/
+pdb
+*.dll
+*.pdb
+Data_synthese/WCF_Synthese/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache

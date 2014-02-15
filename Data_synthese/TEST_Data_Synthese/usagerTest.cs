@@ -135,21 +135,7 @@ namespace TEST_Data_Synthese
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
-        /// <summary>
-        ///A test for MessageId
-        ///</summary>
-        [TestMethod()]
-        public void MessageIdTest()
-        {
-            usager target = new usager(); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            target.MessageId = expected;
-            actual = target.MessageId;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
+       
         /// <summary>
         ///A test for MotPasse
         ///</summary>
@@ -195,20 +181,7 @@ namespace TEST_Data_Synthese
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
-        /// <summary>
-        ///A test for messages
-        ///</summary>
-        [TestMethod()]
-        public void messagesTest()
-        {
-            usager target = new usager(); // TODO: Initialize to an appropriate value
-            message expected = null; // TODO: Initialize to an appropriate value
-            message actual;
-            target.messages = expected;
-            actual = target.messages;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
+       
 
         /// <summary>
         ///A test for observations

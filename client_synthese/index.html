@@ -1,60 +1,47 @@
 <!doctype html>
 <html lang="en" manifest="app.manifest">
+  
 <head>
-	<meta charset="utf-8">
-	<title>http://membre.oricom.ca/agiguere/lapp_001/index.html</title>
-	<meta name="HandheldFriendly" content="True">
-	<meta name="MobileOptimized" content="320">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black"> 
-
-
+    <meta charset="utf-8">
+    <title>Application d'observation d'oiseaux</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"> 
 	
-	<!-- icons   -->
-	<link rel="apple-touch-icon" sizes="72x72" href="img/72x72_frog.png" />
-	<link rel="apple-touch-icon" sizes="114x114" href="img/114x114_smile.png" />
-	<link rel="apple-touch-icon" sizes="144x144" href="img/144x144_bird.png" />
+    <!-- icons   -->
+    <link rel="apple-touch-icon" sizes="72x72" href="img/72x72_frog.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="img/114x114_smile.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="img/144x144_bird.png" />
 
-	<!-- startup image for web apps - iPad - portrait (768x1024) -->
-	<link rel="apple-touch-startup-image" href="img/768x1004_blabla.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" />
+    <!-- startup image for web apps - iPad - portrait (768x1024) -->
+    <link rel="apple-touch-startup-image" href="img/768x1004_blabla.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" />
 
-	<!-- startup image for web apps - iPad - landscape (1024x748) -->
-	<link rel="apple-touch-startup-image" href="img/2048x1496_32.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) and (-webkit-min-device-pixel-ratio: 2)" />  
+    <!-- startup image for web apps - iPad - landscape (1024x748) -->
+    <link rel="apple-touch-startup-image" href="img/2048x1496_32.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) and (-webkit-min-device-pixel-ratio: 2)" />  
 
-	<!-- iPhone/iPod Touch Portrait – 320 x 480 (standard resolution) -->
+    <!-- iPhone/iPod Touch Portrait – 320 x 480 (standard resolution) -->
 	<link rel="apple-touch-startup-image" href="img/320x480_24.png" media="screen and (min-device-width: 325px) and (max-device-width: 500px) and (orientation:portrait)" />
 
-<!-- Add to home screen bubble -->
-	<link rel="stylesheet" href="cubiq/style/add2home.css">
-	<script type="application/javascript" src="cubiq/src/add2home.js"></script>
-		
-	
-	
-	<link href="css/style.css" type="text/css" rel="stylesheet" />
-		
-		
-	
-	
-	
-	
+    <!-- Add to home screen bubble -->
+    <link rel="stylesheet" href="cubiq/style/add2home.css">
+    <script type="application/javascript" src="cubiq/src/add2home.js"></script>
+				
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
 </head>
+
 <body id="id_body" style="text-align:center;" >
   <div id="main" role="main">
     
 	<div id="toolbar">
-		<!-- 
-
-		-->
-
-		<button id="back_button" onclick="hide_all();show_menu1();" class="hidden">Menu</button>
-
-		<button  id="tool_button" onclick="onClickBoutonSupprimer();" style="position:absolute;bottom:6px;right:170px;visibility:hidden;" class="">Supprimer</button>
-
-		<button id="tool_button2" onclick="onClickBoutonAjouterObservation();" style="position:absolute;bottom:6px;right:105px;visibility:hidden;"  class="">Ajouter</button>
-		<button  id="tool_button3" onclick="onClickBoutonDeconnecter();" style="position:absolute;bottom:6px;right:10px;visibility:hidden;" class="">Déconnecter</button>	
+	  <button id="back_button" onclick="hide_all();show_menu1();" class="hidden">Menu</button>
+	  <button  id="tool_button" onclick="onClickBoutonSupprimer();" style="position:absolute;bottom:6px;right:170px;visibility:hidden;" class="">Supprimer</button>
+	  <button id="tool_button2" onclick="onClickBoutonAjouterObservation();" style="position:absolute;bottom:6px;right:105px;visibility:hidden;"  class="">Ajouter</button>
+	  <button  id="tool_button3" onclick="onClickBoutonDeconnecter();" style="position:absolute;bottom:6px;right:10px;visibility:hidden;" class="">Déconnecter</button>	
 	</div> 
+      
+      
       
 	  <!-- 
 
@@ -65,6 +52,7 @@
 
 	
 	  
+<!--  Écran du login  -->
 	 
 	<div id="my_login" style="text-align:center;" class="screen">
 	
@@ -73,10 +61,15 @@
 		<col style="width:60%;">		
 		
 		<tr>
-			<td class="td_table2" style="width:20%;">
-				<img style="width:60px;" src="http://www.gloucester.nsw.gov.au/Images/UserUploadedImages/155/Documents-icon.png" />
-			</td> 
-			<td class="td_table2" style="color:blach;">Travaille d'équipe - Observation d'oiseaux<br>1290645</td> 
+		    <td class="td_table2" style="width:20%;">
+		    <img style="width:60px;" src="http://www.gloucester.nsw.gov.au/Images/UserUploadedImages/155/Documents-icon.png" />
+		    </td> 
+		    <td class="td_table2" style="color:blach;">Travail d'équipe - Observation d'oiseaux<br>Pointe-Pelée</td> 
+		    <td class="td_table2" style="width:20%;"></td>
+			
+			<!-- 
+			<td class="td_table2" style="color:blach;">Application d'observation d'oiseaux<br>http://membre.oricom.ca/agiguere/lapp_001/index.html</td> 
+		-->
 		</tr>
 	
 	
@@ -128,11 +121,8 @@
  
 	</div> 	  
 
-
-	
-	<!-- 
-
-	-->
+<!---------------------------------------------------------------->
+<!--  Écran du menu  -->
 	
 	<div id="le_menu1" class="screen hidden">
 		<ul class="buttons">
@@ -142,8 +132,6 @@
 			  class="switch_screen">Ajouter une observation</a>
 			</li>		
 		
-		
-
 			<li>
 			  <a href="#liste_observation1" id="id_bouton_liste_des_observations" 
 			  onclick="onClickButtonMenuListViewObserv();" 
@@ -154,14 +142,28 @@
 			  <a href="#liste_fichiers1" id="id_bouton_liste_fichiers1" 
 			  onclick="hide_all();agXMLHttpReqFichiers('http://ks365406.kimsufi.com/fpilote/tp1/files.json');show_liste_des_fichiers();show_back_button();" 
 			  class="switch_screen">Documents</a>
-			</li>			
+			</li>
+			
 			<li>
-			  <a href="#a_setting"  id="id_bouton_setting" onclick="hide_all();show_settings();show_back_button();" class="switch_screen">Paramètres</a>
-			</li>	
+			  <a href="#a_setting"  id="id_bouton_setting"
+			     onclick="hide_all();show_settings();show_back_button();"
+			     class="switch_screen">Paramètres</a>
+			</li>
+			
+			<li>
+			  <a href="#ecran_recherche"  id="id_bouton_recherche"
+			     onclick="hide_all();show_dicti();show_back_button();" 
+			     class="switch_screen">Recherche dans le dictionnaire</a>
+			</li>
+			
 		</ul>
 	</div> 
 	
-   <div class="screen hidden" id="ecran_observation">
+	
+<!---------------------------------------------------------------->
+<!--  Écran d'obsevations  -->	
+	
+   <div id="ecran_observation" class="screen hidden">
         <h3 style="color:white;">Écran - Observations</h3>
 		<table id="my_table_5" class="table2">
 		<col style="width:40%;">        
@@ -271,25 +273,15 @@
    
 
 </audio>
+    	</td> 
+			
+	</tr>				
 		
-	
-
-	
-			</td> 
-			
-			
-			
-			
-		</tr>				
-		
-		
-			
-		
-		<tr>
-			<td class="tddata"> 
-				<button id="" onclick="load2Player();" >LOAD SON2</button>
-			</td> 
-		</tr>			
+	<tr>	
+	<td class="tddata"> 
+	<button id="" onclick="load2Player();" >LOAD SON2</button>
+	</td> 
+	</tr>			
 		
 		<tr>
 			<td class="tddata"> 
@@ -329,6 +321,8 @@
     </div>      	
 	
 	
+<!---------------------------------------------------------------->
+<!--  Écran fichier ??  -->	
 	
 	<div id="ecran_fichier" class="screen hidden" >
 		<ul class="buttons">
@@ -422,9 +416,10 @@
 	
 	
  
-	 
-	 
-	 <div class="screen hidden" style="text-align:center;" id="a_setting">
+<!---------------------------------------------------------------->
+<!--  Écran paramètres  -->		 
+      
+        <div id="a_setting" class="screen hidden" style="text-align:center;" >
         <h2>Paramètres</h2>
 		<table id="my_table_5" style="margin-left:auto;margin-right:auto;max-width:300px;width:100%;" >
 		<col style="width:40%;">        
@@ -506,6 +501,46 @@
 	
 		
     </div> 
+ 
+ 
+ 
+ 
+<!---------------------------------------------------------------->
+<!--  Écran recherche dans le dictionnaire -->
+ 
+ 
+    <div id="ecran_recherche" class="screen hidden" style="text-align:center;" >
+       
+	<table id="my_table_5" style="margin-left:auto;margin-right:auto;max-width:300px;width:100%;" >
+	    <col style="width:40%;">        
+	    <col style="width:60%;">
+		
+	    <h2>Dictionnaire</h2>
+	    
+	   <div id="container">
+	      <div id="inputArea">
+		<h5 style="text-align:left;">Donner une valeur en seconde:</h5>
+	      </div>
+      	      <h1 id="time">0:00</h1>     
+	    </div> 
+
+	    <ul class="buttons">
+		<li>
+		   <a href="#" id="" onclick="startCountdown();" class="switch_screen">Démarrer la recherche</a>
+		</li>	
+	    </ul>	
+	</table>	
+	
+		
+    </div> 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
    
 <!-- 
  &SCAN_FORMATS=UPC_A,EAN_13 
@@ -545,6 +580,7 @@ http://code.google.com/p/zxing/wiki/ScanningFromWebPages
 	<script type="text/javascript" src="js/agOnOffLine.js"></script>		
 	<script type="text/javascript" src="js/agPhoto.js"></script>	
 	<script type="text/javascript" src="js/agUneObserv.js"></script>
+	<script type="text/javascript" src="js/ddTest.js"></script>
 	
 	
 	
