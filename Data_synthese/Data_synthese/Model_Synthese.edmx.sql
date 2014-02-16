@@ -5,7 +5,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 02/08/2014 11:32:07
+-- Date Created: 02/16/2014 11:14:18
 -- Generated from EDMX file: C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Data_synthese\Model_Synthese.edmx
 -- Target version: 2.0.0.0
 -- --------------------------------------------------
@@ -97,7 +97,7 @@ CREATE TABLE `observation`(
 	`PositionLong` int, 
 	`IDUsager` int NOT NULL, 
 	`IDOiseau` int NOT NULL, 
-	`PositionLat` varchar (1000));
+	`PositionLat` longtext);
 
 ALTER TABLE `observation` ADD PRIMARY KEY (Id);
 

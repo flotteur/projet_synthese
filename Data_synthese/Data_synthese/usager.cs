@@ -21,6 +21,7 @@ namespace Data_synthese
         }
     
         public int Id { get; set; }
+        public string Nom { get; set; }
         public string NomUsager { get; set; }
         public string MotPasse { get; set; }
         public bool Administrateur { get; set; }

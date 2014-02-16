@@ -9,7 +9,9 @@ namespace Data_synthese.Classes
 {
     public class DatabaseObject : IDisposable
     {
-        public DatabaseObject() {
+        public static int erreur;
+        public DatabaseObject()
+        {
             this.dbContext = new synthese_dbEntities();
             Crypteur = new Encription();
         }
@@ -18,6 +20,7 @@ namespace Data_synthese.Classes
 
         private Encription Crypteur { get; set; }
         public synthese_dbEntities dbContext { get; set; }
+
         /// <summary>
         /// Cette clé permet d'encoder et de décoder les informations qui doivent être vues par els utilisateurs du programme
         /// Le nom des autres usagers et les noms de profiles
@@ -25,15 +28,18 @@ namespace Data_synthese.Classes
         private string GlobalKey
         {
             // TODO Cette clé ne devrait pas être hard codée mais provenir d'un serveur externe
-            get {
-                return "FD7189C5-6559-45C4-AB7C-9ECAC97DC5B1";}
+            get
+            {
+                return "FD7189C5-6559-45C4-AB7C-9ECAC97DC5B1";
+            }
         }
 
         #endregion
 
         #region Méthodes publiques
 
-        public void SaveChanges() {
+        public void SaveChanges()
+        {
             this.dbContext.SaveChanges();
         }
 
@@ -41,7 +47,8 @@ namespace Data_synthese.Classes
 
         #region Usagers
 
-        public Usager_Entite GetUsager(string pUser) {
+        public Usager_Entite GetUsager(string pUser)
+        {
             Usager_Entite usag = null;
             usager userRow = null;
 
@@ -54,26 +61,30 @@ namespace Data_synthese.Classes
                 foreach (usager row in userRows)
 
                     if (Crypteur.DecryptStringAES(row.NomUsager,
-                        GlobalKey) == pUser) {
+                        GlobalKey) == pUser)
+                    {
                         userRow = row;
                     }
 
             // Si on pas trouvé dans le cache on va dans la BD
-            if (userRow == null) {
+            if (userRow == null)
+            {
                 userRows = (from row in dbContext.usager
                             select row);
                 if (userRows != null)
                     foreach (usager row in userRows)
 
                         if (Crypteur.DecryptStringAES(row.NomUsager,
-                            GlobalKey) == pUser) {
+                            GlobalKey) == pUser)
+                        {
                             userRow = row;
                             break;
                         }
             }
 
             //TODO: il manque des propriétés dans l'usager...
-            if (userRow != null) {
+            if (userRow != null)
+            {
                 usag = new Usager_Entite();
                 usag.ID = userRow.Id;
 
@@ -85,15 +96,59 @@ namespace Data_synthese.Classes
             return usag;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pUsager"></param>
+        /// <returns></returns>
+        public Usager_Entite InsertUsager(Usager_Entite pUsager)
+        {
+
+            Usager_Entite newUsager = InsertUsager(pUsager.Nom,
+                                                    pUsager.NomUsager,
+                                                    pUsager.MotDePasse,
+                                                    pUsager.EstAdministrateur,
+                                                    pUsager.Courriel);
+            return newUsager;
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pNom"></param>
+        /// <param name="pUsername"></param>
+        /// <param name="pPassword"></param>
+        /// <param name="pEstAdministrateur"></param>
+        /// <param name="pCourriel"></param>
+        /// <returns></returns>
         public Usager_Entite InsertUsager(string pNom,
         string pUsername,
         string pPassword,
         bool pEstAdministrateur,
-        String pCourriel) {
+        String pCourriel)
+        {
             Usager_Entite usag;
             Encription crypteur = new Encription();
 
-            var userRow = (from row in dbContext.usager.Local
+            // On s'assure que le username n'existe pas déjà
+            var userNameRow = (from row in dbContext.usager
+                           where row.NomUsager == pUsername
+                           select row);
+            if (userNameRow==null){
+               // err //définir des erreurs et finaliser le test
+                return null;
+            }
+            var courrielRow = (from row in dbContext.usager
+                               where row.NomUsager == pUsername
+                               select row);
+            if (courrielRow == null)
+                return null;
+
+            // On s'assure que le courriel n'existe pas déjà
+
+            // On va chercher le dernier ID
+           var userRow = (from row in dbContext.usager.Local
                            orderby row.Id descending
                            select row).ToList();
             if (userRow.Count == 0)
@@ -104,26 +159,26 @@ namespace Data_synthese.Classes
             if (userRow.Count > 0)
                 id = userRow.First().Id;
             else
-                id = 1;
+                id = 0;
 
             string passwordHash = Encription.GetHash(pPassword);
 
-            usager usagerDB = new usager() { NomUsager = crypteur.EncryptStringAES(pNom,
-                                                 GlobalKey),
+            usager usagerDB = new usager() { Nom = pNom ,
+                                             NomUsager = pUsername,
                                              MotPasse = passwordHash,
                                              Administrateur = pEstAdministrateur,
                                              Courriel = pCourriel,
-                                             Id = (id += 1) };
+                                             Id = (id += 1)
+            };
             dbContext.usager.Add(usagerDB);
-
-
+            
             usag = new Usager_Entite(usagerDB.Id,
-            pUsername,
-            pPassword,
-            pEstAdministrateur,
-            pCourriel);
-
-
+                pNom,
+                pUsername,
+                pPassword,
+                pEstAdministrateur,
+                pCourriel);
+            
             return usag;
         }
 
@@ -132,7 +187,8 @@ namespace Data_synthese.Classes
         /// </summary>
         /// <param name="PID"></param>
         /// <returns></returns>
-        public Usager_Entite GetUsager(int PID) {
+        public Usager_Entite GetUsager(int PID)
+        {
             Usager_Entite usag = new Usager_Entite();
             Encription crypteur = new Encription();
             var usagerRow = (from row in dbContext.usager.Local
@@ -143,7 +199,8 @@ namespace Data_synthese.Classes
                              where row.Id == PID
                              select row).FirstOrDefault();
 
-            if (usagerRow != null) {
+            if (usagerRow != null)
+            {
                 usag.ID = usagerRow.Id;
                 usag.NomUsager = crypteur.DecryptStringAES(usagerRow.NomUsager,
                     GlobalKey);
@@ -157,7 +214,8 @@ namespace Data_synthese.Classes
 
 
 
-        public Boolean DeleteUsager(int pUsagerID) {
+        public Boolean DeleteUsager(int pUsagerID)
+        {
             var UsagerRow = (from row in dbContext.usager.Local
                              where row.Id == pUsagerID
                              select row).FirstOrDefault();
@@ -165,7 +223,8 @@ namespace Data_synthese.Classes
                 UsagerRow = (from row in dbContext.usager
                              where row.Id == pUsagerID
                              select row).FirstOrDefault();
-            if (UsagerRow != null) {
+            if (UsagerRow != null)
+            {
                 dbContext.usager.Remove(UsagerRow);
 
                 return true;
@@ -177,26 +236,31 @@ namespace Data_synthese.Classes
         #endregion
 
 
-        public void Dispose() {
+        public void Dispose()
+        {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) {
-            if (disposing) {
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
                 if (dbContext != null)
                     dbContext.Dispose();
             }
         }
 
-        ~DatabaseObject() {
+        ~DatabaseObject()
+        {
             Dispose(false);
         }
 
         /// <summary>
         /// Effece tous les enregistrements de la BD
         /// </summary>
-        public void ClearDatabase() {
+        public void ClearDatabase()
+        {
             var usagerRows = from row in dbContext.usager
                              select row;
 

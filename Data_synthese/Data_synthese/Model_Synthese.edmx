@@ -104,7 +104,7 @@
     <Property Name="PositionLong" Type="int" Nullable="true" />
     <Property Name="IDUsager" Type="int" Nullable="false" />
     <Property Name="IDOiseau" Type="int" Nullable="false" />
-    <Property Name="PositionLat" Type="varchar" Nullable="true" />
+    <Property Name="PositionLat" Type="longtext" Nullable="true" />
   </EntityType>
   <EntityType Name="oiseau">
     <Key>
@@ -730,7 +730,7 @@
       </DesignerInfoPropertySet>
     </edmx:Options>
     <edmx:Diagrams>
-      <Diagram Name="Main" ZoomLevel="100" >
+      <Diagram Name="Main" ZoomLevel="100" DisplayType="true" >
         <EntityTypeShape EntityType="synthese_dbModel.alerte" Width="2.5" PointX="1.875" PointY="4.625" Height="2.1725878906250031" />
         <EntityTypeShape EntityType="synthese_dbModel.alertesusager" Width="2.5" PointX="1.75" PointY="1.125" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="synthese_dbModel.crioiseau" Width="2.5" PointX="5" PointY="6.75" Height="1.9802864583333388" />

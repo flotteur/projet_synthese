@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3342E1CA-5D0A-4E68-A2D5-80FBC963B23E}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
@@ -25,7 +23,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entites_Synthese", "Entites
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEST_Data_Synthese", "TEST_Data_Synthese\TEST_Data_Synthese.csproj", "{22BE62F2-88FA-46FB-B1C2-74AF23E9E9B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEST_BO_Synthese", "TEST_BO_Synthese\TEST_BO_Synthese.csproj", "{EAAF996E-DEBA-41E0-AFFC-A7A1F6412D69}"
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = ProjetSynthese.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -85,11 +88,18 @@ Global
 		{22BE62F2-88FA-46FB-B1C2-74AF23E9E9B4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{22BE62F2-88FA-46FB-B1C2-74AF23E9E9B4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{22BE62F2-88FA-46FB-B1C2-74AF23E9E9B4}.Release|x86.ActiveCfg = Release|Any CPU
+		{EAAF996E-DEBA-41E0-AFFC-A7A1F6412D69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAAF996E-DEBA-41E0-AFFC-A7A1F6412D69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAAF996E-DEBA-41E0-AFFC-A7A1F6412D69}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{EAAF996E-DEBA-41E0-AFFC-A7A1F6412D69}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{EAAF996E-DEBA-41E0-AFFC-A7A1F6412D69}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EAAF996E-DEBA-41E0-AFFC-A7A1F6412D69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAAF996E-DEBA-41E0-AFFC-A7A1F6412D69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAAF996E-DEBA-41E0-AFFC-A7A1F6412D69}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{EAAF996E-DEBA-41E0-AFFC-A7A1F6412D69}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{EAAF996E-DEBA-41E0-AFFC-A7A1F6412D69}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = ProjetSynthese.vsmdi
 	EndGlobalSection
 EndGlobal

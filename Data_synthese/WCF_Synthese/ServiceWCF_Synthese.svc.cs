@@ -11,6 +11,15 @@ namespace WCF_Synthese
     public class ServiceWCF_Synthese : IServiceWCF_Synthese
     {
 
+        private BO aBusinessObject;
+        public BO BusinessObject{ 
+            get {
+                if (aBusinessObject==null)
+                    aBusinessObject = new BO();
+                return aBusinessObject;
+            } 
+        }
+
         public string HelloWorld()
         {
             return "Hello";
@@ -21,26 +30,33 @@ namespace WCF_Synthese
             BO BusinessObject = new BO();
             UsagerWCF retour = null;
 
-           //// Usager_Entite usager = BusinessObject.Getusager(pID);
+            Usager_Entite usager = BusinessObject.Getusager(int.Parse(pID));
 
-           // if (usager != null)
-           // {
-           //     retour = new UsagerWCF();
+            if (usager != null)
+            {
+                retour = new UsagerWCF();
 
-           //     retour.Courriel = usager.Courriel;
-           //     retour.EstAdministrateur = usager.EstAdministrateur;
-           //     retour.Hash = usager.Hash;
-           //     retour.ID = usager.ID;
-           //     retour.MotDePasse = usager.MotDePasse;
-           //     retour.NomUsager = usager.MotDePasse;
-           // }
+                retour.Courriel = usager.Courriel;
+                retour.EstAdministrateur = usager.EstAdministrateur;
+                retour.Hash = usager.Hash;
+                retour.ID = usager.ID;
+                retour.MotDePasse = usager.MotDePasse;
+                retour.NomUsager = usager.MotDePasse;
+            }
 
-            retour = new UsagerWCF() ;
-            retour.ID = int.Parse(pID);
-            retour.Courriel = "Courriel";
-            return null;
-            //return retour ;
+                      return retour ;
         }
-             
+
+
+
+        public void Login(string user, string password)
+        {
+            //BusinessObject.login;
+        }
+
+        public void Logout()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

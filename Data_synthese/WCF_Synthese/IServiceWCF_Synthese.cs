@@ -9,8 +9,8 @@ using WCF_Synthese.EntitesWCF;
 
 namespace WCF_Synthese
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
-    [ ServiceContract]
+   
+    [ServiceContract(SessionMode = SessionMode.Required)]
     public interface IServiceWCF_Synthese
     {
 
@@ -24,6 +24,13 @@ namespace WCF_Synthese
                 
         [OperationContract]
         string HelloWorld();
+
+        
+        [OperationContract(IsInitiating = true, IsTerminating = false)]
+        void Login(string user, string password);
+
+        [OperationContract(IsInitiating = false, IsTerminating = true)]
+        void Logout();
     }
 
 }
