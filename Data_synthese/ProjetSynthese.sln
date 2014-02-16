@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data_synthese", "Data_synthese\Data_synthese.csproj", "{143B386C-C9E6-4AAC-BCB5-39E47E054EA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data_synthese", "Data_synthese\Data_synthese.csproj", "{143B386C-C9E6-4AAC-BCB5-39E47E054EA1}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCF_Synthese", "WCF_Synthese\WCF_Synthese.csproj", "{B8A79EFF-48ED-4C95-A194-F616A1919C55}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BO_Synthese", "BO_Synthese\BO_Synthese.csproj", "{36296657-BD9F-4B9E-B872-56AB1935147C}"
