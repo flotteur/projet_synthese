@@ -24,7 +24,7 @@ namespace WCF_Synthese
         {
             return "Hello";
         }
-
+        /*
         public UsagerWCF GetUsager(string pID)
         {
             BO BusinessObject = new BO();
@@ -57,6 +57,6 @@ namespace WCF_Synthese
         public void Logout()
         {
             throw new NotImplementedException();
-        }
+        }*/
     }
 }

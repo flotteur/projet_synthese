@@ -45,16 +45,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BO_Synthese, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\BO_Synthese\bin\Release\BO_Synthese.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Entites_Synthese, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Entites_Synthese\bin\Release\Entites_Synthese.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
@@ -100,6 +90,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BO_Synthese\BO_Synthese.csproj">
+      <Project>{36296657-BD9F-4B9E-B872-56AB1935147C}</Project>
+      <Name>BO_Synthese</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entites_Synthese\Entites_Synthese.csproj">
+      <Project>{47FE8F85-D7F3-4CA6-B57A-6C65FD848810}</Project>
+      <Name>Entites_Synthese</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

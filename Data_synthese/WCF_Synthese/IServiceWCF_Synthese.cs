@@ -10,27 +10,31 @@ using WCF_Synthese.EntitesWCF;
 namespace WCF_Synthese
 {
    
-    [ServiceContract(SessionMode = SessionMode.Required)]
+    [ServiceContract]
     public interface IServiceWCF_Synthese
     {
 
-        [OperationContract]
-        [WebInvoke(Method = "GET",
-            BodyStyle = WebMessageBodyStyle.Wrapped,
+        /*[OperationContract]
+        [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped,
            // RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "GetUsager/{pID}")]
-        UsagerWCF GetUsager(string pID);
+        UsagerWCF GetUsager(string pID);*/
                 
         [OperationContract]
+        [WebInvoke(Method="GET",
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            // RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "HelloWorld/")]
         string HelloWorld();
 
-        
-        [OperationContract(IsInitiating = true, IsTerminating = false)]
+        /*
+        [OperationContract]
         void Login(string user, string password);
 
-        [OperationContract(IsInitiating = false, IsTerminating = true)]
-        void Logout();
+        [OperationContract]
+        void Logout();*/
     }
 
 }
