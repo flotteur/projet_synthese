@@ -22,12 +22,26 @@ namespace WCF_Synthese
         UsagerWCF GetUsager(string pID);*/
                 
         [OperationContract]
-        [WebInvoke(Method="GET",
+        [WebInvoke(Method="PUT",
             BodyStyle = WebMessageBodyStyle.Wrapped,
-            // RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
-            UriTemplate = "HelloWorld/")]
-        string HelloWorld();
+            UriTemplate = "observation/{id}")]
+        string AddObservation();
+
+        [OperationContract]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "observation/{id}")]
+        Observation GetObservation(int id);
+
+        [OperationContract]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "getListObservation")]
+        ListeObservation GetListeObservation();
+
 
         /*
         [OperationContract]
