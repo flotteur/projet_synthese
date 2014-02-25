@@ -5,7 +5,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 02/16/2014 11:14:18
+-- Date Created: 02/24/2014 18:45:40
 -- Generated from EDMX file: C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Data_synthese\Model_Synthese.edmx
 -- Target version: 2.0.0.0
 -- --------------------------------------------------
@@ -16,9 +16,7 @@
 -- NOTE: if the constraint does not exist, an ignorable error will be reported.
 -- --------------------------------------------------
 
---    ALTER TABLE `alerte` DROP CONSTRAINT `FK_Alertes_AlertesUsagers`;
 --    ALTER TABLE `alerte` DROP CONSTRAINT `FK_Alertes_Oiseaux`;
---    ALTER TABLE `usager` DROP CONSTRAINT `FK_Usagers_AlertesUsagers`;
 --    ALTER TABLE `crioiseau` DROP CONSTRAINT `FK_CriOiseaux_Oiseaux`;
 --    ALTER TABLE `message` DROP CONSTRAINT `FK_Usagers_Messages`;
 --    ALTER TABLE `observation` DROP CONSTRAINT `FK_Observations_Oiseaux`;
@@ -33,7 +31,6 @@
 -- --------------------------------------------------
 SET foreign_key_checks = 0;
     DROP TABLE IF EXISTS `alerte`;
-    DROP TABLE IF EXISTS `alertesusager`;
     DROP TABLE IF EXISTS `crioiseau`;
     DROP TABLE IF EXISTS `message`;
     DROP TABLE IF EXISTS `observation`;
@@ -50,20 +47,10 @@ SET foreign_key_checks = 1;
 
 CREATE TABLE `alerte`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
-	`IDObservation` int NOT NULL, 
 	`IDUsager` int NOT NULL, 
 	`IDOiseau` int NOT NULL);
 
 ALTER TABLE `alerte` ADD PRIMARY KEY (Id);
-
-
-
-
-CREATE TABLE `alertesusager`(
-	`IDUsager` int NOT NULL, 
-	`IDAlerte` int NOT NULL);
-
-ALTER TABLE `alertesusager` ADD PRIMARY KEY (IDUsager);
 
 
 
@@ -107,8 +94,7 @@ ALTER TABLE `observation` ADD PRIMARY KEY (Id);
 CREATE TABLE `oiseau`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
 	`Espece` longtext, 
-	`Description` longtext, 
-	`IDPhoto` int NOT NULL);
+	`Description` longtext);
 
 ALTER TABLE `oiseau` ADD PRIMARY KEY (Id);
 
@@ -157,7 +143,7 @@ CREATE TABLE `usager`(
 	`MotPasse` varchar (20) NOT NULL, 
 	`Administrateur` bool NOT NULL, 
 	`Courriel` varchar (50) NOT NULL, 
-	`IDUsager` int NOT NULL);
+	`Nom` char (50) NOT NULL);
 
 ALTER TABLE `usager` ADD PRIMARY KEY (Id);
 
@@ -169,21 +155,6 @@ ALTER TABLE `usager` ADD PRIMARY KEY (Id);
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
-
--- Creating foreign key on `IDUsager` in table 'alerte'
-
-ALTER TABLE `alerte`
-ADD CONSTRAINT `FK_Alertes_AlertesUsagers`
-    FOREIGN KEY (`IDUsager`)
-    REFERENCES `alertesusager`
-        (`IDUsager`)
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_Alertes_AlertesUsagers'
-
-CREATE INDEX `IX_FK_Alertes_AlertesUsagers` 
-    ON `alerte`
-    (`IDUsager`);
 
 -- Creating foreign key on `IDOiseau` in table 'alerte'
 
@@ -199,21 +170,6 @@ ADD CONSTRAINT `FK_Alertes_Oiseaux`
 CREATE INDEX `IX_FK_Alertes_Oiseaux` 
     ON `alerte`
     (`IDOiseau`);
-
--- Creating foreign key on `IDUsager` in table 'usager'
-
-ALTER TABLE `usager`
-ADD CONSTRAINT `FK_Usagers_AlertesUsagers`
-    FOREIGN KEY (`IDUsager`)
-    REFERENCES `alertesusager`
-        (`IDUsager`)
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_Usagers_AlertesUsagers'
-
-CREATE INDEX `IX_FK_Usagers_AlertesUsagers` 
-    ON `usager`
-    (`IDUsager`);
 
 -- Creating foreign key on `IDOiseau` in table 'crioiseau'
 
@@ -334,6 +290,21 @@ ADD CONSTRAINT `FK_observationmessage`
 CREATE INDEX `IX_FK_observationmessage` 
     ON `message`
     (`IDObservation`);
+
+-- Creating foreign key on `IDUsager` in table 'alerte'
+
+ALTER TABLE `alerte`
+ADD CONSTRAINT `FK_usageralerte`
+    FOREIGN KEY (`IDUsager`)
+    REFERENCES `usager`
+        (`Id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_usageralerte'
+
+CREATE INDEX `IX_FK_usageralerte` 
+    ON `alerte`
+    (`IDUsager`);
 
 -- --------------------------------------------------
 -- Script has ended

@@ -18,18 +18,18 @@ namespace Data_synthese
         {
             this.messages = new HashSet<message>();
             this.observations = new HashSet<observation>();
+            this.alerte = new HashSet<alerte>();
         }
     
         public int Id { get; set; }
-        public string Nom { get; set; }
         public string NomUsager { get; set; }
         public string MotPasse { get; set; }
         public bool Administrateur { get; set; }
         public string Courriel { get; set; }
-        public int IDUsager { get; set; }
+        public string Nom { get; set; }
     
-        public virtual alertesusager alertesusagers { get; set; }
         public virtual ICollection<message> messages { get; set; }
         public virtual ICollection<observation> observations { get; set; }
+        public virtual ICollection<alerte> alerte { get; set; }
     }
 }

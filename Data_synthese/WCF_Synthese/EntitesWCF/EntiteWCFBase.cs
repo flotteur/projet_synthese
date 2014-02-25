@@ -10,6 +10,8 @@ namespace WCF_Synthese.EntitesWCF
 
     public class EntiteWCFBase
     {
+        public string  MessageErreur { get; set; }
+
         public string ToJSON()
         {
 

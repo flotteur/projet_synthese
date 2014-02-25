@@ -25,7 +25,6 @@ namespace Data_synthese
         public int Id { get; set; }
         public string Espece { get; set; }
         public string Description { get; set; }
-        public int IDPhoto { get; set; }
     
         public virtual ICollection<alerte> alertes { get; set; }
         public virtual ICollection<crioiseau> crioiseaux { get; set; }

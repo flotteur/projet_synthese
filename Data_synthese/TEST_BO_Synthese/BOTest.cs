@@ -93,39 +93,52 @@ namespace TEST_BO_Synthese
         [TestMethod()]
         public void CreerUsagerTest()
         {
+            
             BO BusinessObject = new BO(); // 
-             string nom = "Raymond Ferland";
-             string nomUsager = "rferland";
-             string motPasse = "MotDePasse";
-             string courriel = "rferland@diq.ca";
-
-            Usager_Entite pUsager = new Usager_Entite{
-                                Nom= nom,
-                                NomUsager= nomUsager,
-                                MotDePasse = motPasse,
-                                 Courriel = courriel,
-                                EstAdministrateur = true }; 
+            string nom = "Raymond Ferland";
+            string nomUsager = "rferland";
+            string motPasse = "MotDePasse";
+            string courriel = "rferland@diq.ca";
 
             
+            Usager_Entite pUsager = new Usager_Entite
+            {
+                Nom = nom,
+                NomUsager = nomUsager,
+                MotDePasse = motPasse,
+                Courriel = courriel,
+                EstAdministrateur = true
+            };
+
+            // On commence par supprimer l'usager s'il existe
+           BusinessObject.SupprimerUsager(pUsager.NomUsager);
+            BusinessObject.SaveChanges();
+
             Usager_Entite actual = BusinessObject.CreerUsager(pUsager);
+
+            actual = BusinessObject.ObtenirUsager(actual.ID);                    
 
             Assert.IsNotNull(actual, "CreerUsager a retourné NULL");
             Assert.IsTrue(string.Compare(actual.Nom, nom) == 0);
             Assert.IsTrue(string.Compare(actual.NomUsager, nomUsager) == 0);
-            Assert.IsTrue(string.Compare(actual.MotDePasse, motPasse) == 0);
+            Assert.IsTrue(string.Compare(actual.MotDePasse, motPasse) != 0); // Le mot de passe est hashe
             Assert.IsTrue(string.Compare(actual.Courriel, courriel) == 0);
             Assert.IsTrue(actual.ID > 0);
 
             // Pas deux fois le même nomUsager
             pUsager.Courriel = "raubindiq.ca";
             actual = BusinessObject.CreerUsager(pUsager);
-            Assert.IsNull(actual, "CreerUsager on peut insérer deux fois le même courriel");
             
+            Assert.IsTrue(!string.IsNullOrEmpty(  actual.MessageErreur), "CreerUsager on peut insérer deux fois le même username");
+            
+
             // Pas deux fois le même courriel
             pUsager.Courriel = "rferland@diq.ca";
             pUsager.NomUsager = "rferland";
             actual = BusinessObject.CreerUsager(pUsager);
-            Assert.IsNull(actual, "CreerUsager on peut insérer deux fois le même username");
+
+            Assert.IsTrue(!string.IsNullOrEmpty(actual.MessageErreur), "CreerUsager on peut insérer deux fois le même courriel");
+            
 
         }
 
@@ -157,15 +170,38 @@ namespace TEST_BO_Synthese
         ///A test for Getusager
         ///</summary>
         [TestMethod()]
-        public void GetusagerTest()
+        public void Getusager()
         {
-            BO target = new BO(); // TODO: Initialize to an appropriate value
-            int pID = 0; // TODO: Initialize to an appropriate value
-            Usager_Entite expected = null; // TODO: Initialize to an appropriate value
-            Usager_Entite actual;
-            actual = target.Getusager(pID);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            BO BusinessObject = new BO(); // 
+            string nom = "Raymond Ferland";
+            string nomUsager = "rferland";
+            string motPasse = "MotDePasse";
+            string courriel = "rferland@diq.ca";
+
+
+            Usager_Entite pUsager = new Usager_Entite
+            {
+                Nom = nom,
+                NomUsager = nomUsager,
+                MotDePasse = motPasse,
+                Courriel = courriel,
+                EstAdministrateur = true
+            };
+
+            // On commence par supprimer l'usager s'il existe
+            BusinessObject.SupprimerUsager(pUsager.NomUsager);
+            BusinessObject.SaveChanges();
+
+            Usager_Entite actual = BusinessObject.CreerUsager(pUsager);
+
+            actual = BusinessObject.ObtenirUsager(actual.ID);
+
+            Assert.IsNotNull(actual, "CreerUsager a retourné NULL");
+            Assert.IsTrue(string.Compare(actual.Nom, nom) == 0);
+            Assert.IsTrue(string.Compare(actual.NomUsager, nomUsager) == 0);
+            Assert.IsTrue(string.Compare(actual.MotDePasse, motPasse) != 0); // Le mot de passe est hashe
+            Assert.IsTrue(string.Compare(actual.Courriel, courriel) == 0);
+            Assert.IsTrue(actual.ID > 0);
         }
 
         /// <summary>

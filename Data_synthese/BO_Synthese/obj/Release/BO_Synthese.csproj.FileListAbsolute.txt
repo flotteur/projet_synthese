@@ -9,3 +9,4 @@ C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthe
 C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\BO_Synthese\obj\Release\BO_Synthese.csprojResolveAssemblyReference.cache
 C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\BO_Synthese\obj\Release\BO_Synthese.dll
 C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\BO_Synthese\obj\Release\BO_Synthese.pdb
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\BO_Synthese\bin\Release\BO_Synthese.dll.config

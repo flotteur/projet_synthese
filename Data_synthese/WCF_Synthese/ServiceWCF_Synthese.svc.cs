@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+//using System.ServiceModel;
 using BO_Synthese;
-using Entites_Synthese;     
+using Entites_Synthese;
 using WCF_Synthese.EntitesWCF;
 
 namespace WCF_Synthese
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
+    
     public class ServiceWCF_Synthese : IServiceWCF_Synthese
     {
 
@@ -29,7 +31,7 @@ namespace WCF_Synthese
         {
             BO BusinessObject = new BO();
             UsagerWCF retour = null;
-
+           
             Usager_Entite usager = BusinessObject.Getusager(int.Parse(pID));
 
             if (usager != null)
@@ -43,8 +45,8 @@ namespace WCF_Synthese
                 retour.MotDePasse = usager.MotDePasse;
                 retour.NomUsager = usager.MotDePasse;
             }
-
-                      return retour ;
+           
+           return retour ;
         }
 
 

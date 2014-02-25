@@ -45,17 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BO_Synthese, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\BO_Synthese\bin\Release\BO_Synthese.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Entites_Synthese, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Entites_Synthese\bin\Release\Entites_Synthese.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data.Entity, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -89,6 +81,8 @@
     <Content Include="Web\Scripts\ScriptsDivers.js" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomHeaderMessageInspector.cs" />
+    <Compile Include="EnableCrossOriginResourceSharingBehavior.cs" />
     <Compile Include="EntitesWCF\EntiteWCFBase.cs" />
     <Compile Include="ServiceWCF_Synthese.svc.cs">
       <DependentUpon>ServiceWCF_Synthese.svc</DependentUpon>
@@ -100,6 +94,23 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BO_Synthese\BO_Synthese.csproj">
+      <Project>{36296657-bd9f-4b9e-b872-56ab1935147c}</Project>
+      <Name>BO_Synthese</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data_synthese\Data_synthese.csproj">
+      <Project>{143b386c-c9e6-4aac-bcb5-39e47e054ea1}</Project>
+      <Name>Data_synthese</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entites_Synthese\Entites_Synthese.csproj">
+      <Project>{47FE8F85-D7F3-4CA6-B57A-6C65FD848810}</Project>
+      <Name>Entites_Synthese</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\1and1.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

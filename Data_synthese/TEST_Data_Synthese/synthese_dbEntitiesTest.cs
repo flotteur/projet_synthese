@@ -103,21 +103,7 @@ namespace TEST_Data_Synthese
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
-        /// <summary>
-        ///A test for alertesusager
-        ///</summary>
-        [TestMethod()]
-        public void alertesusagerTest()
-        {
-            synthese_dbEntities target = new synthese_dbEntities(); // TODO: Initialize to an appropriate value
-            DbSet<alertesusager> expected = null; // TODO: Initialize to an appropriate value
-            DbSet<alertesusager> actual;
-            target.alertesusager = expected;
-            actual = target.alertesusager;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
+       
         /// <summary>
         ///A test for crioiseau
         ///</summary>

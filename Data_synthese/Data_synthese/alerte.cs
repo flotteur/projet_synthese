@@ -15,11 +15,10 @@ namespace Data_synthese
     public partial class alerte
     {
         public int Id { get; set; }
-        public int IDObservation { get; set; }
         public int IDUsager { get; set; }
         public int IDOiseau { get; set; }
     
-        public virtual alertesusager alertesusagers { get; set; }
         public virtual oiseau oiseaux { get; set; }
+        public virtual usager usager { get; set; }
     }
 }

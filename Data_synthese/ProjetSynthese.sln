@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2010
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3342E1CA-5D0A-4E68-A2D5-80FBC963B23E}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
@@ -16,6 +18,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data_synthese", "Data_synthese\Data_synthese.csproj", "{143B386C-C9E6-4AAC-BCB5-39E47E054EA1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCF_Synthese", "WCF_Synthese\WCF_Synthese.csproj", "{B8A79EFF-48ED-4C95-A194-F616A1919C55}"
+	ProjectSection(ProjectDependencies) = postProject
+		{36296657-BD9F-4B9E-B872-56AB1935147C} = {36296657-BD9F-4B9E-B872-56AB1935147C}
+		{47FE8F85-D7F3-4CA6-B57A-6C65FD848810} = {47FE8F85-D7F3-4CA6-B57A-6C65FD848810}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BO_Synthese", "BO_Synthese\BO_Synthese.csproj", "{36296657-BD9F-4B9E-B872-56AB1935147C}"
 EndProject
@@ -26,9 +32,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEST_BO_Synthese", "TEST_BO_Synthese\TEST_BO_Synthese.csproj", "{EAAF996E-DEBA-41E0-AFFC-A7A1F6412D69}"
 EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = ProjetSynthese.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -45,6 +48,7 @@ Global
 		{143B386C-C9E6-4AAC-BCB5-39E47E054EA1}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{143B386C-C9E6-4AAC-BCB5-39E47E054EA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{143B386C-C9E6-4AAC-BCB5-39E47E054EA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{143B386C-C9E6-4AAC-BCB5-39E47E054EA1}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{143B386C-C9E6-4AAC-BCB5-39E47E054EA1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{143B386C-C9E6-4AAC-BCB5-39E47E054EA1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{143B386C-C9E6-4AAC-BCB5-39E47E054EA1}.Release|x86.ActiveCfg = Release|Any CPU
@@ -68,6 +72,7 @@ Global
 		{36296657-BD9F-4B9E-B872-56AB1935147C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{36296657-BD9F-4B9E-B872-56AB1935147C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{36296657-BD9F-4B9E-B872-56AB1935147C}.Release|x86.ActiveCfg = Release|Any CPU
+		{36296657-BD9F-4B9E-B872-56AB1935147C}.Release|x86.Build.0 = Release|Any CPU
 		{47FE8F85-D7F3-4CA6-B57A-6C65FD848810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{47FE8F85-D7F3-4CA6-B57A-6C65FD848810}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47FE8F85-D7F3-4CA6-B57A-6C65FD848810}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -101,5 +106,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = ProjetSynthese.vsmdi
 	EndGlobalSection
 EndGlobal

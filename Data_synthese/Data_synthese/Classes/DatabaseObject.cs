@@ -52,16 +52,13 @@ namespace Data_synthese.Classes
             Usager_Entite usag = null;
             usager userRow = null;
 
-
             //Dans le cache
-
             var userRows = (from row in dbContext.usager.Local
                             select row);
             if (userRows.Any())
                 foreach (usager row in userRows)
 
-                    if (Crypteur.DecryptStringAES(row.NomUsager,
-                        GlobalKey) == pUser)
+                    if (row.NomUsager == pUser)
                     {
                         userRow = row;
                     }
@@ -74,8 +71,7 @@ namespace Data_synthese.Classes
                 if (userRows != null)
                     foreach (usager row in userRows)
 
-                        if (Crypteur.DecryptStringAES(row.NomUsager,
-                            GlobalKey) == pUser)
+                        if (row.NomUsager == pUser)
                         {
                             userRow = row;
                             break;
@@ -89,8 +85,7 @@ namespace Data_synthese.Classes
                 usag.ID = userRow.Id;
 
                 usag.MotDePasse = userRow.MotPasse;
-                usag.NomUsager = Crypteur.DecryptStringAES(userRow.NomUsager,
-                    GlobalKey);
+                usag.NomUsager = userRow.NomUsager;
                 usag.Courriel = userRow.Courriel;
             }
             return usag;
@@ -132,18 +127,29 @@ namespace Data_synthese.Classes
             Encription crypteur = new Encription();
 
             // On s'assure que le username n'existe pas déjà
-            var userNameRow = (from row in dbContext.usager
+            var userNameRow = (from row in dbContext.usager.Local 
                            where row.NomUsager == pUsername
                            select row);
-            if (userNameRow==null){
-               // err //définir des erreurs et finaliser le test
-                return null;
-            }
-            var courrielRow = (from row in dbContext.usager
+            if ((userNameRow != null) && (userNameRow.ToList().Count == 0))
+                userNameRow = (from row in dbContext.usager
                                where row.NomUsager == pUsername
                                select row);
-            if (courrielRow == null)
-                return null;
+            if ((userNameRow != null) && (userNameRow.ToList().Count >0 ))
+            {
+               // err //définir des erreurs et finaliser le test
+                throw new Exceptions.UsagerExistantException();
+                
+            }
+            var courrielRow = (from row in dbContext.usager.Local 
+                               where row.Courriel == pCourriel
+                               select row);
+            if ((userNameRow != null) && (userNameRow.ToList().Count == 0))
+                courrielRow = (from row in dbContext.usager
+                               where row.Courriel == pCourriel
+                               select row);
+
+            if ((userNameRow != null) && (userNameRow.ToList().Count >0 ))
+                throw new Exceptions.CourrielExistantException();
 
             // On s'assure que le courriel n'existe pas déjà
 
@@ -202,8 +208,8 @@ namespace Data_synthese.Classes
             if (usagerRow != null)
             {
                 usag.ID = usagerRow.Id;
-                usag.NomUsager = crypteur.DecryptStringAES(usagerRow.NomUsager,
-                    GlobalKey);
+                usag.Nom     = usagerRow.Nom;
+                usag.NomUsager = usagerRow.NomUsager;
                 usag.MotDePasse = usagerRow.MotPasse;
                 usag.EstAdministrateur = usagerRow.Administrateur;
                 usag.Courriel = usagerRow.Courriel;
@@ -233,6 +239,25 @@ namespace Data_synthese.Classes
         }
 
 
+        public Boolean DeleteUsager(string pUserName)
+        {
+            var UsagerRow = (from row in dbContext.usager.Local
+                             where row.NomUsager == pUserName
+                             select row).FirstOrDefault();
+            if (UsagerRow == null)
+                UsagerRow = (from row in dbContext.usager
+                             where row.NomUsager == pUserName
+                             select row).FirstOrDefault();
+            if (UsagerRow != null)
+            {
+                dbContext.usager.Remove(UsagerRow);
+
+                return true;
+            }
+            return false;
+        }
+
+        
         #endregion
 
 

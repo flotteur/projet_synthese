@@ -26,7 +26,6 @@ namespace Data_synthese
         }
     
         public DbSet<alerte> alerte { get; set; }
-        public DbSet<alertesusager> alertesusager { get; set; }
         public DbSet<crioiseau> crioiseau { get; set; }
         public DbSet<message> message { get; set; }
         public DbSet<observation> observation { get; set; }

@@ -11,3 +11,4 @@ C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthe
 C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\WCF_Synthese\obj\Release\WCF_Synthese.csprojResolveAssemblyReference.cache
 C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\WCF_Synthese\obj\Release\WCF_Synthese.dll
 C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\WCF_Synthese\obj\Release\WCF_Synthese.pdb
+C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\WCF_Synthese\bin\WCF_Synthese.dll.config

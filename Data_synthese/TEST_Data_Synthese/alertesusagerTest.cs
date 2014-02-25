@@ -65,74 +65,7 @@ namespace TEST_Data_Synthese
         #endregion
 
 
-        /// <summary>
-        ///A test for alertesusager Constructor
-        ///</summary>
-        [TestMethod()]
-        public void alertesusagerConstructorTest()
-        {
-            alertesusager target = new alertesusager();
-            Assert.Inconclusive("TODO: Implement code to verify target");
-        }
-
-        /// <summary>
-        ///A test for IDAlerte
-        ///</summary>
-        [TestMethod()]
-        public void IDAlerteTest()
-        {
-            alertesusager target = new alertesusager(); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            target.IDAlerte = expected;
-            actual = target.IDAlerte;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for IDUsager
-        ///</summary>
-        [TestMethod()]
-        public void IDUsagerTest()
-        {
-            alertesusager target = new alertesusager(); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            target.IDUsager = expected;
-            actual = target.IDUsager;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for alertes
-        ///</summary>
-        [TestMethod()]
-        public void alertesTest()
-        {
-            alertesusager target = new alertesusager(); // TODO: Initialize to an appropriate value
-            ICollection<alerte> expected = null; // TODO: Initialize to an appropriate value
-            ICollection<alerte> actual;
-            target.alertes = expected;
-            actual = target.alertes;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for usagers
-        ///</summary>
-        [TestMethod()]
-        public void usagersTest()
-        {
-            alertesusager target = new alertesusager(); // TODO: Initialize to an appropriate value
-            ICollection<usager> expected = null; // TODO: Initialize to an appropriate value
-            ICollection<usager> actual;
-            target.usagers = expected;
-            actual = target.usagers;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
+       
+        
     }
 }

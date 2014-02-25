@@ -8,7 +8,7 @@ namespace WCF_Synthese.EntitesWCF
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
 
     [DataContract]
-    public class UsagerWCF
+    public class UsagerWCF :IExtensibleDataObject
     {
         [DataMember(Name = "ID")]
         public int ID { get; set; }
@@ -22,5 +22,8 @@ namespace WCF_Synthese.EntitesWCF
         public bool EstAdministrateur { get; set; }
         [DataMember(Name = "Courriel")]
         public String Courriel { get; set; }
+
+        public ExtensionDataObject ExtensionData{get;set;}
+       
     }
 }

@@ -10,7 +10,8 @@ using WCF_Synthese.EntitesWCF;
 namespace WCF_Synthese
 {
    
-    [ServiceContract(SessionMode = SessionMode.Required)]
+   // [ServiceContract(SessionMode = SessionMode.Required)]
+    [ServiceContract]
     public interface IServiceWCF_Synthese
     {
 
@@ -21,16 +22,19 @@ namespace WCF_Synthese
             ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "GetUsager/{pID}")]
         UsagerWCF GetUsager(string pID);
-                
+        
+        [WebGet() ]
         [OperationContract]
         string HelloWorld();
 
         
-        [OperationContract(IsInitiating = true, IsTerminating = false)]
-        void Login(string user, string password);
+        //[OperationContract(IsInitiating = true, IsTerminating = false)]
+        //[OperationContract]
+        //void Login(string user, string password);
 
-        [OperationContract(IsInitiating = false, IsTerminating = true)]
-        void Logout();
+        ////[OperationContract(IsInitiating = false, IsTerminating = true)]
+        //[OperationContract]
+        //void Logout();
     }
 
 }
