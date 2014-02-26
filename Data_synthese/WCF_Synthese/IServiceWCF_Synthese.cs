@@ -20,7 +20,7 @@ namespace WCF_Synthese
             ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "GetUsager/{pID}")]
         UsagerWCF GetUsager(string pID);*/
-                
+        /*       
         [OperationContract]
         [WebInvoke(Method="PUT",
             BodyStyle = WebMessageBodyStyle.Wrapped,
@@ -40,7 +40,7 @@ namespace WCF_Synthese
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "getListObservation")]
-        ListeObservation GetListeObservation();
+        ListeObservation GetListeObservation();*/
 
 
         /*
