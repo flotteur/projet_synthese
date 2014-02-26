@@ -10,30 +10,46 @@ using WCF_Synthese.EntitesWCF;
 namespace WCF_Synthese
 {
    
-   // [ServiceContract(SessionMode = SessionMode.Required)]
     [ServiceContract]
     public interface IServiceWCF_Synthese
     {
 
-        [OperationContract]
-        [WebInvoke(Method = "GET",
-            BodyStyle = WebMessageBodyStyle.Wrapped,
+        /*[OperationContract]
+        [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped,
            // RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "GetUsager/{pID}")]
-        UsagerWCF GetUsager(string pID);
+        UsagerWCF GetUsager(string pID);*/
         
         [WebGet() ]
         [OperationContract]
-        string HelloWorld();
+        [WebInvoke(Method="PUT",
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "observation/{id}")]
+        string AddObservation();
 
-        
+        [OperationContract]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "observation/{id}")]
+        Observation GetObservation(int id);
+
+        [OperationContract]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "getListObservation")]
+        ListeObservation GetListeObservation();
+
+
         //[OperationContract(IsInitiating = true, IsTerminating = false)]
         //[OperationContract]
         //void Login(string user, string password);
 
-        ////[OperationContract(IsInitiating = false, IsTerminating = true)]
         //[OperationContract]
+        //void Logout();*/
         //void Logout();
     }
 

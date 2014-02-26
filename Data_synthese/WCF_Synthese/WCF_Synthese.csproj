@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BO_Synthese\BO_Synthese.csproj">
+<<<<<<< HEAD
       <Project>{36296657-bd9f-4b9e-b872-56ab1935147c}</Project>
       <Name>BO_Synthese</Name>
     </ProjectReference>
@@ -104,14 +105,22 @@
       <Project>{143b386c-c9e6-4aac-bcb5-39e47e054ea1}</Project>
       <Name>Data_synthese</Name>
     </ProjectReference>
+=======
+      <Project>{36296657-BD9F-4B9E-B872-56AB1935147C}</Project>
+      <Name>BO_Synthese</Name>
+    </ProjectReference>
+>>>>>>> gabriel
     <ProjectReference Include="..\Entites_Synthese\Entites_Synthese.csproj">
       <Project>{47FE8F85-D7F3-4CA6-B57A-6C65FD848810}</Project>
       <Name>Entites_Synthese</Name>
     </ProjectReference>
   </ItemGroup>
+<<<<<<< HEAD
   <ItemGroup>
     <None Include="Properties\PublishProfiles\1and1.pubxml" />
   </ItemGroup>
+=======
+>>>>>>> gabriel
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

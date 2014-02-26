@@ -73,6 +73,16 @@
     <Compile Include="usagerTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Shadow Include="Test References\Data_synthese.accessor" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BO_Synthese\BO_Synthese.csproj">
+      <Project>{36296657-BD9F-4B9E-B872-56AB1935147C}</Project>
+      <Name>BO_Synthese</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data_synthese\Data_synthese.csproj">
       <Project>{143B386C-C9E6-4AAC-BCB5-39E47E054EA1}</Project>
       <Name>Data_synthese</Name>
@@ -81,12 +91,6 @@
       <Project>{47FE8F85-D7F3-4CA6-B57A-6C65FD848810}</Project>
       <Name>Entites_Synthese</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Shadow Include="Test References\Data_synthese.accessor" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
