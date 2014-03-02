@@ -25,22 +25,22 @@ namespace WCF_Synthese
         [WebInvoke(Method="PUT",
             BodyStyle = WebMessageBodyStyle.Wrapped,
             ResponseFormat = WebMessageFormat.Json,
-            UriTemplate = "observation/{id}")]
-        string AddObservation();
+            UriTemplate = "observation")]
+        ObservationWCF AddObservation();
 
         [OperationContract]
         [WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "observation/{id}")]
-        Observation GetObservation(int id);
+        ObservationWCF GetObservation(int id);
 
-        [OperationContract]
-        [WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
-            RequestFormat = WebMessageFormat.Json,
-            ResponseFormat = WebMessageFormat.Json,
-            UriTemplate = "getListObservation")]
-        ListeObservation GetListeObservation();
+        //[OperationContract]
+        //[WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
+        //    RequestFormat = WebMessageFormat.Json,
+        //    ResponseFormat = WebMessageFormat.Json,
+        //    UriTemplate = "getListObservation")]
+        //ListeObservationWCF GetListeObservation();
 
 
         /*

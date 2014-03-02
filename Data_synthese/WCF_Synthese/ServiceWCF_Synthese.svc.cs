@@ -20,9 +20,9 @@ namespace WCF_Synthese
             } 
         }
 
-        public string HelloWorld()
+        public ObservationWCF AddObservation(ObservationWCF observation)
         {
-            return "Hello";
+            
         }
         /*
         public UsagerWCF GetUsager(string pID)

@@ -19,6 +19,6 @@ namespace Data_synthese
         public string Description { get; set; }
         public int IDObservation { get; set; }
     
-        public virtual observation observations { get; set; }
+        public virtual Observation observations { get; set; }
     }
 }

@@ -21,6 +21,6 @@ namespace Data_synthese
         public Nullable<int> IDObservation { get; set; }
     
         public virtual usager usagers { get; set; }
-        public virtual observation observation { get; set; }
+        public virtual Observation observation { get; set; }
     }
 }
