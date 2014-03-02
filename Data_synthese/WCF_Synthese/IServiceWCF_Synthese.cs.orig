@@ -20,8 +20,12 @@ namespace WCF_Synthese
             ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "GetUsager/{pID}")]
         UsagerWCF GetUsager(string pID);*/
+<<<<<<< HEAD
         
         [WebGet() ]
+=======
+        /*       
+>>>>>>> gabriel
         [OperationContract]
         [WebInvoke(Method="PUT",
             BodyStyle = WebMessageBodyStyle.Wrapped,

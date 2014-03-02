@@ -28,7 +28,7 @@ namespace WCF_Synthese
         {
             return "Hello";
         }
-
+        /*
         public UsagerWCF GetUsager(string pID)
         {
             // test
@@ -66,6 +66,6 @@ namespace WCF_Synthese
         public void Logout()
         {
             throw new NotImplementedException();
-        }
+        }*/
     }
 }
