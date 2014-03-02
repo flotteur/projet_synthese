@@ -35,7 +35,7 @@ function GetUsager() {
         },
         success: function (data) {
 
-            alert(data);
+            alert("RÉUSSI!  " + data);
            
                    },
         error: function (xhr, textStatus) {

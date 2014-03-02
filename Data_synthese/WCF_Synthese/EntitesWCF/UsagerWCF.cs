@@ -12,6 +12,9 @@ namespace WCF_Synthese.EntitesWCF
     {
         [DataMember(Name = "ID")]
         public int ID { get; set; }
+
+        [DataMember(Name = "Nom")]
+        public string Nom { get; set; }
         [DataMember(Name = "NomUsager")]
         public string NomUsager { get; set; }
         [DataMember(Name = "MotDePasse")]
