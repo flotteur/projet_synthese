@@ -22,7 +22,7 @@ namespace WCF_Synthese
 
         public ObservationWCF AddObservation(ObservationWCF observation)
         {
-            
+            BusinessObject.Observation = new Observation();    
         }
         /*
         public UsagerWCF GetUsager(string pID)

@@ -28,7 +28,6 @@ namespace BO_Synthese
 //#endregion 
         private DatabaseObject database = new DatabaseObject();
 
-
         #region " Méthodes privées "
 
         //private void InitialiseSession(Usager_Entite pUsager)
@@ -97,10 +96,12 @@ namespace BO_Synthese
         #endregion
 
         #region observation
-        public Observation GetObservation(int id)
-        { 
-            //return database.Get
-        }
+        //public Observation GetObservation(int id)
+        //{ 
+        //    //return database.Get
+        //}
+
+        public Observation CreateObservation()
         #endregion
         #endregion
 
