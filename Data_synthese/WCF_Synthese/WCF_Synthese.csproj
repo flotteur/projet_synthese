@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntitesWCF\EntiteWCFBase.cs" />
+    <Compile Include="EntitesWCF\ObservationWCF.cs" />
     <Compile Include="ServiceWCF_Synthese.svc.cs">
       <DependentUpon>ServiceWCF_Synthese.svc</DependentUpon>
     </Compile>

@@ -21,6 +21,6 @@ namespace Data_synthese
         public byte[] ImageMiniature { get; set; }
         public string Commentaire { get; set; }
     
-        public virtual observation observations { get; set; }
+        public virtual Observation observations { get; set; }
     }
 }
