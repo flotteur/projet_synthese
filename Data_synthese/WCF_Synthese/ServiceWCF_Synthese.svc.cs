@@ -4,6 +4,8 @@ using System.Linq;
 using BO_Synthese;
 using Entites_Synthese;     
 using WCF_Synthese.EntitesWCF;
+using BO_Synthese;
+using Data_synthese;
 
 namespace WCF_Synthese
 {
@@ -20,9 +22,14 @@ namespace WCF_Synthese
             } 
         }
 
-        public ObservationWCF AddObservation(ObservationWCF observation)
+        public Observation AddObservation(ObservationWCF observation)
         {
-            BusinessObject.Observation = new Observation();    
+            Observation tewer = new Observation();
+            tewer.Id = 1;
+            tewer.IDUsager = 1;
+            tewer.IDOiseau = 1;
+            ObservationRepository test = new ObservationRepository();
+            test.createObservation(tewer);
         }
         /*
         public UsagerWCF GetUsager(string pID)

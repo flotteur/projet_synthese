@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data_synthese;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -20,14 +21,14 @@ namespace WCF_Synthese
             ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "GetUsager/{pID}")]
         UsagerWCF GetUsager(string pID);*/
-        /*       
+               
         [OperationContract]
         [WebInvoke(Method="PUT",
             BodyStyle = WebMessageBodyStyle.Wrapped,
             ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "observation")]
-        ObservationWCF AddObservation();
-
+        Observation AddObservation();
+        /*
         [OperationContract]
         [WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
             RequestFormat = WebMessageFormat.Json,

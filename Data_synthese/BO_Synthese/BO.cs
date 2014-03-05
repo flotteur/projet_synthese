@@ -95,14 +95,6 @@ namespace BO_Synthese
 
         #endregion
 
-        #region observation
-        //public Observation GetObservation(int id)
-        //{ 
-        //    //return database.Get
-        //}
-
-        public Observation CreateObservation()
-        #endregion
         #endregion
 
         #region " Database "

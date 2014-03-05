@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
+using Data_synthese.Classes;
 
 namespace WCF_Synthese.EntitesWCF
 {
-    public class ObservationWCF
+    public class ObservationWCF : IObservation
     {
         [DataMember(Name = "ID")]
         public int ID { get; set; }
