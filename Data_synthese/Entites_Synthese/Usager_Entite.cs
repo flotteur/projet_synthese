@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Entites_Synthese
 {
-    public class Usager_Entite
+    public class Usager_Entite   : EntiteBase
     {
         public int ID { get; set; }
         public string NomUsager { get; set; }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Entites_Synthese ;
+using Entites_Synthese;
 using Data_synthese;
 using Data_synthese.Classes;
 
@@ -11,21 +11,21 @@ namespace BO_Synthese
     /// <summary>
     /// Classe représentant la couche affaires
     /// </summary>
-    public class BO :IDisposable
+    public partial class BO : IDisposable
     {
-//        #region Session
-//        /// <summary>
-//        /// Classe privée qui contient les informations sur la session courante
-//        /// </summary>
-//        /// 
-//        private class  Session{
-//            public static string PasswordHash { get;  set; }
-//            public static string UserName { get;  set; }
-//            public static int UserID{get;set;}
+        //        #region Session
+        //        /// <summary>
+        //        /// Classe privée qui contient les informations sur la session courante
+        //        /// </summary>
+        //        /// 
+        //        private class  Session{
+        //            public static string PasswordHash { get;  set; }
+        //            public static string UserName { get;  set; }
+        //            public static int UserID{get;set;}
 
-            
-//        }
-//#endregion 
+
+        //        }
+        //#endregion 
         private DatabaseObject database = new DatabaseObject();
 
         #region " Méthodes privées "
@@ -51,9 +51,13 @@ namespace BO_Synthese
         /// </summary>
         /// <param name="pID"></param>
         /// <returns></returns>
-        public Usager_Entite Getusager(int pID) {
-        
-            return database.GetUsager(pID);
+        public Usager_Entite Getusager(int pID)
+        {
+            Usager_Entite retour = null;
+            
+            retour = database.GetUsager(pID);
+            
+            return retour;
         }
         #endregion
 
@@ -63,15 +67,46 @@ namespace BO_Synthese
         /// </summary>
         /// <param name="pUsager"></param>
         /// <returns></returns>
-        public Usager_Entite CreerUsager(Usager_Entite pUsager) { 
-        
-            Usager_Entite usager = database.InsertUsager(pUsager);
-           
+        public Usager_Entite CreerUsager(Usager_Entite pUsager)
+        {
+           Usager_Entite usager = new Usager_Entite();
+
+            try {
+            usager = database.InsertUsager(pUsager);
+            }
+            catch (Data_synthese.Exceptions.CourrielExistantException)
+            {
+                usager.MessageErreur = "Un usager avec ce courriel existe déjà dans la base de données";
+            }
+            catch (Data_synthese.Exceptions.UsagerExistantException)
+            {
+                usager.MessageErreur = "Un usager avec ce nom d'usager existe déjà dans la base de données";
+            }
+
+            catch (Exception ex)
+            {
+                usager.MessageErreur = ex.Message;
+            }
             return usager;
         }
+
+
+        public bool SupprimerUsager(string pUserName)
+        {
+            return database.DeleteUsager(pUserName);
+        }
+
+        public bool SupprimerUsager(int pID)
+        {
+            return database.DeleteUsager(pID);
+        }
+
+        public Usager_Entite ObtenirUsager(int pID) { 
         
+            return database.GetUsager(pID );
+        }
         #endregion
-        
+
         #region " Login "
         /// <summary>
         /// Effecute le login de l'usager
@@ -85,9 +120,9 @@ namespace BO_Synthese
             if (usager != null)
                 if (Encription.VerifiyHash(pPassword,
                     usager.MotDePasse))
-                            
+
                     return usager;
-                                              
+
             return null;
         }
         #endregion
@@ -138,6 +173,6 @@ namespace BO_Synthese
                 }
         }
         #endregion
-                
+
     }
 }

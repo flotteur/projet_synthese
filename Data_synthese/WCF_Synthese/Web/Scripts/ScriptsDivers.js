@@ -1,7 +1,5 @@
 ﻿
-function CallService() {
-    XMLHttpRequest("http://diq.ca/synthese/servicewcf_synthese.svc/getusager/1", { "pID": "2" }, Callback, onError);
-}
+
 function Callback(result) {
     alert(result); // string
     alert(result.d.Company);
@@ -27,7 +25,7 @@ function GetUsager() {
         async: false,
         dataType: "json",
         jsonp:true,
-        url: "http://diq.ca/synthese/servicewcf_synthese.svc/GetUsager/1" ,
+        url: "/WCF_Synthese/servicewcf_synthese.svc/GetUsager/" +ID,
         contentType: "application/json; charset=utf-8",
         processData: false,
         statusCode: {
@@ -37,7 +35,7 @@ function GetUsager() {
         },
         success: function (data) {
 
-            alert("Success");
+            alert("RÉUSSI!  " + data);
            
                    },
         error: function (xhr, textStatus) {

@@ -2,7 +2,6 @@
 <Schema Namespace="synthese_dbModel" Alias="Self" d4p1:ViewGeneration="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:devart="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" xmlns:d4p1="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
   <EntityContainer Name="synthese_dbEntities" annotation:LazyLoadingEnabled="true" ed:Guid="3888e1cf-ead9-4bca-928b-d7b9dee59dbe">
     <EntitySet Name="alerte" EntityType="synthese_dbModel.alerte" />
-    <EntitySet Name="alertesusager" EntityType="synthese_dbModel.alertesusager" />
     <EntitySet Name="crioiseau" EntityType="synthese_dbModel.crioiseau" />
     <EntitySet Name="message" EntityType="synthese_dbModel.message" />
     <EntitySet Name="observation" EntityType="synthese_dbModel.Observation" />
@@ -11,17 +10,9 @@
     <EntitySet Name="photo" EntityType="synthese_dbModel.photo" />
     <EntitySet Name="sonobservation" EntityType="synthese_dbModel.sonobservation" />
     <EntitySet Name="usager" EntityType="synthese_dbModel.usager" />
-    <AssociationSet Name="FK_Alertes_AlertesUsagers" Association="synthese_dbModel.FK_Alertes_AlertesUsagers">
-      <End Role="alertesusagers" EntitySet="alertesusager" />
-      <End Role="alertes" EntitySet="alerte" />
-    </AssociationSet>
     <AssociationSet Name="FK_Alertes_Oiseaux" Association="synthese_dbModel.FK_Alertes_Oiseaux">
       <End Role="oiseaux" EntitySet="oiseau" />
       <End Role="alertes" EntitySet="alerte" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Usagers_AlertesUsagers" Association="synthese_dbModel.FK_Usagers_AlertesUsagers">
-      <End Role="alertesusagers" EntitySet="alertesusager" />
-      <End Role="usagers" EntitySet="usager" />
     </AssociationSet>
     <AssociationSet Name="FK_CriOiseaux_Oiseaux" Association="synthese_dbModel.FK_CriOiseaux_Oiseaux">
       <End Role="oiseaux" EntitySet="oiseau" />
@@ -55,26 +46,20 @@
       <End Role="observation" EntitySet="observation" />
       <End Role="message" EntitySet="message" />
     </AssociationSet>
+    <AssociationSet Name="usageralerte" Association="synthese_dbModel.usageralerte">
+      <End Role="usager" EntitySet="usager" />
+      <End Role="alerte" EntitySet="alerte" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="alerte">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="Int32" Name="IDObservation" Nullable="false" />
     <Property Type="Int32" Name="IDUsager" Nullable="false" />
     <Property Type="Int32" Name="IDOiseau" Nullable="false" />
-    <NavigationProperty Name="alertesusagers" Relationship="synthese_dbModel.FK_Alertes_AlertesUsagers" FromRole="alertes" ToRole="alertesusagers" />
     <NavigationProperty Name="oiseaux" Relationship="synthese_dbModel.FK_Alertes_Oiseaux" FromRole="alertes" ToRole="oiseaux" />
-  </EntityType>
-  <EntityType Name="alertesusager">
-    <Key>
-      <PropertyRef Name="IDUsager" />
-    </Key>
-    <Property Type="Int32" Name="IDUsager" Nullable="false" />
-    <Property Type="Int32" Name="IDAlerte" Nullable="false" />
-    <NavigationProperty Name="alertes" Relationship="synthese_dbModel.FK_Alertes_AlertesUsagers" FromRole="alertesusagers" ToRole="alertes" />
-    <NavigationProperty Name="usagers" Relationship="synthese_dbModel.FK_Usagers_AlertesUsagers" FromRole="alertesusagers" ToRole="usagers" />
+    <NavigationProperty Name="usager" Relationship="synthese_dbModel.usageralerte" FromRole="alerte" ToRole="usager" />
   </EntityType>
   <EntityType Name="crioiseau">
     <Key>
@@ -121,7 +106,6 @@
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="Espece" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="true" />
     <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="true" />
-    <Property Type="Int32" Name="IDPhoto" Nullable="false" />
     <NavigationProperty Name="alertes" Relationship="synthese_dbModel.FK_Alertes_Oiseaux" FromRole="oiseaux" ToRole="alertes" />
     <NavigationProperty Name="crioiseaux" Relationship="synthese_dbModel.FK_CriOiseaux_Oiseaux" FromRole="oiseaux" ToRole="crioiseaux" />
     <NavigationProperty Name="observations" Relationship="synthese_dbModel.FK_Observations_Oiseaux" FromRole="oiseaux" ToRole="observations" />
@@ -169,23 +153,11 @@
     <Property Type="String" Name="MotPasse" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Type="Boolean" Name="Administrateur" Nullable="false" />
     <Property Type="String" Name="Courriel" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Type="Int32" Name="IDUsager" Nullable="false" />
-    <NavigationProperty Name="alertesusagers" Relationship="synthese_dbModel.FK_Usagers_AlertesUsagers" FromRole="usagers" ToRole="alertesusagers" />
     <NavigationProperty Name="messages" Relationship="synthese_dbModel.FK_Usagers_Messages" FromRole="usagers" ToRole="messages" />
     <NavigationProperty Name="observations" Relationship="synthese_dbModel.FK_Observations_Usagers" FromRole="usagers" ToRole="observations" />
+    <Property Type="String" Name="Nom" Nullable="false" MaxLength="50" FixedLength="true" />
+    <NavigationProperty Name="alerte" Relationship="synthese_dbModel.usageralerte" FromRole="usager" ToRole="alerte" />
   </EntityType>
-  <Association Name="FK_Alertes_AlertesUsagers">
-    <End Type="synthese_dbModel.alertesusager" Role="alertesusagers" Multiplicity="1" />
-    <End Type="synthese_dbModel.alerte" Role="alertes" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="alertesusagers">
-        <PropertyRef Name="IDUsager" />
-      </Principal>
-      <Dependent Role="alertes">
-        <PropertyRef Name="IDUsager" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Alertes_Oiseaux">
     <End Type="synthese_dbModel.oiseau" Role="oiseaux" Multiplicity="1" />
     <End Type="synthese_dbModel.alerte" Role="alertes" Multiplicity="*" />
@@ -195,18 +167,6 @@
       </Principal>
       <Dependent Role="alertes">
         <PropertyRef Name="IDOiseau" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Usagers_AlertesUsagers">
-    <End Type="synthese_dbModel.alertesusager" Role="alertesusagers" Multiplicity="1" />
-    <End Type="synthese_dbModel.usager" Role="usagers" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="alertesusagers">
-        <PropertyRef Name="IDUsager" />
-      </Principal>
-      <Dependent Role="usagers">
-        <PropertyRef Name="IDUsager" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -303,6 +263,18 @@
       </Principal>
       <Dependent Role="message">
         <PropertyRef Name="IDObservation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="usageralerte">
+    <End Type="synthese_dbModel.usager" Role="usager" Multiplicity="1" />
+    <End Type="synthese_dbModel.alerte" Role="alerte" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usager">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="alerte">
+        <PropertyRef Name="IDUsager" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

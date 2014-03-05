@@ -105,21 +105,7 @@ namespace TEST_Data_Synthese
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
-        /// <summary>
-        ///A test for IDPhoto
-        ///</summary>
-        [TestMethod()]
-        public void IDPhotoTest()
-        {
-            oiseau target = new oiseau(); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            target.IDPhoto = expected;
-            actual = target.IDPhoto;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
+        
         /// <summary>
         ///A test for Id
         ///</summary>

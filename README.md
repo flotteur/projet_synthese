@@ -1,3 +1,3 @@
 projet_synthese
 ===============
-Test
+http://localhost:2037/ServiceWCF_Synthese.svc/HelloWorld

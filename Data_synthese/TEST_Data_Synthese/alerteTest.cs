@@ -74,20 +74,7 @@ namespace TEST_Data_Synthese
             Assert.Inconclusive("TODO: Implement code to verify target");
         }
 
-        /// <summary>
-        ///A test for IDObservation
-        ///</summary>
-        [TestMethod()]
-        public void IDObservationTest()
-        {
-            alerte target = new alerte(); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            target.IDObservation = expected;
-            actual = target.IDObservation;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
+       
 
         /// <summary>
         ///A test for IDUsager
@@ -119,23 +106,7 @@ namespace TEST_Data_Synthese
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
-       
-
-        /// <summary>
-        ///A test for alertesusagers
-        ///</summary>
-        [TestMethod()]
-        public void alertesusagersTest()
-        {
-            alerte target = new alerte(); // TODO: Initialize to an appropriate value
-            alertesusager expected = null; // TODO: Initialize to an appropriate value
-            alertesusager actual;
-            target.alertesusagers = expected;
-            actual = target.alertesusagers;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
+      
         /// <summary>
         ///A test for oiseaux
         ///</summary>

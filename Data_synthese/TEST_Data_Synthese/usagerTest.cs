@@ -105,21 +105,7 @@ namespace TEST_Data_Synthese
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
-        /// <summary>
-        ///A test for IDUsager
-        ///</summary>
-        [TestMethod()]
-        public void IDUsagerTest()
-        {
-            usager target = new usager(); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            target.IDUsager = expected;
-            actual = target.IDUsager;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
+       
         /// <summary>
         ///A test for Id
         ///</summary>
@@ -166,22 +152,7 @@ namespace TEST_Data_Synthese
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
-        /// <summary>
-        ///A test for alertesusagers
-        ///</summary>
-        [TestMethod()]
-        public void alertesusagersTest()
-        {
-            usager target = new usager(); // TODO: Initialize to an appropriate value
-            alertesusager expected = null; // TODO: Initialize to an appropriate value
-            alertesusager actual;
-            target.alertesusagers = expected;
-            actual = target.alertesusagers;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-       
+             
 
         /// <summary>
         ///A test for observations

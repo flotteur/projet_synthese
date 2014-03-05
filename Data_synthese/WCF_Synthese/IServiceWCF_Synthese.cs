@@ -22,6 +22,7 @@ namespace WCF_Synthese
             UriTemplate = "GetUsager/{pID}")]
         UsagerWCF GetUsager(string pID);*/
                
+        [WebGet() ]
         [OperationContract]
         [WebInvoke(Method="PUT",
             BodyStyle = WebMessageBodyStyle.Wrapped,
@@ -44,12 +45,13 @@ namespace WCF_Synthese
         //ListeObservationWCF GetListeObservation();
 
 
-        /*
-        [OperationContract]
-        void Login(string user, string password);
+        //[OperationContract(IsInitiating = true, IsTerminating = false)]
+        //[OperationContract]
+        //void Login(string user, string password);
 
-        [OperationContract]
-        void Logout();*/
+        //[OperationContract]
+        //void Logout();*/
+        //void Logout();
     }
 
 }

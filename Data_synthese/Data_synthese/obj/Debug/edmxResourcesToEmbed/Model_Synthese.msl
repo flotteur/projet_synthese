@@ -5,17 +5,8 @@
       <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.alerte)">
         <MappingFragment StoreEntitySet="alerte">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="IDObservation" ColumnName="IDObservation" />
           <ScalarProperty Name="IDUsager" ColumnName="IDUsager" />
           <ScalarProperty Name="IDOiseau" ColumnName="IDOiseau" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="alertesusager">
-      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.alertesusager)">
-        <MappingFragment StoreEntitySet="alertesusager">
-          <ScalarProperty Name="IDUsager" ColumnName="IDUsager" />
-          <ScalarProperty Name="IDAlerte" ColumnName="IDAlerte" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -58,7 +49,6 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Espece" ColumnName="Espece" />
           <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="IDPhoto" ColumnName="IDPhoto" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -103,7 +93,7 @@
           <ScalarProperty Name="MotPasse" ColumnName="MotPasse" />
           <ScalarProperty Name="Administrateur" ColumnName="Administrateur" />
           <ScalarProperty Name="Courriel" ColumnName="Courriel" />
-          <ScalarProperty Name="IDUsager" ColumnName="IDUsager" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
