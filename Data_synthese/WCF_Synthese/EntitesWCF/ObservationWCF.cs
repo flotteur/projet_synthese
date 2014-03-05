@@ -7,7 +7,7 @@ using Data_synthese.Classes;
 
 namespace WCF_Synthese.EntitesWCF
 {
-    public class ObservationWCF : IObservation
+    public class ObservationWCF
     {
         [DataMember(Name = "ID")]
         public int ID { get; set; }

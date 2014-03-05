@@ -6,7 +6,7 @@ using Data_synthese.Classes;
 
 namespace Data_synthese
 {
-    public partial class Observation
+    public partial class Observation : IObservation
     {
         #region propriétés
         private synthese_dbEntities DbContext;

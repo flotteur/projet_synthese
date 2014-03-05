@@ -7,7 +7,6 @@ using System.Web;
 using BO_Synthese;
 using Entites_Synthese;
 using WCF_Synthese.EntitesWCF;
-using BO_Synthese;
 using Data_synthese;
 
 namespace WCF_Synthese
@@ -26,7 +25,7 @@ namespace WCF_Synthese
             } 
         }
 
-        public Observation AddObservation(ObservationWCF observation)
+        public Observation AddObservation()
         {
             Observation tewer = new Observation();
             tewer.Id = 1;
@@ -34,6 +33,7 @@ namespace WCF_Synthese
             tewer.IDOiseau = 1;
             ObservationRepository test = new ObservationRepository();
             test.createObservation(tewer);
+            return tewer;
         }
         /*
         public UsagerWCF GetUsager(string pID)
