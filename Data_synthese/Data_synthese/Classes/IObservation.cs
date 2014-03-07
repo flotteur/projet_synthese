@@ -12,8 +12,8 @@ namespace Data_synthese.Classes
         int Id { set; get; }
         [DataMember(Name = "DateObservation")]
         DateTime DateObservation { set; get; }
-        [DataMember(Name = "Position")]
-        string Position { set; get; }
+        //[DataMember(Name = "Position")]
+        //string Position { set; get; }
         [DataMember(Name = "IDUsager")]
         int IDUsager { set; get; }
         [DataMember(Name = "IDOiseau")]

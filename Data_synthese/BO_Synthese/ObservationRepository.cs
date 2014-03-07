@@ -15,7 +15,7 @@ namespace BO_Synthese
         #region public
         public void createObservation(Observation test)
         {
-
+            test.Insert();
         }
         #endregion
 

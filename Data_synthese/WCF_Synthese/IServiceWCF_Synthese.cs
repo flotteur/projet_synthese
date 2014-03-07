@@ -22,9 +22,8 @@ namespace WCF_Synthese
             UriTemplate = "GetUsager/{pID}")]
         UsagerWCF GetUsager(string pID);*/
                
-        [WebGet() ]
         [OperationContract]
-        [WebInvoke(Method="PUT",
+        [WebInvoke(Method="GET",
             BodyStyle = WebMessageBodyStyle.Wrapped,
             ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "observation")]

@@ -8,22 +8,35 @@ namespace Data_synthese
 {
     public partial class Observation : IObservation
     {
-        #region propriétés
-        private synthese_dbEntities DbContext;
-        #endregion
-        
         #region public
         /// <summary>
         /// Permet l'insertion de l'observation dans la BD
         /// </summary>
         /// <param name="observation">L'observation à insérer</param>
         /// <returns>L'observation qui a été inséré dans la BD</returns>
-        public Observation Insert(Observation observation)
+        public Observation Insert()
         {
-            if (observation.isValid())
-                throw new Exception();
+            if (!isValid())
+                throw new Exception("L'observation est incomplète.");
 
-            return DbContext.observation.Add(observation);
+            synthese_dbEntities dbContext = new synthese_dbEntities();
+            Observation test = new Observation();
+            test.IDOiseau = 1;
+            test.DateObservation = DateTime.Now;
+            test.IDUsager = 1;
+            test.PositionLat = "ts";
+            test.PositionLong = 12;
+
+            dbContext.observation.Add(this);
+            dbContext.SaveChanges();
+
+            oiseau test2 = new oiseau();
+            test2.Description = @"zxdas";
+            test2.Espece = @"dsada";
+            dbContext.oiseau.Add(test2);
+            dbContext.SaveChanges();
+
+            return this;
         }
 
         /// <summary>
@@ -32,11 +45,8 @@ namespace Data_synthese
         /// <returns>True si valide</returns>
         public bool isValid()
         {
-            if(IDOiseau == null ||
-                IDUsager == null)
-            {
+            if(IDOiseau > 1 || IDUsager > 1)
                 return false;
-            }
                 
             return true;
         }

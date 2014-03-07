@@ -28,9 +28,10 @@ namespace WCF_Synthese
         public Observation AddObservation()
         {
             Observation tewer = new Observation();
-            tewer.Id = 1;
             tewer.IDUsager = 1;
             tewer.IDOiseau = 1;
+            tewer.DateObservation = DateTime.Now;
+            tewer.Id = 1;
             ObservationRepository test = new ObservationRepository();
             test.createObservation(tewer);
             return tewer;
