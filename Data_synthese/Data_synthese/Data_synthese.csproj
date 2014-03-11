@@ -66,8 +66,6 @@
     <Compile Include="alerte.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Classes\IObservation.cs" />
-    <Compile Include="Classes\Observation.cs" />
     <Compile Include="Classes\DatabaseObject.cs" />
     <Compile Include="Classes\Encription.cs" />
     <Compile Include="crioiseau.cs">

@@ -7,7 +7,6 @@ using System.Web;
 using BO_Synthese;
 using Entites_Synthese;
 using WCF_Synthese.EntitesWCF;
-using Data_synthese;
 
 namespace WCF_Synthese
 {
@@ -25,16 +24,27 @@ namespace WCF_Synthese
             } 
         }
 
-        public Observation AddObservation()
+        /// <summary>
+        /// Ce service permet de créer un nouvelle observation
+        /// </summary>
+        /// <param name="observation">L'observation à ajouter</param>
+        public void AddObservation(ObservationDTO observation)
+        { 
+            ObservationRepository repository = new ObservationRepository(observation);
+            repository.createObservation();
+        }
+
+        /// <summary>
+        /// Ce service permet d'obtenir le détail d'une observation à partir du ID
+        /// </summary>
+        /// <param name="id">Le id de l'observation</param>
+        /// <returns>L'observation</returns>
+        public ObservationDTO GetObservation(string id)
         {
-            Observation tewer = new Observation();
-            tewer.IDUsager = 1;
-            tewer.IDOiseau = 1;
-            tewer.DateObservation = DateTime.Now;
-            tewer.Id = 1;
-            ObservationRepository test = new ObservationRepository();
-            test.createObservation(tewer);
-            return tewer;
+            ObservationRepository repository = new ObservationRepository();
+            int numericId;
+            Int32.TryParse(id, out numericId);
+            return repository.GetObservationFromId(numericId);
         }
         /*
         public UsagerWCF GetUsager(string pID)

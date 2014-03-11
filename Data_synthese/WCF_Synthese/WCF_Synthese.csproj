@@ -97,10 +97,6 @@
       <Project>{36296657-bd9f-4b9e-b872-56ab1935147c}</Project>
       <Name>BO_Synthese</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Data_synthese\Data_synthese.csproj">
-      <Project>{143b386c-c9e6-4aac-bcb5-39e47e054ea1}</Project>
-      <Name>Data_synthese</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Entites_Synthese\Entites_Synthese.csproj">
       <Project>{47fe8f85-d7f3-4ca6-b57a-6c65fd848810}</Project>
       <Name>Entites_Synthese</Name>
