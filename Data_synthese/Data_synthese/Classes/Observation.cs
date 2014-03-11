@@ -27,12 +27,15 @@ namespace Data_synthese
             test.PositionLat = "ts";
             test.PositionLong = 12;
 
+            int das = dbContext.observation.Count();
             dbContext.observation.Add(this);
-            dbContext.SaveChanges();
+            int z = dbContext.SaveChanges();
+            
 
             oiseau test2 = new oiseau();
             test2.Description = @"zxdas";
             test2.Espece = @"dsada";
+            dbContext.oiseau.Attach(test2);
             dbContext.oiseau.Add(test2);
             dbContext.SaveChanges();
 
