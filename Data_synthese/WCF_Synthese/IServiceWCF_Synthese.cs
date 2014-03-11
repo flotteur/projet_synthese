@@ -1,4 +1,4 @@
-﻿using Data_synthese;
+﻿using BO_Synthese;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,18 +23,19 @@ namespace WCF_Synthese
         UsagerWCF GetUsager(string pID);*/
                
         [OperationContract]
-        [WebInvoke(Method="GET",
+        [WebInvoke(Method="POST",
             BodyStyle = WebMessageBodyStyle.Wrapped,
+            RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "observation")]
-        Observation AddObservation();
-        /*
+        void AddObservation(ObservationDTO observation);
+        
         [OperationContract]
         [WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "observation/{id}")]
-        ObservationWCF GetObservation(int id);
+        ObservationDTO GetObservation(string id);
 
         //[OperationContract]
         //[WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,

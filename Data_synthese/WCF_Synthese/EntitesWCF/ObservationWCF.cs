@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
-using Data_synthese.Classes;
 
 namespace WCF_Synthese.EntitesWCF
 {
