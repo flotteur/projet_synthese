@@ -5,7 +5,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 02/24/2014 18:45:40
+-- Date Created: 03/07/2014 09:51:25
 -- Generated from EDMX file: C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Data_synthese\Model_Synthese.edmx
 -- Target version: 2.0.0.0
 -- --------------------------------------------------
@@ -25,6 +25,7 @@
 --    ALTER TABLE `observation` DROP CONSTRAINT `FK_Observations_Usagers`;
 --    ALTER TABLE `photo` DROP CONSTRAINT `FK_Photos_Oiseaux`;
 --    ALTER TABLE `message` DROP CONSTRAINT `FK_observationmessage`;
+--    ALTER TABLE `alerte` DROP CONSTRAINT `FK_usageralerte`;
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -146,6 +147,16 @@ CREATE TABLE `usager`(
 	`Nom` char (50) NOT NULL);
 
 ALTER TABLE `usager` ADD PRIMARY KEY (Id);
+
+
+
+
+CREATE TABLE `Commentaire`(
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`Texte` longtext NOT NULL, 
+	`observationId` int NOT NULL);
+
+ALTER TABLE `Commentaire` ADD PRIMARY KEY (Id);
 
 
 
@@ -305,6 +316,21 @@ ADD CONSTRAINT `FK_usageralerte`
 CREATE INDEX `IX_FK_usageralerte` 
     ON `alerte`
     (`IDUsager`);
+
+-- Creating foreign key on `observationId` in table 'Commentaire'
+
+ALTER TABLE `Commentaire`
+ADD CONSTRAINT `FK_observationCommentaire`
+    FOREIGN KEY (`observationId`)
+    REFERENCES `observation`
+        (`Id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_observationCommentaire'
+
+CREATE INDEX `IX_FK_observationCommentaire` 
+    ON `Commentaire`
+    (`observationId`);
 
 -- --------------------------------------------------
 -- Script has ended

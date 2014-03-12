@@ -34,5 +34,6 @@ namespace Data_synthese
         public DbSet<photo> photo { get; set; }
         public DbSet<sonobservation> sonobservation { get; set; }
         public DbSet<usager> usager { get; set; }
+        public DbSet<Commentaire> Commentaire { get; set; }
     }
 }

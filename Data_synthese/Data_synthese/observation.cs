@@ -19,6 +19,7 @@ namespace Data_synthese
             this.photoobservations = new HashSet<photoobservation>();
             this.sonobservations = new HashSet<sonobservation>();
             this.message = new HashSet<message>();
+            this.Commentaire = new HashSet<Commentaire>();
         }
     
         public int Id { get; set; }
@@ -33,5 +34,6 @@ namespace Data_synthese
         public virtual ICollection<sonobservation> sonobservations { get; set; }
         public virtual usager usagers { get; set; }
         public virtual ICollection<message> message { get; set; }
+        public virtual ICollection<Commentaire> Commentaire { get; set; }
     }
 }

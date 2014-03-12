@@ -50,6 +50,11 @@
       <End Role="usager" EntitySet="usager" />
       <End Role="alerte" EntitySet="alerte" />
     </AssociationSet>
+    <EntitySet Name="Commentaire" EntityType="synthese_dbModel.Commentaire" />
+    <AssociationSet Name="observationCommentaire" Association="synthese_dbModel.observationCommentaire">
+      <End Role="observation" EntitySet="observation" />
+      <End Role="Commentaire" EntitySet="Commentaire" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="alerte">
     <Key>
@@ -98,6 +103,7 @@
     <NavigationProperty Name="usagers" Relationship="synthese_dbModel.FK_Observations_Usagers" FromRole="observations" ToRole="usagers" />
     <NavigationProperty Name="message" Relationship="synthese_dbModel.observationmessage" FromRole="observation" ToRole="message" />
     <Property Type="String" Name="PositionLat" Nullable="true" />
+    <NavigationProperty Name="Commentaire" Relationship="synthese_dbModel.observationCommentaire" FromRole="observation" ToRole="Commentaire" />
   </EntityType>
   <EntityType Name="oiseau">
     <Key>
@@ -150,7 +156,7 @@
     </Key>
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="NomUsager" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="MotPasse" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MotPasse" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
     <Property Type="Boolean" Name="Administrateur" Nullable="false" />
     <Property Type="String" Name="Courriel" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="messages" Relationship="synthese_dbModel.FK_Usagers_Messages" FromRole="usagers" ToRole="messages" />
@@ -275,6 +281,27 @@
       </Principal>
       <Dependent Role="alerte">
         <PropertyRef Name="IDUsager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Commentaire">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Texte" Type="String" Nullable="false" />
+    <NavigationProperty Name="observation" Relationship="synthese_dbModel.observationCommentaire" FromRole="Commentaire" ToRole="observation" />
+    <Property Name="observationId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="observationCommentaire">
+    <End Type="synthese_dbModel.observation" Role="observation" Multiplicity="1" />
+    <End Type="synthese_dbModel.Commentaire" Role="Commentaire" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="observation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Commentaire">
+        <PropertyRef Name="observationId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

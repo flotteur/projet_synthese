@@ -13,21 +13,15 @@ namespace BO_Synthese
     /// </summary>
     public partial class BO : IDisposable
     {
-        //        #region Session
-        //        /// <summary>
-        //        /// Classe privée qui contient les informations sur la session courante
-        //        /// </summary>
-        //        /// 
-        //        private class  Session{
-        //            public static string PasswordHash { get;  set; }
-        //            public static string UserName { get;  set; }
-        //            public static int UserID{get;set;}
-
-
-        //        }
-        //#endregion 
         private DatabaseObject database = new DatabaseObject();
-
+        private string _MessageErreur = string.Empty;
+        public string MessageErreur
+        {
+            get
+            {
+                return _MessageErreur;
+            }
+        }
 
         #region " Méthodes privées "
 
@@ -52,12 +46,38 @@ namespace BO_Synthese
         /// </summary>
         /// <param name="pID"></param>
         /// <returns></returns>
-        public Usager_Entite Getusager(int pID)
-        {
-            Usager_Entite retour = null;
-            
+        public Usager_Entite Getusager(int pID) {
+            Usager_Entite retour = new Usager_Entite();
+            try{
+
             retour = database.GetUsager(pID);
-            
+            }
+            catch (Exception ex)
+            {
+                retour.MessageErreur = ex.Message;
+                this._MessageErreur = ex.Message;
+            }
+            return retour;
+        }
+
+        /// <summary>
+        /// Obtient un usager à partir de son UserName
+        /// </summary>
+        /// <param name="pID"></param>
+        /// <returns></returns>
+        public Usager_Entite Getusager(string pUserName)
+        {
+            Usager_Entite retour = new Usager_Entite();
+            try
+            {
+
+                retour = database.GetUsager(pUserName);
+            }
+            catch (Exception ex)
+            {
+                retour.MessageErreur = ex.Message;
+                this._MessageErreur = ex.Message;
+            }
             return retour;
         }
         #endregion
@@ -70,43 +90,85 @@ namespace BO_Synthese
         /// <returns></returns>
         public Usager_Entite CreerUsager(Usager_Entite pUsager)
         {
-           Usager_Entite usager = new Usager_Entite();
+            this._MessageErreur = string.Empty;
+            Usager_Entite usager = new Usager_Entite();
 
-            try {
-            usager = database.InsertUsager(pUsager);
-            }
-            catch (Data_synthese.Exceptions.CourrielExistantException)
+            try
             {
-                usager.MessageErreur = "Un usager avec ce courriel existe déjà dans la base de données";
-            }
-            catch (Data_synthese.Exceptions.UsagerExistantException)
-            {
-                usager.MessageErreur = "Un usager avec ce nom d'usager existe déjà dans la base de données";
+                usager = database.InsertUsager(pUsager);
             }
 
             catch (Exception ex)
             {
                 usager.MessageErreur = ex.Message;
+                this._MessageErreur = ex.Message;
             }
             return usager;
         }
 
-
         public bool SupprimerUsager(string pUserName)
         {
-            return database.DeleteUsager(pUserName);
+            this._MessageErreur = string.Empty;
+            bool retour = false;
+            try
+            {
+                retour = database.DeleteUsager(pUserName);
+            }
+            catch (Exception ex)
+            {
+
+                this._MessageErreur = ex.Message;
+            }
+            return retour;
         }
 
         public bool SupprimerUsager(int pID)
         {
+
+            this._MessageErreur = string.Empty;
+            bool retour = false;
+            try
+            {
+                retour = database.DeleteUsager(pID);
+            }
+            catch (Exception ex)
+            {
+                this._MessageErreur = ex.Message;
+            }
+            return retour;
+        }
+
+        public Usager_Entite ObtenirUsager(int pID)
+        {
+
+            return database.GetUsager(pID);
+        }
+        #endregion
+
+        #region " DeleteUsager "
+
+        public bool DeleteUsager(int pID)
+        {
+
+
             return database.DeleteUsager(pID);
         }
 
-        public Usager_Entite ObtenirUsager(int pID) { 
-        
-            return database.GetUsager(pID );
-        }
         #endregion
+
+        public Usager_Entite UpdateUsager(Usager_Entite pUsager)
+        {
+            Usager_Entite usager = new Usager_Entite();
+            try
+            {
+                return database.UpdateUsager(pUsager);
+            }
+            catch (Exception ex)
+            {
+                pUsager.MessageErreur = ex.Message;
+                return pUsager;
+            }
+        }
 
         #region " Login "
         /// <summary>
@@ -114,22 +176,37 @@ namespace BO_Synthese
         /// </summary>
         /// <param name="pUser"></param>
         /// <param name="pPassword"></param>
-        /// <returns>Retourne l'usager en cas de succèes, null sinon</returns>
+        /// <returns>Retourne l'usager en cas de succès, null sinon</returns>
         public Usager_Entite Login(string pUser, string pPassword)
         {
-            Usager_Entite usager = database.GetUsager(pUser);
-            if (usager != null)
-                if (Encription.VerifiyHash(pPassword,
-                    usager.MotDePasse))
+            Usager_Entite usager = new Usager_Entite();
+            try
+            {
+                usager = database.Login(pUser, pPassword);
+                usager.MotDePasse = string.Empty ;
+            }
+            catch (Exception ex)
+            {
+                this._MessageErreur = ex.Message;
+                usager.MessageErreur = ex.Message ;
+                
+            }
 
-                    return usager;
-
-            return null;
+            return usager;
         }
-        #endregion
-
 
         #endregion
+
+        #region " LogOut "
+
+        public void LogOut(){
+        
+            database.Logout();
+        }
+        #endregion 
+
+        #endregion
+
         #endregion
 
         #region " Database "

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
 using WCF_Synthese.EntitesWCF;
@@ -10,47 +11,61 @@ using WCF_Synthese.EntitesWCF;
 namespace WCF_Synthese
 {
    
+  // [ServiceContract(SessionMode = SessionMode.Required)]
     [ServiceContract]
+    
     public interface IServiceWCF_Synthese
     {
 
-        /*[OperationContract]
-        [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped,
-           // RequestFormat = WebMessageFormat.Json,
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "GetUsager/{pID}")]
-        UsagerWCF GetUsager(string pID);*/
-        
-        [WebGet() ]
+        UsagerWCF GetUsager(string pID);
+
         [OperationContract]
-        [WebInvoke(Method="PUT",
+        [WebInvoke(Method = "*",
+            BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "InsertUsager")]
+        UsagerWCF InsertUsager(UsagerWCF pUsager);
+
+        [OperationContract]
+        [WebInvoke(Method = "PUT",
             BodyStyle = WebMessageBodyStyle.Wrapped,
-            ResponseFormat = WebMessageFormat.Json,
-            UriTemplate = "observation/{id}")]
-        string AddObservation();
-
-        [OperationContract]
-        [WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
-            UriTemplate = "observation/{id}")]
-        Observation GetObservation(int id);
+            UriTemplate = "UpdatetUsager/")]
+        UsagerWCF UpdateUsager(UsagerWCF pUsager);
 
         [OperationContract]
-        [WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
+        [WebInvoke(Method = "DELETE",
+            BodyStyle = WebMessageBodyStyle.Wrapped,
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
-            UriTemplate = "getListObservation")]
-        ListeObservation GetListeObservation();*/
+            UriTemplate = "DeleteUsager/{pID}")]
+        string DeleteUsager(string pID);
 
+     // [OperationContract(IsInitiating = true, IsTerminating = false)]
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "Login/{user}/{password}")]
+        UsagerWCF Login(string user, string password);
 
-        //[OperationContract(IsInitiating = true, IsTerminating = false)]
-        //[OperationContract]
-        //void Login(string user, string password);
-
-        //[OperationContract]
-        //void Logout();*/
-        //void Logout();
+      //  [OperationContract(IsInitiating = false, IsTerminating = true)]
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "Logout")]
+        void Logout();
     }
 
 }

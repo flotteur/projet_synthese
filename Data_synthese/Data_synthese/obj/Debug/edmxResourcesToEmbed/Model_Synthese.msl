@@ -97,5 +97,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Commentaire">
+      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.Commentaire)">
+        <MappingFragment StoreEntitySet="Commentaire">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Texte" ColumnName="Texte" />
+          <ScalarProperty Name="observationId" ColumnName="observationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
