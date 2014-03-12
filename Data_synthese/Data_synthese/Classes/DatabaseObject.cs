@@ -16,6 +16,8 @@ namespace Data_synthese.Classes
             Crypteur = new Encription();
         }
 
+
+
         #region Propriétés
 
         private Encription Crypteur { get; set; }
