@@ -50,7 +50,9 @@
   <ItemGroup>
     <Compile Include="BO.cs" />
     <Compile Include="DTO\ObservationDTO.cs" />
+    <Compile Include="DTO\PhotoObservationDTO.cs" />
     <Compile Include="ObservationRepository.cs" />
+    <Compile Include="PhotoObservationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

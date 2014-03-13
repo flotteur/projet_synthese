@@ -7,6 +7,7 @@ using System.Web;
 using BO_Synthese;
 using Entites_Synthese;
 using WCF_Synthese.EntitesWCF;
+using System.IO;
 
 namespace WCF_Synthese
 {
@@ -45,6 +46,16 @@ namespace WCF_Synthese
             int numericId;
             Int32.TryParse(id, out numericId);
             return repository.GetObservationFromId(numericId);
+        }
+
+        public Stream GetImage(string id)
+        {
+            PhotoObservationRepository repository = new PhotoObservationRepository();
+            int numericId;
+            Int32.TryParse(id, out numericId);
+
+            Stream stream = new MemoryStream(repository.GetPhotoObservationFromId(numericId).Image);
+            return stream;
         }
         /*
         public UsagerWCF GetUsager(string pID)

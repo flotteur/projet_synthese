@@ -1,6 +1,7 @@
 ﻿using BO_Synthese;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -36,6 +37,10 @@ namespace WCF_Synthese
             ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "observation/{id}")]
         ObservationDTO GetObservation(string id);
+
+        [OperationContract]
+        [WebGet(UriTemplate = "image/{id}")]
+        Stream GetImage(string id);
 
         //[OperationContract]
         //[WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,

@@ -28,6 +28,7 @@ namespace BO_Synthese
         public ObservationRepository(ObservationDTO observationDto)
         {
             CurrentObservationDto = observationDto;
+            DbContext = new synthese_dbEntities();
         }
 
         /// <summary>
