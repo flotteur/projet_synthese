@@ -43,11 +43,26 @@ namespace BO_Synthese
             return null;
 
         }
+
+        /// <summary>
+        /// Cette methode permet d'ajouter une photo d'observation
+        /// </summary>
+        /// <param name="photoObservation"></param>
+        public void CreatePhotoObservation(PhotoObservationDTO photoObservation)
+        {
+            CurrentPhotoObservationDto = photoObservation;
+            if (!CurrentPhotoObservationDto.IsValid())
+                throw new Exception("Impossible d'enregistrer l'image.");
+
+            DbContext.photoobservation.Add(PhotoObservationDtoToDb());
+            DbContext.SaveChanges();
+        }
         #endregion
 
         #region private
         /// <summary>
-        /// Permet de transformer une observation
+        /// Permet de transformer une observation provenant de la BD en observation
+        /// pouvant être enregistrée dans la bd
         /// </summary>
         /// <param name="photo"></param>
         /// <returns></returns>
@@ -63,6 +78,17 @@ namespace BO_Synthese
             };
 
             return photoObservationDto;
+        }
+
+        private photoobservation PhotoObservationDtoToDb()
+        {
+            return new photoobservation
+            {
+                IDObservation = CurrentPhotoObservationDto.IDObservation,
+                Description = CurrentPhotoObservationDto.Description,
+                Commentaire = CurrentPhotoObservationDto.Commentaire,
+                Image = CurrentPhotoObservationDto.Image
+            };
         }
         #endregion
     }

@@ -8,6 +8,7 @@ using BO_Synthese;
 using Entites_Synthese;
 using WCF_Synthese.EntitesWCF;
 using System.IO;
+using BO_Synthese.DTO;
 
 namespace WCF_Synthese
 {
@@ -31,7 +32,7 @@ namespace WCF_Synthese
         /// <param name="observation">L'observation à ajouter</param>
         public void AddObservation(ObservationDTO observation)
         { 
-            ObservationRepository repository = new ObservationRepository(observation);
+            var repository = new ObservationRepository(observation);
             repository.createObservation();
         }
 
@@ -42,20 +43,30 @@ namespace WCF_Synthese
         /// <returns>L'observation</returns>
         public ObservationDTO GetObservation(string id)
         {
-            ObservationRepository repository = new ObservationRepository();
+            var repository = new ObservationRepository();
             int numericId;
             Int32.TryParse(id, out numericId);
             return repository.GetObservationFromId(numericId);
         }
 
+        /// <summary>
+        /// Ce service permet d'obtenir une photo d'observation en fonction du ID de la photo
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Stream GetImage(string id)
         {
-            PhotoObservationRepository repository = new PhotoObservationRepository();
+            var repository = new PhotoObservationRepository();
             int numericId;
             Int32.TryParse(id, out numericId);
 
-            Stream stream = new MemoryStream(repository.GetPhotoObservationFromId(numericId).Image);
-            return stream;
+            return new MemoryStream(repository.GetPhotoObservationFromId(numericId).Image);
+        }
+
+        void AddImage(PhotoObservationDTO remotePath)
+        {
+            var repository = new PhotoObservationRepository();
+            
         }
         /*
         public UsagerWCF GetUsager(string pID)

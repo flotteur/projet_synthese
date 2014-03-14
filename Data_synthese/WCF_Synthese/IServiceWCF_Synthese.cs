@@ -42,6 +42,11 @@ namespace WCF_Synthese
         [WebGet(UriTemplate = "image/{id}")]
         Stream GetImage(string id);
 
+        [OperationContract]
+        [WebInvoke(Method="POST", 
+            UriTemplate = "image")]
+        void AddImage(string remotePath);
+
         //[OperationContract]
         //[WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
         //    RequestFormat = WebMessageFormat.Json,

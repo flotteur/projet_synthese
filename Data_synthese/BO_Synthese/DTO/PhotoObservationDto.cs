@@ -9,6 +9,7 @@ namespace BO_Synthese.DTO
     [DataContract]
     public class PhotoObservationDTO
     {
+        #region property
         [DataMember(Name = "Id")]
         public int Id { get; set; }
 
@@ -26,5 +27,27 @@ namespace BO_Synthese.DTO
 
         [DataMember(Name = "Commentaire")]
         public string Commentaire { get; set; }
+
+        [DataMember(Name = "Path")]
+        public string PathDistant { get; set; }
+        #endregion
+
+        #region public
+        /// <summary>
+        /// Permet de vérifier si l'image est valide avant l'insertion
+        /// </summary>
+        /// <returns></returns>
+        public bool IsValid()
+        {
+            if (IDObservation < 0)
+                return false;
+            if (Description == null)
+                return false;
+            if (Image.Length < 1)
+                return false;
+
+            return true;
+        }
+        #endregion
     }
 }
