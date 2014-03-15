@@ -17,7 +17,9 @@ namespace Data_synthese
         public int Id { get; set; }
         public string Texte { get; set; }
         public int observationId { get; set; }
+        public int IDUsager { get; set; }
     
         public virtual observation observation { get; set; }
+        public virtual usager usager { get; set; }
     }
 }

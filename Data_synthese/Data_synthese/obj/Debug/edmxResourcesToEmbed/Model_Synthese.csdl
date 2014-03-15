@@ -55,6 +55,10 @@
       <End Role="observation" EntitySet="observation" />
       <End Role="Commentaire" EntitySet="Commentaire" />
     </AssociationSet>
+    <AssociationSet Name="usagerCommentaire" Association="synthese_dbModel.usagerCommentaire">
+      <End Role="usager" EntitySet="usager" />
+      <End Role="Commentaire" EntitySet="Commentaire" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="alerte">
     <Key>
@@ -94,7 +98,7 @@
     </Key>
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="DateTime" Name="DateObservation" Nullable="false" />
-    <Property Type="Int32" Name="PositionLong" Nullable="true" />
+    <Property Type="Double" Name="PositionLong" Nullable="true" />
     <Property Type="Int32" Name="IDUsager" Nullable="false" />
     <Property Type="Int32" Name="IDOiseau" Nullable="false" />
     <NavigationProperty Name="oiseaux" Relationship="synthese_dbModel.FK_Observations_Oiseaux" FromRole="observations" ToRole="oiseaux" />
@@ -102,8 +106,9 @@
     <NavigationProperty Name="sonobservations" Relationship="synthese_dbModel.FK_Observations_SonObservations" FromRole="observations" ToRole="sonobservations" />
     <NavigationProperty Name="usagers" Relationship="synthese_dbModel.FK_Observations_Usagers" FromRole="observations" ToRole="usagers" />
     <NavigationProperty Name="message" Relationship="synthese_dbModel.observationmessage" FromRole="observation" ToRole="message" />
-    <Property Type="String" Name="PositionLat" Nullable="true" />
+    <Property Type="Double" Name="PositionLat" Nullable="true" />
     <NavigationProperty Name="Commentaire" Relationship="synthese_dbModel.observationCommentaire" FromRole="observation" ToRole="Commentaire" />
+    <Property Name="Titre" Type="String" Nullable="false" MaxLength="100" />
   </EntityType>
   <EntityType Name="oiseau">
     <Key>
@@ -163,6 +168,7 @@
     <NavigationProperty Name="observations" Relationship="synthese_dbModel.FK_Observations_Usagers" FromRole="usagers" ToRole="observations" />
     <Property Type="String" Name="Nom" Nullable="false" MaxLength="50" FixedLength="true" />
     <NavigationProperty Name="alerte" Relationship="synthese_dbModel.usageralerte" FromRole="usager" ToRole="alerte" />
+    <NavigationProperty Name="Commentaire" Relationship="synthese_dbModel.usagerCommentaire" FromRole="usager" ToRole="Commentaire" />
   </EntityType>
   <Association Name="FK_Alertes_Oiseaux">
     <End Type="synthese_dbModel.oiseau" Role="oiseaux" Multiplicity="1" />
@@ -292,6 +298,8 @@
     <Property Name="Texte" Type="String" Nullable="false" />
     <NavigationProperty Name="observation" Relationship="synthese_dbModel.observationCommentaire" FromRole="Commentaire" ToRole="observation" />
     <Property Name="observationId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="usager" Relationship="synthese_dbModel.usagerCommentaire" FromRole="Commentaire" ToRole="usager" />
+    <Property Name="IDUsager" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="observationCommentaire">
     <End Type="synthese_dbModel.observation" Role="observation" Multiplicity="1" />
@@ -302,6 +310,18 @@
       </Principal>
       <Dependent Role="Commentaire">
         <PropertyRef Name="observationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="usagerCommentaire">
+    <End Type="synthese_dbModel.usager" Role="usager" Multiplicity="1" />
+    <End Type="synthese_dbModel.Commentaire" Role="Commentaire" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usager">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Commentaire">
+        <PropertyRef Name="IDUsager" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

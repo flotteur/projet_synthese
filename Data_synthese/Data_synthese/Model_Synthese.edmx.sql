@@ -5,8 +5,8 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 03/07/2014 09:51:25
--- Generated from EDMX file: C:\DropBox\Cours iPhone\Session 6 Projet synthèse\projet_synthese\projet_synthese\projet_synthese\Data_synthese\Data_synthese\Model_Synthese.edmx
+-- Date Created: 03/15/2014 07:06:34
+-- Generated from EDMX file: C:\Sources\synthese\projet_synthese\Data_synthese\Data_synthese\Model_Synthese.edmx
 -- Target version: 2.0.0.0
 -- --------------------------------------------------
 
@@ -26,6 +26,7 @@
 --    ALTER TABLE `photo` DROP CONSTRAINT `FK_Photos_Oiseaux`;
 --    ALTER TABLE `message` DROP CONSTRAINT `FK_observationmessage`;
 --    ALTER TABLE `alerte` DROP CONSTRAINT `FK_usageralerte`;
+--    ALTER TABLE `Commentaire` DROP CONSTRAINT `FK_observationCommentaire`;
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -40,6 +41,7 @@ SET foreign_key_checks = 0;
     DROP TABLE IF EXISTS `photo`;
     DROP TABLE IF EXISTS `sonobservation`;
     DROP TABLE IF EXISTS `usager`;
+    DROP TABLE IF EXISTS `Commentaire`;
 SET foreign_key_checks = 1;
 
 -- --------------------------------------------------
@@ -82,10 +84,11 @@ ALTER TABLE `message` ADD PRIMARY KEY (Id);
 CREATE TABLE `observation`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
 	`DateObservation` datetime NOT NULL, 
-	`PositionLong` int, 
+	`PositionLong` double, 
 	`IDUsager` int NOT NULL, 
 	`IDOiseau` int NOT NULL, 
-	`PositionLat` longtext);
+	`PositionLat` double, 
+	`Titre` varchar (100) NOT NULL);
 
 ALTER TABLE `observation` ADD PRIMARY KEY (Id);
 
@@ -141,7 +144,7 @@ ALTER TABLE `sonobservation` ADD PRIMARY KEY (Id);
 CREATE TABLE `usager`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
 	`NomUsager` varchar (20) NOT NULL, 
-	`MotPasse` varchar (20) NOT NULL, 
+	`MotPasse` varchar (128) NOT NULL, 
 	`Administrateur` bool NOT NULL, 
 	`Courriel` varchar (50) NOT NULL, 
 	`Nom` char (50) NOT NULL);
@@ -154,7 +157,8 @@ ALTER TABLE `usager` ADD PRIMARY KEY (Id);
 CREATE TABLE `Commentaire`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
 	`Texte` longtext NOT NULL, 
-	`observationId` int NOT NULL);
+	`observationId` int NOT NULL, 
+	`IDUsager` int NOT NULL);
 
 ALTER TABLE `Commentaire` ADD PRIMARY KEY (Id);
 
@@ -331,6 +335,21 @@ ADD CONSTRAINT `FK_observationCommentaire`
 CREATE INDEX `IX_FK_observationCommentaire` 
     ON `Commentaire`
     (`observationId`);
+
+-- Creating foreign key on `IDUsager` in table 'Commentaire'
+
+ALTER TABLE `Commentaire`
+ADD CONSTRAINT `FK_usagerCommentaire`
+    FOREIGN KEY (`IDUsager`)
+    REFERENCES `usager`
+        (`Id`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_usagerCommentaire'
+
+CREATE INDEX `IX_FK_usagerCommentaire` 
+    ON `Commentaire`
+    (`IDUsager`);
 
 -- --------------------------------------------------
 -- Script has ended

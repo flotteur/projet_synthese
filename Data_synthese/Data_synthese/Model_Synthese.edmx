@@ -346,6 +346,10 @@
             <End Role="observation" EntitySet="observation" />
             <End Role="Commentaire" EntitySet="Commentaire" />
           </AssociationSet>
+          <AssociationSet Name="usagerCommentaire" Association="synthese_dbModel.usagerCommentaire">
+            <End Role="usager" EntitySet="usager" />
+            <End Role="Commentaire" EntitySet="Commentaire" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="alerte">
           <Key>
@@ -385,7 +389,7 @@
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="DateTime" Name="DateObservation" Nullable="false" />
-          <Property Type="Int32" Name="PositionLong" Nullable="true" />
+          <Property Type="Double" Name="PositionLong" Nullable="true" />
           <Property Type="Int32" Name="IDUsager" Nullable="false" />
           <Property Type="Int32" Name="IDOiseau" Nullable="false" />
           <NavigationProperty Name="oiseaux" Relationship="synthese_dbModel.FK_Observations_Oiseaux" FromRole="observations" ToRole="oiseaux" />
@@ -393,8 +397,9 @@
           <NavigationProperty Name="sonobservations" Relationship="synthese_dbModel.FK_Observations_SonObservations" FromRole="observations" ToRole="sonobservations" />
           <NavigationProperty Name="usagers" Relationship="synthese_dbModel.FK_Observations_Usagers" FromRole="observations" ToRole="usagers" />
           <NavigationProperty Name="message" Relationship="synthese_dbModel.observationmessage" FromRole="observation" ToRole="message" />
-          <Property Type="String" Name="PositionLat" Nullable="true" />
+          <Property Type="Double" Name="PositionLat" Nullable="true" />
           <NavigationProperty Name="Commentaire" Relationship="synthese_dbModel.observationCommentaire" FromRole="observation" ToRole="Commentaire" />
+          <Property Name="Titre" Type="String" Nullable="false" MaxLength="100" />
         </EntityType>
         <EntityType Name="oiseau">
           <Key>
@@ -454,6 +459,7 @@
           <NavigationProperty Name="observations" Relationship="synthese_dbModel.FK_Observations_Usagers" FromRole="usagers" ToRole="observations" />
           <Property Type="String" Name="Nom" Nullable="false" MaxLength="50" FixedLength="true" />
           <NavigationProperty Name="alerte" Relationship="synthese_dbModel.usageralerte" FromRole="usager" ToRole="alerte" />
+          <NavigationProperty Name="Commentaire" Relationship="synthese_dbModel.usagerCommentaire" FromRole="usager" ToRole="Commentaire" />
         </EntityType>
         <Association Name="FK_Alertes_Oiseaux">
           <End Type="synthese_dbModel.oiseau" Role="oiseaux" Multiplicity="1" />
@@ -583,6 +589,8 @@
           <Property Name="Texte" Type="String" Nullable="false" />
           <NavigationProperty Name="observation" Relationship="synthese_dbModel.observationCommentaire" FromRole="Commentaire" ToRole="observation" />
           <Property Name="observationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="usager" Relationship="synthese_dbModel.usagerCommentaire" FromRole="Commentaire" ToRole="usager" />
+          <Property Name="IDUsager" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="observationCommentaire">
           <End Type="synthese_dbModel.observation" Role="observation" Multiplicity="1" />
@@ -593,6 +601,18 @@
             </Principal>
             <Dependent Role="Commentaire">
               <PropertyRef Name="observationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usagerCommentaire">
+          <End Type="synthese_dbModel.usager" Role="usager" Multiplicity="1" />
+          <End Type="synthese_dbModel.Commentaire" Role="Commentaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usager">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Commentaire">
+              <PropertyRef Name="IDUsager" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -728,15 +748,15 @@
     </edmx:Options>
     <edmx:Diagrams>
       <Diagram Name="Main" ZoomLevel="100" DisplayType="true" >
-        <EntityTypeShape EntityType="synthese_dbModel.alerte" Width="2.5" PointX="2.875" PointY="4.625" Height="1.7879850260416665" />
-        <EntityTypeShape EntityType="synthese_dbModel.crioiseau" Width="2.5" PointX="4" PointY="6.875" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="synthese_dbModel.message" Width="2.5" PointX="7.625" PointY="0.5" Height="2.3648893229166656" />
-        <EntityTypeShape EntityType="synthese_dbModel.observation" Width="2.5" PointX="11.625" PointY="0.5" Height="3.3263964843749996" />
-        <EntityTypeShape EntityType="synthese_dbModel.oiseau" Width="2.5" PointX="7.875" PointY="5.5" Height="2.3648893229166656" />
-        <EntityTypeShape EntityType="synthese_dbModel.photoobservation" Width="2.5" PointX="15.625" PointY="0.875" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="synthese_dbModel.photo" Width="2.5" PointX="12" PointY="6.25" Height="2.1725878906250031" />
-        <EntityTypeShape EntityType="synthese_dbModel.sonobservation" Width="2.5" PointX="15.625" PointY="4" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="synthese_dbModel.usager" Width="2.5" PointX="2.875" PointY="1.125" Height="2.5571907552083331" />
+        <EntityTypeShape EntityType="synthese_dbModel.alerte" Width="2.5" PointX="3.125" PointY="7" Height="1.7879850260416665" />
+        <EntityTypeShape EntityType="synthese_dbModel.crioiseau" Width="2.5" PointX="4.25" PointY="9.25" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="synthese_dbModel.message" Width="2.5" PointX="7.875" PointY="2.875" Height="2.3648893229166656" />
+        <EntityTypeShape EntityType="synthese_dbModel.observation" Width="2.5" PointX="11.875" PointY="2.875" Height="3.3263964843749996" />
+        <EntityTypeShape EntityType="synthese_dbModel.oiseau" Width="2.5" PointX="7.75" PointY="8" Height="2.3648893229166656" />
+        <EntityTypeShape EntityType="synthese_dbModel.photoobservation" Width="2.5" PointX="15.875" PointY="3.25" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="synthese_dbModel.photo" Width="2.5" PointX="12.25" PointY="8.625" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="synthese_dbModel.sonobservation" Width="2.5" PointX="15.875" PointY="6.375" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="synthese_dbModel.usager" Width="2.5" PointX="3.125" PointY="3.5" Height="2.5571907552083331" />
         <AssociationConnector Association="synthese_dbModel.FK_Alertes_Oiseaux" >
           <ConnectorPoint PointX="7.875" PointY="6.0526432291666659" />
           <ConnectorPoint PointX="5.375" PointY="6.0526432291666659" />
@@ -779,11 +799,12 @@
           <ConnectorPoint PointX="4.125" PointY="3.8744921875" />
           <ConnectorPoint PointX="4.125" PointY="4.625" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="synthese_dbModel.Commentaire" Width="1.5" PointX="10.875" PointY="4.25" Height="1.7879850260416665" />
+        <EntityTypeShape EntityType="synthese_dbModel.Commentaire" Width="1.5" PointX="7.875" PointY="0.5" Height="1.7879850260416665" />
         <AssociationConnector Association="synthese_dbModel.observationCommentaire" >
           <ConnectorPoint PointX="12" PointY="3.8263964843749996" />
           <ConnectorPoint PointX="12" PointY="4.25" />
         </AssociationConnector>
+        <AssociationConnector Association="synthese_dbModel.usagerCommentaire" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

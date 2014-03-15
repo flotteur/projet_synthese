@@ -24,10 +24,11 @@ namespace Data_synthese
     
         public int Id { get; set; }
         public System.DateTime DateObservation { get; set; }
-        public Nullable<int> PositionLong { get; set; }
+        public Nullable<double> PositionLong { get; set; }
         public int IDUsager { get; set; }
         public int IDOiseau { get; set; }
-        public string PositionLat { get; set; }
+        public Nullable<double> PositionLat { get; set; }
+        public string Titre { get; set; }
     
         public virtual oiseau oiseaux { get; set; }
         public virtual ICollection<photoobservation> photoobservations { get; set; }
