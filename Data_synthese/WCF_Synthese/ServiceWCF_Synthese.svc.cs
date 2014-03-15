@@ -63,11 +63,15 @@ namespace WCF_Synthese
             return new MemoryStream(repository.GetPhotoObservationFromId(numericId).Image);
         }
 
-        void AddImage(PhotoObservationDTO remotePath)
+        public void AddImage(Stream remotePath)
         {
+            var photo = new PhotoObservationDTO();
             var repository = new PhotoObservationRepository();
-            
+            repository.CreatePhotoObservation(remotePath);
+
         }
+
+
         /*
         public UsagerWCF GetUsager(string pID)
         {

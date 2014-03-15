@@ -2,6 +2,7 @@
 using Data_synthese;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -48,11 +49,19 @@ namespace BO_Synthese
         /// Cette methode permet d'ajouter une photo d'observation
         /// </summary>
         /// <param name="photoObservation"></param>
-        public void CreatePhotoObservation(PhotoObservationDTO photoObservation)
+        public void CreatePhotoObservation(Stream photoObservation)
         {
-            CurrentPhotoObservationDto = photoObservation;
+            CurrentPhotoObservationDto = new PhotoObservationDTO();
             if (!CurrentPhotoObservationDto.IsValid())
                 throw new Exception("Impossible d'enregistrer l'image.");
+
+            //add convert Stram to byte[]
+            byte[] buffer = StreamToByte(photoObservation);
+            //create image record for database
+            CurrentPhotoObservationDto.Image = buffer;
+            CurrentPhotoObservationDto.IDObservation = 1;
+            CurrentPhotoObservationDto.Description = "qewq";
+            CurrentPhotoObservationDto.Commentaire = "fjshf";
 
             DbContext.photoobservation.Add(PhotoObservationDtoToDb());
             DbContext.SaveChanges();
@@ -68,7 +77,7 @@ namespace BO_Synthese
         /// <returns></returns>
         private PhotoObservationDTO PhotoObservationDbToDto(photoobservation photo)
         {
-            PhotoObservationDTO photoObservationDto = new PhotoObservationDTO()
+            var photoObservationDto = new PhotoObservationDTO()
             {
                 Id = photo.Id,
                 IDObservation = photo.IDObservation,
@@ -80,6 +89,10 @@ namespace BO_Synthese
             return photoObservationDto;
         }
 
+        /// <summary>
+        /// Convertion d'une photo DTO en photo BD
+        /// </summary>
+        /// <returns></returns>
         private photoobservation PhotoObservationDtoToDb()
         {
             return new photoobservation
@@ -89,6 +102,25 @@ namespace BO_Synthese
                 Commentaire = CurrentPhotoObservationDto.Commentaire,
                 Image = CurrentPhotoObservationDto.Image
             };
+        }
+
+        /// <summary>
+        /// Conversion d'un stream en byte[] pour enregistrer dans la bd
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <returns></returns>
+        public static byte[] StreamToByte(Stream stream)
+        {
+            byte[] buffer = new byte[16 * 1024];
+            using (MemoryStream ms = new MemoryStream())
+            {
+                int read;
+                while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    ms.Write(buffer, 0, read);
+                }
+                return ms.ToArray();
+            }
         }
         #endregion
     }

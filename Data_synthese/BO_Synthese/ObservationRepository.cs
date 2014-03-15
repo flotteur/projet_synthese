@@ -86,7 +86,7 @@ namespace BO_Synthese
         /// <returns>L'observation BD</returns>
         private Observation ObservationDtoToDb()
         {
-            Observation observation = new Observation() 
+            var observation = new Observation() 
             {
                 IDOiseau = CurrentObservationDto.IDOiseau,
                 IDUsager = CurrentObservationDto.IDUsager,
@@ -103,7 +103,7 @@ namespace BO_Synthese
         /// <returns>Une observation pour le service web</returns>
         private ObservationDTO ObservationDbToDto(Observation observation)
         {
-            ObservationDTO observationDto = new ObservationDTO()
+            var observationDto = new ObservationDTO()
             {
                 IDOiseau = observation.IDOiseau,
                 IDUsager = observation.IDUsager,
