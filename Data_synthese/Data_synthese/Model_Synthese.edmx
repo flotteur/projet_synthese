@@ -59,6 +59,10 @@
       <End Role="observation" EntitySet="observation" />
       <End Role="Commentaire" EntitySet="Commentaire" />
     </AssociationSet>
+    <AssociationSet Name="usagerCommentaire" Association="synthese_dbModel.Store.usagerCommentaire">
+      <End Role="usager" EntitySet="usager" />
+      <End Role="Commentaire" EntitySet="Commentaire" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="alerte">
     <Key>
@@ -93,10 +97,11 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DateObservation" Type="datetime" Nullable="false" />
-    <Property Name="PositionLong" Type="int" Nullable="true" />
+    <Property Name="PositionLong" Type="double" Nullable="true" />
     <Property Name="IDUsager" Type="int" Nullable="false" />
     <Property Name="IDOiseau" Type="int" Nullable="false" />
-    <Property Name="PositionLat" Type="longtext" Nullable="true" />
+    <Property Name="PositionLat" Type="double" Nullable="true" />
+    <Property Name="Titre" Type="varchar" Nullable="false" MaxLength="100" />
   </EntityType>
   <EntityType Name="oiseau">
     <Key>
@@ -142,7 +147,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NomUsager" Type="varchar" Nullable="false" MaxLength="20" />
-    <Property Name="MotPasse" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="MotPasse" Type="varchar" Nullable="false" MaxLength="128" />
     <Property Name="Administrateur" Type="bool" Nullable="false" />
     <Property Name="Courriel" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Nom" Type="char" Nullable="false" MaxLength="50" />
@@ -154,6 +159,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Texte" Type="longtext" Nullable="false" />
     <Property Name="observationId" Type="int" Nullable="false" />
+    <Property Name="IDUsager" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_Alertes_Oiseaux">
     <End Role="oiseaux" Type="synthese_dbModel.Store.oiseau" Multiplicity="1" />
@@ -284,6 +290,18 @@
       </Principal>
       <Dependent Role="Commentaire">
         <PropertyRef Name="observationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="usagerCommentaire">
+    <End Role="usager" Type="synthese_dbModel.Store.usager" Multiplicity="1" />
+    <End Role="Commentaire" Type="synthese_dbModel.Store.Commentaire" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usager">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Commentaire">
+        <PropertyRef Name="IDUsager" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -661,6 +679,7 @@
           <ScalarProperty Name="IDUsager" ColumnName="IDUsager" />
           <ScalarProperty Name="IDOiseau" ColumnName="IDOiseau" />
           <ScalarProperty Name="PositionLat" ColumnName="PositionLat" />
+          <ScalarProperty Name="Titre" ColumnName="Titre" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -724,6 +743,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Texte" ColumnName="Texte" />
           <ScalarProperty Name="observationId" ColumnName="observationId" />
+          <ScalarProperty Name="IDUsager" ColumnName="IDUsager" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -40,6 +40,7 @@
           <ScalarProperty Name="IDUsager" ColumnName="IDUsager" />
           <ScalarProperty Name="IDOiseau" ColumnName="IDOiseau" />
           <ScalarProperty Name="PositionLat" ColumnName="PositionLat" />
+          <ScalarProperty Name="Titre" ColumnName="Titre" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -103,6 +104,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Texte" ColumnName="Texte" />
           <ScalarProperty Name="observationId" ColumnName="observationId" />
+          <ScalarProperty Name="IDUsager" ColumnName="IDUsager" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
