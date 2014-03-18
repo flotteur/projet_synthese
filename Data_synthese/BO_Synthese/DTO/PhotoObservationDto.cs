@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -28,8 +29,8 @@ namespace BO_Synthese.DTO
         [DataMember(Name = "Commentaire")]
         public string Commentaire { get; set; }
 
-        [DataMember(Name = "Path")]
-        public string PathDistant { get; set; }
+        [DataMember(Name = "ImageUpload")]
+        public Stream ImageUpload { get; set; }
         #endregion
 
         #region public

@@ -49,11 +49,11 @@ namespace BO_Synthese
         /// Cette methode permet d'ajouter une photo d'observation
         /// </summary>
         /// <param name="photoObservation"></param>
-        public void CreatePhotoObservation(Stream photoObservation)
+        public void CreatePhotoObservation(string id, string filename, Stream photoObservation)
         {
             CurrentPhotoObservationDto = new PhotoObservationDTO();
-            if (!CurrentPhotoObservationDto.IsValid())
-                throw new Exception("Impossible d'enregistrer l'image.");
+            //if (!CurrentPhotoObservationDto.IsValid())
+            //    throw new Exception("Impossible d'enregistrer l'image.");
 
             //add convert Stram to byte[]
             byte[] buffer = StreamToByte(photoObservation);

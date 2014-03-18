@@ -43,9 +43,8 @@ namespace WCF_Synthese
         Stream GetImage(string id);
 
         [OperationContract]
-        [WebInvoke(Method="POST", 
-            UriTemplate = "image")]
-        void AddImage(Stream remotePath);
+        [WebInvoke(UriTemplate = "image/{id}/{filename}")]
+        void AddImage(string id, string filename, Stream file);
 
         //[OperationContract]
         //[WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
