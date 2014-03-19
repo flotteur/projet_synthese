@@ -7,11 +7,11 @@ namespace TEST_Data_Synthese
     
     
     /// <summary>
-    ///This is a test class for observationTest and is intended
-    ///to contain all observationTest Unit Tests
+    ///This is a test class for ObservationTest and is intended
+    ///to contain all ObservationTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class observationTest
+    public class ObservationTest
     {
 
 
@@ -65,12 +65,12 @@ namespace TEST_Data_Synthese
 
 
         /// <summary>
-        ///A test for observation Constructor
+        ///A test for Observation Constructor
         ///</summary>
         [TestMethod()]
-        public void observationConstructorTest()
+        public void ObservationConstructorTest()
         {
-            observation target = new observation();
+            Observation target = new Observation();
             Assert.Inconclusive("TODO: Implement code to verify target");
         }
 
@@ -80,7 +80,7 @@ namespace TEST_Data_Synthese
         [TestMethod()]
         public void DateObservationTest()
         {
-            observation target = new observation(); // TODO: Initialize to an appropriate value
+            Observation target = new Observation(); // TODO: Initialize to an appropriate value
             DateTime expected = new DateTime(); // TODO: Initialize to an appropriate value
             DateTime actual;
             target.DateObservation = expected;
@@ -95,7 +95,7 @@ namespace TEST_Data_Synthese
         [TestMethod()]
         public void IDOiseauTest()
         {
-            observation target = new observation(); // TODO: Initialize to an appropriate value
+            Observation target = new Observation(); // TODO: Initialize to an appropriate value
             int expected = 0; // TODO: Initialize to an appropriate value
             int actual;
             target.IDOiseau = expected;
@@ -110,7 +110,7 @@ namespace TEST_Data_Synthese
         [TestMethod()]
         public void IDUsagerTest()
         {
-            observation target = new observation(); // TODO: Initialize to an appropriate value
+            Observation target = new Observation(); // TODO: Initialize to an appropriate value
             int expected = 0; // TODO: Initialize to an appropriate value
             int actual;
             target.IDUsager = expected;
@@ -125,7 +125,7 @@ namespace TEST_Data_Synthese
         [TestMethod()]
         public void IdTest()
         {
-            observation target = new observation(); // TODO: Initialize to an appropriate value
+            Observation target = new Observation(); // TODO: Initialize to an appropriate value
             int expected = 0; // TODO: Initialize to an appropriate value
             int actual;
             target.Id = expected;
@@ -141,7 +141,7 @@ namespace TEST_Data_Synthese
         [TestMethod()]
         public void oiseauxTest()
         {
-            observation target = new observation(); // TODO: Initialize to an appropriate value
+            Observation target = new Observation(); // TODO: Initialize to an appropriate value
             oiseau expected = null; // TODO: Initialize to an appropriate value
             oiseau actual;
             target.oiseaux = expected;
@@ -158,7 +158,7 @@ namespace TEST_Data_Synthese
         [TestMethod()]
         public void usagersTest()
         {
-            observation target = new observation(); // TODO: Initialize to an appropriate value
+            Observation target = new Observation(); // TODO: Initialize to an appropriate value
             usager expected = null; // TODO: Initialize to an appropriate value
             usager actual;
             target.usagers = expected;

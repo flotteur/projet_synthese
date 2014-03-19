@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Data.Entity;
+using Data_synthese;
 
 namespace TEST_Data_Synthese
 {
@@ -141,8 +142,8 @@ namespace TEST_Data_Synthese
         public void observationTest()
         {
             synthese_dbEntities target = new synthese_dbEntities(); // TODO: Initialize to an appropriate value
-            DbSet<observation> expected = null; // TODO: Initialize to an appropriate value
-            DbSet<observation> actual;
+            DbSet<Observation> expected = null; // TODO: Initialize to an appropriate value
+            DbSet<Observation> actual;
             target.observation = expected;
             actual = target.observation;
             Assert.AreEqual(expected, actual);

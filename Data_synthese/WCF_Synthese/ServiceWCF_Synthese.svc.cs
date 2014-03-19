@@ -9,6 +9,8 @@ using Entites_Synthese;
 using WCF_Synthese.EntitesWCF;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
+using System.IO;
+using BO_Synthese.DTO;
 
 namespace WCF_Synthese
 {
@@ -27,13 +29,54 @@ namespace WCF_Synthese
             }
         }
 
-        public string HelloWorld()
-        {
-            return "Hello";
+        /// <summary>
+        /// Ce service permet de créer un nouvelle observation
+        /// </summary>
+        /// <param name="observation">L'observation à ajouter</param>
+        public void AddObservation(ObservationDTO observation)
+        { 
+            var repository = new ObservationRepository(observation);
+            repository.createObservation();
         }
 
-        
-        public void Logout()
+        /// <summary>
+        /// Ce service permet d'obtenir le détail d'une observation à partir du ID
+        /// </summary>
+        /// <param name="id">Le id de l'observation</param>
+        /// <returns>L'observation</returns>
+        public ObservationDTO GetObservation(string id)
+        {
+            var repository = new ObservationRepository();
+            int numericId;
+            Int32.TryParse(id, out numericId);
+            return repository.GetObservationFromId(numericId);
+        }
+
+        /// <summary>
+        /// Ce service permet d'obtenir une photo d'observation en fonction du ID de la photo
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Stream GetImage(string id)
+        {
+            var repository = new PhotoObservationRepository();
+            int numericId;
+            Int32.TryParse(id, out numericId);
+
+            return new MemoryStream(repository.GetPhotoObservationFromId(numericId).Image);
+        }
+
+        public void AddImage(string id, string filename, Stream file)
+        {
+            var repository = new PhotoObservationRepository();
+
+            int numericId;
+            Int32.TryParse(id, out numericId);
+
+            repository.CreatePhotoObservation(id, filename, file);
+
+        }
+
         {
             BusinessObject.LogOut();
         }

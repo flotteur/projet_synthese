@@ -22,7 +22,6 @@ namespace BO_Synthese
                 return _MessageErreur;
             }
         }
-
         #region " Méthodes privées "
 
         //private void InitialiseSession(Usager_Entite pUsager)

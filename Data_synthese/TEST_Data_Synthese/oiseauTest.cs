@@ -158,8 +158,8 @@ namespace TEST_Data_Synthese
         public void observationsTest()
         {
             oiseau target = new oiseau(); // TODO: Initialize to an appropriate value
-            ICollection<observation> expected = null; // TODO: Initialize to an appropriate value
-            ICollection<observation> actual;
+            ICollection<Observation> expected = null; // TODO: Initialize to an appropriate value
+            ICollection<Observation> actual;
             target.observations = expected;
             actual = target.observations;
             Assert.AreEqual(expected, actual);

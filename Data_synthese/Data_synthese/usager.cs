@@ -17,7 +17,7 @@ namespace Data_synthese
         public usager()
         {
             this.messages = new HashSet<message>();
-            this.observations = new HashSet<observation>();
+            this.observations = new HashSet<Observation>();
             this.alerte = new HashSet<alerte>();
             this.Commentaire = new HashSet<Commentaire>();
         }
@@ -30,7 +30,7 @@ namespace Data_synthese
         public string Nom { get; set; }
     
         public virtual ICollection<message> messages { get; set; }
-        public virtual ICollection<observation> observations { get; set; }
+        public virtual ICollection<Observation> observations { get; set; }
         public virtual ICollection<alerte> alerte { get; set; }
         public virtual ICollection<Commentaire> Commentaire { get; set; }
     }
