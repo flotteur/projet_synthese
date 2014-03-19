@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Entites_Synthese
 {
@@ -14,6 +13,21 @@ namespace Entites_Synthese
         public bool  EstAdministrateur { get; set; }
         public String Courriel { get; set; }
         public String Nom { get; set; }
+
+        #region " Validations "
+
+        /// <summary>
+        /// Valide si toutes les informtions requises sont là pour créer un usager
+        /// </summary>
+        /// <returns></returns>
+        public override bool Validate()
+        {
+            return IsValid = (!string.IsNullOrWhiteSpace(this.Nom) && 
+                !string.IsNullOrWhiteSpace(this.NomUsager) && 
+                !string.IsNullOrWhiteSpace(this.Courriel) &&
+                !string.IsNullOrWhiteSpace(this.MotDePasse ));
+        }
+        #endregion
 
         #region " Constructeurs "
 
@@ -37,6 +51,7 @@ namespace Entites_Synthese
         }
 
         #endregion
+
 
     }
 }

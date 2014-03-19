@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Test WCF</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+    <script type="application/javascript" src="Scripts/ScriptsDivers.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no"
+        name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+</head>
+<body>
+    <div data-role="page" id="menu">
+        <div id="" data-role="header">
+            <h1>
+                Test WCF</h1>
+            <!--<button onclick="bienvenue();" id="leftnav">
+                Précédent
+            </button>-->
+        </div>
+        <div data-role="content">
+            <div>
+                <div>
+                    <fieldset data-role="controlgroup">
+                        <label for="txtNom">
+                            NOM</label>
+                        <input type="text" name="txtNom" id="txtNom" title="Nom"></input>
+                        <label for="TextNomUsager">
+                            NOM USAGER:</label>
+                        <input id="TextNomUsager" title="Nom usager" />
+                        <label for="txtCourriel">COURRIEL</label>
+                        <input type="text" name="txtCourriel" id="txtCourriel" title="Courriel"></input>
+
+                        <label for="txtMotDePasse">MOT DE PASSE:</label>
+                        <input id="txtMotDePasse" title="MotDePasse" />
+                        <input type="checkbox" name="checkboxAdmin" id="checkboxAdmin" class="custom" />
+                        <label for="checkboxAdmin">
+                            Administrateur</label>
+                        <button onclick="InsertUsager();">
+                            Insérer usager()
+                        </button>
+                    </fieldset>
+                    <div>
+                    <button onclick="Login();">
+                        Connexion
+                    </button>
+                    <button onclick="GetUsager();">
+                        Obtenir usager
+                    </button>
+                    <button onclick="LogoutAdmin();">
+                        Deconnexion adminstrateur();
+                    </button>
+                    </div>
+                </div>
+                <!--<div>
+                    <button onclick="listeCartes();">
+                        Consulter
+                    </button>
+                </div>-->
+            </div>
+        </div>
+        <div data-role="footer">
+        </div>
+    </div>
+</body>
+</html>

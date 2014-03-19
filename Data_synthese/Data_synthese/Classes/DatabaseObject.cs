@@ -190,36 +190,40 @@ namespace Data_synthese.Classes
                                           bool pEstAdministrateur,
                                           String pCourriel)
         {
-            Usager_Entite usag = null;
-
-            if ((_session.usager != null) && (_session.usager.EstAdministrateur == true))
-            {
-
-                Encription crypteur = new Encription();
+            Usager_Entite usag = new Usager_Entite(0,
+                pNom,
+                pUsername,
+                pPassword,
+                pEstAdministrateur,
+                pCourriel);
+            if (usag.Validate() == false )
+                throw new Exception(Classes.Constantes.ERREUR_INFOS_MANQUANTES);
+           
+            Encription crypteur = new Encription();
 
                 // On s'assure que le username n'existe pas déjà
-                var userNameRow = (from row in dbContext.usager.Local
+            var userNameRow = (from row in dbContext.usager.Local
                                    where row.NomUsager == pUsername
                                    select row);
-                if ((userNameRow != null) && (userNameRow.ToList().Count == 0))
+            if ((userNameRow != null) && (userNameRow.ToList().Count == 0))
                     userNameRow = (from row in dbContext.usager
                                    where row.NomUsager == pUsername
                                    select row);
-                if ((userNameRow != null) && (userNameRow.ToList().Count > 0))
-                {
-                    // err //définir des erreurs et finaliser le test
-                    throw new Exception(Classes.Constantes.ERREUR_NOM_UTILISATEUR_EXISTANT);
+            if ((userNameRow != null) && (userNameRow.ToList().Count > 0))
+            {
+                // err //définir des erreurs et finaliser le test
+                throw new Exception(Classes.Constantes.ERREUR_NOM_UTILISATEUR_EXISTANT);
 
-                }
-                var courrielRow = (from row in dbContext.usager.Local
+            }
+            var courrielRow = (from row in dbContext.usager.Local
                                    where row.Courriel == pCourriel
                                    select row);
-                if ((courrielRow != null) && (courrielRow.ToList().Count == 0))
+            if ((courrielRow != null) && (courrielRow.ToList().Count == 0))
                     courrielRow = (from row in dbContext.usager
                                    where row.Courriel == pCourriel
                                    select row);
 
-                if ((courrielRow != null) && (courrielRow.ToList().Count > 0))
+            if ((courrielRow != null) && (courrielRow.ToList().Count > 0))
                     throw new Exception(Constantes.ERREUR_COURRIEL_EXISTANT);
 
                 // On s'assure que le courriel n'existe pas déjà
@@ -251,18 +255,9 @@ namespace Data_synthese.Classes
                 };
                 dbContext.usager.Add(usagerDB);
 
-                usag = new Usager_Entite(usagerDB.Id,
-                    pNom,
-                    pUsername,
-                    pPassword,
-                    pEstAdministrateur,
-                    pCourriel);
-
-            }
-            else
-                throw new Exception(Constantes.ERREUR_ADMIN_REQUIS);
-
-            return usag;
+            usag.ID = usagerDB.Id;
+            
+           return usag;
         }
 
         #endregion

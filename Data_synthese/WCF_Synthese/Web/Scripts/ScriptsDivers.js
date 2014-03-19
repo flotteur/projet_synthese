@@ -39,6 +39,30 @@ function GetUsager() {
             return obj;
            
                    },
+        ajaxSuccess: function (data) {
+            obj = JSON.stringify(data);
+            //obj = JSON.parse(data);
+            return obj;
+           
+                   },
+        ajaxError: function (data) {
+            obj = JSON.stringify(data);
+            //obj = JSON.parse(data);
+            return obj;
+           
+                   },
+        ajaxComplete:function (data) {
+            obj = JSON.stringify(data);
+            //obj = JSON.parse(data);
+            return obj;
+           
+                   }, 
+        complete :function (data) {
+            obj = JSON.stringify(data);
+            //obj = JSON.parse(data);
+            return obj;
+           
+                   },
         error: function (xhr, textStatus) {
             alert(xhr.responseText);
         }
@@ -46,9 +70,9 @@ function GetUsager() {
 
 }
 
-function LogAdmin() {
+function Login( pUserName, pPassword) {
     
-    data = "admin/MotDePasse";
+    data = pusername+"/" +pPassword;
     $.ajax({
         cache: false,
         type: "GET",
@@ -75,8 +99,7 @@ function LogAdmin() {
     });
 
 }
-
-function LogoutAdmin() {
+function Logout() {
 
     $.ajax({
         cache: false,
@@ -92,12 +115,6 @@ function LogoutAdmin() {
                 alert(status);
             }
         },
-        success: function (data) {
-            obj = JSON.stringify(data);
-            //obj = JSON.parse(data);
-            return obj;
-
-        },
         error: function (xhr, textStatus) {
             alert(xhr.responseText);
         }
@@ -107,7 +124,16 @@ function LogoutAdmin() {
 
 function InsertUsager() {
        
-    datas = { "Courriel": "admin2@diq.ca", "EstAdministrateur": true, "ID": 2, "MotDePasse": "", "Nom": "Administrateur", "NomUsager": "admin2" };
+       var Courriel = $("#txtCourriel").val(); 
+       var EstAdmin = $("#checkboxAdmin").prop("checked");
+       var MotDePasse = $("#txtMotDePasse").val();
+       var Nom  = $("#txtNom").val();
+       var NomUsager = $("#TextNomUsager").val();
+    datas = { "Courriel": Courriel, 
+                "EstAdministrateur": EstAdmin, 
+                "MotDePasse": MotDePasse, 
+                "Nom": Nom, 
+                "NomUsager": NomUsager };
     dataToSend = JSON.stringify(datas)
     //jsonp: true, processData: true,
     $.ajax({
@@ -123,7 +149,10 @@ function InsertUsager() {
         },
         success: function (data) {
             obj = JSON.stringify(data);
-            
+            var msg = obj.valueOf('MessageErreur');
+            if (msg != null){
+                alert(obj.valueOf('MessageErreur'));
+            }
             return obj;
 
         },

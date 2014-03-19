@@ -1,0 +1,13 @@
+installer les cersions 6.8.3 du connecteur MySQL
+
+Faire aussi les corrections suivantes dans le SSDLToMySQL.tt
+
+
+b) In "C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\Extensions\Microsoft\Entity Framework Tools\DBGen\SSDLToMySQL.tt" alter Line 121  
+From
+string serverVersion = GetProviderManifestToken(edmxPath);
+To
+string serverVersion = String.Empty;
+
+c) make sure the Schema-Tag in the edmx Files reads
+Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5"

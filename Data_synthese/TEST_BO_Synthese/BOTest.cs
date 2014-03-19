@@ -147,11 +147,14 @@ namespace TEST_BO_Synthese
         [TestMethod()]
         public void CreerAdmin()
         {
-                    
             _admin = _CreerEntiteUsagerAdministrateur();
-            _admin = _BusinessObject.CreerUsager(_admin);
-            _BusinessObject.SaveChanges();
-            Assert.IsNotNull(_admin, "CreerUsager a retourné NULL");
+            _admin = _BusinessObject.Getusager(_admin.NomUsager);
+
+            if (string.IsNullOrEmpty (_admin.MessageErreur) ){
+                _admin = _BusinessObject.CreerUsager(_admin);
+                _BusinessObject.SaveChanges();
+            }
+            Assert.IsNotNull(_admin, "CreerAdmin a retourné NULL");
         }
         /// <summary>
         ///A test for CreerUsager OK 2014-02-16
@@ -160,21 +163,46 @@ namespace TEST_BO_Synthese
         [TestMethod()]
         public void CreerUsagerTest()
         {
-                        
+            Usager_Entite usagerResultat = null;
+            string[] erreur =null;
+            char[] separateur = {'-'}; 
+
+            // L'usager est créé au début dans le test_Initialize           
             // Pas deux fois le même nomUsager
             _usagerPourTest.Courriel = "raubindiq.ca";
-            _usagerPourTest = _BusinessObject.CreerUsager(_usagerPourTest);
+            usagerResultat = _BusinessObject.CreerUsager(_usagerPourTest);
 
-            Assert.IsTrue(!string.IsNullOrEmpty(_usagerPourTest.MessageErreur), "CreerUsager on peut insérer deux fois le même username");
+            Assert.IsTrue(!string.IsNullOrEmpty(usagerResultat.MessageErreur), "CreerUsager on peut insérer deux fois le même username");
+            if (!string.IsNullOrEmpty(usagerResultat.MessageErreur))
+            {
+                erreur = usagerResultat.MessageErreur.Split(separateur);
+                Assert.IsTrue(int.Parse(erreur[0]) == (int)Data_synthese.Classes.ErreursID.ID_ERREUR_NOM_UTILISATEUR_EXISTANT, " Usager existant, Mauvais message d'erreur!");
+
+            }
+
 
 
             // Pas deux fois le même courriel
             _usagerPourTest.Courriel = "rferland@diq.ca";
-            _usagerPourTest.NomUsager = "rferland";
-            _usagerPourTest = _BusinessObject.CreerUsager(_usagerPourTest);
+            _usagerPourTest.NomUsager = "raubin";
+            usagerResultat = _BusinessObject.CreerUsager(_usagerPourTest);
 
-            Assert.IsTrue(!string.IsNullOrEmpty(_usagerPourTest.MessageErreur), "CreerUsager on peut insérer deux fois le même courriel");
+            Assert.IsTrue(!string.IsNullOrEmpty(usagerResultat.MessageErreur), "CreerUsager on peut insérer deux fois le même courriel");
+            if (!string.IsNullOrEmpty(usagerResultat.MessageErreur))
+            {
+                erreur = usagerResultat.MessageErreur.Split(separateur);
+                Assert.IsTrue(int.Parse(erreur[0]) == (int)Data_synthese.Classes.ErreursID.ID_ERREUR_COURRIEL_EXISTANT," Courriel existant, Mauvais message d'erreur!");
 
+            }
+
+            // On doit être administrateur pour supprimer un usager
+            _BusinessObject.DeleteUsager(_usagerPourTest.ID);
+            Assert.IsTrue(string.IsNullOrEmpty(_usagerPourTest.MessageErreur), usagerResultat.MessageErreur);
+
+            _BusinessObject.LogOut();
+            // Inutile d'être loggué pour créer un usager
+          usagerResultat= _BusinessObject.CreerUsager(_usagerPourTest);
+           Assert.IsTrue(string.IsNullOrEmpty(usagerResultat.MessageErreur), usagerResultat.MessageErreur);
         }
 
         /// <summary>

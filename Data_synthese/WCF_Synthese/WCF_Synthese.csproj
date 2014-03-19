@@ -84,6 +84,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Web\indexRay.html" />
     <Content Include="Web\Scripts\ScriptsDivers.js" />
   </ItemGroup>
   <ItemGroup>
