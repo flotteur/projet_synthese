@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Web;
-//using System.ServiceModel;
 using BO_Synthese;
 using Entites_Synthese;
 using WCF_Synthese.EntitesWCF;
@@ -27,6 +26,16 @@ namespace WCF_Synthese
                     aBusinessObject = new BO();
                 return aBusinessObject;
             }
+        }
+
+        public string HelloWorld()
+        {
+            return "Hello";
+        }
+
+        public void Logout()
+        {
+            BusinessObject.LogOut();
         }
 
         /// <summary>
@@ -75,10 +84,6 @@ namespace WCF_Synthese
 
             repository.CreatePhotoObservation(id, filename, file);
 
-        }
-
-        {
-            BusinessObject.LogOut();
         }
 
 

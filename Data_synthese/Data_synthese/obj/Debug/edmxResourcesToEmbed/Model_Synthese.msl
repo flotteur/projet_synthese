@@ -32,7 +32,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="observation">
-      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.Observation)">
+      <EntityTypeMapping TypeName="IsTypeOf(synthese_dbModel.observation)">
         <MappingFragment StoreEntitySet="observation">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="DateObservation" ColumnName="DateObservation" />

@@ -12,9 +12,9 @@ namespace Data_synthese
     using System;
     using System.Collections.Generic;
     
-    public partial class Observation
+    public partial class observation
     {
-        public Observation()
+        public observation()
         {
             this.photoobservations = new HashSet<photoobservation>();
             this.sonobservations = new HashSet<sonobservation>();

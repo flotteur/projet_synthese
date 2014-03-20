@@ -8,6 +8,7 @@ using System.ServiceModel.Web;
 using System.Text;
 using WCF_Synthese.EntitesWCF;
 using BO_Synthese;
+using System.IO;
 
 namespace WCF_Synthese
 {

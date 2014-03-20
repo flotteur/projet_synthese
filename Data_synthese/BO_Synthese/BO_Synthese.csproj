@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data_synthese\Data_synthese.csproj">
-      <Project>{143B386C-C9E6-4AAC-BCB5-39E47E054EA1}</Project>
+      <Project>{143b386c-c9e6-4aac-bcb5-39e47e054ea1}</Project>
       <Name>Data_synthese</Name>
     </ProjectReference>
     <ProjectReference Include="..\Entites_Synthese\Entites_Synthese.csproj">

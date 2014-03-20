@@ -71,7 +71,7 @@ namespace BO_Synthese
                         where observation.Id == id
                         select observation);
 
-            foreach (Observation observation in list)
+            foreach (observation observation in list)
                 return ObservationDbToDto(observation);
 
             return null;
@@ -84,9 +84,9 @@ namespace BO_Synthese
         /// Transforme l'observationDto courante en observation BD
         /// </summary>
         /// <returns>L'observation BD</returns>
-        private Observation ObservationDtoToDb()
+        private observation ObservationDtoToDb()
         {
-            var observation = new Observation() 
+            var observation = new observation() 
             {
                 IDOiseau = CurrentObservationDto.IDOiseau,
                 IDUsager = CurrentObservationDto.IDUsager,
@@ -101,7 +101,7 @@ namespace BO_Synthese
         /// </summary>
         /// <param name="observation">L'observation en provenance de la bd</param>
         /// <returns>Une observation pour le service web</returns>
-        private ObservationDTO ObservationDbToDto(Observation observation)
+        private ObservationDTO ObservationDbToDto(observation observation)
         {
             var observationDto = new ObservationDTO()
             {

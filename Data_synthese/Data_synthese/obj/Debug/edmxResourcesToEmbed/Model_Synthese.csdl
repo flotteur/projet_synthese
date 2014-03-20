@@ -4,7 +4,7 @@
     <EntitySet Name="alerte" EntityType="synthese_dbModel.alerte" />
     <EntitySet Name="crioiseau" EntityType="synthese_dbModel.crioiseau" />
     <EntitySet Name="message" EntityType="synthese_dbModel.message" />
-    <EntitySet Name="observation" EntityType="synthese_dbModel.Observation" />
+    <EntitySet Name="observation" EntityType="synthese_dbModel.observation" />
     <EntitySet Name="oiseau" EntityType="synthese_dbModel.oiseau" />
     <EntitySet Name="photoobservation" EntityType="synthese_dbModel.photoobservation" />
     <EntitySet Name="photo" EntityType="synthese_dbModel.photo" />
@@ -92,7 +92,7 @@
     <NavigationProperty Name="usagers" Relationship="synthese_dbModel.FK_Usagers_Messages" FromRole="messages" ToRole="usagers" />
     <NavigationProperty Name="observation" Relationship="synthese_dbModel.observationmessage" FromRole="message" ToRole="observation" />
   </EntityType>
-  <EntityType Name="Observation">
+  <EntityType Name="observation">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -208,7 +208,7 @@
   </Association>
   <Association Name="FK_Observations_Oiseaux">
     <End Type="synthese_dbModel.oiseau" Role="oiseaux" Multiplicity="1" />
-    <End Type="synthese_dbModel.Observation" Role="observations" Multiplicity="*" />
+    <End Type="synthese_dbModel.observation" Role="observations" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="oiseaux">
         <PropertyRef Name="Id" />
@@ -220,7 +220,7 @@
   </Association>
   <Association Name="FK_Observations_PhotoObservations">
     <End Type="synthese_dbModel.photoobservation" Role="photoobservations" Multiplicity="*" />
-    <End Type="synthese_dbModel.Observation" Role="observations" Multiplicity="1" />
+    <End Type="synthese_dbModel.observation" Role="observations" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="observations">
         <PropertyRef Name="Id" />
@@ -232,7 +232,7 @@
   </Association>
   <Association Name="FK_Observations_SonObservations">
     <End Type="synthese_dbModel.sonobservation" Role="sonobservations" Multiplicity="*" />
-    <End Type="synthese_dbModel.Observation" Role="observations" Multiplicity="1" />
+    <End Type="synthese_dbModel.observation" Role="observations" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="observations">
         <PropertyRef Name="Id" />
@@ -244,7 +244,7 @@
   </Association>
   <Association Name="FK_Observations_Usagers">
     <End Type="synthese_dbModel.usager" Role="usagers" Multiplicity="1" />
-    <End Type="synthese_dbModel.Observation" Role="observations" Multiplicity="*" />
+    <End Type="synthese_dbModel.observation" Role="observations" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="usagers">
         <PropertyRef Name="Id" />
@@ -267,7 +267,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="observationmessage">
-    <End Type="synthese_dbModel.Observation" Role="observation" Multiplicity="0..1" />
+    <End Type="synthese_dbModel.observation" Role="observation" Multiplicity="0..1" />
     <End Type="synthese_dbModel.message" Role="message" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="observation">
