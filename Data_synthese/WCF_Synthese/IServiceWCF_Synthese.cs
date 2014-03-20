@@ -85,6 +85,13 @@ namespace WCF_Synthese
         ObservationDTO GetObservation(string id);
 
         [OperationContract]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "observation")]
+        List<ObservationDTO> GetAllObservation();
+
+        [OperationContract]
         [WebGet(UriTemplate = "image/{id}")]
         Stream GetImage(string id);
 

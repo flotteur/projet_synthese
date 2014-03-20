@@ -60,6 +60,17 @@ namespace WCF_Synthese
             Int32.TryParse(id, out numericId);
             return repository.GetObservationFromId(numericId);
         }
+        
+        /// <summary>
+        /// Ce service permet d'obtenir la liste des observations
+        /// </summary>
+        /// <returns>La liste de toutes les observations</returns>
+        public List<ObservationDTO> GetAllObservation()
+        {
+            var repository = new ObservationRepository();
+
+            return repository.GetAllObservation();
+        }
 
         /// <summary>
         /// Ce service permet d'obtenir une photo d'observation en fonction du ID de la photo

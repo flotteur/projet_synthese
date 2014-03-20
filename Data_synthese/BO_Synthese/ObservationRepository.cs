@@ -9,9 +9,9 @@ namespace BO_Synthese
 {
     public class ObservationRepository : BO
     {
-        #region property
-        private ObservationDTO CurrentObservationDto;
-        private synthese_dbEntities DbContext;
+        #region fields
+        private ObservationDTO currentObservationDto;
+        private synthese_dbEntities dbContext;
         #endregion
 
         #region constructor
@@ -21,14 +21,14 @@ namespace BO_Synthese
         /// </summary>
         public ObservationRepository()
         {
-            CurrentObservationDto = null;
-            DbContext = new synthese_dbEntities();
+            currentObservationDto = null;
+            dbContext = new synthese_dbEntities();
         }
 
         public ObservationRepository(ObservationDTO observationDto)
         {
-            CurrentObservationDto = observationDto;
-            DbContext = new synthese_dbEntities();
+            currentObservationDto = observationDto;
+            dbContext = new synthese_dbEntities();
         }
 
         /// <summary>
@@ -53,11 +53,11 @@ namespace BO_Synthese
         /// <returns>L'observation qui a été inséré dans la BD</returns>
         public void createObservation()
         {
-            if (!CurrentObservationDto.isValid())
+            if (!currentObservationDto.isValid())
                 throw new Exception("L'observation est incomplète.");
 
-            DbContext.observation.Add(ObservationDtoToDb());
-            DbContext.SaveChanges();
+            dbContext.observation.Add(ObservationDtoToDb());
+            dbContext.SaveChanges();
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace BO_Synthese
         /// <returns>L'observation contenant le ID en question</returns>
         public ObservationDTO GetObservationFromId(int id)
         {
-            var list = (from observation in DbContext.observation
+            var list = (from observation in dbContext.observation
                         where observation.Id == id
                         select observation);
 
@@ -75,6 +75,25 @@ namespace BO_Synthese
                 return ObservationDbToDto(observation);
 
             return null;
+
+        }
+
+        /// <summary>
+        /// Retourne la liste de toutes les observations
+        /// </summary>
+        /// <returns>La liste de toutes les observations</returns>
+        public List<ObservationDTO> GetAllObservation()
+        {
+            var listObservationDto = new List<ObservationDTO>();
+            var listObservation = (from observation in dbContext.observation
+                                    select observation);
+            
+            foreach (observation observation in listObservation)
+            {
+                listObservationDto.Add(ObservationDbToDto(observation));
+            }
+                
+            return listObservationDto;
 
         }
         #endregion
@@ -88,9 +107,9 @@ namespace BO_Synthese
         {
             var observation = new observation() 
             {
-                IDOiseau = CurrentObservationDto.IDOiseau,
-                IDUsager = CurrentObservationDto.IDUsager,
-                DateObservation = CurrentObservationDto.DateObservation
+                IDOiseau = currentObservationDto.IDOiseau,
+                IDUsager = currentObservationDto.IDUsager,
+                DateObservation = currentObservationDto.DateObservation
             };
 
             return observation;
