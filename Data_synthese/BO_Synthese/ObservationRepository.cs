@@ -85,8 +85,8 @@ namespace BO_Synthese
         public List<ObservationDTO> GetAllObservation()
         {
             var listObservationDto = new List<ObservationDTO>();
-            var listObservation = (from observation in dbContext.observation
-                                    select observation);
+            var listObservation = (from observations in dbContext.observation.Include("usagers").Include("oiseau")
+                                    select observations);
             
             foreach (observation observation in listObservation)
             {
@@ -126,7 +126,13 @@ namespace BO_Synthese
             {
                 IDOiseau = observation.IDOiseau,
                 IDUsager = observation.IDUsager,
-                DateObservation = observation.DateObservation
+                DateObservation = observation.DateObservation,
+                usager = new DTO.UsagerDTO()
+                {
+                    Nom = observation.usagers.Nom,
+                    NomUsager = observation.usagers.NomUsager,
+                    ID = observation.usagers.Id
+                }
             };
 
             return observationDto;

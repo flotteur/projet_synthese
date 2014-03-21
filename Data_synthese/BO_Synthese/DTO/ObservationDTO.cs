@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using Data_synthese.Classes;
 using System.Globalization;
+using BO_Synthese.DTO;
 
 namespace BO_Synthese
 {
@@ -28,6 +29,9 @@ namespace BO_Synthese
 
         [DataMember(Name = "IDOiseau")]
         public int IDOiseau { set; get; }
+
+        [DataMember(Name = "Usager")]
+        public UsagerDTO usager { get; set; }
 
         [OnSerializing]
         void OnSerializing(StreamingContext ctx)
