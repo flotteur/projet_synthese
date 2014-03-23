@@ -33,8 +33,7 @@ namespace BO_Synthese
         //}
 
         #endregion
-
-
+        
         #region " Méthodes publiques "
 
         #region " Usager "
@@ -205,6 +204,364 @@ namespace BO_Synthese
         #endregion 
 
         #endregion
+
+        #region " CriOiseau "
+
+        #region " GetCriOiseau "
+        /// <summary>
+        /// Obtient un CriOiseau à partir de son ID
+        /// </summary>
+        /// <param name="pID"></param>
+        /// <returns></returns>
+        public CriOiseau_Entite GetCriOiseau(int pID)
+        {
+            CriOiseau_Entite retour = new CriOiseau_Entite();
+            try
+            {
+
+                retour = database.GetCriOiseau(pID);
+            }
+            catch (Exception ex)
+            {
+                retour.MessageErreur = ex.Message;
+                this._MessageErreur = ex.Message;
+            }
+            return retour;
+        }
+
+        /// <summary>
+        /// Obtient un CriOiseau à partir de son UserName
+        /// </summary>
+        /// <param name="pID"></param>
+        /// <returns></returns>
+        public CriOiseau_Entite GetCriOiseau(string pUserName)
+        {
+            CriOiseau_Entite retour = new CriOiseau_Entite();
+            try
+            {
+
+                retour = database.GetCriOiseau(pUserName);
+            }
+            catch (Exception ex)
+            {
+                retour.MessageErreur = ex.Message;
+                this._MessageErreur = ex.Message;
+            }
+            return retour;
+        }
+        #endregion
+
+        #region " CreerCriOiseau "
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pCriOiseau"></param>
+        /// <returns></returns>
+        public CriOiseau_Entite CreerCriOiseau(CriOiseau_Entite pCriOiseau)
+        {
+            CriOiseau_Entite retour = new CriOiseau_Entite();
+            this._MessageErreur = string.Empty;
+            crioiseau CriOiseau = new crioiseau();
+            CriOiseau.Convertir(pCriOiseau);
+
+            try
+            {
+                retour = database.InsertCriOiseau(CriOiseau);
+            }
+
+            catch (Exception ex)
+            {
+                retour.MessageErreur = ex.Message;
+                this._MessageErreur = ex.Message;
+            }
+            return retour;
+        }
+
+       public bool SupprimerCriOiseau(int pID)
+        {
+
+            this._MessageErreur = string.Empty;
+            bool retour = false;
+            try
+            {
+                retour = database.DeleteCriOiseau(pID);
+            }
+            catch (Exception ex)
+            {
+                this._MessageErreur = ex.Message;
+            }
+            return retour;
+        }
+
+        public CriOiseau_Entite ObtenirCriOiseau(int pID)
+        {
+
+            return database.GetCriOiseau(pID);
+        }
+        #endregion
+
+        #region " DeleteCriOiseau "
+
+        public bool DeleteCriOiseau(int pID)
+        {
+
+
+            return database.DeleteCriOiseau(pID);
+        }
+
+        #endregion
+
+        public CriOiseau_Entite UpdateCriOiseau(CriOiseau_Entite pCriOiseau)
+        {
+            CriOiseau_Entite CriOiseau = new CriOiseau_Entite();
+            try
+            {
+                return database.UpdateCriOiseau(pCriOiseau);
+            }
+            catch (Exception ex)
+            {
+                pCriOiseau.MessageErreur = ex.Message;
+                return pCriOiseau;
+            }
+        }
+#endregion
+
+        #region " Oiseau "
+
+        #region " GetOiseau "
+        /// <summary>
+        /// Obtient un Oiseau à partir de son ID
+        /// </summary>
+        /// <param name="pID"></param>
+        /// <returns></returns>
+        public Oiseau_Entite GetOiseau(int pID)
+        {
+            Oiseau_Entite retour = new Oiseau_Entite();
+            try
+            {
+
+                retour = database.GetOiseau(pID);
+            }
+            catch (Exception ex)
+            {
+                retour.MessageErreur = ex.Message;
+                this._MessageErreur = ex.Message;
+            }
+            return retour;
+        }
+
+        /// <summary>
+        /// Obtient un Oiseau à partir de son UserName
+        /// </summary>
+        /// <param name="pID"></param>
+        /// <returns></returns>
+        public Oiseau_Entite GetOiseau(string pUserName)
+        {
+            Oiseau_Entite retour = new Oiseau_Entite();
+            try
+            {
+
+                retour = database.GetOiseau(pUserName);
+            }
+            catch (Exception ex)
+            {
+                retour.MessageErreur = ex.Message;
+                this._MessageErreur = ex.Message;
+            }
+            return retour;
+        }
+        #endregion
+
+        #region " CreerOiseau "
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pOiseau"></param>
+        /// <returns></returns>
+        public Oiseau_Entite CreerOiseau(Oiseau_Entite pOiseau)
+        {
+            this._MessageErreur = string.Empty;
+            Oiseau_Entite retour = new Oiseau_Entite();
+            oiseau oiseauDB = new oiseau();
+            oiseauDB.Convertir(pOiseau);
+            try
+            {
+                retour = database.InsertOiseau(oiseauDB);
+            }
+
+            catch (Exception ex)
+            {
+                retour.MessageErreur = ex.Message;
+                this._MessageErreur = ex.Message;
+            }
+            return retour;
+        }
+
+        public bool SupprimerOiseau(string pUserName)
+        {
+            this._MessageErreur = string.Empty;
+            bool retour = false;
+            try
+            {
+                retour = database.DeleteOiseau(pUserName);
+            }
+            catch (Exception ex)
+            {
+
+                this._MessageErreur = ex.Message;
+            }
+            return retour;
+        }
+
+        public bool SupprimerOiseau(int pID)
+        {
+
+            this._MessageErreur = string.Empty;
+            bool retour = false;
+            try
+            {
+                retour = database.DeleteOiseau(pID);
+            }
+            catch (Exception ex)
+            {
+                this._MessageErreur = ex.Message;
+            }
+            return retour;
+        }
+
+        public Oiseau_Entite ObtenirOiseau(int pID)
+        {
+
+            return database.GetOiseau(pID);
+        }
+        #endregion
+
+        #region " DeleteOiseau "
+
+        public bool DeleteOiseau(int pID)
+        {
+            return database.DeleteOiseau(pID);
+        }
+
+        #endregion
+
+        public Oiseau_Entite UpdateOiseau(Oiseau_Entite pOiseau)
+        {
+            Oiseau_Entite Oiseau = new Oiseau_Entite();
+            try
+            {
+                return database.UpdateOiseau(pOiseau);
+            }
+            catch (Exception ex)
+            {
+                pOiseau.MessageErreur = ex.Message;
+                return pOiseau;
+            }
+        }
+#endregion
+
+
+        #region " Photo "
+
+        #region " GetPhoto "
+        /// <summary>
+        /// Obtient un Photo à partir de son ID
+        /// </summary>
+        /// <param name="pID"></param>
+        /// <returns></returns>
+        public Photo_Entite GetPhoto(int pID)
+        {
+            Photo_Entite retour = new Photo_Entite();
+            try
+            {
+
+                retour = database.GetPhoto(pID);
+            }
+            catch (Exception ex)
+            {
+                retour.MessageErreur = ex.Message;
+                this._MessageErreur = ex.Message;
+            }
+            return retour;
+        }
+
+        
+        #endregion
+
+        #region " CreerPhoto "
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pPhoto"></param>
+        /// <returns></returns>
+        public Photo_Entite CreerPhoto(Photo_Entite pPhoto)
+        {
+            Photo_Entite retour = new Photo_Entite();
+            this._MessageErreur = string.Empty;
+            photo Photo = new photo();
+            Photo.Convertir(pPhoto);
+
+            try
+            {
+                retour = database.InsertPhoto(Photo);
+            }
+
+            catch (Exception ex)
+            {
+                retour.MessageErreur = ex.Message;
+                this._MessageErreur = ex.Message;
+            }
+            return retour;
+        }
+
+       public bool SupprimerPhoto(int pID)
+        {
+
+            this._MessageErreur = string.Empty;
+            bool retour = false;
+            try
+            {
+                retour = database.DeletePhoto(pID);
+            }
+            catch (Exception ex)
+            {
+                this._MessageErreur = ex.Message;
+            }
+            return retour;
+        }
+
+        public Photo_Entite ObtenirPhoto(int pID)
+        {
+
+            return database.GetPhoto(pID);
+        }
+        #endregion
+
+        #region " DeletePhoto "
+
+        public bool DeletePhoto(int pID)
+        {
+
+
+            return database.DeletePhoto(pID);
+        }
+
+        #endregion
+
+        public Photo_Entite UpdatePhoto(Photo_Entite pPhoto)
+        {
+            Photo_Entite Photo = new Photo_Entite();
+            try
+            {
+                return database.UpdatePhoto(pPhoto);
+            }
+            catch (Exception ex)
+            {
+                pPhoto.MessageErreur = ex.Message;
+                return pPhoto;
+            }
+        }
+#endregion
 
         #endregion
 

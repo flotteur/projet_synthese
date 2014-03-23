@@ -151,6 +151,9 @@ namespace Data_synthese.Classes
                 usag.NomUsager = userRow.NomUsager;
                 usag.Courriel = userRow.Courriel;
             }
+            else
+                usag.MessageErreur = Constantes.ERREUR_USAGER_INEXISTANT;
+
             return usag;
         }
         #endregion
@@ -199,9 +202,7 @@ namespace Data_synthese.Classes
             if (usag.Validate() == false )
                 throw new Exception(Classes.Constantes.ERREUR_INFOS_MANQUANTES);
            
-            Encription crypteur = new Encription();
-
-                // On s'assure que le username n'existe pas déjà
+           // On s'assure que le username n'existe pas déjà
             var userNameRow = (from row in dbContext.usager.Local
                                    where row.NomUsager == pUsername
                                    select row);
@@ -289,6 +290,8 @@ namespace Data_synthese.Classes
                 usag.EstAdministrateur = usagerRow.Administrateur;
                 usag.Courriel = usagerRow.Courriel;
             }
+            else
+                usag.MessageErreur = Constantes.ERREUR_USAGER_INEXISTANT;
 
             return usag;
         }
@@ -343,7 +346,6 @@ namespace Data_synthese.Classes
         }
         #endregion
 
-
         #region "UpdateUsager"
 
         public Usager_Entite UpdateUsager(Usager_Entite pUsager)
@@ -374,6 +376,493 @@ namespace Data_synthese.Classes
         }
         #endregion
 
+        #endregion
+
+        #region " Oiseaux "
+        #region " GetOiseau "
+
+        /// <summary>
+        /// Retourne l'Oiseau ayant l'ID= pID ou un Oiseau vide s'il n'est pas dans la BD
+        /// </summary>
+        /// <param name="PID"></param>
+        /// <returns></returns>
+        public Oiseau_Entite GetOiseau(int PID)
+        {
+            Oiseau_Entite oiseau = new Oiseau_Entite();
+            Encription crypteur = new Encription();
+            var OiseauRow = (from row in dbContext.oiseau.Local
+                             where row.Id == PID
+                             select row).FirstOrDefault();
+            if (OiseauRow == null)
+                OiseauRow = (from row in dbContext.oiseau
+                             where row.Id == PID
+                             select row).FirstOrDefault();
+
+            if (OiseauRow != null)
+                oiseau = OiseauRow.Convertir();
+            else
+                oiseau.MessageErreur = Constantes.ERREUR_OISEAU_INEXISTANT;
+            return oiseau;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pEspece"></param>
+        /// <returns></returns>
+        public Oiseau_Entite GetOiseau(string pEspece)
+        {
+            Oiseau_Entite oiseauEnt = null;
+            oiseau oiseauRow = null;
+
+            //Dans le cache
+            var oiseauRows = (from row in dbContext.oiseau.Local
+                            select row);
+            if (oiseauRows.Any())
+                foreach (oiseau row in oiseauRows)
+
+                    if (row.Espece.Equals(pEspece,StringComparison.OrdinalIgnoreCase))
+                    {
+                        oiseauRow = row;
+                    }
+
+            // Si on pas trouvé dans le cache on va dans la BD
+            if (oiseauRow == null)
+            {
+                oiseauRows = (from row in dbContext.oiseau
+                            select row);
+                if (oiseauRows != null)
+                    foreach (oiseau row in oiseauRows)
+
+                        if (row.Espece.Equals(pEspece, StringComparison.OrdinalIgnoreCase))
+                        {
+                            oiseauRow = row;
+                            break;
+                        }
+            }
+
+            oiseauEnt = new Oiseau_Entite();
+            if (oiseauRow == null)
+                oiseauEnt.MessageErreur = Constantes.ERREUR_OISEAU_INEXISTANT;
+            else
+                oiseauEnt = oiseauRow.Convertir();
+                
+            return oiseauEnt;
+        }
+        #endregion
+        
+        #region " InsertOiseau "
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pOiseau"></param>
+        /// <returns></returns>
+        public Oiseau_Entite InsertOiseau(oiseau pOiseau)
+        {
+            Oiseau_Entite oiseau = new Oiseau_Entite() { CrisOiseau = pOiseau.Convertir(pOiseau.crioiseaux),
+                            Description = pOiseau.Description, 
+                            Photos = pOiseau.Convertir(pOiseau.photos), 
+                            Espece =pOiseau.Espece , 
+                            ID = pOiseau.Id };
+             
+            if (oiseau.Validate() == false)
+                throw new Exception(Classes.Constantes.ERREUR_INFOS_MANQUANTES);
+
+            Encription crypteur = new Encription();
+
+            // On s'assure que le username n'existe pas déjà
+            var oiseauRows = (from row in dbContext.oiseau.Local
+                               where row.Espece == pOiseau.Espece || row.Id == pOiseau.Id 
+                               select row);
+            if ((oiseauRows != null) && (oiseauRows.ToList().Count == 0))
+                oiseauRows = (from row in dbContext.oiseau
+                               where row.Espece == pOiseau.Espece || row.Id == pOiseau.Id 
+                               select row);
+            if ((oiseauRows != null) && (oiseauRows.ToList().Count > 0))
+            {
+                // err //définir des erreurs et finaliser le test
+                throw new Exception(Classes.Constantes.ERREUR_OISEAU_INEXISTANT);
+
+            }
+
+            // On va chercher le dernier ID
+            pOiseau.Id  = (from row in dbContext.oiseau
+                           select row).Count() + 1;
+                        
+            dbContext.oiseau.Add(pOiseau);
+
+            return pOiseau.Convertir(); 
+        }
+
+        #endregion
+
+        #region " DeleteOiseau "
+        public Boolean DeleteOiseau(int pOiseauID)
+        {
+            if ((_session.usager  != null) && (_session.usager.EstAdministrateur == true))
+            {
+                var OiseauRow = (from row in dbContext.oiseau.Local
+                                 where row.Id == pOiseauID
+                                 select row).FirstOrDefault();
+                if (OiseauRow == null)
+                    OiseauRow = (from row in dbContext.oiseau
+                                 where row.Id == pOiseauID
+                                 select row).FirstOrDefault();
+                if (OiseauRow != null)
+                {
+                    dbContext.oiseau.Remove(OiseauRow);
+
+                    return true;
+                }
+            }
+            else
+                throw new Exception(Constantes.ERREUR_ADMIN_REQUIS);
+            return false;
+        }
+
+
+        public Boolean DeleteOiseau(string pEspece)
+        {
+            if ((_session.usager != null) && (_session.usager.EstAdministrateur == true))
+            {
+                var OiseauRow = (from row in dbContext.oiseau.Local
+                                 where row.Espece == pEspece
+                                 select row).FirstOrDefault();
+                if (OiseauRow == null)
+                    OiseauRow = (from row in dbContext.oiseau
+                                 where row.Espece == pEspece
+                                 select row).FirstOrDefault();
+                if (OiseauRow != null)
+                {
+                    dbContext.oiseau.Remove(OiseauRow);
+
+                    return true;
+                }
+            }
+            else
+                throw new Exception(Constantes.ERREUR_ADMIN_REQUIS);
+            return false;
+        }
+
+        #endregion
+        
+        #region "UpdateOiseau"
+
+        public Oiseau_Entite UpdateOiseau(Oiseau_Entite pOiseau)
+        {
+
+            var OiseauRow = (from row in dbContext.oiseau.Local
+                             where row.Id == pOiseau.ID || string.CompareOrdinal( row.Espece, pOiseau.Espece) == 0
+                             select row).FirstOrDefault();
+            if (OiseauRow == null)
+                OiseauRow = (from row in dbContext.oiseau
+                             where row.Id == pOiseau.ID || string.CompareOrdinal( row.Espece, pOiseau.Espece) == 0
+                             select row).FirstOrDefault();
+
+            if (OiseauRow != null)
+            {
+                OiseauRow.Description = pOiseau.Description;
+                OiseauRow.Espece = pOiseau.Espece;
+                
+            }
+            else
+                pOiseau.MessageErreur = Constantes.ERREUR_OISEAU_INEXISTANT;
+
+            return pOiseau;
+
+        }
+        
+
+#endregion
+        #endregion
+
+        #region " CriOiseaux "
+     
+        #region " GetCriOiseau "
+
+        /// <summary>
+        /// Retourne l'CriOiseau ayant l'ID= pID ou un CriOiseau vide s'il n'est pas dans la BD
+        /// </summary>
+        /// <param name="PID"></param>
+        /// <returns></returns>
+        public CriOiseau_Entite GetCriOiseau(int PID)
+        {
+            CriOiseau_Entite CriOiseau = new CriOiseau_Entite();
+            
+            var CriOiseauRow = (from row in dbContext.crioiseau.Local
+                             where row.Id == PID
+                             select row).FirstOrDefault();
+            if (CriOiseauRow == null)
+                CriOiseauRow = (from row in dbContext.crioiseau
+                             where row.Id == PID
+                             select row).FirstOrDefault();
+
+            if (CriOiseauRow != null)
+                CriOiseau = CriOiseauRow.Convertir();
+            else
+                CriOiseau.MessageErreur = Constantes.ERREUR_CRIOISEAU_INEXISTANT;
+            return CriOiseau;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pDescription"></param>
+        /// <returns></returns>
+        public CriOiseau_Entite GetCriOiseau(string pDescription)
+        {
+            CriOiseau_Entite CriOiseauEnt = null;
+            crioiseau CriOiseauRow = null;
+
+            //Dans le cache
+            var CriOiseauRows = (from row in dbContext.crioiseau.Local
+                              select row);
+            if (CriOiseauRows.Any())
+                foreach (crioiseau row in CriOiseauRows)
+
+                    if (row.Description.Equals(pDescription, StringComparison.OrdinalIgnoreCase))
+                    {
+                        CriOiseauRow = row;
+                    }
+
+            // Si on pas trouvé dans le cache on va dans la BD
+            if (CriOiseauRow == null)
+            {
+                CriOiseauRows = (from row in dbContext.crioiseau
+                              select row);
+                if (CriOiseauRows != null)
+                    foreach (crioiseau row in CriOiseauRows)
+
+                        if (row.Description.Equals(pDescription, StringComparison.OrdinalIgnoreCase))
+                        {
+                            CriOiseauRow = row;
+                            break;
+                        }
+            }
+
+            CriOiseauEnt = new CriOiseau_Entite();
+            if (CriOiseauRow == null)
+                CriOiseauEnt.MessageErreur = Constantes.ERREUR_CRIOISEAU_INEXISTANT;
+            else
+                CriOiseauEnt = CriOiseauRow.Convertir();
+
+            return CriOiseauEnt;
+        }
+        #endregion
+
+        #region " InsertCriOiseau "
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pCriOiseau"></param>
+        /// <returns></returns>
+        public CriOiseau_Entite InsertCriOiseau(crioiseau pCriOiseau)
+        {
+            CriOiseau_Entite CriOiseau = new CriOiseau_Entite()
+            {
+                 Son = pCriOiseau.Son ,
+                Description = pCriOiseau.Description,
+                ID = pCriOiseau.Id
+            };
+
+            if (CriOiseau.Validate() == false)
+                throw new Exception(Classes.Constantes.ERREUR_INFOS_MANQUANTES);
+
+            Encription crypteur = new Encription();
+            
+            // On va chercher le dernier ID
+            pCriOiseau.Id = (from row in dbContext.crioiseau
+                             select row).Count() + 1;
+
+
+            dbContext.crioiseau.Add(pCriOiseau);
+
+            return pCriOiseau.Convertir();
+        }
+
+        #endregion
+
+        #region " DeleteCriOiseau "
+        public Boolean DeleteCriOiseau(int pID)
+        {
+            if ((_session.usager != null) && (_session.usager.EstAdministrateur == true))
+            {
+                var CriOiseauRow = (from row in dbContext.crioiseau.Local
+                                 where row.Id == pID
+                                 select row).FirstOrDefault();
+                if (CriOiseauRow == null)
+                    CriOiseauRow = (from row in dbContext.crioiseau
+                                 where row.Id == pID
+                                 select row).FirstOrDefault();
+                if (CriOiseauRow != null)
+                {
+                    dbContext.crioiseau.Remove(CriOiseauRow);
+
+                    return true;
+                }
+            }
+            else
+                throw new Exception(Constantes.ERREUR_ADMIN_REQUIS);
+            return false;
+        }
+
+        #endregion
+
+        #region "UpdateCriOiseau"
+
+        public CriOiseau_Entite UpdateCriOiseau(CriOiseau_Entite pCriOiseau)
+        {
+
+            var CriOiseauRow = (from row in dbContext.crioiseau.Local
+                             where row.Id == pCriOiseau.ID 
+                             select row).FirstOrDefault();
+            if (CriOiseauRow == null)
+                CriOiseauRow = (from row in dbContext.crioiseau
+                             where row.Id == pCriOiseau.ID 
+                             select row).FirstOrDefault();
+
+            if (CriOiseauRow != null)
+            {
+                CriOiseauRow.Description = pCriOiseau.Description;
+                CriOiseauRow.Son= pCriOiseau.Son;
+                CriOiseauRow.IDOiseau = pCriOiseau.IDOiseau;
+                
+            }
+            else
+                pCriOiseau.MessageErreur = Constantes.ERREUR_CRIOISEAU_INEXISTANT;
+
+            return pCriOiseau;
+
+        }
+
+
+        #endregion
+        #endregion
+        
+        #region " Photo "
+
+        #region " GetPhoto "
+
+        /// <summary>
+        /// Retourne l'Photo ayant l'ID= pID ou un Photo vide s'il n'est pas dans la BD
+        /// </summary>
+        /// <param name="PID"></param>
+        /// <returns></returns>
+        public Photo_Entite GetPhoto(int PID)
+        {
+            Photo_Entite Photo = new Photo_Entite();
+
+            var PhotoRow = (from row in dbContext.photo.Local
+                                where row.Id == PID
+                                select row).FirstOrDefault();
+            if (PhotoRow == null)
+                PhotoRow = (from row in dbContext.photo
+                                where row.Id == PID
+                                select row).FirstOrDefault();
+
+            if (PhotoRow != null)
+                Photo = PhotoRow.Convertir();
+            else
+                Photo.MessageErreur = Constantes.ERREUR_PHOTOOISEAU_INEXISTANTE;
+
+            return Photo;
+        }
+
+
+        
+        #endregion
+
+        #region " InsertPhoto "
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pPhoto"></param>
+        /// <returns></returns>
+        public Photo_Entite InsertPhoto(photo pPhoto)
+        {
+            Photo_Entite Photo = new Photo_Entite()
+            {
+                Image = pPhoto.Image,
+                Description = pPhoto.Description,
+                ID = pPhoto.Id,
+                IDOiseau = pPhoto.IDOiseau
+                   
+            };
+
+            if (Photo.Validate() == false)
+                throw new Exception(Classes.Constantes.ERREUR_INFOS_MANQUANTES);
+
+            Encription crypteur = new Encription();
+
+            // On va chercher le dernier ID
+            pPhoto.Id = (from row in dbContext.photo
+                             select row).Count() + 1;
+
+
+            dbContext.photo.Add(pPhoto);
+
+            return pPhoto.Convertir();
+        }
+
+        #endregion
+
+        #region " DeletePhoto "
+        public Boolean DeletePhoto(int pID)
+        {
+            if ((_session.usager != null) && (_session.usager.EstAdministrateur == true))
+            {
+                var PhotoRow = (from row in dbContext.photo.Local
+                                    where row.Id == pID
+                                    select row).FirstOrDefault();
+                if (PhotoRow == null)
+                    PhotoRow = (from row in dbContext.photo
+                                    where row.Id == pID
+                                    select row).FirstOrDefault();
+                if (PhotoRow != null)
+                {
+                    dbContext.photo.Remove(PhotoRow);
+
+                    return true;
+                }
+            }
+            else
+                throw new Exception(Constantes.ERREUR_ADMIN_REQUIS);
+            return false;
+        }
+
+        #endregion
+
+        #region "UpdatePhoto"
+
+        public Photo_Entite UpdatePhoto(Photo_Entite pPhoto)
+        {
+
+            var PhotoRow = (from row in dbContext.photo.Local
+                                where row.Id == pPhoto.ID
+                                select row).FirstOrDefault();
+            if (PhotoRow == null)
+                PhotoRow = (from row in dbContext.photo
+                                where row.Id == pPhoto.ID
+                                select row).FirstOrDefault();
+
+            if (PhotoRow != null)
+            {
+                PhotoRow.Description = pPhoto.Description;
+                PhotoRow.Image = pPhoto.Image;
+                PhotoRow.IDOiseau = pPhoto.IDOiseau;
+                
+            }
+            else
+                pPhoto.MessageErreur = Constantes.ERREUR_PHOTOOISEAU_INEXISTANTE;
+
+            return pPhoto;
+
+        }
+
+
+        #endregion
         #endregion
 
 

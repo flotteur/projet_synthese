@@ -6,7 +6,7 @@ using System.Web;
 
 namespace WCF_Synthese.EntitesWCF
 {
-    public class ObservationWCF
+    public class ObservationWCF : EntiteWCFBase
     {
         [DataMember(Name = "ID")]
         public int ID { get; set; }
