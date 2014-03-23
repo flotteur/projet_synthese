@@ -8,7 +8,7 @@ using System.Text;
 
 namespace BO_Synthese
 {
-    public class PhotoObservationRepository : BO
+    public sealed class PhotoObservationRepository : BO
     {
         #region property
         private PhotoObservationDTO CurrentPhotoObservationDto;

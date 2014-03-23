@@ -7,7 +7,7 @@ using System.Text;
 
 namespace BO_Synthese
 {
-    public class ObservationRepository : BO
+    public sealed class ObservationRepository : BO
     {
         #region fields
         private ObservationDTO currentObservationDto;
@@ -69,7 +69,7 @@ namespace BO_Synthese
         {
             var list = (from observation in dbContext.observation
                         where observation.Id == id
-                        select observation);
+                        select observation).ToList();
 
             foreach (observation observation in list)
                 return ObservationDbToDto(observation);
@@ -85,7 +85,8 @@ namespace BO_Synthese
         public List<ObservationDTO> GetAllObservation()
         {
             var listObservationDto = new List<ObservationDTO>();
-            var listObservation = (from observations in dbContext.observation.Include("usagers").Include("oiseau")
+
+            var listObservation = (from observations in dbContext.observation //.Include("usagers")
                                     select observations);
             
             foreach (observation observation in listObservation)
@@ -126,13 +127,20 @@ namespace BO_Synthese
             {
                 IDOiseau = observation.IDOiseau,
                 IDUsager = observation.IDUsager,
-                DateObservation = observation.DateObservation,
-                usager = new DTO.UsagerDTO()
+                DateObservation = observation.DateObservation/*,
+                Usager = new DTO.UsagerDTO()
                 {
                     Nom = observation.usagers.Nom,
                     NomUsager = observation.usagers.NomUsager,
                     ID = observation.usagers.Id
-                }
+                },
+                Oiseau = new DTO.OiseauDTO()
+                {
+                    Id = observation.oiseaux.Id,
+                    Espece = observation.oiseaux.Espece,
+                    Description = observation.oiseaux.Description
+                }*/
+
             };
 
             return observationDto;
