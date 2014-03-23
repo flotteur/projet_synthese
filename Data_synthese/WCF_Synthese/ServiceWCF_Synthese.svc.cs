@@ -7,6 +7,8 @@ using WCF_Synthese.EntitesWCF;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.IO;
+using BO_Synthese.DTO;
+using BO_Synthese.Repository;
 
 namespace WCF_Synthese
 {
@@ -50,8 +52,7 @@ namespace WCF_Synthese
         {
             using (var repository = new ObservationRepository()) {
                 int numericId;
-                Int32.TryParse(id,
-                    out numericId);
+                Int32.TryParse(id, out numericId);
                 return repository.GetObservationFromId(numericId);
             }
         }
@@ -87,11 +88,8 @@ namespace WCF_Synthese
 
                 Stream file = new MemoryStream(stream);
                 int numericId;
-                Int32.TryParse(id,
-                    out numericId);
-                repository.CreatePhotoObservation(id,
-                    filename,
-                    file);
+                Int32.TryParse(id, out numericId);
+                repository.CreatePhotoObservation(id, filename, file);
             }
 
         }
@@ -258,7 +256,35 @@ namespace WCF_Synthese
             return pOiseau;
         }
 
+        public void DeleteCommentaire(string id)
+        {
+            using(var repository = new CommentaireRepository())
+            {
+                int numericId;
+                Int32.TryParse(id, out numericId);
 
+                repository.DeleteCommentaire(numericId);
+            }
+        }
+
+        public CommentaireDTO AddCommentaire(CommentaireDTO commentaire)
+        {
+            using (var repository = new CommentaireRepository())
+            {
+                return repository.AddCommentaire(commentaire);
+            }
+        }
+
+        public List<CommentaireDTO> GetCommentaire(string id) 
+        {
+            using (var repository = new CommentaireRepository())
+            {
+                int numericId;
+                Int32.TryParse(id, out numericId);
+
+                return repository.GetListCommentaire(numericId);
+            }
+        }
         #endregion
 
 
