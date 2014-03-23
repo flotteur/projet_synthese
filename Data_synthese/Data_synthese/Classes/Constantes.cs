@@ -15,7 +15,10 @@ namespace Data_synthese.Classes
         ID_ERREUR_LOGIN = 4,
         ID_ERREUR_USAGER_INEXISTANT = 5,
         ID_ERREUR_CONNEXION_REQUISE = 6,
-        ID_ERREUR_INFOS_MANQUANTES = 7
+        ID_ERREUR_INFOS_MANQUANTES = 7,
+        ID_ERREUR_OISEAU_INEXISTANT = 8,
+        ID_ERREUR_CRIOISEAU_INEXISTANT = 9,
+        ID_ERREUR_PHOTOOISEAU_INEXISTANTE = 10
 
     }
     class Constantes
@@ -28,5 +31,8 @@ namespace Data_synthese.Classes
         public static string ERREUR_USAGER_INEXISTANT = string.Format("{0}-{1}", (int)ErreursID.ID_ERREUR_USAGER_INEXISTANT, "Usager inexistant");
         public static string ERREUR_CONNEXION_REQUISE = string.Format("{0}-{1}", (int)ErreursID.ID_ERREUR_CONNEXION_REQUISE, "Vous devez être connecté pour effectuer cette opération.");
         public static string ERREUR_INFOS_MANQUANTES = string.Format("{0}-{1}", (int)ErreursID.ID_ERREUR_INFOS_MANQUANTES, "Il manque des informations pour effectuer cette opération.");
+        public static string ERREUR_OISEAU_INEXISTANT = string.Format("{0}-{1}", (int)ErreursID.ID_ERREUR_OISEAU_INEXISTANT, "Cet oiseau est inexistant dans la base de données.");
+        public static string ERREUR_CRIOISEAU_INEXISTANT = string.Format("{0}-{1}", (int)ErreursID.ID_ERREUR_CRIOISEAU_INEXISTANT, "Ce cri d'oiseau est inexistant dans la base de données.");
+        public static string ERREUR_PHOTOOISEAU_INEXISTANTE = string.Format("{0}-{1}", (int)ErreursID.ID_ERREUR_PHOTOOISEAU_INEXISTANTE, "Cette photo d'oiseau est inexistante dans la base de données.");
     }
 }

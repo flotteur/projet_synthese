@@ -34,13 +34,13 @@ namespace BO_Synthese
         /// La latitude (coord gps)
         /// </summary>
         [DataMember(Name = "Latitude")]
-        string Latitude { set; get; }
+        Double Latitude { set; get; }
 
         /// <summary>
         /// La longitude (coord gps)
         /// </summary>
         [DataMember(Name = "Longitude")]
-        string Longitude { set; get; }
+        Double Longitude { set; get; }
 
         /// <summary>
         /// L'id de l'usager

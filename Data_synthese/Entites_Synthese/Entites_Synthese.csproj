@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CriOiseau_Entite.cs" />
     <Compile Include="EntiteBase.cs" />
+    <Compile Include="Oiseau_Entite.cs" />
+    <Compile Include="Photo_Entite.cs" />
     <Compile Include="Usager_Entite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

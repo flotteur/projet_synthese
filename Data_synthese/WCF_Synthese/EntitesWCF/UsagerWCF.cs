@@ -53,7 +53,7 @@ namespace WCF_Synthese.EntitesWCF
         /// Convertit une entité UsagerWCF en Usager_Entite
         /// </summary>
         /// <returns></returns>
-        public Usager_Entite Convertir()
+        public override EntiteBase Convertir()
         {
 
             Usager_Entite retour = new Usager_Entite

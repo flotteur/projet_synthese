@@ -19,6 +19,7 @@ namespace WCF_Synthese
     public interface IServiceWCF_Synthese
     {
 
+        #region " Usager "
         [OperationContract]
         [WebInvoke(Method = "GET",
             BodyStyle = WebMessageBodyStyle.Wrapped,
@@ -51,7 +52,115 @@ namespace WCF_Synthese
             UriTemplate = "DeleteUsager/{pID}")]
         string DeleteUsager(string pID);
 
-     // [OperationContract(IsInitiating = true, IsTerminating = false)]
+#endregion
+
+        #region " Oiseau "
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "GetOiseau/{pID}")]
+        OiseauWCF GetOiseau(string pID);
+
+        [OperationContract]
+        [WebInvoke(Method = "*",
+            BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "InsertOiseau")]
+        OiseauWCF InsertOiseau(OiseauWCF pOiseau);
+
+        [OperationContract]
+        [WebInvoke(Method = "PUT",
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "UpdatetOiseau/")]
+        OiseauWCF UpdateOiseau(OiseauWCF pOiseau);
+
+        [OperationContract]
+        [WebInvoke(Method = "DELETE",
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "DeleteOiseau/{pID}")]
+        string DeleteOiseau(string pID);
+
+#endregion
+
+        #region " CriOiseau "
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "GetCriOiseau/{pID}")]
+        CriOiseauWCF GetCriOiseau(string pID);
+
+        [OperationContract]
+        [WebInvoke(Method = "*",
+            BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "InsertCriOiseau")]
+        CriOiseauWCF InsertCriOiseau(CriOiseauWCF pOiseau);
+
+        [OperationContract]
+        [WebInvoke(Method = "PUT",
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "UpdateCriOiseau/")]
+        CriOiseauWCF UpdateCriOiseau(CriOiseauWCF pCriOiseau);
+
+        [OperationContract]
+        [WebInvoke(Method = "DELETE",
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "DeleteCriOiseau/{pID}")]
+        string DeleteCriOiseau(string pID);
+
+#endregion
+
+        #region " Photo "
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "GetPhoto/{pID}")]
+        PhotoWCF GetPhoto(string pID);
+
+        [OperationContract]
+        [WebInvoke(Method = "*",
+            BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "InsertPhoto")]
+        PhotoWCF InsertPhoto(PhotoWCF pOiseau);
+
+        [OperationContract]
+        [WebInvoke(Method = "PUT",
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "UpdatePhoto/")]
+        PhotoWCF UpdatePhoto(PhotoWCF pPhoto);
+
+        [OperationContract]
+        [WebInvoke(Method = "DELETE",
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "DeletePhoto/{pID}")]
+        string DeletePhoto(string pID);
+
+        #endregion
+
+
+        // [OperationContract(IsInitiating = true, IsTerminating = false)]
         [OperationContract]
         [WebInvoke(Method = "GET",
             BodyStyle = WebMessageBodyStyle.Wrapped,
@@ -97,7 +206,7 @@ namespace WCF_Synthese
 
         [OperationContract]
         [WebInvoke(UriTemplate = "image/{id}/{filename}")]
-        void AddImage(string id, string filename, Stream file);
+        void AddImage(string id, string filename, byte[] file);
 		
 		//[OperationContract]
         //[WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,

@@ -62,8 +62,11 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Classes\Constantes.cs" />
+    <Compile Include="Classes\crioiseauPartialClass.cs" />
     <Compile Include="Classes\DatabaseObject.cs" />
     <Compile Include="Classes\Encription.cs" />
+    <Compile Include="Classes\oiseauPartialClass.cs" />
+    <Compile Include="Classes\photoPartialClass.cs" />
     <Compile Include="Commentaire.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -88,7 +91,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model_Synthese.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Observation.cs">
+    <Compile Include="observation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="oiseau.cs">
@@ -145,7 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entites_Synthese\Entites_Synthese.csproj">
-      <Project>{47fe8f85-d7f3-4ca6-b57a-6c65fd848810}</Project>
+      <Project>{47FE8F85-D7F3-4CA6-B57A-6C65FD848810}</Project>
       <Name>Entites_Synthese</Name>
     </ProjectReference>
   </ItemGroup>
