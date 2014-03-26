@@ -87,7 +87,7 @@ namespace BO_Synthese
             var listObservationDto = new List<ObservationDTO>();
 
             var listObservation = (from observations in dbContext.observation
-                                    select observations);
+                                    select observations).ToList();
             
             foreach (observation observation in listObservation)
             {
@@ -110,7 +110,10 @@ namespace BO_Synthese
             {
                 IDOiseau = currentObservationDto.IDOiseau,
                 IDUsager = currentObservationDto.IDUsager,
-                DateObservation = currentObservationDto.DateObservation
+                DateObservation = currentObservationDto.DateObservation,
+                PositionLat = currentObservationDto.Latitude,
+                PositionLong = currentObservationDto.Longitude,
+                Titre = currentObservationDto.Titre
             };
 
             return observation;

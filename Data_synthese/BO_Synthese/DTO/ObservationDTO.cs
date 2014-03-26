@@ -67,6 +67,12 @@ namespace BO_Synthese
         public OiseauDTO Oiseau { get; set; }
 
         /// <summary>
+        /// Titre de l'observation
+        /// </summary>
+        [DataMember(Name = "Titre")]
+        public string Titre { get; set; }
+
+        /// <summary>
         /// Permet de traiter la date avant l'envoi au client
         /// </summary>
         /// <param name="ctx"></param>
