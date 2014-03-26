@@ -87,7 +87,7 @@ namespace BO_Synthese
             var listObservationDto = new List<ObservationDTO>();
 
             var listObservation = (from observations in dbContext.observation
-                                    select observations);
+                                    select observations).ToList();
             
             foreach (observation observation in listObservation)
             {
