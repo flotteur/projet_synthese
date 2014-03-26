@@ -1,0 +1,133 @@
+﻿using BO_Synthese.DTO;
+using Data_synthese;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace BO_Synthese.Repository
+{
+    public sealed class CommentaireRepository : BO, IRepository<CommentaireDTO, Commentaire>
+    {
+        #region fields
+        private synthese_dbEntities dbContext;
+        private CommentaireDTO currentCommentaireDto;
+        #endregion
+
+        #region constructor
+        /// <summary>
+        /// Constructeur par défaut
+        /// </summary>
+        public CommentaireRepository()
+        {
+            currentCommentaireDto = null;
+            dbContext = new synthese_dbEntities();
+        }
+
+        /// <summary>
+        /// Constructeur avec CommentaireDTO
+        /// </summary>
+        /// <param name="commentaireDto"></param>
+        public CommentaireRepository(CommentaireDTO commentaireDto)
+        {
+            currentCommentaireDto = commentaireDto;
+            dbContext = new synthese_dbEntities();
+        }
+        #endregion
+
+        #region public
+        /// <summary>
+        /// Ajout d'un commentaire
+        /// </summary>
+        /// <param name="commentaireDto">Le commentaire</param>
+        /// <returns>Le commentaire</returns>
+        public CommentaireDTO AddCommentaire(CommentaireDTO commentaireDto)
+        {
+            dbContext.Commentaire.Add(ToBD(commentaireDto));
+            dbContext.SaveChanges();
+
+            return commentaireDto;
+        }
+
+        /// <summary>
+        /// Permet d'obtenir un commentaire en fonction du ID du commentaire
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public CommentaireDTO GetCommentaire(int id)
+        {
+            Commentaire commentaire = (from Commentaire in dbContext.Commentaire
+                        where Commentaire.Id == id
+                        select Commentaire).First();
+
+            return ToDto(commentaire);
+
+        }
+
+        /// <summary>
+        /// Liste des commentaire pour une observation
+        /// </summary>
+        /// <param name="observationId">Id de l'observation</param>
+        /// <returns>La liste des observations</returns>
+        public List<CommentaireDTO> GetListCommentaire(int observationId)
+        {
+            var listCommentaireDto = new List<CommentaireDTO>();
+
+            List<Commentaire> commentaireList = (from Commentaire in dbContext.Commentaire
+                                                 where Commentaire.observationId == observationId
+                                                 select Commentaire).ToList();
+
+            foreach (Commentaire commentaire in commentaireList)
+            {
+                listCommentaireDto.Add(ToDto(commentaire));
+            }
+
+            return listCommentaireDto;
+        }
+
+        /// <summary>
+        /// Permet de supprimer un commentaire 
+        /// </summary>
+        /// <param name="id">Id du commentaire</param>
+        public void DeleteCommentaire(int id)
+        {
+            var commentaire = new Commentaire();
+            commentaire.Id = id;
+
+            dbContext.Commentaire.Remove(commentaire);
+            dbContext.SaveChanges();
+        }
+
+        /// <summary>
+        /// Conversion commentaireDTO vers Commentaire
+        /// </summary>
+        /// <param name="commentaireDto">Commentaire du service</param>
+        /// <returns>Commentaire BD</returns>
+        public Commentaire ToBD(CommentaireDTO commentaireDto)
+        {
+
+            return new Commentaire() 
+            { 
+                IDUsager = commentaireDto.IDUsager,
+                observationId = commentaireDto.observationId,
+                Texte = commentaireDto.Texte
+            };
+        }
+
+        /// <summary>
+        /// Conversion Commentaire vers CommentaireDTO
+        /// </summary>
+        /// <param name="commentaireBD">Commentaire BD</param>
+        /// <returns>un commentaire pour le service</returns>
+        public CommentaireDTO ToDto(Commentaire commentaireBD)
+        {
+            return new CommentaireDTO()
+            {
+                IDUsager = commentaireBD.IDUsager,
+                Texte = commentaireBD.Texte,
+                observationId = commentaireBD.observationId
+            };
+        }
+        #endregion
+    }
+}

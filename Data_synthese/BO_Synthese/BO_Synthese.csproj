@@ -48,11 +48,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BO.cs" />
+    <Compile Include="DTO\CommentaireDTO.cs" />
     <Compile Include="DTO\ObservationDTO.cs" />
+    <Compile Include="DTO\OiseauDTO.cs" />
     <Compile Include="DTO\PhotoObservationDTO.cs" />
     <Compile Include="DTO\UsagerDTO.cs" />
-    <Compile Include="ObservationRepository.cs" />
-    <Compile Include="PhotoObservationRepository.cs" />
+    <Compile Include="Repository\CommentaireRepository.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\ObservationRepository.cs" />
+    <Compile Include="Repository\PhotoObservationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilitaires.cs" />
   </ItemGroup>

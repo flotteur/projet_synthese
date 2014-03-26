@@ -13,32 +13,79 @@ namespace BO_Synthese
     public class ObservationDTO
     {
         #region property
+        /// <summary>
+        /// L'id de l'observation
+        /// </summary>
         [DataMember(Name = "Id")]
         public int Id { set; get; }
 
+        /// <summary>
+        /// La date formatée pour le serivce
+        /// </summary>
         [DataMember(Name = "DateObservation")]
         public string DateObservationForSerialization { get; set; }
 
+        /// <summary>
+        /// La date de l'observation
+        /// </summary>
         public DateTime DateObservation { set; get; }
 
-        //[DataMember(Name = "Position")]
-        //string Position { set; get; }
+        /// <summary>
+        /// La latitude (coord gps)
+        /// </summary>
+        [DataMember(Name = "Latitude")]
+        public double? Latitude { set; get; }
 
+        /// <summary>
+        /// La longitude (coord gps)
+        /// </summary>
+        [DataMember(Name = "Longitude")]
+        public double? Longitude { set; get; }
+
+        /// <summary>
+        /// L'id de l'usager
+        /// </summary>
         [DataMember(Name = "IDUsager")]
         public int IDUsager { set; get; }
 
+        /// <summary>
+        /// L'id de l'oiseau
+        /// </summary>
         [DataMember(Name = "IDOiseau")]
         public int IDOiseau { set; get; }
 
+        /// <summary>
+        /// L'usager de l'observation
+        /// </summary>
         [DataMember(Name = "Usager")]
-        public UsagerDTO usager { get; set; }
+        public UsagerDTO Usager { get; set; }
 
+        /// <summary>
+        /// L'oiseau de l'observation
+        /// </summary>
+        [DataMember(Name = "Oiseau")]
+        public OiseauDTO Oiseau { get; set; }
+
+        /// <summary>
+        /// Titre de l'observation
+        /// </summary>
+        [DataMember(Name = "Titre")]
+        public string Titre { get; set; }
+
+        /// <summary>
+        /// Permet de traiter la date avant l'envoi au client
+        /// </summary>
+        /// <param name="ctx"></param>
         [OnSerializing]
         void OnSerializing(StreamingContext ctx)
         {
             DateObservationForSerialization = DateObservation.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
         }
 
+        /// <summary>
+        /// Permet de traiter la date
+        /// </summary>
+        /// <param name="ctx"></param>
         [OnDeserializing]
         void OnDeserializing(StreamingContext ctx)
         {

@@ -9,6 +9,7 @@ using System.Text;
 using WCF_Synthese.EntitesWCF;
 using BO_Synthese;
 using System.IO;
+using BO_Synthese.DTO;
 
 namespace WCF_Synthese
 {
@@ -180,7 +181,7 @@ namespace WCF_Synthese
 		
 		[OperationContract]
         [WebInvoke(Method="POST",
-            BodyStyle = WebMessageBodyStyle.Wrapped,
+            BodyStyle = WebMessageBodyStyle.Bare,
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "observation")]
@@ -207,6 +208,29 @@ namespace WCF_Synthese
         [OperationContract]
         [WebInvoke(UriTemplate = "image/{id}/{filename}")]
         void AddImage(string id, string filename, byte[] file);
+
+        [OperationContract]
+        [WebInvoke(Method = "DELETE",
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json, 
+            UriTemplate = "commentaire/{id}")]
+        void DeleteCommentaire(string id);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "commentaire")]
+        CommentaireDTO AddCommentaire(CommentaireDTO commentaire);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            UriTemplate = "commentaire/{id}",
+            ResponseFormat = WebMessageFormat.Json)]
+        List<CommentaireDTO> GetCommentaire(string id);
+
 		
 		//[OperationContract]
         //[WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
