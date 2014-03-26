@@ -110,7 +110,10 @@ namespace BO_Synthese
             {
                 IDOiseau = currentObservationDto.IDOiseau,
                 IDUsager = currentObservationDto.IDUsager,
-                DateObservation = currentObservationDto.DateObservation
+                DateObservation = currentObservationDto.DateObservation,
+                PositionLat = currentObservationDto.Latitude,
+                PositionLong = currentObservationDto.Longitude,
+                Titre = currentObservationDto.Titre
             };
 
             return observation;
