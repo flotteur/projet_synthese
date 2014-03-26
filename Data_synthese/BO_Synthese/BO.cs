@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Entites_Synthese;
 using Data_synthese;
 using Data_synthese.Classes;
@@ -11,7 +10,7 @@ namespace BO_Synthese
     /// <summary>
     /// Classe représentant la couche affaires
     /// </summary>
-    public partial class BO : IDisposable
+    public class BO : IDisposable
     {
         private DatabaseObject database = new DatabaseObject();
         private string _MessageErreur = string.Empty;
@@ -156,7 +155,6 @@ namespace BO_Synthese
 
         public Usager_Entite UpdateUsager(Usager_Entite pUsager)
         {
-            Usager_Entite usager = new Usager_Entite();
             try
             {
                 return database.UpdateUsager(pUsager);
@@ -313,7 +311,6 @@ namespace BO_Synthese
 
         public CriOiseau_Entite UpdateCriOiseau(CriOiseau_Entite pCriOiseau)
         {
-            CriOiseau_Entite CriOiseau = new CriOiseau_Entite();
             try
             {
                 return database.UpdateCriOiseau(pCriOiseau);
@@ -447,7 +444,6 @@ namespace BO_Synthese
 
         public Oiseau_Entite UpdateOiseau(Oiseau_Entite pOiseau)
         {
-            Oiseau_Entite Oiseau = new Oiseau_Entite();
             try
             {
                 return database.UpdateOiseau(pOiseau);
@@ -550,7 +546,6 @@ namespace BO_Synthese
 
         public Photo_Entite UpdatePhoto(Photo_Entite pPhoto)
         {
-            Photo_Entite Photo = new Photo_Entite();
             try
             {
                 return database.UpdatePhoto(pPhoto);
