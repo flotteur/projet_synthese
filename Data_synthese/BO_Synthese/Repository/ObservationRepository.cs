@@ -114,6 +114,7 @@ namespace BO_Synthese
                 PositionLat = currentObservationDto.Latitude,
                 PositionLong = currentObservationDto.Longitude,
                 Titre = currentObservationDto.Titre
+                //Detail = currentObservationDto.Detail
             };
 
             return observation;
