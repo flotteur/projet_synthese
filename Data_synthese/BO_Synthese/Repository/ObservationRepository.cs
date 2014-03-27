@@ -132,7 +132,9 @@ namespace BO_Synthese
                 IDUsager = observation.IDUsager,
                 DateObservation = observation.DateObservation,
                 Longitude = observation.PositionLong,
-                Latitude = observation.PositionLat
+                Latitude = observation.PositionLat,
+                Titre = observation.Titre,
+                Id = observation.Id
             };
 
             observationDto.Usager = new DTO.UsagerDTO()
