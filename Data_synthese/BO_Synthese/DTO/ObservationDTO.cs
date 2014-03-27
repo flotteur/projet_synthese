@@ -73,6 +73,12 @@ namespace BO_Synthese
         public string Titre { get; set; }
 
         /// <summary>
+        /// Texte de détail de l'observation
+        /// </summary>
+        [DataMember(Name = "Detail")]
+        public string Detail { get; set; }
+
+        /// <summary>
         /// Permet de traiter la date avant l'envoi au client
         /// </summary>
         /// <param name="ctx"></param>
