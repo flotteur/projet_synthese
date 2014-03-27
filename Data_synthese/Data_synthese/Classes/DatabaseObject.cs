@@ -272,7 +272,6 @@ namespace Data_synthese.Classes
         public Usager_Entite GetUsager(int PID)
         {
             Usager_Entite usag = new Usager_Entite();
-            Encription crypteur = new Encription();
             var usagerRow = (from row in dbContext.usager.Local
                              where row.Id == PID
                              select row).FirstOrDefault();
@@ -350,8 +349,6 @@ namespace Data_synthese.Classes
 
         public Usager_Entite UpdateUsager(Usager_Entite pUsager)
         {
-
-            Encription crypteur = new Encription();
             var usagerRow = (from row in dbContext.usager.Local
                              where row.Id == pUsager.ID
                              select row).FirstOrDefault();
@@ -389,7 +386,6 @@ namespace Data_synthese.Classes
         public Oiseau_Entite GetOiseau(int PID)
         {
             Oiseau_Entite oiseau = new Oiseau_Entite();
-            Encription crypteur = new Encription();
             var OiseauRow = (from row in dbContext.oiseau.Local
                              where row.Id == PID
                              select row).FirstOrDefault();
@@ -413,7 +409,7 @@ namespace Data_synthese.Classes
         /// <returns></returns>
         public Oiseau_Entite GetOiseau(string pEspece)
         {
-            Oiseau_Entite oiseauEnt = null;
+            Oiseau_Entite oiseauEnt = new Oiseau_Entite();
             oiseau oiseauRow = null;
 
             //Dans le cache
@@ -441,8 +437,6 @@ namespace Data_synthese.Classes
                             break;
                         }
             }
-
-            oiseauEnt = new Oiseau_Entite();
             if (oiseauRow == null)
                 oiseauEnt.MessageErreur = Constantes.ERREUR_OISEAU_INEXISTANT;
             else
@@ -468,8 +462,6 @@ namespace Data_synthese.Classes
              
             if (oiseau.Validate() == false)
                 throw new Exception(Classes.Constantes.ERREUR_INFOS_MANQUANTES);
-
-            Encription crypteur = new Encription();
 
             // On s'assure que le username n'existe pas déjà
             var oiseauRows = (from row in dbContext.oiseau.Local
@@ -613,7 +605,7 @@ namespace Data_synthese.Classes
         /// <returns></returns>
         public CriOiseau_Entite GetCriOiseau(string pDescription)
         {
-            CriOiseau_Entite CriOiseauEnt = null;
+            CriOiseau_Entite CriOiseauEnt = new CriOiseau_Entite();
             crioiseau CriOiseauRow = null;
 
             //Dans le cache
@@ -641,8 +633,6 @@ namespace Data_synthese.Classes
                             break;
                         }
             }
-
-            CriOiseauEnt = new CriOiseau_Entite();
             if (CriOiseauRow == null)
                 CriOiseauEnt.MessageErreur = Constantes.ERREUR_CRIOISEAU_INEXISTANT;
             else
@@ -670,8 +660,6 @@ namespace Data_synthese.Classes
             if (CriOiseau.Validate() == false)
                 throw new Exception(Classes.Constantes.ERREUR_INFOS_MANQUANTES);
 
-            Encription crypteur = new Encription();
-            
             // On va chercher le dernier ID
             pCriOiseau.Id = (from row in dbContext.crioiseau
                              select row).Count() + 1;
@@ -793,8 +781,6 @@ namespace Data_synthese.Classes
 
             if (Photo.Validate() == false)
                 throw new Exception(Classes.Constantes.ERREUR_INFOS_MANQUANTES);
-
-            Encription crypteur = new Encription();
 
             // On va chercher le dernier ID
             pPhoto.Id = (from row in dbContext.photo

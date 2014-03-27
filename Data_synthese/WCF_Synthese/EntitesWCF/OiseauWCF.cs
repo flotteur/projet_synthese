@@ -16,12 +16,24 @@ namespace WCF_Synthese.EntitesWCF
         public string Description { get; set; }
 
         private List<PhotoWCF>_Photos = new List<PhotoWCF> ();
-        [DataMember(Name="Photos")]
-        public List<PhotoWCF> Photos { get; set; }
+        [DataMember(Name = "Photos")]
+        public List<PhotoWCF> Photos
+        {
+            get {
+                return _Photos;}
+            set {
+                _Photos = value;}
+        }
 
-        private List<CriOiseauWCF> _CrisOiseau = new List<CriOiseauWCF> ();
+        private List<CriOiseauWCF> _CrisOiseau = new List<CriOiseauWCF>();
         [DataMember(Name = "CrisOiseau")]
-        public List<CriOiseauWCF> CrisOiseau { get; set; }
+        public List<CriOiseauWCF> CrisOiseau
+        {
+            get {
+                return _CrisOiseau;}
+            set {
+                _CrisOiseau = value;}
+        }
 
         public void Convertir( Oiseau_Entite pOiseau){
             
