@@ -28,29 +28,7 @@ namespace WCF_Synthese.EntitesWCF
 
         #region " ConvertirEnUsagerEntite "
         /// <summary>
-        /// Convertit une entité UsagerWCF en Usager_Entite
-        /// </summary>
-        /// <param name="pUsager"></param>
-        /// <returns></returns>
-        public Usager_Entite Convertir(UsagerWCF pUsager)
-        {
-
-            Usager_Entite retour = new Usager_Entite
-            {
-                ID = pUsager.ID,
-                Courriel = pUsager.Courriel,
-                EstAdministrateur = pUsager.EstAdministrateur,
-                MotDePasse = pUsager.MotDePasse,
-                Nom = pUsager.Nom,
-                NomUsager = pUsager.NomUsager,
-                MessageErreur = pUsager.MessageErreur
-            };
-
-            return retour;
-        }
-
-        /// <summary>
-        /// Convertit une entité UsagerWCF en Usager_Entite
+        /// Convertit une entité Usager_Entite en UsagerWCF 
         /// </summary>
         /// <returns></returns>
         public override EntiteBase Convertir()
@@ -75,21 +53,16 @@ namespace WCF_Synthese.EntitesWCF
         /// </summary>
         /// <param name="pUsager"></param>
         /// <returns></returns>
-        public UsagerWCF Convertir(Usager_Entite pUsager)
+        public void Convertir(Usager_Entite pUsager)
         {
-
-            UsagerWCF retour = new UsagerWCF
-            {
-                ID = pUsager.ID,
-                Courriel = pUsager.Courriel,
-                EstAdministrateur = pUsager.EstAdministrateur,
-                MotDePasse = pUsager.MotDePasse,
-                Nom = pUsager.Nom,
-                NomUsager = pUsager.NomUsager,
-                MessageErreur = pUsager.MessageErreur
-            };
-
-            return retour;
+            ID = pUsager.ID;
+            Courriel = pUsager.Courriel;
+            EstAdministrateur = pUsager.EstAdministrateur;
+            //MotDePasse = pUsager.MotDePasse;
+            Nom = pUsager.Nom;
+            NomUsager = pUsager.NomUsager;
+            MessageErreur = pUsager.MessageErreur;
+            
         }
         #endregion
       }

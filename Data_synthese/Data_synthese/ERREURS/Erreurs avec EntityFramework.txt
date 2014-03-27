@@ -1,4 +1,4 @@
-installer les cersions 6.8.3 du connecteur MySQL
+installer les versions 6.8.3 du connecteur MySQL
 
 Faire aussi les corrections suivantes dans le SSDLToMySQL.tt
 

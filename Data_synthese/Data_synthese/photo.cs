@@ -19,6 +19,7 @@ namespace Data_synthese
         public string Description { get; set; }
         public int IDOiseau { get; set; }
         public byte[] ImageMiniature { get; set; }
+        public string Path { get; set; }
     
         public virtual oiseau oiseaux { get; set; }
     }

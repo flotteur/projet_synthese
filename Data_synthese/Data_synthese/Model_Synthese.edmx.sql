@@ -5,7 +5,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 03/15/2014 07:06:34
+-- Date Created: 03/26/2014 19:56:54
 -- Generated from EDMX file: C:\Sources\synthese\projet_synthese\Data_synthese\Data_synthese\Model_Synthese.edmx
 -- Target version: 2.0.0.0
 -- --------------------------------------------------
@@ -27,6 +27,7 @@
 --    ALTER TABLE `message` DROP CONSTRAINT `FK_observationmessage`;
 --    ALTER TABLE `alerte` DROP CONSTRAINT `FK_usageralerte`;
 --    ALTER TABLE `Commentaire` DROP CONSTRAINT `FK_observationCommentaire`;
+--    ALTER TABLE `Commentaire` DROP CONSTRAINT `FK_usagerCommentaire`;
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -88,7 +89,8 @@ CREATE TABLE `observation`(
 	`IDUsager` int NOT NULL, 
 	`IDOiseau` int NOT NULL, 
 	`PositionLat` double, 
-	`Titre` varchar (100) NOT NULL);
+	`Titre` varchar (100) NOT NULL, 
+	`Detail` longtext NOT NULL);
 
 ALTER TABLE `observation` ADD PRIMARY KEY (Id);
 
@@ -111,7 +113,8 @@ CREATE TABLE `photoobservation`(
 	`Description` longtext, 
 	`IDObservation` int NOT NULL, 
 	`ImageMiniature` longblob, 
-	`Commentaire` varchar (200));
+	`Commentaire` varchar (200), 
+	`Path` varchar (255) NOT NULL);
 
 ALTER TABLE `photoobservation` ADD PRIMARY KEY (Id);
 
@@ -123,7 +126,8 @@ CREATE TABLE `photo`(
 	`Image` longblob NOT NULL, 
 	`Description` longtext, 
 	`IDOiseau` int NOT NULL, 
-	`ImageMiniature` longblob);
+	`ImageMiniature` longblob, 
+	`Path` varchar (255) NOT NULL);
 
 ALTER TABLE `photo` ADD PRIMARY KEY (Id);
 
@@ -134,7 +138,8 @@ CREATE TABLE `sonobservation`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
 	`Son` longblob, 
 	`Description` longtext, 
-	`IDObservation` int NOT NULL);
+	`IDObservation` int NOT NULL, 
+	`Path` varchar (255) NOT NULL);
 
 ALTER TABLE `sonobservation` ADD PRIMARY KEY (Id);
 

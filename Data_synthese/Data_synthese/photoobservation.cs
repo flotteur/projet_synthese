@@ -20,6 +20,7 @@ namespace Data_synthese
         public int IDObservation { get; set; }
         public byte[] ImageMiniature { get; set; }
         public string Commentaire { get; set; }
+        public string Path { get; set; }
     
         public virtual observation observations { get; set; }
     }

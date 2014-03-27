@@ -14,13 +14,14 @@ namespace Data_synthese
             this.Description = pPhoto.Description;
             this.IDOiseau = pPhoto.IDOiseau;
             this.Image = pPhoto.Image;
-            
+            this.Path = pPhoto.Path;
         }
         public Photo_Entite Convertir() {
             Photo_Entite retour = new Photo_Entite() { ID = this.Id,
                                                        Description = this.Description,
                                                        IDOiseau = this.IDOiseau,
-                                                       Image = this.Image };
+                                                       Image = this.Image,
+            Path = this.Path};
 
 
             return retour;

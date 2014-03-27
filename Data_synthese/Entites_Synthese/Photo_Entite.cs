@@ -11,6 +11,7 @@ namespace Entites_Synthese
         public int IDOiseau { get; set; }
         public byte[] Image { get; set; }
         public string Description { get; set; }
+        public string Path { get; set; }
 
         public override bool Validate()
         {
