@@ -29,6 +29,7 @@ namespace Data_synthese
         public int IDOiseau { get; set; }
         public Nullable<double> PositionLat { get; set; }
         public string Titre { get; set; }
+        public string Detail { get; set; }
     
         public virtual oiseau oiseaux { get; set; }
         public virtual ICollection<photoobservation> photoobservations { get; set; }

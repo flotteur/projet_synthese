@@ -159,7 +159,8 @@ namespace WCF_Synthese
             usager=  BusinessObject.UpdateUsager(usager );
             if (string.IsNullOrEmpty( usager.MessageErreur))
                 BusinessObject.SaveChanges();
-            return pUsager.Convertir( usager);
+            pUsager.Convertir(usager);
+            return pUsager;
         }
         #endregion 
 
@@ -428,9 +429,9 @@ namespace WCF_Synthese
             UsagerWCF retour = new UsagerWCF();
 
             Usager_Entite usager = BusinessObject.Login(pUserName,
-                pPassword); 
-
-            return  retour.Convertir(usager);
+                pPassword);
+            retour.Convertir(usager);
+            return  retour;
         }
 
         public void Dispose() {

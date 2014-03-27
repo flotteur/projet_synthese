@@ -109,6 +109,7 @@
     <Property Type="Double" Name="PositionLat" Nullable="true" />
     <NavigationProperty Name="Commentaire" Relationship="synthese_dbModel.observationCommentaire" FromRole="observation" ToRole="Commentaire" />
     <Property Name="Titre" Type="String" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Detail" Nullable="false" />
   </EntityType>
   <EntityType Name="oiseau">
     <Key>
@@ -133,6 +134,7 @@
     <Property Type="Binary" Name="ImageMiniature" MaxLength="Max" FixedLength="false" Nullable="true" />
     <Property Type="String" Name="Commentaire" MaxLength="200" FixedLength="false" Unicode="false" Nullable="true" />
     <NavigationProperty Name="observations" Relationship="synthese_dbModel.FK_Observations_PhotoObservations" FromRole="photoobservations" ToRole="observations" />
+    <Property Type="String" Name="Path" Nullable="false" MaxLength="255" />
   </EntityType>
   <EntityType Name="photo">
     <Key>
@@ -144,6 +146,7 @@
     <Property Type="Int32" Name="IDOiseau" Nullable="false" />
     <Property Type="Binary" Name="ImageMiniature" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="oiseaux" Relationship="synthese_dbModel.FK_Photos_Oiseaux" FromRole="photos" ToRole="oiseaux" />
+    <Property Type="String" Name="Path" Nullable="false" MaxLength="255" />
   </EntityType>
   <EntityType Name="sonobservation">
     <Key>
@@ -154,6 +157,7 @@
     <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Type="Int32" Name="IDObservation" Nullable="false" />
     <NavigationProperty Name="observations" Relationship="synthese_dbModel.FK_Observations_SonObservations" FromRole="sonobservations" ToRole="observations" />
+    <Property Type="String" Name="Path" Nullable="false" MaxLength="255" />
   </EntityType>
   <EntityType Name="usager">
     <Key>

@@ -41,6 +41,7 @@
           <ScalarProperty Name="IDOiseau" ColumnName="IDOiseau" />
           <ScalarProperty Name="PositionLat" ColumnName="PositionLat" />
           <ScalarProperty Name="Titre" ColumnName="Titre" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -62,6 +63,7 @@
           <ScalarProperty Name="IDObservation" ColumnName="IDObservation" />
           <ScalarProperty Name="ImageMiniature" ColumnName="ImageMiniature" />
           <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -73,6 +75,7 @@
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="IDOiseau" ColumnName="IDOiseau" />
           <ScalarProperty Name="ImageMiniature" ColumnName="ImageMiniature" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -83,6 +86,7 @@
           <ScalarProperty Name="Son" ColumnName="Son" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="IDObservation" ColumnName="IDObservation" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
