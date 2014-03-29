@@ -9,23 +9,21 @@ namespace Data_synthese
     public partial class oiseau
     {
         public Oiseau_Entite Convertir() {
-            Oiseau_Entite oiseauEnt = new Oiseau_Entite() { ID = this.Id,
-                                                            Description = this.Description,
-                                                            Espece = this.Espece,
-                                                            CrisOiseau = this.Convertir(this.crioiseaux),
-                                                            Photos = this.Convertir(this.photos) };
+            Oiseau_Entite oiseauEnt = new Oiseau_Entite();
+            oiseauEnt.ID = this.Id;
+            oiseauEnt.Description = this.Description;
+            oiseauEnt.Espece = this.Espece;
+            oiseauEnt.CrisOiseau = this.Convertir(this.crioiseaux);
+            oiseauEnt.Photos = this.Convertir(this.photos.ToList());
             return oiseauEnt;
         }
 
-        public void Convertir(Oiseau_Entite pOiseauEnt)
-        {
-            
+        public void Convertir(Oiseau_Entite pOiseauEnt) {
             this.Id = pOiseauEnt.ID;
             this.Description = pOiseauEnt.Description;
             this.Espece = pOiseauEnt.Espece;
             this.crioiseaux = Convertir(pOiseauEnt.CrisOiseau);
             this.photos = Convertir(pOiseauEnt.Photos);
-                        
         }
 
 
@@ -54,37 +52,27 @@ namespace Data_synthese
             return crisOiseau;
         }
 
-        public ICollection<crioiseau> Convertir(List<CriOiseau_Entite> pListeCriOiseau)
-        {
+        public ICollection<crioiseau> Convertir(List<CriOiseau_Entite> pListeCriOiseau) {
             ICollection<crioiseau> crisOiseau = new List<crioiseau>();
             if (pListeCriOiseau != null)
-                foreach (CriOiseau_Entite crioiseau in pListeCriOiseau)
-                {
-                    crisOiseau.Add(new crioiseau()
-                    {
-                        Id = crioiseau.ID,
-                        Description = crioiseau.Description,
-                        IDOiseau = crioiseau.IDOiseau,
-                        Son = crioiseau.Son
-                    });
+                foreach (CriOiseau_Entite crioiseau in pListeCriOiseau) {
+                    crisOiseau.Add(new crioiseau() { Id = crioiseau.ID,
+                                                     Description = crioiseau.Description,
+                                                     IDOiseau = crioiseau.IDOiseau,
+                                                     Son = crioiseau.Son });
                 }
             return crisOiseau;
         }
 
-        public ICollection<photo> Convertir(List<Photo_Entite> pListePhotos)
-        {
+        public ICollection<photo> Convertir(List<Photo_Entite> pListePhotos) {
             ICollection<photo> photos = new List<photo>();
 
             if (pListePhotos != null)
-                foreach (Photo_Entite photo in pListePhotos)
-                {
-                    photos.Add(new photo()
-                    {
-                        Id = photo.ID,
-                        Description = photo.Description,
-                        IDOiseau = photo.IDOiseau,
-                        Image = photo.Image
-                    });
+                foreach (Photo_Entite photo in pListePhotos) {
+                    photos.Add(new photo() { Id = photo.ID,
+                                             Description = photo.Description,
+                                             IDOiseau = photo.IDOiseau,
+                                             Image = photo.Image });
                 }
             return photos;
         }

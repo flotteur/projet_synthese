@@ -11,6 +11,7 @@ namespace Entites_Synthese
         public int IDOiseau { get; set; }
         public byte[] Son { get; set; }
         public String Description { get; set; }
+        public string Path { get; set; }
 
 
         #region " Validations "

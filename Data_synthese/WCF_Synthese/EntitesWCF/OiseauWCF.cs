@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using Entites_Synthese;
+
 namespace WCF_Synthese.EntitesWCF
 {
     [DataContract]
     public class OiseauWCF : EntiteWCFBase
     {
-        [DataMember(Name="ID")]
+        [DataMember(Name = "ID")]
         public int ID { get; set; }
         [DataMember(Name = "Espece")]
         public string Espece { get; set; }
         [DataMember(Name = "Description")]
         public string Description { get; set; }
 
-        private List<PhotoWCF>_Photos = new List<PhotoWCF> ();
+        private List<PhotoWCF> _Photos = new List<PhotoWCF>();
         [DataMember(Name = "Photos")]
         public List<PhotoWCF> Photos
         {
@@ -35,27 +36,27 @@ namespace WCF_Synthese.EntitesWCF
                 _CrisOiseau = value;}
         }
 
-        public void Convertir( Oiseau_Entite pOiseau){
-            
+        public void Convertir(Oiseau_Entite pOiseau) {
             this.Description = pOiseau.Description;
             this.Espece = pOiseau.Espece;
-            this.ID = pOiseau.ID ;
+            this.ID = pOiseau.ID;
             this.MessageErreur = pOiseau.MessageErreur;
-            
-            foreach( Photo_Entite  photo in pOiseau.Photos){
+
+            foreach (Photo_Entite photo in pOiseau.Photos) {
                 PhotoWCF photowcf = new PhotoWCF();
+                //TODO: Enlever pour transférer le data
+                photo.Image = null;
                 photowcf.Convertir(photo);
                 this.Photos.Add(photowcf);
             }
 
-            foreach (CriOiseau_Entite cri in pOiseau.CrisOiseau)
-            {
+            foreach (CriOiseau_Entite cri in pOiseau.CrisOiseau) {
                 CriOiseauWCF CriOiseauwcf = new CriOiseauWCF();
+                //TODO: Enlever pour transférer le data
+                cri.Son = null;
                 CriOiseauwcf.Convertir(cri);
                 this.CrisOiseau.Add(CriOiseauwcf);
             }
-
-        
         }
     }
 }
