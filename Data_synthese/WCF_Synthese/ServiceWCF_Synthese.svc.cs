@@ -450,3 +450,5 @@ namespace WCF_Synthese
         }
     }
 }
+//TODO: Obtenir une liste de photos avec photos et sons
+//TODO: Insérer un oiseau et ses photos et ses sons
