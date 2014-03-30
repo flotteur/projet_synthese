@@ -25,7 +25,7 @@ namespace WCF_Synthese.EntitesWCF
             this.IDOiseau = pPhoto.IDOiseau;
             this.Image = pPhoto.Image;
             this.MessageErreur = pPhoto.MessageErreur;
-            this.Path = pPhoto.Path;
+            this.Path = @"/image/oiseau/"+pPhoto.ID;
         }
     }
 }

@@ -89,32 +89,23 @@ namespace WCF_Synthese
         /// <returns></returns>
         public Stream GetImage(string type, string id)
         {
-            var repository = new PhotoObservationRepository();
+            
             int numericId;
             Int32.TryParse(id, out numericId);
+            var repository = new PhotoRepository(type, numericId);
 
-            if (type == "oiseau")
-            {
-                //return new MemoryStream(repository.GetPhotoObservationFromId(numericId).Image);
-                //GetPhoto(id);
-            }
-            else if (type == "observation")
-            {
-                return new MemoryStream(repository.GetPhotoObservationFromId(numericId).Image);
-            }
-
-            return null;
+            return new MemoryStream(repository.GetPhoto());
         }
 
         public void AddImage(string id, string filename, byte[] stream)
         {
-            using (var repository = new PhotoObservationRepository()) {
-
-                Stream file = new MemoryStream(stream);
-                int numericId;
-                Int32.TryParse(id, out numericId);
-                repository.CreatePhotoObservation(id, filename, file);
-            }
+            //using (var repository = new PhotoRepository()) {
+            //
+            //    Stream file = new MemoryStream(stream);
+            //    int numericId;
+            //    Int32.TryParse(id, out numericId);
+            //    repository.CreatePhotoObservation(id, filename, file);
+            //}
 
         }
 
