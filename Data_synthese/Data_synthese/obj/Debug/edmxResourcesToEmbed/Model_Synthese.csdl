@@ -79,6 +79,7 @@
     <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Type="Int32" Name="IDOiseau" Nullable="false" />
     <NavigationProperty Name="oiseaux" Relationship="synthese_dbModel.FK_CriOiseaux_Oiseaux" FromRole="crioiseaux" ToRole="oiseaux" />
+    <Property Type="String" Name="Path" Nullable="false" MaxLength="255" />
   </EntityType>
   <EntityType Name="message">
     <Key>

@@ -80,6 +80,7 @@
     <Property Name="Son" Type="longblob" Nullable="true" />
     <Property Name="Description" Type="longtext" Nullable="true" />
     <Property Name="IDOiseau" Type="int" Nullable="false" />
+    <Property Name="Path" Type="varchar" Nullable="false" MaxLength="255" />
   </EntityType>
   <EntityType Name="message">
     <Key>
@@ -392,6 +393,7 @@
           <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="IDOiseau" Nullable="false" />
           <NavigationProperty Name="oiseaux" Relationship="synthese_dbModel.FK_CriOiseaux_Oiseaux" FromRole="crioiseaux" ToRole="oiseaux" />
+          <Property Type="String" Name="Path" Nullable="false" MaxLength="255" />
         </EntityType>
         <EntityType Name="message">
           <Key>
@@ -664,6 +666,7 @@
           <ScalarProperty Name="Son" ColumnName="Son" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="IDOiseau" ColumnName="IDOiseau" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -781,7 +784,7 @@
     <edmx:Diagrams>
       <Diagram Name="Main" ZoomLevel="100" DisplayType="true" >
         <EntityTypeShape EntityType="synthese_dbModel.alerte" Width="2.5" PointX="3.125" PointY="7" Height="1.7879850260416665" />
-        <EntityTypeShape EntityType="synthese_dbModel.crioiseau" Width="2.5" PointX="4.25" PointY="9.25" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="synthese_dbModel.crioiseau" Width="2.5" PointX="4.25" PointY="9.25" Height="2.1725878906249996" />
         <EntityTypeShape EntityType="synthese_dbModel.message" Width="2.5" PointX="7.875" PointY="2.875" Height="2.3648893229166656" />
         <EntityTypeShape EntityType="synthese_dbModel.observation" Width="2.5" PointX="11.875" PointY="2.875" Height="3.7109993489583326" />
         <EntityTypeShape EntityType="synthese_dbModel.oiseau" Width="2.5" PointX="8.25" PointY="8.875" Height="2.3648893229166656" />
@@ -795,8 +798,8 @@
           <ConnectorPoint PointX="5.625" PointY="7.9374995" />
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.FK_CriOiseaux_Oiseaux" ManuallyRouted="false" >
-          <ConnectorPoint PointX="8.25" PointY="10.240143229166669" />
-          <ConnectorPoint PointX="6.75" PointY="10.240143229166669" />
+          <ConnectorPoint PointX="8.25" PointY="10.244944661458334" />
+          <ConnectorPoint PointX="6.75" PointY="10.244944661458334" />
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.FK_Usagers_Messages" >
           <ConnectorPoint PointX="7.625" PointY="1.9949446614583328" />

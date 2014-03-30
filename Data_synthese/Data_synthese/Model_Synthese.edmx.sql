@@ -5,7 +5,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 03/26/2014 19:56:54
+-- Date Created: 03/29/2014 10:41:03
 -- Generated from EDMX file: C:\Sources\synthese\projet_synthese\Data_synthese\Data_synthese\Model_Synthese.edmx
 -- Target version: 2.0.0.0
 -- --------------------------------------------------
@@ -63,7 +63,8 @@ CREATE TABLE `crioiseau`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
 	`Son` longblob, 
 	`Description` longtext, 
-	`IDOiseau` int NOT NULL);
+	`IDOiseau` int NOT NULL, 
+	`Path` varchar (255) NOT NULL);
 
 ALTER TABLE `crioiseau` ADD PRIMARY KEY (Id);
 
