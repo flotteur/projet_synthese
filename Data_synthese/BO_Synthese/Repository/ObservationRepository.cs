@@ -56,7 +56,7 @@ namespace BO_Synthese
         /// <returns>L'observation qui a été inséré dans la BD</returns>
         public void createObservation()
         {
-            if (!currentObservationDto.isValid())
+            if (!currentObservationDto.isValid() && session.usager != null)
                 throw new Exception("L'observation est incomplète.");
 
             dbContext.observation.Add(ObservationDtoToDb());

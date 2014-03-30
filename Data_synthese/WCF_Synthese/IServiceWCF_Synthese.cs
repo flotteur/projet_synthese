@@ -173,7 +173,7 @@ namespace WCF_Synthese
 
         #endregion
 
-
+        #region session
         [OperationContract]
         [WebInvoke(Method = "GET",
         BodyStyle = WebMessageBodyStyle.Wrapped,
@@ -189,7 +189,9 @@ namespace WCF_Synthese
         ResponseFormat = WebMessageFormat.Json,
         UriTemplate = "Logout")]
         void Logout();
+        #endregion
 
+        #region observation
         [OperationContract]
         [WebInvoke(Method = "POST",
         BodyStyle = WebMessageBodyStyle.Bare,
@@ -212,14 +214,24 @@ namespace WCF_Synthese
         UriTemplate = "observation")]
         List<ObservationDTO> GetAllObservation();
 
+        [WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
+        UriTemplate = "deleteObservation/{id}")]
+        void DeleteObservation(string id);
+        #endregion
+
+        #region image
         [OperationContract]
-        [WebGet(UriTemplate = "image/{id}")]
-        Stream GetImage(string id);
+        [WebGet(UriTemplate = "image/{type}/{id}")]
+        Stream GetImage(string type, string id);
 
         [OperationContract]
         [WebInvoke(UriTemplate = "image/{id}/{filename}")]
         void AddImage(string id, string filename, byte[] file);
+        #endregion
 
+        #region commentaire
         [OperationContract]
         [WebInvoke(Method = "GET",
         BodyStyle = WebMessageBodyStyle.Bare,
@@ -241,13 +253,6 @@ namespace WCF_Synthese
         UriTemplate = "commentaire/{id}",
         ResponseFormat = WebMessageFormat.Json)]
         List<CommentaireDTO> GetCommentaire(string id);
-
-
-        //[OperationContract]
-        //[WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
-        //    RequestFormat = WebMessageFormat.Json,
-        //    ResponseFormat = WebMessageFormat.Json,
-        //    UriTemplate = "getListObservation")]
-        //ListeObservationWCF GetListeObservation();
+        #endregion
     }
 }

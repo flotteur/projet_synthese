@@ -84,15 +84,26 @@ namespace WCF_Synthese
         /// <summary>
         /// Ce service permet d'obtenir une photo d'observation en fonction du ID de la photo
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id de l'image</param>
+        /// <param name="type">Type de l'image</param>
         /// <returns></returns>
-        public Stream GetImage(string id)
+        public Stream GetImage(string type, string id)
         {
             var repository = new PhotoObservationRepository();
             int numericId;
             Int32.TryParse(id, out numericId);
 
-            return new MemoryStream(repository.GetPhotoObservationFromId(numericId).Image);
+            if (type == "oiseau")
+            {
+                //return new MemoryStream(repository.GetPhotoObservationFromId(numericId).Image);
+                //GetPhoto(id);
+            }
+            else if (type == "observation")
+            {
+                return new MemoryStream(repository.GetPhotoObservationFromId(numericId).Image);
+            }
+
+            return null;
         }
 
         public void AddImage(string id, string filename, byte[] stream)
