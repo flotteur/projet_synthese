@@ -228,6 +228,17 @@ namespace WCF_Synthese
             return retour;
         }
 
+
+        public OiseauWCFList GetAllOiseaux(string pStart, string  pQty) {
+
+            
+            OiseauxList_Entite oiseauxListe = BusinessObject.GetOiseaux(Convert.ToInt32( pQty),
+                Convert.ToInt32(pStart));
+            OiseauWCFList retour = new OiseauWCFList();
+            retour.Convertir(oiseauxListe);
+
+            return retour;
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -236,7 +247,6 @@ namespace WCF_Synthese
         public OiseauWCF GetOiseau(string pID)
         {
 
-            BO BusinessObject = new BO();
             OiseauWCF retour = null;
 
             Oiseau_Entite Oiseau = BusinessObject.GetOiseau(int.Parse(pID));
@@ -463,3 +473,5 @@ namespace WCF_Synthese
         }
     }
 }
+//TODO: Obtenir une liste de photos avec photos et sons
+//TODO: Insérer un oiseau et ses photos et ses sons

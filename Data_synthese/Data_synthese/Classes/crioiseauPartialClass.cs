@@ -9,8 +9,9 @@ namespace Data_synthese
         public CriOiseau_Entite Convertir(){
             CriOiseau_Entite retour = new CriOiseau_Entite() { Description = this.Description,
                  ID = this.Id,
-                  IDOiseau =this.IDOiseau,
-                   Son = this.Son
+                 IDOiseau =this.IDOiseau,
+                 Son = this.Son,
+                 Path = this.Path
             };
 
             return retour;
@@ -22,6 +23,7 @@ namespace Data_synthese
             this.Id = pCriOiseau.ID;
             this.IDOiseau = pCriOiseau.ID;
             this.Son = pCriOiseau.Son;
+            this.Path = pCriOiseau.Path;
         }
     }
 }

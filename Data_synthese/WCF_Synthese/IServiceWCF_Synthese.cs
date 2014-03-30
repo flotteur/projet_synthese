@@ -68,6 +68,14 @@ namespace WCF_Synthese
         OiseauWCF GetOiseau(string pID);
 
         [OperationContract]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
+        UriTemplate = "GetOiseau/{pStart}/{pQty}")]
+        OiseauWCFList GetAllOiseaux(string pStart, string  pQty);
+
+
+        [OperationContract]
         [WebInvoke(Method = "*",
         BodyStyle = WebMessageBodyStyle.Bare,
         RequestFormat = WebMessageFormat.Json,

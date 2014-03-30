@@ -15,6 +15,8 @@ namespace WCF_Synthese.EntitesWCF
         public byte[] Son { get; set; }
         [DataMember(Name = "Description")]
         public String Description { get; set; }
+        [DataMember(Name = "Path")]
+        public string Path { get; set; }
 
         /// <summary>
         /// /// Converti un CriOiseauWCF en criOiseauEntite
@@ -42,6 +44,7 @@ namespace WCF_Synthese.EntitesWCF
             this.Description = cri.Description;
             this.IDOiseau = cri.IDOiseau;
             this.MessageErreur = pCriOiseau.MessageErreur;
+            this.Path = cri.Path;
         }
 
     }

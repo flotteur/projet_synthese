@@ -378,6 +378,42 @@ namespace Data_synthese.Classes
         #region " Oiseaux "
         #region " GetOiseau "
 
+        public OiseauxList_Entite GetOiseaux(int pQte, int pStart) {
+
+            
+            OiseauxList_Entite retour = new OiseauxList_Entite();
+            retour.QteTotale = (from row in dbContext.oiseau
+                                select row).Count();
+                
+            IQueryable<oiseau> liste = null;
+
+            if (retour.QteTotale > 0) {
+                if (pQte == 0)
+                {
+                    liste = from row in dbContext.oiseau
+                                .Include("crioiseaux")
+                                .Include("photos")
+                            where row.Id > pQte
+                            select row;
+                }
+                else{
+                    liste = (from row in dbContext.oiseau
+                                .Include("crioiseaux")
+                                .Include("photos")
+                             where row.Id > pStart
+                            orderby row.Id 
+                            select row).Take(pQte);
+                }
+            
+            }
+            
+            if (liste !=null)
+                foreach( oiseau oiseau in liste)
+                    retour.Oiseaux.Add(oiseau.Convertir());
+
+            return retour;
+        }
+
         /// <summary>
         /// Retourne l'Oiseau ayant l'ID= pID ou un Oiseau vide s'il n'est pas dans la BD
         /// </summary>

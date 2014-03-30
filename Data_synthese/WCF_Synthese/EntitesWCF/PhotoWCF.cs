@@ -8,7 +8,7 @@ namespace WCF_Synthese.EntitesWCF
     [DataContract]
     public class PhotoWCF : EntiteWCFBase
     {
-        [DataMember(Name="ID")]
+        [DataMember(Name = "ID")]
         public int ID { get; set; }
         [DataMember(Name = "IDOiseau")]
         public int IDOiseau { get; set; }
@@ -16,16 +16,16 @@ namespace WCF_Synthese.EntitesWCF
         public byte[] Image { get; set; }
         [DataMember(Name = "Description")]
         public string Description { get; set; }
-
-
-        internal void Convertir(Entites_Synthese.Photo_Entite pPhoto)
-        {
+        [DataMember(Name = "Path")]
+        public string Path { get; set; }
+        
+        internal void Convertir(Entites_Synthese.Photo_Entite pPhoto) {
             this.Description = pPhoto.Description;
             this.ID = pPhoto.ID;
             this.IDOiseau = pPhoto.IDOiseau;
             this.Image = pPhoto.Image;
             this.MessageErreur = pPhoto.MessageErreur;
-
+            this.Path = pPhoto.Path;
         }
     }
 }

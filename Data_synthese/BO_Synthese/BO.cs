@@ -325,8 +325,13 @@ namespace BO_Synthese
 
         #region " Oiseau "
 
+       public OiseauxList_Entite GetOiseaux(int pQte, int pStart){
+       
+           return  database.GetOiseaux(pQte,pStart);
+
+       }
         #region " GetOiseau "
-        /// <summary>
+       /// <summary>
         /// Obtient un Oiseau à partir de son ID
         /// </summary>
         /// <param name="pID"></param>

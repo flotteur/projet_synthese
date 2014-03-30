@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CriOiseau_Entite.cs" />
     <Compile Include="EntiteBase.cs" />
+    <Compile Include="OiseauxList_Entite.cs" />
     <Compile Include="Oiseau_Entite.cs" />
     <Compile Include="Photo_Entite.cs" />
     <Compile Include="Usager_Entite.cs" />

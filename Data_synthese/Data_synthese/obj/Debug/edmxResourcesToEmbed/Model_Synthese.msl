@@ -17,6 +17,7 @@
           <ScalarProperty Name="Son" ColumnName="Son" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="IDOiseau" ColumnName="IDOiseau" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
