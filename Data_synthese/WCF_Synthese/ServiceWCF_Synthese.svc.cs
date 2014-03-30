@@ -69,6 +69,19 @@ namespace WCF_Synthese
         }
 
         /// <summary>
+        /// Permet la supression d'une observation
+        /// </summary>
+        public void DeleteObservation(string id)
+        {
+            using (var repository = new ObservationRepository())
+            {
+                int numericId;
+                Int32.TryParse(id, out numericId);
+                repository.DeleteObservation(numericId);
+            }
+        }
+
+        /// <summary>
         /// Ce service permet d'obtenir une photo d'observation en fonction du ID de la photo
         /// </summary>
         /// <param name="id"></param>

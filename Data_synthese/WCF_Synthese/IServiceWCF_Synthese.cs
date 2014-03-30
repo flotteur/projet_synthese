@@ -213,11 +213,11 @@ namespace WCF_Synthese
         void AddImage(string id, string filename, byte[] file);
 
         [OperationContract]
-        [WebInvoke(Method = "DELETE",
-        BodyStyle = WebMessageBodyStyle.Wrapped,
+        [WebInvoke(Method = "GET",
+        BodyStyle = WebMessageBodyStyle.Bare,
         RequestFormat = WebMessageFormat.Json,
         ResponseFormat = WebMessageFormat.Json,
-        UriTemplate = "commentaire/{id}")]
+        UriTemplate = "deletecommentaire/{id}")]
         void DeleteCommentaire(string id);
 
         [OperationContract]

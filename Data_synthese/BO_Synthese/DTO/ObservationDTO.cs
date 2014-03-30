@@ -85,7 +85,7 @@ namespace BO_Synthese
         [OnSerializing]
         void OnSerializing(StreamingContext ctx)
         {
-            DateObservationForSerialization = DateObservation.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+            DateObservationForSerialization = DateObservation.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace BO_Synthese
         void OnDeserialized(StreamingContext ctx)
         {
             DateObservation = DateTime.ParseExact(DateObservationForSerialization,
-                "yyyy-MM-dd", 
+                "yyyy-MM-dd HH:mm:ss", 
                 CultureInfo.InvariantCulture);
         }
         #endregion
