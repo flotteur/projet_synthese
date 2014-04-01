@@ -171,7 +171,8 @@ namespace WCF_Synthese
         {
             if (BusinessObject.SupprimerUsager(int.Parse(pID)))
                 return BusinessObject.MessageErreur;
-
+            else
+                BusinessObject.SaveChanges();
             return "";
 
         }
@@ -456,6 +457,66 @@ namespace WCF_Synthese
 
 
         #endregion
+
+
+        #region " Alerte "
+
+        public List<AlerteWCF> ObtenirAlertes()
+        {
+            AlerteWCF alerteWCF = new AlerteWCF();
+            
+            List<AlerteWCF> retour = new List<AlerteWCF>();
+            List<Alerte_Entite> alertes = BusinessObject.ObternirAlertes(alerteWCF.Convertir());
+
+            foreach (Alerte_Entite alerte in alertes)
+            {
+                alerteWCF = new AlerteWCF();
+                alerteWCF.Convertir(alerte);
+                retour.Add(alerteWCF);
+            }
+
+            return retour;
+        }
+        public List<AlerteWCF> ObtenirAlerte(string pID) {
+            
+            AlerteWCF alerteWCF = new AlerteWCF() { ID = int.Parse( pID )};
+            List<AlerteWCF> retour = new List<AlerteWCF>();
+            List<Alerte_Entite> alertes = BusinessObject.ObternirAlertes(alerteWCF.Convertir());
+
+            foreach (Alerte_Entite alerte in alertes)
+            {
+                alerteWCF =new AlerteWCF();
+                alerteWCF.Convertir(alerte);
+                retour.Add(alerteWCF);
+            }
+
+            return retour;
+        }
+#endregion
+        public bool SupprimerAlertes(AlerteWCF pAlerte) {
+
+            bool retour = BusinessObject.SupprimerAlerte(pAlerte.Convertir());
+            if (retour==true)
+                BusinessObject.SaveChanges();
+            return retour;
+
+        }
+        public AlerteWCF AjouterAlertes(AlerteWCF pAlerte) {
+         
+            AlerteWCF retour = new AlerteWCF();
+            Alerte_Entite alerteEnt = new Alerte_Entite();
+
+            try{
+                retour.Convertir(BusinessObject.CreerAlerte(pAlerte.Convertir()));
+                if (string.IsNullOrEmpty(retour.MessageErreur))
+                    BusinessObject.SupprimerAlerte(pAlerte.Convertir());
+            }
+            catch (Exception Exception ){
+                retour.MessageErreur = Exception.Message ;
+            }
+
+            return retour;
+        }
 
         public UsagerWCF Login(string pUserName, string pPassword){
         

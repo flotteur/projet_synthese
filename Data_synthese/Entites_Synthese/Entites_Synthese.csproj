@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alerte_Entity.cs" />
     <Compile Include="CriOiseau_Entite.cs" />
     <Compile Include="EntiteBase.cs" />
     <Compile Include="OiseauxList_Entite.cs" />

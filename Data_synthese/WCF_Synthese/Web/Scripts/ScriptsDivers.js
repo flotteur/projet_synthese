@@ -1,5 +1,7 @@
 ﻿
-
+    public int ID { get; set; }
+        public int IDOiseau { get; set; }
+        public int IDUsager  { get; set; }
 function Callback(result) {
     alert(result); // string
     alert(result.d.Company);
@@ -160,5 +162,8 @@ function InsertUsager() {
             alert(xhr.responseText);
         }
     });
+
+}
+
 
 }

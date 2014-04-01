@@ -4,6 +4,7 @@ using System.Linq;
 using Entites_Synthese;
 using Data_synthese;
 using Data_synthese.Classes;
+using System.Net.Mail;
 
 namespace BO_Synthese
 {
@@ -460,6 +461,60 @@ namespace BO_Synthese
             }
         }
 #endregion
+
+        #region " Alerte "
+
+        public void SendAlerte(int pOiseauID) {
+            System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
+            string nomEspece = string.Empty;
+
+            // On obtient toutes les alertes reliées à cet oiseau
+            Alerte_Entite alerteEnt = new Alerte_Entite() { ID = 0,
+                                                         IDUsager = 0,
+                                                         IDOiseau = pOiseauID};
+
+            List<Alerte_Entite> alertes = database.GetAlertes(alerteEnt);
+            if (alertes.Count > 0) {
+                nomEspece = alertes[0].Oiseau.Espece;
+
+                foreach (Alerte_Entite alerte in alertes)
+                    message.To.Add(alerte.Usager.Courriel);
+
+                message.Subject = string.Format("Alerte: {0} Une nouvelle observation vient d'être effectuée.",
+                    nomEspece);
+                message.From = new System.Net.Mail.MailAddress("anonyme@gmail.com");
+                message.Body = message.Subject;
+                using (SmtpClient smtp = new SmtpClient("smtp.periodiq.com")) {
+                    smtp.Send(message);
+                }
+            }
+        } 
+        public List<Alerte_Entite> ObternirAlertes(Alerte_Entite pAlerte)
+        {
+            return database.GetAlertes(pAlerte);
+
+        }
+        public Alerte_Entite CreerAlerte(Alerte_Entite pAlerte)
+        {
+            Alerte_Entite retour = new Alerte_Entite();
+            try {
+                retour =  database.insertAlert(pAlerte);
+                if (string.IsNullOrEmpty(retour.MessageErreur)){
+                
+                }
+            }
+            catch (Exception ex)
+            {
+                retour.MessageErreur = ex.Message;
+            }
+            return retour;
+        }
+
+        public bool SupprimerAlerte(Alerte_Entite pAlerte ){
+        
+            return database.DeleteAlerte(pAlerte);
+        }
+        #endregion
 
 
         #region " Photo "

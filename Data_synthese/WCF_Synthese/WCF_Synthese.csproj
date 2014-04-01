@@ -76,9 +76,11 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Web\indexRay.html" />
     <Content Include="Web\Scripts\ScriptsDivers.js" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntitesWCF\AlerteWCF.cs" />
     <Compile Include="EntitesWCF\CriOiseauWCF.cs" />
     <Compile Include="EntitesWCF\EntiteWCFBase.cs" />
     <Compile Include="EntitesWCF\ObservationWCF.cs" />
