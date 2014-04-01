@@ -9,7 +9,7 @@ namespace Data_synthese.Classes
 {
     public class DatabaseObject : IDisposable
     {
-        private Session _session = Session.getInstance();
+        private readonly Session _session = Session.getInstance();
         public static int erreur;
 
         public DatabaseObject()
@@ -282,12 +282,7 @@ namespace Data_synthese.Classes
 
             if (usagerRow != null)
             {
-                usag.ID = usagerRow.Id;
-                usag.Nom = usagerRow.Nom;
-                usag.NomUsager = usagerRow.NomUsager;
-                usag.MotDePasse = usagerRow.MotPasse;
-                usag.EstAdministrateur = usagerRow.Administrateur;
-                usag.Courriel = usagerRow.Courriel;
+                usag = usagerRow.Convertir();
             }
             else
                 usag.MessageErreur = Constantes.ERREUR_USAGER_INEXISTANT;
@@ -374,6 +369,153 @@ namespace Data_synthese.Classes
         #endregion
 
         #endregion
+        #region " Alerte "
+
+        public Alerte_Entite insertAlert( Alerte_Entite pAlerte){
+        
+           
+
+             if (pAlerte.Validate() == false)
+                throw new Exception(Classes.Constantes.ERREUR_INFOS_MANQUANTES);
+
+             // On s'assure que le username n'existe pas déjà
+             var alerteRows = (from row in dbContext.alerte.Local
+                               where row.IDUsager == pAlerte.IDUsager && row.IDOiseau == pAlerte.IDOiseau
+                               select row);
+             if ((alerteRows != null) && (alerteRows.ToList().Count == 0))
+                 alerteRows = (from row in dbContext.alerte
+                               where row.IDUsager == pAlerte.IDUsager && row.IDOiseau == pAlerte.IDOiseau
+                               select row);
+
+             if ((alerteRows == null) || (alerteRows.ToList().Count == 0))
+             {
+                // Si l'alerte n'existe pas déjà, on la crée
+                 // On va chercher le dernier ID
+                var alerteRow = (from row in dbContext.alerte
+                                 orderby row.Id descending
+                                 select row).FirstOrDefault();
+                int ID = 0;
+                 if (alerteRow != null)
+                    ID = alerteRow.Id;
+                ID += 1;
+                alerte alerte = new alerte();
+                alerte.Convertir(pAlerte);
+                dbContext.alerte.Add(alerte);
+             }
+
+            return pAlerte;
+        }
+
+        /// <summary>
+        /// Supprime des alertes
+        /// 
+        /// Si ID est renseigné supprime cette alerte
+        /// si ISUsager est renseigné supprime toutes les alertes de ceet usager
+        /// Si IDOiseau es renseigné Supprime toutes les alertes de cet oiseau
+        /// Si aucun de ces champs n'est renseigné Supprime toutes les alertes
+        /// </summary>
+        /// <param name="pAlerte"></param>
+        public bool DeleteAlerte(Alerte_Entite pAlerte) {
+            
+            Boolean retour = false;
+            IEnumerable<alerte> alertes = null;
+            try{
+                // Une alerte en praticulier
+                if (pAlerte.ID > 0)
+                {
+                    alertes = (from row in dbContext.alerte
+                               where row.Id == pAlerte.ID
+                               select row);
+                // Les alertes d'un usager
+                if (pAlerte.IDUsager > 0)
+                {
+                    alertes = (from row in dbContext.alerte
+                               where row.IDUsager == pAlerte.IDUsager
+                               select row);
+
+                    // Les alertes reliées à un oiseau
+                }
+                else if (pAlerte.IDOiseau > 0)
+                {
+                    alertes = (from row in dbContext.alerte
+                               where row.IDOiseau == pAlerte.IDOiseau
+                               select row);
+                }
+                else
+                    // Toutes les alertes
+                    alertes = from row in dbContext.alerte
+                              orderby row.Id
+                              select row;
+                }
+                if (alertes !=null){
+                    foreach (alerte item in alertes)
+		 
+                    dbContext.alerte.Remove(item);
+                        retour = true;
+                
+                }
+             }
+            catch{
+            
+            }
+
+            return retour;
+        }
+
+        public Alerte_Entite  GetAlerte(Alerte_Entite pAlerte)
+        {
+            Alerte_Entite retour = new Alerte_Entite();
+            var alerte = (from row in dbContext.alerte
+                          where row.Id == pAlerte.ID
+                          select row).FirstOrDefault();
+            if (alerte != null){
+            
+                retour = alerte.Convertir();            
+            }
+            
+                return retour;
+ 
+            }
+
+        public List<Alerte_Entite> GetAlertes( Alerte_Entite pAlerte ){
+        
+            List<Alerte_Entite> retour = new List<Alerte_Entite>();
+            IEnumerable<alerte> alertes = null;
+
+            // Les alertes d'un usager
+            if (pAlerte.IDUsager > 0 ){
+                alertes = (from row in dbContext.alerte
+                           .Include("oiseaux")
+                           where row.IDUsager == pAlerte.IDUsager
+                           select row);
+
+                // Les alertes reliées à un oiseau
+            }else if (pAlerte.IDOiseau >0){
+                alertes = (from row in dbContext.alerte
+                           .Include("usager")
+                           where row.IDOiseau == pAlerte.IDOiseau
+                           select row);
+            }
+            else
+                // Toutes les alertes
+                    alertes = from row in dbContext.alerte
+                              .Include("oiseaux")
+                              .Include("usager")
+                              orderby row.Id
+                              select row;
+
+            if ((alertes != null)&&(alertes.Count() >0))
+            {
+                foreach (alerte item in alertes)
+                {
+                    Alerte_Entite alerteEnt = new Alerte_Entite();
+                    alerteEnt = item.Convertir();
+                    retour.Add(alerteEnt);
+                }
+            }
+            return retour;
+        }
+        #endregion
 
         #region " Oiseaux "
         #region " GetOiseau "
@@ -381,9 +523,8 @@ namespace Data_synthese.Classes
         public OiseauxList_Entite GetOiseaux(int pQte, int pStart) {
 
             
-            OiseauxList_Entite retour = new OiseauxList_Entite();
-            retour.QteTotale = (from row in dbContext.oiseau
-                                select row).Count();
+            OiseauxList_Entite retour = new OiseauxList_Entite() { QteTotale = (from row in dbContext.oiseau
+                                                                                select row).Count() };
                 
             IQueryable<oiseau> liste = null;
 

@@ -72,7 +72,7 @@ namespace WCF_Synthese
         RequestFormat = WebMessageFormat.Json,
         ResponseFormat = WebMessageFormat.Json,
         UriTemplate = "GetOiseau/{pStart}/{pQty}")]
-        OiseauWCFList GetAllOiseaux(string pStart, string  pQty);
+        OiseauWCFList GetAllOiseaux(string pStart, string pQty);
 
 
         [OperationContract]
@@ -173,6 +173,43 @@ namespace WCF_Synthese
 
         #endregion
 
+        #region " Alerte "
+
+        [OperationContract]
+        [WebGet(
+        BodyStyle = WebMessageBodyStyle.Wrapped,
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
+        UriTemplate = "Alerte")]
+        List<AlerteWCF> ObtenirAlerte(string ID);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        BodyStyle = WebMessageBodyStyle.Wrapped,
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
+        UriTemplate = "Alerte")]
+        List<AlerteWCF> ObtenirAlertes();
+
+        [OperationContract]
+        [WebInvoke(Method = "DELETE",
+        BodyStyle = WebMessageBodyStyle.Wrapped,
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
+        UriTemplate = "Alerte")]
+        bool SupprimerAlertes(AlerteWCF pAlerte);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        BodyStyle = WebMessageBodyStyle.Wrapped,
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
+        UriTemplate = "Alerte")]
+        AlerteWCF AjouterAlertes(AlerteWCF pAlerte);
+
+        #endregion
+
+        #region " Login "
 
         [OperationContract]
         [WebInvoke(Method = "GET",
@@ -189,6 +226,8 @@ namespace WCF_Synthese
         ResponseFormat = WebMessageFormat.Json,
         UriTemplate = "Logout")]
         void Logout();
+
+        #endregion
 
         [OperationContract]
         [WebInvoke(Method = "POST",

@@ -61,12 +61,14 @@
     <Compile Include="alerte.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Classes\AlertePartialClass.cs" />
     <Compile Include="Classes\Constantes.cs" />
     <Compile Include="Classes\crioiseauPartialClass.cs" />
     <Compile Include="Classes\DatabaseObject.cs" />
     <Compile Include="Classes\Encription.cs" />
     <Compile Include="Classes\oiseauPartialClass.cs" />
     <Compile Include="Classes\photoPartialClass.cs" />
+    <Compile Include="Classes\usagerPartialClass.cs" />
     <Compile Include="Commentaire.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
