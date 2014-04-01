@@ -20,12 +20,14 @@ namespace BO_Synthese.DTO
         [DataMember(Name = "ImageUpload")]
         public string ImageUpload { get; set; }
 
-        //[DataMember(Name = "Description")]
-        //public string Description { get; set; }
+        [DataMember(Name = "Description")]
+        public string Description { get; set; }
 
         [DataMember(Name = "IdObservation")]
         public int IDObservation { get; set; }
 
+        [DataMember(Name = "Path")]
+        public string Path { get; set; }
         //[DataMember(Name = "ImageMiniature")]
         //public byte[] ImageMiniature { get; set; }
 

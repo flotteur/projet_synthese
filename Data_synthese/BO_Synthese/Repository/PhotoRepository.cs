@@ -2,6 +2,7 @@
 using Data_synthese;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -84,10 +85,34 @@ namespace BO_Synthese
             //CurrentPhotoObservationDto.Commentaire = "fjshf";
             CurrentPhotoObservationDto.IDObservation = id;
             CurrentPhotoObservationDto.Image = Convert.FromBase64String(photo);
+            CurrentPhotoObservationDto.Description = "test";
+            CurrentPhotoObservationDto.Path = "test";
 
 
             DbContext.photoobservation.Add(PhotoObservationDtoToDb());
-            DbContext.SaveChanges();
+
+            try
+            {
+                DbContext.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                StringBuilder sb = new StringBuilder();
+
+                foreach (var failure in ex.EntityValidationErrors)
+                {
+                    sb.AppendFormat("{0} failed validation\n", failure.Entry.Entity.GetType());
+                    foreach (var error in failure.ValidationErrors)
+                    {
+                        sb.AppendFormat("- {0} : {1}", error.PropertyName, error.ErrorMessage);
+                        sb.AppendLine();
+                    }
+                }
+
+                throw new DbEntityValidationException(
+                    "Entity Validation Failed - errors follow:\n" + sb, ex); // Add the original exception as the innerException
+            }
+            
         }
         #endregion
 
@@ -179,9 +204,10 @@ namespace BO_Synthese
             return new photoobservation
             {
                 IDObservation = CurrentPhotoObservationDto.IDObservation,
-                //Description = CurrentPhotoObservationDto.Description,
+                Description = CurrentPhotoObservationDto.Description,
                 //Commentaire = CurrentPhotoObservationDto.Commentaire,
-                Image = CurrentPhotoObservationDto.Image
+                Image = CurrentPhotoObservationDto.Image,
+                Path = CurrentPhotoObservationDto.Path
             };
         }
 
