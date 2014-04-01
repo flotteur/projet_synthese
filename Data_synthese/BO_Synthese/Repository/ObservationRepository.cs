@@ -12,6 +12,7 @@ namespace BO_Synthese
         #region fields
         private ObservationDTO currentObservationDto;
         private synthese_dbEntities dbContext;
+        private Session session;
         #endregion
 
         #region constructor
@@ -23,12 +24,14 @@ namespace BO_Synthese
         {
             currentObservationDto = null;
             dbContext = new synthese_dbEntities();
+            this.session = Session.getInstance();
         }
 
         public ObservationRepository(ObservationDTO observationDto)
         {
             currentObservationDto = observationDto;
             dbContext = new synthese_dbEntities();
+            this.session = Session.getInstance();
         }
 
         /// <summary>
@@ -53,7 +56,7 @@ namespace BO_Synthese
         /// <returns>L'observation qui a été inséré dans la BD</returns>
         public void createObservation()
         {
-            if (!currentObservationDto.isValid())
+            if (!currentObservationDto.isValid() && session.usager != null)
                 throw new Exception("L'observation est incomplète.");
 
             dbContext.observation.Add(ObservationDtoToDb());
@@ -86,8 +89,9 @@ namespace BO_Synthese
         {
             var listObservationDto = new List<ObservationDTO>();
 
-            var listObservation = (from observations in dbContext.observation
-                                    select observations).ToList();
+            var listObservation = (from ob in dbContext.observation
+                                   orderby ob.DateObservation descending
+                                    select ob).ToList();
             
             foreach (observation observation in listObservation)
             {
@@ -96,6 +100,23 @@ namespace BO_Synthese
                 
             return listObservationDto;
 
+        }
+
+        /// <summary>
+        /// Permet la supression d'une observation
+        /// </summary>
+        /// <param name="id">L'id de l'observation</param>
+        /// <returns>Le succès de l'opération</returns>
+        public void DeleteObservation(int id)
+        {
+            if (session.usager.EstAdministrateur == true)
+            {
+                var observation = new observation();
+                observation.Id = id;
+
+                dbContext.observation.Remove(observation);
+                dbContext.SaveChanges();
+            }
         }
         #endregion
 
@@ -113,7 +134,8 @@ namespace BO_Synthese
                 DateObservation = currentObservationDto.DateObservation,
                 PositionLat = currentObservationDto.Latitude,
                 PositionLong = currentObservationDto.Longitude,
-                Titre = currentObservationDto.Titre
+                Titre = currentObservationDto.Titre,
+                Detail = currentObservationDto.Detail
             };
 
             return observation;
@@ -134,7 +156,8 @@ namespace BO_Synthese
                 Longitude = observation.PositionLong,
                 Latitude = observation.PositionLat,
                 Titre = observation.Titre,
-                Id = observation.Id
+                Id = observation.Id,
+                Detail = observation.Detail
             };
 
             observationDto.Usager = new DTO.UsagerDTO()

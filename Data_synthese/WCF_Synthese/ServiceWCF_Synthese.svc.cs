@@ -69,28 +69,43 @@ namespace WCF_Synthese
         }
 
         /// <summary>
+        /// Permet la supression d'une observation
+        /// </summary>
+        public void DeleteObservation(string id)
+        {
+            using (var repository = new ObservationRepository())
+            {
+                int numericId;
+                Int32.TryParse(id, out numericId);
+                repository.DeleteObservation(numericId);
+            }
+        }
+
+        /// <summary>
         /// Ce service permet d'obtenir une photo d'observation en fonction du ID de la photo
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id de l'image</param>
+        /// <param name="type">Type de l'image</param>
         /// <returns></returns>
-        public Stream GetImage(string id)
+        public Stream GetImage(string type, string id)
         {
-            var repository = new PhotoObservationRepository();
+            
             int numericId;
             Int32.TryParse(id, out numericId);
+            var repository = new PhotoRepository(type, numericId);
 
-            return new MemoryStream(repository.GetPhotoObservationFromId(numericId).Image);
+            return new MemoryStream(repository.GetPhoto());
         }
 
         public void AddImage(string id, string filename, byte[] stream)
         {
-            using (var repository = new PhotoObservationRepository()) {
-
-                Stream file = new MemoryStream(stream);
-                int numericId;
-                Int32.TryParse(id, out numericId);
-                repository.CreatePhotoObservation(id, filename, file);
-            }
+            //using (var repository = new PhotoRepository()) {
+            //
+            //    Stream file = new MemoryStream(stream);
+            //    int numericId;
+            //    Int32.TryParse(id, out numericId);
+            //    repository.CreatePhotoObservation(id, filename, file);
+            //}
 
         }
 

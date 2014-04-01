@@ -8,41 +8,55 @@ using System.Text;
 
 namespace BO_Synthese
 {
-    public sealed class PhotoObservationRepository : BO
+    public sealed class PhotoRepository : BO
     {
+        #region const
+        private const string typeOiseau = "oiseau";
+        private const string typeObservation = "observation";
+        #endregion
+
         #region property
         private PhotoObservationDTO CurrentPhotoObservationDto;
         private synthese_dbEntities DbContext;
+        private string type;
+        private int photoId;
         #endregion
 
         #region constructor
         /// <summary>
         /// Constructeur par défaut
         /// </summary>
-        public PhotoObservationRepository()
+        public PhotoRepository(string type, int id)
         {
             CurrentPhotoObservationDto = null;
             DbContext = new synthese_dbEntities();
+            photoId = id;
+
+            if (type.Equals(typeOiseau) || type.Equals(typeObservation))
+            {
+                this.type = type;
+            }
+            else
+            {
+                throw new Exception("Type invalide");
+            }
         }
         #endregion
 
         #region public
-        /// <summary>
-        /// Retourne une observation pour un ID
-        /// </summary>
-        /// <param name="id">Le id de l'observation</param>
-        /// <returns>L'observation contenant le ID en question</returns>
-        public PhotoObservationDTO GetPhotoObservationFromId(int id)
+        public byte[] GetPhoto()
         {
-            var list = (from photoobservation in DbContext.photoobservation
-                        where photoobservation.Id == id
-                        select photoobservation);
-
-            foreach (photoobservation photoobservation in list)
-                return PhotoObservationDbToDto(photoobservation);
+            
+            if (type.Equals(typeOiseau))
+            {
+                return GetPhotoOiseauFromId(photoId).Image;
+            }
+            else if (type.Equals(typeObservation))
+            {
+                return GetPhotoObservationFromId(photoId).Image;
+            }
 
             return null;
-
         }
 
         /// <summary>
@@ -70,6 +84,46 @@ namespace BO_Synthese
 
         #region private
         /// <summary>
+        /// Retourne une observation pour un ID
+        /// </summary>
+        /// <param name="id">Le id de l'observation</param>
+        /// <returns>L'observation contenant le ID en question</returns>
+        private PhotoObservationDTO GetPhotoObservationFromId(int id)
+        {
+            if (this.type.Equals(typeObservation))
+            {
+                var list = (from photoobservation in DbContext.photoobservation
+                            where photoobservation.Id == id
+                            select photoobservation);
+
+                foreach (photoobservation photoobservation in list)
+                    return PhotoObservationDbToDto(photoobservation);
+            }
+
+            return null;
+
+        }
+
+        /// <summary>
+        /// Retourne une photo d'oiseau
+        /// </summary>
+        /// <param name="id">id oiseau</param>
+        /// <returns>photo oiseau</returns>
+        private PhotoOiseauDTO GetPhotoOiseauFromId(int id)
+        {
+            if (this.type.Equals(typeOiseau))
+            {
+                var photo = (from photoOiseau in DbContext.photo
+                             where photoOiseau.Id == id
+                             select photoOiseau).First();
+
+                return PhotoOiseauDbToDto(photo);
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Permet de transformer une observation provenant de la BD en observation
         /// pouvant être enregistrée dans la bd
         /// </summary>
@@ -87,6 +141,24 @@ namespace BO_Synthese
             };
 
             return photoObservationDto;
+        }
+
+
+        /// <summary>
+        /// Permet de transformer une observation provenant de la BD en observation
+        /// pouvant être enregistrée dans la bd
+        /// </summary>
+        /// <param name="photo"></param>
+        /// <returns></returns>
+        private PhotoOiseauDTO PhotoOiseauDbToDto(photo photo)
+        {
+            var photoOiseauDto = new PhotoOiseauDTO()
+            {
+                Id = photo.Id,
+                Image = photo.Image
+            };
+
+            return photoOiseauDto;
         }
 
         /// <summary>

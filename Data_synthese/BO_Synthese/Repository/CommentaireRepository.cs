@@ -1,5 +1,6 @@
 ﻿using BO_Synthese.DTO;
 using Data_synthese;
+using Data_synthese.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace BO_Synthese.Repository
         #region fields
         private synthese_dbEntities dbContext;
         private CommentaireDTO currentCommentaireDto;
+        private Session session;
         #endregion
 
         #region constructor
@@ -22,6 +24,7 @@ namespace BO_Synthese.Repository
         {
             currentCommentaireDto = null;
             dbContext = new synthese_dbEntities();
+            this.session = Session.getInstance();
         }
 
         /// <summary>
@@ -32,6 +35,7 @@ namespace BO_Synthese.Repository
         {
             currentCommentaireDto = commentaireDto;
             dbContext = new synthese_dbEntities();
+            this.session = Session.getInstance();
         }
         #endregion
 
@@ -91,11 +95,14 @@ namespace BO_Synthese.Repository
         /// <param name="id">Id du commentaire</param>
         public void DeleteCommentaire(int id)
         {
-            var commentaire = new Commentaire();
-            commentaire.Id = id;
+            if ((session.usager != null) && (session.usager.EstAdministrateur == true))
+            {
+                var commentaire = new Commentaire();
+                commentaire.Id = id;
 
-            dbContext.Commentaire.Remove(commentaire);
-            dbContext.SaveChanges();
+                dbContext.Commentaire.Remove(commentaire);
+                dbContext.SaveChanges();
+            }
         }
 
         /// <summary>
