@@ -41,6 +41,12 @@ namespace BO_Synthese
                 throw new Exception("Type invalide");
             }
         }
+
+        public PhotoRepository()
+        {
+            CurrentPhotoObservationDto = null;
+            DbContext = new synthese_dbEntities();
+        }
         #endregion
 
         #region public
@@ -63,19 +69,22 @@ namespace BO_Synthese
         /// Cette methode permet d'ajouter une photo d'observation
         /// </summary>
         /// <param name="photoObservation"></param>
-        public void CreatePhotoObservation(string id, string filename, Stream photoObservation)
+        public void CreatePhotoObservation(int id, string photo)
         {
             CurrentPhotoObservationDto = new PhotoObservationDTO();
             //if (!CurrentPhotoObservationDto.IsValid())
             //    throw new Exception("Impossible d'enregistrer l'image.");
 
-            //add convert Stram to byte[]
-            byte[] buffer = StreamToByte(photoObservation);
-            //create image record for database
-            CurrentPhotoObservationDto.Image = buffer;
-            CurrentPhotoObservationDto.IDObservation = 1;
-            CurrentPhotoObservationDto.Description = "qewq";
-            CurrentPhotoObservationDto.Commentaire = "fjshf";
+            ////add convert Stram to byte[]
+            //byte[] buffer = StreamToByte(photoObservation);
+            ////create image record for database
+            //CurrentPhotoObservationDto.Image = buffer;
+            //CurrentPhotoObservationDto.IDObservation = 1;
+            //CurrentPhotoObservationDto.Description = "qewq";
+            //CurrentPhotoObservationDto.Commentaire = "fjshf";
+            CurrentPhotoObservationDto.IDObservation = id;
+            CurrentPhotoObservationDto.Image = Convert.FromBase64String(photo);
+
 
             DbContext.photoobservation.Add(PhotoObservationDtoToDb());
             DbContext.SaveChanges();
@@ -136,8 +145,8 @@ namespace BO_Synthese
                 Id = photo.Id,
                 IDObservation = photo.IDObservation,
                 Image = photo.Image,
-                Description = photo.Description,
-                Commentaire = photo.Commentaire
+                //Description = photo.Description,
+                //Commentaire = photo.Commentaire
             };
 
             return photoObservationDto;
@@ -170,8 +179,8 @@ namespace BO_Synthese
             return new photoobservation
             {
                 IDObservation = CurrentPhotoObservationDto.IDObservation,
-                Description = CurrentPhotoObservationDto.Description,
-                Commentaire = CurrentPhotoObservationDto.Commentaire,
+                //Description = CurrentPhotoObservationDto.Description,
+                //Commentaire = CurrentPhotoObservationDto.Commentaire,
                 Image = CurrentPhotoObservationDto.Image
             };
         }

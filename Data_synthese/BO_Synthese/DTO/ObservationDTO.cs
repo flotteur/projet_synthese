@@ -104,6 +104,7 @@ namespace BO_Synthese
             DateObservation = DateTime.ParseExact(DateObservationForSerialization,
                 "yyyy-MM-dd HH:mm:ss", 
                 CultureInfo.InvariantCulture);
+
         }
         #endregion
 

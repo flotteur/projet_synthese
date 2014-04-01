@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="BO.cs" />
     <Compile Include="DTO\CommentaireDTO.cs" />
+    <Compile Include="DTO\ListePhotoObservationDTO.cs" />
     <Compile Include="DTO\ObservationDTO.cs" />
     <Compile Include="DTO\OiseauDTO.cs" />
     <Compile Include="DTO\PhotoOiseauDTO.cs" />
