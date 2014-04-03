@@ -99,14 +99,6 @@ namespace WCF_Synthese
 
         public void AddImage(ListePhotoObservationDTO listePhoto)
         {
-            //using (var repository = new PhotoRepository()) {
-            //
-            //    Stream file = new MemoryStream(stream);
-            //    int numericId;
-            //    Int32.TryParse(id, out numericId);
-            //    repository.CreatePhotoObservation(id, filename, file);
-            //}
-
             using(var repository = new PhotoRepository())
             {
                 foreach(string photoObservation in listePhoto.PhotoObservationList)
@@ -114,7 +106,6 @@ namespace WCF_Synthese
                     repository.CreatePhotoObservation(listePhoto.IDObservation, photoObservation);
                 }
             }
-
         }
 
         #region " Usager "

@@ -79,6 +79,12 @@ namespace BO_Synthese
         public string Detail { get; set; }
 
         /// <summary>
+        /// La liste des photos de l'observation
+        /// </summary>
+        [DataMember(Name = "ListePhoto")]
+        public List<string> ListePathPhoto { get; set; }
+
+        /// <summary>
         /// Permet de traiter la date avant l'envoi au client
         /// </summary>
         /// <param name="ctx"></param>
@@ -112,6 +118,7 @@ namespace BO_Synthese
         public ObservationDTO()
         {
             Id = 0;
+            ListePathPhoto = new List<string>();
         }
         #endregion
         

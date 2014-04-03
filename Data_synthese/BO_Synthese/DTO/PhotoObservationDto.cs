@@ -28,11 +28,7 @@ namespace BO_Synthese.DTO
 
         [DataMember(Name = "Path")]
         public string Path { get; set; }
-        //[DataMember(Name = "ImageMiniature")]
-        //public byte[] ImageMiniature { get; set; }
 
-        //[DataMember(Name = "Commentaire")]
-        //public string Commentaire { get; set; }
 
         /// <summary>
         /// Permet de traiter la date avant l'envoi au client
@@ -57,14 +53,9 @@ namespace BO_Synthese.DTO
         [OnDeserialized]
         void OnDeserialized(StreamingContext ctx)
         {
-            //DateObservation = DateTime.ParseExact(DateObservationForSerialization,
-            //    "yyyy-MM-dd HH:mm:ss",
-            //    CultureInfo.InvariantCulture);
             Image = Convert.FromBase64String(ImageUpload);
         }
 
-        //[DataMember(Name = "ImageUpload")]
-        //public Stream ImageUpload { get; set; }
         #endregion
 
         #region public

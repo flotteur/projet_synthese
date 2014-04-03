@@ -113,9 +113,31 @@ namespace BO_Synthese
         {
             if (session.usager.EstAdministrateur == true)
             {
+                // Pour le delete de l'observation
                 var observation = new observation();
                 observation.Id = id;
 
+                // Pour le delete des commentaire
+                var listCommentaire = (from comment in dbContext.Commentaire
+                                       where comment.observationId == id
+                                       select comment).ToList();
+
+                foreach (Commentaire comment in listCommentaire)
+                {
+                    dbContext.Commentaire.Remove(comment);
+                }
+
+                // Pour le delete des photos
+                var listPhoto = (from pic in dbContext.photoobservation
+                                 where pic.IDObservation == id
+                                 select pic).ToList();
+
+                foreach (photoobservation pic in listPhoto)
+                {
+                    dbContext.photoobservation.Remove(pic);
+                }
+                
+                // Delete de l'observation
                 dbContext.observation.Remove(observation);
                 dbContext.SaveChanges();
             }
@@ -180,6 +202,14 @@ namespace BO_Synthese
                     Espece = observation.oiseaux.Espece,
                     Description = observation.oiseaux.Description
                 };
+            }
+
+            if (observation.photoobservations != null)
+            {
+                foreach (photoobservation pic in observation.photoobservations)
+                {
+                    observationDto.ListePathPhoto.Add(@"/image/observation/"+pic.Id);
+                }
             }
 
             return observationDto;
