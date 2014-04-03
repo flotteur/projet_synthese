@@ -36,10 +36,10 @@ namespace WCF_Synthese
         /// Ce service permet de créer un nouvelle observation
         /// </summary>
         /// <param name="observation">L'observation à ajouter</param>
-        public void AddObservation(ObservationDTO observation)
+        public ObservationDTO AddObservation(ObservationDTO observation)
         { 
             using (var repository = new ObservationRepository(observation)) {
-                repository.createObservation();
+                return repository.createObservation();
             }
         }
 

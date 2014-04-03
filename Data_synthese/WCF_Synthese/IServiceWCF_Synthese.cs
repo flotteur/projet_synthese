@@ -237,7 +237,7 @@ namespace WCF_Synthese
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "observation")]
-        void AddObservation(ObservationDTO observation);
+        ObservationDTO AddObservation(ObservationDTO observation);
 
         [OperationContract]
         [WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,

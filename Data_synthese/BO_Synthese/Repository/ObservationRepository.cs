@@ -54,13 +54,15 @@ namespace BO_Synthese
         /// </summary>
         /// <param name="observation">L'observation à insérer</param>
         /// <returns>L'observation qui a été inséré dans la BD</returns>
-        public void createObservation()
+        public ObservationDTO createObservation()
         {
             if (!currentObservationDto.isValid() && session.usager != null)
                 throw new Exception("L'observation est incomplète.");
 
-            dbContext.observation.Add(ObservationDtoToDb());
+            observation observationDb = dbContext.observation.Add(ObservationDtoToDb());
             dbContext.SaveChanges();
+
+            return ObservationDbToDto(observationDb);
         }
 
         /// <summary>
@@ -160,19 +162,25 @@ namespace BO_Synthese
                 Detail = observation.Detail
             };
 
-            observationDto.Usager = new DTO.UsagerDTO()
+            if (observation.usagers != null)
             {
-                Nom = observation.usagers.Nom,
-                NomUsager = observation.usagers.NomUsager,
-                ID = observation.usagers.Id
-            };
+                observationDto.Usager = new DTO.UsagerDTO()
+                {
+                    Nom = observation.usagers.Nom,
+                    NomUsager = observation.usagers.NomUsager,
+                    ID = observation.usagers.Id
+                };
+            }
 
-            observationDto.Oiseau = new DTO.OiseauDTO()
+            if (observation.oiseaux != null)
             {
-                Id = observation.oiseaux.Id,
-                Espece = observation.oiseaux.Espece,
-                Description = observation.oiseaux.Description
-            };
+                observationDto.Oiseau = new DTO.OiseauDTO()
+                {
+                    Id = observation.oiseaux.Id,
+                    Espece = observation.oiseaux.Espece,
+                    Description = observation.oiseaux.Description
+                };
+            }
 
             return observationDto;
         }
