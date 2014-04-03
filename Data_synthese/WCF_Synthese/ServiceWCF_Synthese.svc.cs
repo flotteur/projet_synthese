@@ -458,7 +458,7 @@ namespace WCF_Synthese
             AlerteWCF alerteWCF = new AlerteWCF();
             
             List<AlerteWCF> retour = new List<AlerteWCF>();
-            List<Alerte_Entite> alertes = BusinessObject.ObternirAlertes(alerteWCF.Convertir());
+            List<Alerte_Entite> alertes = BusinessObject.ObternirAlertes((Alerte_Entite)alerteWCF.Convertir());
 
             foreach (Alerte_Entite alerte in alertes)
             {
@@ -473,7 +473,7 @@ namespace WCF_Synthese
             
             AlerteWCF alerteWCF = new AlerteWCF() { ID = int.Parse( pID )};
             List<AlerteWCF> retour = new List<AlerteWCF>();
-            List<Alerte_Entite> alertes = BusinessObject.ObternirAlertes(alerteWCF.Convertir());
+            List<Alerte_Entite> alertes = BusinessObject.ObternirAlertes((Alerte_Entite)alerteWCF.Convertir());
 
             foreach (Alerte_Entite alerte in alertes)
             {
@@ -487,7 +487,7 @@ namespace WCF_Synthese
 #endregion
         public bool SupprimerAlertes(AlerteWCF pAlerte) {
 
-            bool retour = BusinessObject.SupprimerAlerte(pAlerte.Convertir());
+            bool retour = BusinessObject.SupprimerAlerte((Alerte_Entite)pAlerte.Convertir());
             if (retour==true)
                 BusinessObject.SaveChanges();
             return retour;
@@ -499,9 +499,9 @@ namespace WCF_Synthese
             Alerte_Entite alerteEnt = new Alerte_Entite();
 
             try{
-                retour.Convertir(BusinessObject.CreerAlerte(pAlerte.Convertir()));
+                retour.Convertir(BusinessObject.CreerAlerte((Alerte_Entite)pAlerte.Convertir()));
                 if (string.IsNullOrEmpty(retour.MessageErreur))
-                    BusinessObject.SupprimerAlerte(pAlerte.Convertir());
+                    BusinessObject.SupprimerAlerte((Alerte_Entite)pAlerte.Convertir());
             }
             catch (Exception Exception ){
                 retour.MessageErreur = Exception.Message ;

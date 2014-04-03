@@ -32,7 +32,7 @@ namespace WCF_Synthese.EntitesWCF
             
         }
 
-        public Alerte_Entite Convertir( ) {
+        public override Entites_Synthese.EntiteBase Convertir( ) {
         
             Alerte_Entite retour = new Alerte_Entite();
 

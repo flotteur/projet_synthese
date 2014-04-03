@@ -25,10 +25,9 @@ namespace WCF_Synthese.EntitesWCF
             
             return reader.ReadToEnd();
         }
-        public virtual Entites_Synthese.EntiteBase Convertir(){
+        public virtual EntiteBase Convertir() {
+            EntiteBase retour = new EntiteBase();
 
-            Entites_Synthese.EntiteBase retour = new Entites_Synthese.EntiteBase();
-            
             return retour;
         }
     }
