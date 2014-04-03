@@ -36,10 +36,10 @@ namespace WCF_Synthese
         /// Ce service permet de créer un nouvelle observation
         /// </summary>
         /// <param name="observation">L'observation à ajouter</param>
-        public void AddObservation(ObservationDTO observation)
+        public ObservationDTO AddObservation(ObservationDTO observation)
         { 
             using (var repository = new ObservationRepository(observation)) {
-                repository.createObservation();
+                return repository.createObservation();
             }
         }
 
@@ -97,16 +97,15 @@ namespace WCF_Synthese
             return new MemoryStream(repository.GetPhoto());
         }
 
-        public void AddImage(string id, string filename, byte[] stream)
+        public void AddImage(ListePhotoObservationDTO listePhoto)
         {
-            //using (var repository = new PhotoRepository()) {
-            //
-            //    Stream file = new MemoryStream(stream);
-            //    int numericId;
-            //    Int32.TryParse(id, out numericId);
-            //    repository.CreatePhotoObservation(id, filename, file);
-            //}
-
+            using(var repository = new PhotoRepository())
+            {
+                foreach(string photoObservation in listePhoto.PhotoObservationList)
+                {
+                    repository.CreatePhotoObservation(listePhoto.IDObservation, photoObservation);
+                }
+            }
         }
 
         #region " Usager "

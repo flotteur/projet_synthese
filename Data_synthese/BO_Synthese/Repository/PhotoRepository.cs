@@ -2,6 +2,7 @@
 using Data_synthese;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -41,19 +42,35 @@ namespace BO_Synthese
                 throw new Exception("Type invalide");
             }
         }
+
+        public PhotoRepository()
+        {
+            CurrentPhotoObservationDto = null;
+            DbContext = new synthese_dbEntities();
+        }
         #endregion
 
         #region public
         public byte[] GetPhoto()
         {
-            
+
             if (type.Equals(typeOiseau))
             {
-                return GetPhotoOiseauFromId(photoId).Image;
+                PhotoOiseauDTO photoOiseau = GetPhotoOiseauFromId(photoId);
+
+                if (photoOiseau != null)
+                {
+                    return photoOiseau.Image;
+                }                    
             }
             else if (type.Equals(typeObservation))
             {
-                return GetPhotoObservationFromId(photoId).Image;
+                PhotoObservationDTO photoObservation = GetPhotoObservationFromId(photoId);
+
+                if (photoObservation != null)
+                {
+                    return GetPhotoObservationFromId(photoId).Image;
+                }
             }
 
             return null;
@@ -63,22 +80,42 @@ namespace BO_Synthese
         /// Cette methode permet d'ajouter une photo d'observation
         /// </summary>
         /// <param name="photoObservation"></param>
-        public void CreatePhotoObservation(string id, string filename, Stream photoObservation)
+        public void CreatePhotoObservation(int id, string photo)
         {
             CurrentPhotoObservationDto = new PhotoObservationDTO();
             //if (!CurrentPhotoObservationDto.IsValid())
             //    throw new Exception("Impossible d'enregistrer l'image.");
 
-            //add convert Stram to byte[]
-            byte[] buffer = StreamToByte(photoObservation);
-            //create image record for database
-            CurrentPhotoObservationDto.Image = buffer;
-            CurrentPhotoObservationDto.IDObservation = 1;
-            CurrentPhotoObservationDto.Description = "qewq";
-            CurrentPhotoObservationDto.Commentaire = "fjshf";
+            CurrentPhotoObservationDto.IDObservation = id;
+            CurrentPhotoObservationDto.Image = Convert.FromBase64String(photo);
+            CurrentPhotoObservationDto.Description = "Description";
+            CurrentPhotoObservationDto.Path = "Path inutile";
+
 
             DbContext.photoobservation.Add(PhotoObservationDtoToDb());
-            DbContext.SaveChanges();
+
+            try
+            {
+                DbContext.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                StringBuilder sb = new StringBuilder();
+
+                foreach (var failure in ex.EntityValidationErrors)
+                {
+                    sb.AppendFormat("{0} failed validation\n", failure.Entry.Entity.GetType());
+                    foreach (var error in failure.ValidationErrors)
+                    {
+                        sb.AppendFormat("- {0} : {1}", error.PropertyName, error.ErrorMessage);
+                        sb.AppendLine();
+                    }
+                }
+
+                throw new DbEntityValidationException(
+                    "Entity Validation Failed - errors follow:\n" + sb, ex); // Add the original exception as the innerException
+            }
+            
         }
         #endregion
 
@@ -136,8 +173,8 @@ namespace BO_Synthese
                 Id = photo.Id,
                 IDObservation = photo.IDObservation,
                 Image = photo.Image,
-                Description = photo.Description,
-                Commentaire = photo.Commentaire
+                //Description = photo.Description,
+                //Commentaire = photo.Commentaire
             };
 
             return photoObservationDto;
@@ -171,28 +208,9 @@ namespace BO_Synthese
             {
                 IDObservation = CurrentPhotoObservationDto.IDObservation,
                 Description = CurrentPhotoObservationDto.Description,
-                Commentaire = CurrentPhotoObservationDto.Commentaire,
-                Image = CurrentPhotoObservationDto.Image
+                Image = CurrentPhotoObservationDto.Image,
+                Path = CurrentPhotoObservationDto.Path
             };
-        }
-
-        /// <summary>
-        /// Conversion d'un stream en byte[] pour enregistrer dans la bd
-        /// </summary>
-        /// <param name="stream"></param>
-        /// <returns></returns>
-        public static byte[] StreamToByte(Stream stream)
-        {
-            byte[] buffer = new byte[16 * 1024];
-            using (MemoryStream ms = new MemoryStream())
-            {
-                int read;
-                while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    ms.Write(buffer, 0, read);
-                }
-                return ms.ToArray();
-            }
         }
         #endregion
     }

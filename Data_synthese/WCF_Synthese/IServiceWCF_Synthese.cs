@@ -174,7 +174,7 @@ namespace WCF_Synthese
         #endregion
 
         #region " Alerte "
-
+        /*
         [OperationContract]
         [WebGet(
         BodyStyle = WebMessageBodyStyle.Wrapped,
@@ -182,14 +182,15 @@ namespace WCF_Synthese
         ResponseFormat = WebMessageFormat.Json,
         UriTemplate = "Alerte")]
         List<AlerteWCF> ObtenirAlerte(string ID);
-
+        */
+        /*
         [OperationContract]
         [WebInvoke(Method = "GET",
         BodyStyle = WebMessageBodyStyle.Wrapped,
         RequestFormat = WebMessageFormat.Json,
         ResponseFormat = WebMessageFormat.Json,
         UriTemplate = "Alerte")]
-        List<AlerteWCF> ObtenirAlertes();
+        List<AlerteWCF> ObtenirAlertes();*/
 
         [OperationContract]
         [WebInvoke(Method = "DELETE",
@@ -232,30 +233,30 @@ namespace WCF_Synthese
         #region observation
         [OperationContract]
         [WebInvoke(Method = "POST",
-        BodyStyle = WebMessageBodyStyle.Bare,
-        RequestFormat = WebMessageFormat.Json,
-        ResponseFormat = WebMessageFormat.Json,
-        UriTemplate = "observation")]
-        void AddObservation(ObservationDTO observation);
+            BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "observation")]
+        ObservationDTO AddObservation(ObservationDTO observation);
 
         [OperationContract]
         [WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
-        RequestFormat = WebMessageFormat.Json,
-        ResponseFormat = WebMessageFormat.Json,
-        UriTemplate = "observation/{id}")]
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "observation/{id}")]
         ObservationDTO GetObservation(string id);
 
         [OperationContract]
         [WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
-        RequestFormat = WebMessageFormat.Json,
-        ResponseFormat = WebMessageFormat.Json,
-        UriTemplate = "observation")]
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "observation")]
         List<ObservationDTO> GetAllObservation();
 
         [WebGet(BodyStyle = WebMessageBodyStyle.Wrapped,
-        RequestFormat = WebMessageFormat.Json,
-        ResponseFormat = WebMessageFormat.Json,
-        UriTemplate = "deleteObservation/{id}")]
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "deleteObservation/{id}")]
         void DeleteObservation(string id);
         #endregion
 
@@ -265,8 +266,12 @@ namespace WCF_Synthese
         Stream GetImage(string type, string id);
 
         [OperationContract]
-        [WebInvoke(UriTemplate = "image/{id}/{filename}")]
-        void AddImage(string id, string filename, byte[] file);
+        [WebInvoke(Method = "POST",
+            BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "image")]
+        void AddImage(ListePhotoObservationDTO listePhoto);
         #endregion
 
         #region commentaire
