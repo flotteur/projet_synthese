@@ -122,7 +122,6 @@ function Logout() {
 }
 
 function InsertAlert(){
-
            
     datas = { "IDOiseau": "1", 
                 "IDUsager": "2" };
