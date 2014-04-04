@@ -378,11 +378,11 @@ namespace Data_synthese.Classes
              if (pAlerte.Validate() == false)
                 throw new Exception(Classes.Constantes.ERREUR_INFOS_MANQUANTES);
 
-             // On s'assure que le username n'existe pas déjà
+             // On s'assure que la row n'existe pas déjà
              var alerteRows = (from row in dbContext.alerte.Local
                                where row.IDUsager == pAlerte.IDUsager && row.IDOiseau == pAlerte.IDOiseau
                                select row);
-             if ((alerteRows != null) && (alerteRows.ToList().Count == 0))
+             if ((alerteRows == null) || (alerteRows.ToList().Count == 0))
                  alerteRows = (from row in dbContext.alerte
                                where row.IDUsager == pAlerte.IDUsager && row.IDOiseau == pAlerte.IDOiseau
                                select row);
@@ -486,6 +486,7 @@ namespace Data_synthese.Classes
             if (pAlerte.IDUsager > 0 ){
                 alertes = (from row in dbContext.alerte
                            .Include("oiseaux")
+                           .Include("usager")
                            where row.IDUsager == pAlerte.IDUsager
                            select row);
 
@@ -493,6 +494,7 @@ namespace Data_synthese.Classes
             }else if (pAlerte.IDOiseau >0){
                 alertes = (from row in dbContext.alerte
                            .Include("usager")
+                           .Include("oiseaux")
                            where row.IDOiseau == pAlerte.IDOiseau
                            select row);
             }
@@ -568,6 +570,10 @@ namespace Data_synthese.Classes
                              select row).FirstOrDefault();
             if (OiseauRow == null)
                 OiseauRow = (from row in dbContext.oiseau
+                             .Include("alertes")
+                             .Include("crioiseaux")
+                             .Include("observations")
+                             .Include("photos")
                              where row.Id == PID
                              select row).FirstOrDefault();
 

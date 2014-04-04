@@ -3,8 +3,8 @@
 <head>
     <title>Test WCF</title>
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
-    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+    <script  type="application/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script  type="application/javascript" src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
     <script type="application/javascript" src="Scripts/ScriptsDivers.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no"
@@ -12,6 +12,7 @@
     <meta content="yes" name="apple-mobile-web-app-capable" />
 </head>
 <body>
+  
     <div data-role="page" id="menu">
         <div id="" data-role="header">
             <h1>
@@ -20,6 +21,7 @@
                 Précédent
             </button>-->
         </div>
+        
         <div data-role="content">
             <div>
                 <div>
@@ -56,6 +58,12 @@
                     </button>
                     <button onclick="InsertAlert();">
                         Insérer une alerte
+                    </button>
+                  <button onclick="DeleteAlert();">
+                        Supprimer une alerte
+                    </button>
+                     <button onclick="GetAlerts();">
+                        Obternir les alertes
                     </button>
                     </div>
                 </div>

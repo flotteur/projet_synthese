@@ -499,9 +499,7 @@ namespace BO_Synthese
             Alerte_Entite retour = new Alerte_Entite();
             try {
                 retour =  database.insertAlert(pAlerte);
-                if (string.IsNullOrEmpty(retour.MessageErreur)){
-                
-                }
+               
             }
             catch (Exception ex)
             {

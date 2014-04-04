@@ -13,8 +13,15 @@ namespace Data_synthese
             oiseauEnt.ID = this.Id;
             oiseauEnt.Description = this.Description;
             oiseauEnt.Espece = this.Espece;
-            oiseauEnt.CrisOiseau = this.Convertir(this.crioiseaux);
-            oiseauEnt.Photos = this.Convertir(this.photos.ToList());
+            try {
+                oiseauEnt.CrisOiseau = this.Convertir(this.crioiseaux);
+                oiseauEnt.Photos = this.Convertir(this.photos.ToList());
+            }
+            catch (Exception ex) {
+
+                // Il se peut que l'on ait pas besoin des cris d"oiseaux
+            }
+
             return oiseauEnt;
         }
 

@@ -174,15 +174,15 @@ namespace WCF_Synthese
         #endregion
 
         #region " Alerte "
-        /*
+
         [OperationContract]
-        [WebGet(
-        BodyStyle = WebMessageBodyStyle.Wrapped,
+        [WebInvoke(Method = "GET",
+        BodyStyle = WebMessageBodyStyle.Bare,
         RequestFormat = WebMessageFormat.Json,
         ResponseFormat = WebMessageFormat.Json,
-        UriTemplate = "Alerte")]
+        UriTemplate = "Alerte/{ID}")]
         List<AlerteWCF> ObtenirAlerte(string ID);
-        */
+
         /*
         [OperationContract]
         [WebInvoke(Method = "GET",
@@ -194,7 +194,7 @@ namespace WCF_Synthese
 
         [OperationContract]
         [WebInvoke(Method = "DELETE",
-        BodyStyle = WebMessageBodyStyle.Wrapped,
+        BodyStyle = WebMessageBodyStyle.Bare,
         RequestFormat = WebMessageFormat.Json,
         ResponseFormat = WebMessageFormat.Json,
         UriTemplate = "Alerte")]
@@ -202,7 +202,7 @@ namespace WCF_Synthese
 
         [OperationContract]
         [WebInvoke(Method = "POST",
-        BodyStyle = WebMessageBodyStyle.Wrapped,
+        BodyStyle = WebMessageBodyStyle.Bare,
         RequestFormat = WebMessageFormat.Json,
         ResponseFormat = WebMessageFormat.Json,
         UriTemplate = "Alerte")]

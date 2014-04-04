@@ -1,7 +1,4 @@
 ﻿
-    public int ID { get; set; }
-        public int IDOiseau { get; set; }
-        public int IDUsager  { get; set; }
 function Callback(result) {
     alert(result); // string
     alert(result.d.Company);
@@ -126,13 +123,9 @@ function Logout() {
 
 function InsertAlert(){
 
-    public int ID { get; set; }
-        public int IDOiseau { get; set; }
-        public int IDUsager  { get; set; }
-          
-    datas = { "ID": "1", 
-                "IDOiseau": "1", 
-                "IDUsager": "1" };
+           
+    datas = { "IDOiseau": "1", 
+                "IDUsager": "2" };
 
     dataToSend = JSON.stringify(datas)
     //jsonp: true, processData: true,
@@ -160,7 +153,69 @@ function InsertAlert(){
             alert(xhr.responseText);
         }
     });
+}
 
+function GetAlerts(){
+           
+    $.ajax({
+        type: "GET",
+        dataType: "json",        
+        url: "/WCF_Synthese/servicewcf_synthese.svc/Alerte/1",
+        contentType: "application/json; charset=utf-8",
+        
+        statusCode: {
+            default: function () {
+                alert(status);
+            }
+        },
+        success: function (data) {
+            obj = JSON.stringify(data);
+            var msg = obj.valueOf('MessageErreur');
+            if (msg != null){
+                alert(obj.valueOf('MessageErreur'));
+            }
+            return obj;
+
+        },
+        error: function (xhr, textStatus) {
+            alert(xhr.responseText);
+        }
+    });
+}
+function DeleteAlert(){
+
+           
+    datas = { "ID": "1", 
+                "IDOiseau": "1", 
+                "IDUsager": "1" };
+
+    dataToSend = JSON.stringify(datas)
+    //jsonp: true, processData: true,
+    $.ajax({
+        type: "DELETE",
+        dataType: "json",        
+        url: "/WCF_Synthese/servicewcf_synthese.svc/Alerte",
+        contentType: "application/json; charset=utf-8",
+        data: dataToSend,
+        statusCode: {
+            default: function () {
+                alert(status);
+            }
+        },
+        success: function (data) {
+            obj = JSON.stringify(data);
+            var msg = obj.valueOf('MessageErreur');
+            if (msg != null){
+                alert(obj.valueOf('MessageErreur'));
+            }
+            return obj;
+
+        },
+        error: function (xhr, textStatus) {
+            alert(xhr.responseText);
+        }
+    });
+}
 function InsertUsager() {
        
        var Courriel = $("#txtCourriel").val(); 
@@ -202,5 +257,3 @@ function InsertUsager() {
 
 }
 
-
-}

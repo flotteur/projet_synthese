@@ -468,9 +468,14 @@ namespace WCF_Synthese
 
             return retour;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pID"></param>
+        /// <returns></returns>
         public List<AlerteWCF> ObtenirAlerte(string pID) {
             
-            AlerteWCF alerteWCF = new AlerteWCF() { ID = int.Parse( pID )};
+            AlerteWCF alerteWCF = new AlerteWCF() { IDUsager = int.Parse( pID )};
             List<AlerteWCF> retour = new List<AlerteWCF>();
             List<Alerte_Entite> alertes = BusinessObject.ObternirAlertes((Alerte_Entite)alerteWCF.Convertir());
 
@@ -500,7 +505,7 @@ namespace WCF_Synthese
             try{
                 retour.Convertir(BusinessObject.CreerAlerte((Alerte_Entite)pAlerte.Convertir()));
                 if (string.IsNullOrEmpty(retour.MessageErreur))
-                    BusinessObject.SupprimerAlerte((Alerte_Entite)pAlerte.Convertir());
+                    BusinessObject.SaveChanges();
             }
             catch (Exception Exception ){
                 retour.MessageErreur = Exception.Message ;
