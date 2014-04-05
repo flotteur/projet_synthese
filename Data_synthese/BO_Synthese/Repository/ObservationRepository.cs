@@ -62,6 +62,10 @@ namespace BO_Synthese
             observation observationDb = dbContext.observation.Add(ObservationDtoToDb());
             dbContext.SaveChanges();
 
+            // On peut annoncer la bonne nouvelle
+            var bo = new BO();
+            bo.SendAlerte(observationDb.IDOiseau);
+
             return ObservationDbToDto(observationDb);
         }
 
@@ -72,8 +76,14 @@ namespace BO_Synthese
         /// <returns>L'observation qui a été inséré dans la BD</returns>
         public ObservationDTO UpdateObservation()
         {
-            if (!currentObservationDto.isValid() && session.usager != null)
+            if (!currentObservationDto.isValid())
                 throw new Exception("L'observation est incomplète.");
+
+            if (session.usager == null)
+                throw new Exception("Vous devez être authentifié pour effectuer cette action.");
+
+            if (session.usager.ID != currentObservationDto.IDUsager)
+                throw new Exception("Vous ne pouvez modifier cette observation.");
 
             observation observationDb = dbContext.observation.Add(ObservationDtoToDb());
             dbContext.SaveChanges();
