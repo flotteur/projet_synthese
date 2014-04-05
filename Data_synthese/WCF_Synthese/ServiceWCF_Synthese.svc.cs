@@ -39,7 +39,12 @@ namespace WCF_Synthese
         public ObservationDTO AddObservation(ObservationDTO observation)
         { 
             using (var repository = new ObservationRepository(observation)) {
-                return repository.createObservation();
+                if (observation.Id != 0)
+                {
+                    return repository.UpdateObservation();
+                }
+
+                return repository.CreateObservation();
             }
         }
 

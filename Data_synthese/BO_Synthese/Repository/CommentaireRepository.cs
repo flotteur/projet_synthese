@@ -130,6 +130,7 @@ namespace BO_Synthese.Repository
         {
             return new CommentaireDTO()
             {
+                Id = commentaireBD.Id,
                 IDUsager = commentaireBD.IDUsager,
                 Texte = commentaireBD.Texte,
                 observationId = commentaireBD.observationId
