@@ -79,16 +79,25 @@ namespace BO_Synthese
             if (!currentObservationDto.isValid())
                 throw new Exception("L'observation est incomplète.");
 
-            if (session.usager == null)
-                throw new Exception("Vous devez être authentifié pour effectuer cette action.");
+            //if (session.usager == null)
+            //    throw new Exception("Vous devez être authentifié pour effectuer cette action.");
+            //
+            //if (session.usager.ID != currentObservationDto.IDUsager)
+            //    throw new Exception("Vous ne pouvez modifier cette observation.");
 
-            if (session.usager.ID != currentObservationDto.IDUsager)
-                throw new Exception("Vous ne pouvez modifier cette observation.");
+            var observationUpdate = (from observation in dbContext.observation
+                                     where observation.Id == currentObservationDto.Id
+                                     select observation).First();
 
-            observation observationDb = dbContext.observation.Add(ObservationDtoToDb());
+            observationUpdate.IDOiseau = currentObservationDto.IDOiseau;
+            observationUpdate.PositionLat = currentObservationDto.Latitude;
+            observationUpdate.PositionLong = currentObservationDto.Longitude;
+            observationUpdate.Titre = currentObservationDto.Titre;
+            observationUpdate.Detail = currentObservationDto.Detail;
+            
             dbContext.SaveChanges();
 
-            return ObservationDbToDto(observationDb);
+            return ObservationDbToDto(observationUpdate);
         }
 
         /// <summary>
