@@ -54,10 +54,36 @@ namespace BO_Synthese
         /// </summary>
         /// <param name="observation">L'observation à insérer</param>
         /// <returns>L'observation qui a été inséré dans la BD</returns>
-        public ObservationDTO createObservation()
+        public ObservationDTO CreateObservation()
         {
             if (!currentObservationDto.isValid() && session.usager != null)
                 throw new Exception("L'observation est incomplète.");
+
+            observation observationDb = dbContext.observation.Add(ObservationDtoToDb());
+            dbContext.SaveChanges();
+
+            // On peut annoncer la bonne nouvelle
+            var bo = new BO();
+            bo.SendAlerte(observationDb.IDOiseau);
+
+            return ObservationDbToDto(observationDb);
+        }
+
+        /// <summary>
+        /// Permet l'insertion de l'observation dans la BD
+        /// </summary>
+        /// <param name="observation">L'observation à insérer</param>
+        /// <returns>L'observation qui a été inséré dans la BD</returns>
+        public ObservationDTO UpdateObservation()
+        {
+            if (!currentObservationDto.isValid())
+                throw new Exception("L'observation est incomplète.");
+
+            if (session.usager == null)
+                throw new Exception("Vous devez être authentifié pour effectuer cette action.");
+
+            if (session.usager.ID != currentObservationDto.IDUsager)
+                throw new Exception("Vous ne pouvez modifier cette observation.");
 
             observation observationDb = dbContext.observation.Add(ObservationDtoToDb());
             dbContext.SaveChanges();
@@ -111,8 +137,11 @@ namespace BO_Synthese
         /// <returns>Le succès de l'opération</returns>
         public void DeleteObservation(int id)
         {
-            if (session.usager.EstAdministrateur == true)
+            if (session.usager.EstAdministrateur == false || session.usager == null)
             {
+                return;
+            }
+
                 // Pour le delete de l'observation
                 var observation = new observation();
                 observation.Id = id;
@@ -136,11 +165,18 @@ namespace BO_Synthese
                 {
                     dbContext.photoobservation.Remove(pic);
                 }
-                
-                // Delete de l'observation
-                dbContext.observation.Remove(observation);
+
+                var observationDb = (from observ in dbContext.observation
+                                   where observ.Id == id
+                                   select observ).First();
+
+                if (observationDb != null)
+                {
+                    // Delete de l'observation
+                    dbContext.observation.Remove(observationDb);
+                }
+
                 dbContext.SaveChanges();
-            }
         }
         #endregion
 
