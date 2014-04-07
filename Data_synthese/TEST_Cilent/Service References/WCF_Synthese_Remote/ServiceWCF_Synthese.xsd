@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://periodiqco1.web703.discountasp.net/WCF_Synthese/ServiceWCF_Synthese.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BO_Synthese.DTO" />
+  <xs:import schemaLocation="http://periodiqco1.web703.discountasp.net/WCF_Synthese/ServiceWCF_Synthese.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" />
+  <xs:import schemaLocation="http://periodiqco1.web703.discountasp.net/WCF_Synthese/ServiceWCF_Synthese.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/BO_Synthese" />
+  <xs:import schemaLocation="http://periodiqco1.web703.discountasp.net/WCF_Synthese/ServiceWCF_Synthese.svc?xsd=xsd6" namespace="http://schemas.microsoft.com/Message" />
+  <xs:element name="DeleteCommentaire">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCommentaireResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddCommentaire">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/BO_Synthese.DTO" minOccurs="0" name="commentaire" nillable="true" type="q1:CommentaireDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddCommentaireResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/BO_Synthese.DTO" minOccurs="0" name="AddCommentaireResult" nillable="true" type="q2:CommentaireDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCommentaire">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCommentaireResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/BO_Synthese.DTO" minOccurs="0" name="GetCommentaireResult" nillable="true" type="q3:ArrayOfCommentaireDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsager">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsagerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="GetUsagerResult" nillable="true" type="q4:UsagerWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertUsager">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="pUsager" nillable="true" type="q5:UsagerWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertUsagerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="InsertUsagerResult" nillable="true" type="q6:UsagerWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUsager">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="pUsager" nillable="true" type="q7:UsagerWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUsagerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="UpdateUsagerResult" nillable="true" type="q8:UsagerWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUsager">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUsagerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteUsagerResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOiseau">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOiseauResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="GetOiseauResult" nillable="true" type="q9:OiseauWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllOiseaux">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pStart" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="pQty" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllOiseauxResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="GetAllOiseauxResult" nillable="true" type="q10:OiseauWCFList" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertOiseau">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="pOiseau" nillable="true" type="q11:OiseauWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertOiseauResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="InsertOiseauResult" nillable="true" type="q12:OiseauWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateOiseau">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="pOiseau" nillable="true" type="q13:OiseauWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateOiseauResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="UpdateOiseauResult" nillable="true" type="q14:OiseauWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteOiseau">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteOiseauResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteOiseauResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCriOiseau">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCriOiseauResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="GetCriOiseauResult" nillable="true" type="q15:CriOiseauWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertCriOiseau">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="pOiseau" nillable="true" type="q16:CriOiseauWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertCriOiseauResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="InsertCriOiseauResult" nillable="true" type="q17:CriOiseauWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCriOiseau">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="pCriOiseau" nillable="true" type="q18:CriOiseauWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCriOiseauResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="UpdateCriOiseauResult" nillable="true" type="q19:CriOiseauWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCriOiseau">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCriOiseauResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteCriOiseauResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPhoto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPhotoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="GetPhotoResult" nillable="true" type="q20:PhotoWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertPhoto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="pOiseau" nillable="true" type="q21:PhotoWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertPhotoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="InsertPhotoResult" nillable="true" type="q22:PhotoWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePhoto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="pPhoto" nillable="true" type="q23:PhotoWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePhotoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="UpdatePhotoResult" nillable="true" type="q24:PhotoWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletePhoto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletePhotoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeletePhotoResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenirAlerte">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenirAlerteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="ObtenirAlerteResult" nillable="true" type="q25:ArrayOfAlerteWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SupprimerAlertes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="pAlerte" nillable="true" type="q26:AlerteWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SupprimerAlertesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SupprimerAlertesResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AjouterAlertes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="pAlerte" nillable="true" type="q27:AlerteWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AjouterAlertesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="AjouterAlertesResult" nillable="true" type="q28:AlerteWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Login">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="user" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/WCF_Synthese.EntitesWCF" minOccurs="0" name="LoginResult" nillable="true" type="q29:UsagerWCF" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Logout">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LogoutResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddObservation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/BO_Synthese" minOccurs="0" name="observation" nillable="true" type="q30:ObservationDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddObservationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/BO_Synthese" minOccurs="0" name="AddObservationResult" nillable="true" type="q31:ObservationDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetObservation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetObservationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/BO_Synthese" minOccurs="0" name="GetObservationResult" nillable="true" type="q32:ObservationDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllObservation">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllObservationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/BO_Synthese" minOccurs="0" name="GetAllObservationResult" nillable="true" type="q33:ArrayOfObservationDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteObservation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteObservationResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetImage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="type" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetImageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.microsoft.com/Message" name="GetImageResult" type="q34:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddImage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/BO_Synthese.DTO" minOccurs="0" name="listePhoto" nillable="true" type="q35:ListePhotoObservationDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddImageResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

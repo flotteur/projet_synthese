@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/BO_Synthese" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/BO_Synthese" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://periodiqco1.web703.discountasp.net/WCF_Synthese/ServiceWCF_Synthese.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://periodiqco1.web703.discountasp.net/WCF_Synthese/ServiceWCF_Synthese.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BO_Synthese.DTO" />
+  <xs:complexType name="ObservationDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DateObservation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Detail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IDOiseau" type="xs:int" />
+      <xs:element minOccurs="0" name="IDUsager" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Latitude" nillable="true" type="xs:double" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ListePhoto" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Longitude" nillable="true" type="xs:double" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/BO_Synthese.DTO" minOccurs="0" name="Oiseau" nillable="true" type="q2:OiseauDTO" />
+      <xs:element minOccurs="0" name="Titre" nillable="true" type="xs:string" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/BO_Synthese.DTO" minOccurs="0" name="Usager" nillable="true" type="q3:UsagerDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ObservationDTO" nillable="true" type="tns:ObservationDTO" />
+  <xs:complexType name="ArrayOfObservationDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ObservationDTO" nillable="true" type="tns:ObservationDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfObservationDTO" nillable="true" type="tns:ArrayOfObservationDTO" />
+</xs:schema>

@@ -1,0 +1,142 @@
+﻿
+Commandes Git les plus utilisées en mode console
+
+Collaborateurs: pour que quelqu'un puisse venir modifier des choses dans notre repo on doit l'ajouter dans la liste des colaborateurs - Manage Collaborators
+
+Commandes Git les plus utilisés en mode console
+
+
+
+------------------------------------------------------------------------------------------------------
+
+git clone https://github.com/flotteur/projet_synthese.git
+git clone https://github.com/saxisfun/client_synthese.git
+
+Avec la console run cmd de windows ca marche pas. Il faut prendre la fentre Git Shell qui s'installe avec l'installation du client git
+
+
+Vidéo:   https://www.youtube.com/watch?v=0fKg7e37bQE
+
+
+
+git status
+
+git add index.html
+ou
+git add . (tous les fichiers du répertoire qu'on est dedans)
+ou
+git add -A (tous les fichiers du repo)
+
+git commit -m "un message"
+
+git commit -a -m "un message" (add et commit en meme temps)
+
+ou
+git commit (sans message ca ouvre vim. Faire :wq pour sortir )
+
+git push (publier)
+
+git pull (faire venir les nouveaux changements)
+
+
+git (pour voir le Help)
+
+-------Branching--------------------------
+
+git branch Alain (créer une nouvelle branche)
+
+
+
+git push origin Alain (Push the branch on github :)
+
+
+
+git checkout Alain	(Switch to your new branch :)
+
+git checkout -b Alain (créer une nouvelle et embraque dedans)
+
+
+git push --set-upstream origin Denis (choisir l'emplacement de l'origine ??)
+
+git branch (You can see all branches created by using) 
+
+
+git branch -d Alain (effacer une branche)
+
+
+-------Merging--------------------------
+
+git checkout master (aller dans master)
+git merge Alain
+
+
+
+
+3 types de merge
+	merge (merge un ou des commits de ma branche dans une autre branche)
+	fast-forward ()
+	rebase 
+		-revenir en arrière au moment ou la branche s'est splitté et réappliquer les commits sur la branche cible (Master)
+		-effacer toute trace qu'il y a eu une branche
+	
+
+-------fetching--------------------------
+git fetch origin (ramener les modif du origin/master vers votre master local)
+
+	
+-------Conflicts--------------
+
+
+Faire les modif dans le fichier conflictuel
+git add -A (pour ré-ajouter le fichier réparé)
+git commit -m "Conflit réparé"
+
+
+
+cd D:\DataAll\DataCegep\Session_XX9_TPSyntheseFin\TP1_Partie_2_App_Oiseau\client_synthese
+
+
+
+
+git remote -v
+
+
+remotes
+git  branch -a (voir les remote)
+
+
+
+=========================================
+   
+Exemple d'un cycle avant de travailler:
+      (s'assurer qu'on est sur notre branche master local)
+git checkout master   
+git fetch  
+      (sync branche master githib ->> branche master local)            
+git merge origin/master 
+      (créer une nouvelle branche et sauter dessus)
+git checkout -b  branche_du_jour
+
+une fois que les modifs sont faites:
+CYCLE:  changer «keck» chose, add le chagement, commit le changement
+
+git add .
+git commit -m "message expliquant la modif"
+git fetch
+
+===== Option A (pour créer la nouvelle branche sur github)
+
+git push -u origin branche_du_jour  
+			(-u  signifie trakable)
+
+===== Option B (pour mettre à jour la branche master de git)
+	(on se place sur notre master et s'assure qu'on est à jour)  
+git checkout master       
+git fetch
+git merge origin/master   
+	(on merge ensuite notre nouvelle branche sur notre master)
+git merge branche_du_jour  
+	(mettre la branche master de github à jour)
+git push   (pour mettre la branche master de git)
+
+=========================================

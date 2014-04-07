@@ -1,0 +1,39 @@
+
+CREATE TABLE tb_observations (obs_Id VARCHAR(20), obs_DateObservation VARCHAR(20), obs_Position_lat VARCHAR(20));
+
+INSERT INTO tb_observations (obs_Id,obs_DateObservation,obs_Position_lat) VALUES("111111","1394148405287","47.7543");
+INSERT INTO tb_observations (obs_Id,obs_DateObservation,obs_Position_lat) VALUES("222222","1384143205423","48.5321");
+SELECT * FROM tb_observations;
+GRANT ALL PRIVILEGES ON selectaldata.* TO druser@localhost IDENTIFIED BY 'saxophone';
+
+
+CREATE USER 'user1_cegep'@'localhost' IDENTIFIED BY 'cegep1234';
+GRANT ALL PRIVILEGES ON * . * TO 'user1_cegep'@'localhost';
+
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD("2ht45ey46r3ew3e");
+SET PASSWORD FOR 'root'@'ns4001973.ip-198-100-145.net' = PASSWORD("2ht45ey46r3ew3e");
+SET PASSWORD FOR ''@'localhost' = PASSWORD('2ht45ey46r3ew3e');
+
+
+
+SELECT User, Host, Password FROM mysql.user;
+
+
+Observation
+Integer Id
+Date DateObservation
+Integer Position
+Integer IDUsager
+Integer IDOiseau
+
+
+
+PhotoObservation
+Integer Id
+Byte[] Image
+String Description
+Integer IDObservation
+Byte[] ImageMiniature
+String Commentaire
+
+

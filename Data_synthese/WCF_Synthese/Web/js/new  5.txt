@@ -1,0 +1,48 @@
+{
+	"IDUsager": 1,
+	"Id": 0,
+	"DateObservation": "2014-04-01 12:13:14",
+	"Latitude": 123,
+	"Longitude": 456,
+	"IDOiseau": 1,
+	"Titre": "Mon observation",
+	"Detail": "Vraiment cool"
+}
+
+
+{
+	"DateObservation": "2014-03-30 15:29:44",
+	"Id": 0,
+	"IDOiseau": 2,
+	"IDUsager": 1,
+	"Titre": "111111111",
+	"Detail": "11111111111111111",
+	"Latitude": 46.9218258,
+	"Longitude": -71.3761347
+}
+
+
+
+{
+	"DateObservation": "2014-03-30 15:35:42",
+	"Id": 0,
+	"IDOiseau": 1,
+	"IDUsager": 1,
+	"Titre": "",
+	"Detail": "",
+	"Latitude": 46.9218747,
+	"Longitude": -71.3760216
+}
+
+{
+	"DateObservation": "2014-03-30 15:37:09",
+	"Id": 0,
+	"IDOiseau": 1,
+	"IDUsager": 1,
+	"Titre": "11111111111",
+	"Detail": "11111111111111111111",
+	"Latitude": 46.9218295,
+	"Longitude": -71.37613929999999
+}
+
+

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/BO_Synthese.DTO" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/BO_Synthese.DTO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://periodiqco1.web703.discountasp.net/WCF_Synthese/ServiceWCF_Synthese.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="CommentaireDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IDUsager" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Texte" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="observationId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommentaireDTO" nillable="true" type="tns:CommentaireDTO" />
+  <xs:complexType name="ArrayOfCommentaireDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CommentaireDTO" nillable="true" type="tns:CommentaireDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCommentaireDTO" nillable="true" type="tns:ArrayOfCommentaireDTO" />
+  <xs:complexType name="OiseauDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Espece" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OiseauDTO" nillable="true" type="tns:OiseauDTO" />
+  <xs:complexType name="UsagerDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Nom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NomUsager" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UsagerDTO" nillable="true" type="tns:UsagerDTO" />
+  <xs:complexType name="ListePhotoObservationDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IDObservation" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="photoList" nillable="true" type="q1:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListePhotoObservationDTO" nillable="true" type="tns:ListePhotoObservationDTO" />
+</xs:schema>

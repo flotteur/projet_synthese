@@ -1,0 +1,216 @@
+﻿
+Pour créer certificat et se connecter en sftp avec filezilla
+openssl req -x509 -nodes -days 365 -newkey rsa:1024  -keyout /etc/vsftpd/vsftpd.pem -out /etc/vsftpd/vsftpd.pem
+
+ssl_enable=YES
+ allow_anon_ssl=NO
+ force_local_data_ssl=NO
+ #Pour forcer la connection sftp (ftp fonctionne pas)
+ force_local_logins_ssl=YES
+ ssl_tlsv1=YES
+ ssl_sslv2=NO
+ ssl_sslv3=NO
+ rsa_cert_file=/etc/vsftpd/vsftpd.pem
+
+
+cegep_oiseaux
+
+CREATE TABLE tb_commentaires (comm_Id INT auto_increment PRIMARY KEY, comm_ObservationId INT, comm_UserId INT, comm_Date VARCHAR(20), comm_Resume mediumtext character SET utf8);
+
+CREATE TABLE tb_usagers (usager_Id INT auto_increment PRIMARY KEY, usager_NomUsager VARCHAR(64), usager_MotPasse VARCHAR(255), usager_Nom VARCHAR(64) character SET utf8, usager_Prenom VARCHAR(64) character SET utf8, usager_RecevoirAlertes VARCHAR(20), usager_DateCree VARCHAR(20));
+
+
+
+
+CREATE TABLE tb_observations (obs_Id INT auto_increment PRIMARY KEY, obs_DateObservation VARCHAR(20), obs_Position_lat VARCHAR(20));
+
+
+INSERT INTO tb_observations (obs_Id,obs_DateObservation,obs_Position_lat) VALUES("111111","1394148405287","47.7543");
+INSERT INTO tb_observations (obs_Id,obs_DateObservation,obs_Position_lat) VALUES("222222","1384143205423","48.5321");
+SELECT * FROM tb_observations;
+
+UPDATE tb_observations Set obs_DateObservation = '11111111', obs_Position_lat = '22222222' WHERE obs_Id = 2112";
+
+UPDATE tb_PhotoObservation Set ph_obs_IDObservation = '9' WHERE ph_obs__Id = 12;
+
+
+
+
+CREATE TABLE tb_PhotoObservation (ph_obs__Id INT auto_increment PRIMARY KEY, ph_obs__Image mediumtext CHARACTER SET ascii, ph_obs_Description VARCHAR(255), ph_obs_IDObservation INT, ph_obs__ImageMiniature mediumtext CHARACTER SET ascii);
+
+SELECT ph_obs__Id,ph_obs_Description,ph_obs_IDObservation FROM tb_PhotoObservation;
+
+
+
+//DROP
+ALTER TABLE tb_observations DROP obs_Id;
+ALTER TABLE tb_observations ADD obs_Id INT auto_increment PRIMARY KEY;
+
+
+ALTER TABLE tb_observations DROP obs_Image_ascii;
+
+ALTER TABLE tb_PhotoObservation DROP ph_obs__Id;
+ALTER TABLE tb_PhotoObservation ADD ph_obs__Id INT auto_increment PRIMARY KEY first;
+
+ALTER TABLE tb_observations ADD obs_Id INT auto_increment PRIMARY KEY;
+
+
+select * from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='tb_observations';
+
+
+
+
+
+
+
+
+GRANT ALL PRIVILEGES ON selectaldata.* TO druser@localhost IDENTIFIED BY 'saxophone';
+
+198.100.145.177
+CREATE USER 'user1_cegep'@'localhost' IDENTIFIED BY 'cegep1234';
+GRANT ALL PRIVILEGES ON * . * TO 'user1_cegep'@'localhost';
+
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD("2ht45ey46r3ew3e");
+SET PASSWORD FOR 'root'@'ns4001973.ip-198-100-145.net' = PASSWORD("2ht45ey46r3ew3e");
+SET PASSWORD FOR 'root'@'127.0.0.1' = PASSWORD("2ht45ey46r3ew3e");
+SET PASSWORD FOR ''@'localhost' = PASSWORD('2ht45ey46r3ew3e');
+SET PASSWORD FOR ''@'ns4001973.ip-198-100-145.net' = PASSWORD("2ht45ey46r3ew3e");
+
+
+SELECT User, Host, Password FROM mysql.user;
+
+show databases;
+
+use cegep_oiseaux;
+
+http://justtrythis.blogspot.ca/2012/06/how-to-store-image-in-mysql.html
+
+ALTER TABLE tb_observations ADD `obs_ImagePrincipale` mediumtext NOT NULL,
+ALTER TABLE tb_observations ADD obs_ImagePrincipale mediumtext NOT NULL AFTER obs_Position_lat;
+ALTER TABLE tb_observations ADD obs_Image_ascii mediumtext CHARACTER SET ascii AFTER obs_Position_lat;
+
+`columnname` TEXT CHARACTER SET ascii,
+
+ALTER TABLE tb_observations ADD PRIMARY KEY(obs_Id);
+ALTER TABLE tb_observations ADD obs_Id INT auto_increment PRIMARY KEY;
+ALTER TABLE tb_observations MODIFY COLUMN obs_Id INT auto_increment;
+
+SELECT obs_Id,obs_DateObservation,obs_Position_lat FROM tb_observations;
+REPAIR TABLE tb_observations;
+REPAIR TABLE tb_PhotoObservation;
+
+
+ALTER TABLE tb_observations ADD obs_IDOiseau VARCHAR(255) 
+ALTER TABLE tb_observations ADD obs_IDOiseau INT AFTER obs_DateObservation; 
+ALTER TABLE tb_observations ADD obs_IDUsager INT AFTER obs_IDOiseau; 
+ALTER TABLE tb_observations ADD obs_Titre INT AFTER obs_IDUsager;
+ALTER TABLE tb_observations ADD obs_Resume INT AFTER obs_Titre;
+ALTER TABLE tb_observations ADD obs_Position_long varchar(64) AFTER obs_Position_lat;
+ALTER TABLE tb_observations ADD obs_Position_long varchar(64) AFTER obs_Position_lat;
+
+
+ALTER TABLE tb_PhotoObservation ADD ph_obs_url_big varchar(255) AFTER ph_obs__ImageMiniature;
+
+
+ph_obs_url_big
+
+
+ALTER TABLE tb_observations ADD obs_strObservFlagInsertUpdate varchar(20) AFTER obs_Position_long;
+
+ALTER TABLE tb_observations DROP obs_Id;
+ALTER TABLE tb_observations MODIFY COLUMN obs_Titre varchar(64) character SET utf8;
+ALTER TABLE tb_observations MODIFY COLUMN obs_Resume mediumtext character SET utf8;
+ALTER TABLE tb_observations MODIFY COLUMN obs_Position_lat varchar(64);
+
+
+obs_Id = 0;	
+obs_DateObservation = tempDate;
+obs_IDOiseau = 0;
+obs_IDUsager = 0;
+obs_Titre = "";
+obs_Resume = "";
+	//obs_arrObservLesPhotos = [];
+obs_Position_lat = "";
+obs_Position_long = "";
+	obs_strObservFlagInsertUpdate = "";
+
+	
+	
+	
+	
+CREATE TABLE `imageText` ( 
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(64) character SET utf8 NOT NULL,
+  `type` varchar(20) ,
+  `data` mediumtext NOT NULL,
+  PRIMARY KEY  (`id`) 
+);
+
+--------------------------------------------------------------------------------
+$username = "user1_cegep";
+$password = "cegep1234";
+$hostname = "localhost"; 
+
+//connection to the database
+$dbhandle = mysql_connect($hostname, $username, $password)
+  or die("Unable to connect to MySQL");
+echo "Connected to MySQL<br>";
+
+$selected = mysql_select_db("cegep_oiseaux",$dbhandle)
+  or die("Could not select examples");
+
+$result = mysql_query("SELECT obs_Id, obs_DateObservation, obs_Position_lat FROM tb_observations");
+//fetch tha data from the database
+while ($row = mysql_fetch_array($result)) {
+   echo "obs_Id:".$row{'obs_Id'}.", obs_DateObservation:".$row{'obs_DateObservation'}.", obs_Position_lat: ".$row{'obs_Position_lat'}."<br>";
+
+}
+
+ftp:anonyous@198.100.145.177
+
+https://www.youtube.com/watch?v=2B4UGvjT42w
+
+
+
+yum install vsftpd
+chkconfig vsftpd on
+service vsftpd start
+
+verif si ftp fonctionne
+netstat -ntl | grep 21
+disable anonymous
+rpm -qc vsftpd
+nano /etc/vsftpd/vsftpd.conf
+anonymous_enable=NO
+service vsftpd restart
+
+#Enable dual logging
+nano /etc/vsftpd/vsftpd.conf
+dual_log_enable=YES
+
+
+
+
+
+Observation
+Integer Id
+Date DateObservation
+Integer Position
+Integer IDUsager
+Integer IDOiseau
+
+CREATE TABLE tb_PhotoObservation (ph_obs__Id INT auto_increment PRIMARY KEY, ph_obs__Image mediumtext CHARACTER SET ascii, ph_obs_Description VARCHAR(255), ph_obs_IDObservation INT, ph_obs__ImageMiniature mediumtext CHARACTER SET ascii);
+
+SELECT ph_obs__Id,ph_obs_Description,ph_obs_IDObservation FROM tb_PhotoObservation;
+
+
+
+PhotoObservation
+Integer Id
+Byte[] Image
+String Description
+Integer IDObservation
+Byte[] ImageMiniature
+String Commentaire
+
+
