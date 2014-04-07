@@ -17,8 +17,7 @@ namespace Entites_Synthese
 
         public override bool Validate() {
 
-            this.IsValid = ((this.ID > 0) &&
-            (this.IDOiseau > 0) &&
+            this.IsValid = ((this.IDOiseau > 0) &&
             (this.IDUsager > 0));
 
 

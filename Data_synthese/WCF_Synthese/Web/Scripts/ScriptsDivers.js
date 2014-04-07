@@ -121,10 +121,52 @@ function Logout() {
 
 }
 
+function AddObservation(){
+    datas = {
+    "DateObservation": "2014-04-06 12:00:00",
+    "Id": 0,
+    "IDOiseau": 2,
+    "IDUsager": 1,
+    "Titre": "Observation",
+    "Detail": "Détail de l'observation",
+    "Latitude": 46.803283,
+    "Longitude": -71.242796
+};
+
+    dataToSend = JSON.stringify(datas)
+    //jsonp: true, processData: true,
+    $.ajax({
+        type: "POST",
+        dataType: "json",        
+        url: "/WCF_Synthese/servicewcf_synthese.svc/observation",
+        contentType: "application/json; charset=utf-8",
+        data: dataToSend,
+        statusCode: {
+            default: function () {
+                alert(status);
+            }
+        },
+        success: function (data) {
+            obj = JSON.stringify(data);
+            var msg = obj.valueOf('MessageErreur');
+            if (msg != null){
+                alert(obj.valueOf('MessageErreur'));
+            }
+            return obj;
+
+        },
+        error: function (xhr, textStatus) {
+            alert(xhr.responseText);
+        }
+    });
+
+}
 function InsertAlert(){
            
-    datas = { "IDOiseau": "1", 
-                "IDUsager": "2" };
+    datas = { 
+        "Id": "0",
+        "IDOiseau": "3", 
+        "IDUsager": "2" };
 
     dataToSend = JSON.stringify(datas)
     //jsonp: true, processData: true,

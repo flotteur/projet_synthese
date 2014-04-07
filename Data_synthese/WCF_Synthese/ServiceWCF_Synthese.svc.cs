@@ -505,10 +505,13 @@ namespace WCF_Synthese
         public AlerteWCF AjouterAlertes(AlerteWCF pAlerte) {
          
             AlerteWCF retour = new AlerteWCF();
-            Alerte_Entite alerteEnt = new Alerte_Entite();
-
+            
             try{
-                retour.Convertir(BusinessObject.CreerAlerte((Alerte_Entite)pAlerte.Convertir()));
+
+                Alerte_Entite alerteEnt = (Alerte_Entite)pAlerte.Convertir();
+                alerteEnt = BusinessObject.CreerAlerte(alerteEnt);
+                retour.Convertir(alerteEnt);
+
                 if (string.IsNullOrEmpty(retour.MessageErreur))
                     BusinessObject.SaveChanges();
             }

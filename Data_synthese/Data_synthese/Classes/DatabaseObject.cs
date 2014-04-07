@@ -401,8 +401,9 @@ namespace Data_synthese.Classes
                 alerte alerte = new alerte();
                 alerte.Convertir(pAlerte);
                 dbContext.alerte.Add(alerte);
+                pAlerte.ID = ID;
              }
-
+            
             return pAlerte;
         }
 

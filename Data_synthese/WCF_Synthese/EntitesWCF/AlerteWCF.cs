@@ -18,6 +18,7 @@ namespace WCF_Synthese.EntitesWCF
             this.ID = pAlerteEntite.ID;
             this.IDOiseau = pAlerteEntite.IDOiseau;
             this.IDUsager = pAlerteEntite.IDUsager;
+            this.MessageErreur = pAlerteEntite.MessageErreur;
             if (pAlerteEntite.Usager !=null){
                 UsagerWCF usager = new UsagerWCF();
                 usager.Convertir(pAlerteEntite.Usager);

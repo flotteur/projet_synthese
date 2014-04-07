@@ -786,7 +786,7 @@
         <EntityTypeShape EntityType="synthese_dbModel.alerte" Width="2.5" PointX="3.125" PointY="7" Height="1.7879850260416665" />
         <EntityTypeShape EntityType="synthese_dbModel.crioiseau" Width="2.5" PointX="4.25" PointY="9.25" Height="2.1725878906249996" />
         <EntityTypeShape EntityType="synthese_dbModel.message" Width="2.5" PointX="7.875" PointY="2.875" Height="2.3648893229166656" />
-        <EntityTypeShape EntityType="synthese_dbModel.observation" Width="2.5" PointX="11.875" PointY="2.875" Height="3.7109993489583326" />
+        <EntityTypeShape EntityType="synthese_dbModel.observation" Width="2.5" PointX="11.125" PointY="2.875" Height="3.7109993489583326" />
         <EntityTypeShape EntityType="synthese_dbModel.oiseau" Width="2.5" PointX="8.25" PointY="8.875" Height="2.3648893229166656" />
         <EntityTypeShape EntityType="synthese_dbModel.photoobservation" Width="2.5" PointX="15.875" PointY="3.25" Height="2.5571907552083317" />
         <EntityTypeShape EntityType="synthese_dbModel.photo" Width="2.5" PointX="12.25" PointY="8.625" Height="2.3648893229166656" />
@@ -807,28 +807,28 @@
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.FK_Observations_Oiseaux" >
           <ConnectorPoint PointX="10.59375" PointY="8.875" />
-          <ConnectorPoint PointX="10.59375" PointY="6.1046123754901185" />
-          <ConnectorPoint PointX="11.875" PointY="6.1046123754901185" />
+          <ConnectorPoint PointX="10.59375" PointY="5.9441943359374987" />
+          <ConnectorPoint PointX="11.125" PointY="5.9441943359374987" />
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.FK_Observations_PhotoObservations" >
           <ConnectorPoint PointX="15.875" PointY="4.5285953776041659" />
-          <ConnectorPoint PointX="14.375" PointY="4.5285953776041659" />
+          <ConnectorPoint PointX="13.625" PointY="4.5285953776041659" />
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.FK_Observations_SonObservations" >
           <ConnectorPoint PointX="15.875" PointY="7.5667941197916662" />
-          <ConnectorPoint PointX="13.125" PointY="7.5667941197916662" />
-          <ConnectorPoint PointX="13.125" PointY="6.5859993489583326" />
+          <ConnectorPoint PointX="12.375" PointY="7.5667941197916662" />
+          <ConnectorPoint PointX="12.375" PointY="6.5859993489583326" />
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.FK_Observations_Usagers" >
-          <ConnectorPoint PointX="5.625" PointY="5.6410008492033921" />
-          <ConnectorPoint PointX="11.875" PointY="5.6410008492033921" />
+          <ConnectorPoint PointX="5.625" PointY="5.5607918294270817" />
+          <ConnectorPoint PointX="11.125" PointY="5.5607918294270817" />
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.FK_Photos_Oiseaux" >
           <ConnectorPoint PointX="10.75" PointY="9.9324446614583337" />
           <ConnectorPoint PointX="12.25" PointY="9.9324446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.observationmessage">
-          <ConnectorPoint PointX="11.875" PointY="4.0574446614583328" />
+          <ConnectorPoint PointX="11.125" PointY="4.0574446614583328" />
           <ConnectorPoint PointX="10.375" PointY="4.0574446614583328" />
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.usageralerte">
@@ -837,8 +837,8 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="synthese_dbModel.Commentaire" Width="1.5" PointX="7.875" PointY="0.5" Height="1.7879850260416665" />
         <AssociationConnector Association="synthese_dbModel.observationCommentaire" >
-          <ConnectorPoint PointX="13.125" PointY="2.875" />
-          <ConnectorPoint PointX="13.125" PointY="1.5862939453125002" />
+          <ConnectorPoint PointX="12.375" PointY="2.875" />
+          <ConnectorPoint PointX="12.375" PointY="1.5862939453125002" />
           <ConnectorPoint PointX="9.375" PointY="1.5862939453125002" />
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.usagerCommentaire" />

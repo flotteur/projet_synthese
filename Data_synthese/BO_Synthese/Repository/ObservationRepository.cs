@@ -60,8 +60,8 @@ namespace BO_Synthese
                 throw new Exception("L'observation est incomplète.");
 
             observation observationDb = dbContext.observation.Add(ObservationDtoToDb());
+                        
             dbContext.SaveChanges();
-
             // On peut annoncer la bonne nouvelle
             var bo = new BO();
             bo.SendAlerte(observationDb.IDOiseau);

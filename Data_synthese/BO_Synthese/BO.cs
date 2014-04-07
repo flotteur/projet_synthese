@@ -13,7 +13,8 @@ namespace BO_Synthese
     /// </summary>
     public class BO : IDisposable
     {
-        private DatabaseObject database = new DatabaseObject();
+        private DatabaseObject _database = new DatabaseObject();
+        public DatabaseObject database {get { return _database;} set {_database= value ;}}
         private string _MessageErreur = string.Empty;
         public string MessageErreur
         {
@@ -482,7 +483,7 @@ namespace BO_Synthese
 
                 message.Subject = string.Format("Alerte: {0} Une nouvelle observation vient d'être effectuée.",
                     nomEspece);
-                message.From = new System.Net.Mail.MailAddress("anonyme@gmail.com");
+                message.From = new System.Net.Mail.MailAddress("postmaster@periodiq.com");
                 message.Body = message.Subject;
                 using (SmtpClient smtp = new SmtpClient("smtp.periodiq.com")) {
                     smtp.Send(message);
@@ -503,6 +504,7 @@ namespace BO_Synthese
             }
             catch (Exception ex)
             {
+                retour = pAlerte;
                 retour.MessageErreur = ex.Message;
             }
             return retour;
