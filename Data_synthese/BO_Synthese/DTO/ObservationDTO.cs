@@ -129,7 +129,7 @@ namespace BO_Synthese
         /// <returns>True si valide</returns>
         public bool isValid()
         {
-            if (IDOiseau > 1 || IDUsager > 1)
+            if (IDOiseau < 1 || IDUsager < 1)
                 return false;
 
             return true;
