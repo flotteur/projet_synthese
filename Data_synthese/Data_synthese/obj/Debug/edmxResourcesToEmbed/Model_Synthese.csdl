@@ -305,6 +305,7 @@
     <Property Name="observationId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="usager" Relationship="synthese_dbModel.usagerCommentaire" FromRole="Commentaire" ToRole="usager" />
     <Property Name="IDUsager" Type="Int32" Nullable="false" />
+    <Property Type="DateTime" Name="DateCommentaire" Nullable="false" />
   </EntityType>
   <Association Name="observationCommentaire">
     <End Type="synthese_dbModel.observation" Role="observation" Multiplicity="1" />

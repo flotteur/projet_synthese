@@ -110,6 +110,7 @@
           <ScalarProperty Name="Texte" ColumnName="Texte" />
           <ScalarProperty Name="observationId" ColumnName="observationId" />
           <ScalarProperty Name="IDUsager" ColumnName="IDUsager" />
+          <ScalarProperty Name="DateCommentaire" ColumnName="DateCommentaire" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

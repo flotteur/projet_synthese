@@ -165,6 +165,7 @@
     <Property Name="Texte" Type="longtext" Nullable="false" />
     <Property Name="observationId" Type="int" Nullable="false" />
     <Property Name="IDUsager" Type="int" Nullable="false" />
+    <Property Name="DateCommentaire" Type="datetime" Nullable="false" />
   </EntityType>
   <Association Name="FK_Alertes_Oiseaux">
     <End Role="oiseaux" Type="synthese_dbModel.Store.oiseau" Multiplicity="1" />
@@ -619,6 +620,7 @@
           <Property Name="observationId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="usager" Relationship="synthese_dbModel.usagerCommentaire" FromRole="Commentaire" ToRole="usager" />
           <Property Name="IDUsager" Type="Int32" Nullable="false" />
+          <Property Type="DateTime" Name="DateCommentaire" Nullable="false" />
         </EntityType>
         <Association Name="observationCommentaire">
           <End Type="synthese_dbModel.observation" Role="observation" Multiplicity="1" />
@@ -759,6 +761,7 @@
           <ScalarProperty Name="Texte" ColumnName="Texte" />
           <ScalarProperty Name="observationId" ColumnName="observationId" />
           <ScalarProperty Name="IDUsager" ColumnName="IDUsager" />
+          <ScalarProperty Name="DateCommentaire" ColumnName="DateCommentaire" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -785,7 +788,7 @@
       <Diagram Name="Main" ZoomLevel="100" DisplayType="true" >
         <EntityTypeShape EntityType="synthese_dbModel.alerte" Width="2.5" PointX="3.125" PointY="7" Height="1.7879850260416665" />
         <EntityTypeShape EntityType="synthese_dbModel.crioiseau" Width="2.5" PointX="4.25" PointY="9.25" Height="2.1725878906249996" />
-        <EntityTypeShape EntityType="synthese_dbModel.message" Width="2.5" PointX="7.875" PointY="2.875" Height="2.3648893229166656" />
+        <EntityTypeShape EntityType="synthese_dbModel.message" Width="2.5" PointX="7.75" PointY="3.75" Height="2.3648893229166656" />
         <EntityTypeShape EntityType="synthese_dbModel.observation" Width="2.5" PointX="11.125" PointY="2.875" Height="3.7109993489583326" />
         <EntityTypeShape EntityType="synthese_dbModel.oiseau" Width="2.5" PointX="8.25" PointY="8.875" Height="2.3648893229166656" />
         <EntityTypeShape EntityType="synthese_dbModel.photoobservation" Width="2.5" PointX="15.875" PointY="3.25" Height="2.5571907552083317" />
@@ -802,13 +805,13 @@
           <ConnectorPoint PointX="6.75" PointY="10.244944661458334" />
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.FK_Usagers_Messages" >
-          <ConnectorPoint PointX="7.625" PointY="1.9949446614583328" />
-          <ConnectorPoint PointX="5.375" PointY="1.9949446614583328" />
+          <ConnectorPoint PointX="7.75" PointY="4.9324446614583328" />
+          <ConnectorPoint PointX="5.625" PointY="4.9324446614583328" />
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.FK_Observations_Oiseaux" >
-          <ConnectorPoint PointX="10.59375" PointY="8.875" />
-          <ConnectorPoint PointX="10.59375" PointY="5.9441943359374987" />
-          <ConnectorPoint PointX="11.125" PointY="5.9441943359374987" />
+          <ConnectorPoint PointX="10.53125" PointY="8.875" />
+          <ConnectorPoint PointX="10.53125" PointY="3.28125" />
+          <ConnectorPoint PointX="11.125" PointY="3.28125" />
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.FK_Observations_PhotoObservations" >
           <ConnectorPoint PointX="15.875" PointY="4.5285953776041659" />
@@ -820,28 +823,36 @@
           <ConnectorPoint PointX="12.375" PointY="6.5859993489583326" />
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.FK_Observations_Usagers" >
-          <ConnectorPoint PointX="5.625" PointY="5.5607918294270817" />
-          <ConnectorPoint PointX="11.125" PointY="5.5607918294270817" />
+          <ConnectorPoint PointX="5.625" PointY="6.3095914713541656" />
+          <ConnectorPoint PointX="10.447916666666666" PointY="6.3095914713541648" />
+          <ConnectorPoint PointX="10.614583333333334" PointY="6.3095914713541656" />
+          <ConnectorPoint PointX="11.125" PointY="6.3095914713541656" />
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.FK_Photos_Oiseaux" >
           <ConnectorPoint PointX="10.75" PointY="9.9324446614583337" />
           <ConnectorPoint PointX="12.25" PointY="9.9324446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.observationmessage">
-          <ConnectorPoint PointX="11.125" PointY="4.0574446614583328" />
-          <ConnectorPoint PointX="10.375" PointY="4.0574446614583328" />
+          <ConnectorPoint PointX="11.125" PointY="4.9324446614583328" />
+          <ConnectorPoint PointX="10.614583333333334" PointY="4.9324446614583319" />
+          <ConnectorPoint PointX="10.447916666666666" PointY="4.9324446614583328" />
+          <ConnectorPoint PointX="10.25" PointY="4.9324446614583328" />
         </AssociationConnector>
         <AssociationConnector Association="synthese_dbModel.usageralerte">
           <ConnectorPoint PointX="4.125" PointY="3.8744921875" />
           <ConnectorPoint PointX="4.125" PointY="4.625" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="synthese_dbModel.Commentaire" Width="1.5" PointX="7.875" PointY="0.5" Height="1.7879850260416665" />
+        <EntityTypeShape EntityType="synthese_dbModel.Commentaire" Width="1.5" PointX="7.875" PointY="0.5" Height="2.3648893229166661" />
         <AssociationConnector Association="synthese_dbModel.observationCommentaire" >
           <ConnectorPoint PointX="12.375" PointY="2.875" />
-          <ConnectorPoint PointX="12.375" PointY="1.5862939453125002" />
-          <ConnectorPoint PointX="9.375" PointY="1.5862939453125002" />
+          <ConnectorPoint PointX="12.375" PointY="1.6824446614583333" />
+          <ConnectorPoint PointX="9.375" PointY="1.6824446614583333" />
         </AssociationConnector>
-        <AssociationConnector Association="synthese_dbModel.usagerCommentaire" />
+        <AssociationConnector Association="synthese_dbModel.usagerCommentaire" >
+          <ConnectorPoint PointX="4.375" PointY="3.5" />
+          <ConnectorPoint PointX="4.375" PointY="1.6824446614583333" />
+          <ConnectorPoint PointX="7.875" PointY="1.6824446614583333" />
+        </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

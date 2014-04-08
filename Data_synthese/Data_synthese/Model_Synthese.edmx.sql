@@ -5,7 +5,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 03/29/2014 10:41:03
+-- Date Created: 04/07/2014 20:02:39
 -- Generated from EDMX file: C:\Sources\synthese\projet_synthese\Data_synthese\Data_synthese\Model_Synthese.edmx
 -- Target version: 2.0.0.0
 -- --------------------------------------------------
@@ -164,7 +164,8 @@ CREATE TABLE `Commentaire`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
 	`Texte` longtext NOT NULL, 
 	`observationId` int NOT NULL, 
-	`IDUsager` int NOT NULL);
+	`IDUsager` int NOT NULL, 
+	`DateCommentaire` datetime NOT NULL);
 
 ALTER TABLE `Commentaire` ADD PRIMARY KEY (Id);
 
