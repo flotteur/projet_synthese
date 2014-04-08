@@ -47,6 +47,7 @@ namespace BO_Synthese.Repository
         /// <returns>Le commentaire</returns>
         public CommentaireDTO AddCommentaire(CommentaireDTO commentaireDto)
         {
+            commentaireDto.DateBd = DateTime.Now;
             dbContext.Commentaire.Add(ToBD(commentaireDto));
             dbContext.SaveChanges();
 
@@ -117,7 +118,8 @@ namespace BO_Synthese.Repository
             { 
                 IDUsager = commentaireDto.IDUsager,
                 observationId = commentaireDto.observationId,
-                Texte = commentaireDto.Texte
+                Texte = commentaireDto.Texte,
+                DateCommentaire = commentaireDto.DateBd
             };
         }
 
@@ -133,7 +135,8 @@ namespace BO_Synthese.Repository
                 Id = commentaireBD.Id,
                 IDUsager = commentaireBD.IDUsager,
                 Texte = commentaireBD.Texte,
-                observationId = commentaireBD.observationId
+                observationId = commentaireBD.observationId,
+                DateBd = commentaireBD.DateCommentaire
             };
         }
         #endregion
