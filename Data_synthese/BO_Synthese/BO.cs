@@ -483,9 +483,11 @@ namespace BO_Synthese
 
                 message.Subject = string.Format("Alerte: {0} Une nouvelle observation vient d'être effectuée.",
                     nomEspece);
-                message.From = new System.Net.Mail.MailAddress("postmaster@periodiq.com");
+                message.From = new System.Net.Mail.MailAddress("synthese@periodiq.com");
                 message.Body = message.Subject;
                 using (SmtpClient smtp = new SmtpClient("smtp.periodiq.com")) {
+                    System.Net.NetworkCredential credential = new System.Net.NetworkCredential("synthese@periodiq.com", "TPUser2013");
+                    smtp.Credentials = credential;
                     smtp.Send(message);
                 }
             }
