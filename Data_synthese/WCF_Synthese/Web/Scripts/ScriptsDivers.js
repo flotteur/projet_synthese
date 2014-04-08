@@ -125,7 +125,7 @@ function AddObservation(){
     datas = {
     "DateObservation": "2014-04-06 12:00:00",
     "Id": 0,
-    "IDOiseau": 2,
+    "IDOiseau": 1,
     "IDUsager": 1,
     "Titre": "Observation",
     "Detail": "Détail de l'observation",
