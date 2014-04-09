@@ -2,7 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Entites_Synthese;
-
+using Data_synthese.Classes;
+using System.Collections.Generic ;
 namespace TEST_BO_Synthese
 {
 
@@ -27,7 +28,7 @@ namespace TEST_BO_Synthese
             nom = "Raymond Ferland";
             nomUsager = "rferland";
             motPasse = "MotDePasse";
-            courriel = "rferland@diq.ca";
+            courriel = "rferland@Dummy.ca";
 
 
             Usager_Entite usager = new Usager_Entite
@@ -131,17 +132,6 @@ namespace TEST_BO_Synthese
 
         
         /// <summary>
-        ///A test for ClearDatabase
-        ///</summary>
-        [TestMethod()]
-        public void ClearDatabaseTest()
-        {
-            BO target = new BO(); // TODO: Initialize to an appropriate value
-            target.ClearDatabase();
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
-        }
-
-        /// <summary>
         /// On doit suivre en debug pour la faire passer car il est impossible de créer un usager si on est pas admin
         /// </summary>
         [TestMethod()]
@@ -179,11 +169,9 @@ namespace TEST_BO_Synthese
                 Assert.IsTrue(int.Parse(erreur[0]) == (int)Data_synthese.Classes.ErreursID.ID_ERREUR_NOM_UTILISATEUR_EXISTANT, " Usager existant, Mauvais message d'erreur!");
 
             }
-
-
-
+            
             // Pas deux fois le même courriel
-            _usagerPourTest.Courriel = "rferland@diq.ca";
+            _usagerPourTest.Courriel = "rferland@dummy.ca";
             _usagerPourTest.NomUsager = "raubin";
             usagerResultat = _BusinessObject.CreerUsager(_usagerPourTest);
 
@@ -191,7 +179,7 @@ namespace TEST_BO_Synthese
             if (!string.IsNullOrEmpty(usagerResultat.MessageErreur))
             {
                 erreur = usagerResultat.MessageErreur.Split(separateur);
-                Assert.IsTrue(int.Parse(erreur[0]) == (int)Data_synthese.Classes.ErreursID.ID_ERREUR_COURRIEL_EXISTANT," Courriel existant, Mauvais message d'erreur!");
+                Assert.IsTrue(int.Parse(erreur[0]) == (int)ErreursID.ID_ERREUR_COURRIEL_EXISTANT," Courriel existant, Mauvais message d'erreur!");
 
             }
 
@@ -205,18 +193,7 @@ namespace TEST_BO_Synthese
            Assert.IsTrue(string.IsNullOrEmpty(usagerResultat.MessageErreur), usagerResultat.MessageErreur);
         }
 
-        /// <summary>
-        ///A test for Dispose
-        ///</summary>
-        [TestMethod()]
-        public void DisposeTest()
-        {
-            BO target = new BO(); // TODO: Initialize to an appropriate value
-            target.Dispose();
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
-        }
-
-
+        
         /// <summary>
         ///A test for GetusagerTest
         ///</summary>
@@ -270,7 +247,6 @@ namespace TEST_BO_Synthese
             Assert.IsTrue(string.IsNullOrEmpty(actual.MessageErreur), actual.MessageErreur);
             Assert.IsTrue(string.Compare(actual.Nom, usagerModifie.Nom) == 0);
             Assert.IsTrue(string.Compare(actual.NomUsager, usagerModifie.NomUsager) == 0);
-            Assert.IsTrue(string.Compare(actual.MotDePasse, usagerModifie.MotDePasse) != 0); // Le mot de passe est hashe. Il est donc différent de l'original qui ne l'est pas
             Assert.IsTrue(string.Compare(actual.Courriel, usagerModifie.Courriel) == 0);
             Assert.IsTrue(actual.ID > 0);
 
@@ -287,7 +263,6 @@ namespace TEST_BO_Synthese
             Assert.IsTrue(string.IsNullOrEmpty(_BusinessObject.MessageErreur), _BusinessObject.MessageErreur);
             Assert.IsTrue(string.Compare(actual.Nom, _usagerPourTest.Nom) == 0);
             Assert.IsTrue(string.Compare(actual.NomUsager, _usagerPourTest.NomUsager) == 0);
-            Assert.IsTrue(string.Compare(actual.MotDePasse, _usagerPourTest.MotDePasse) == 0); // Le mot de passe est hashe
             Assert.IsTrue(string.Compare(actual.Courriel, _usagerPourTest.Courriel) == 0);
             Assert.IsTrue(actual.ID == _usagerPourTest.ID );
 
@@ -302,7 +277,58 @@ namespace TEST_BO_Synthese
             _BusinessObject.SaveChanges();
 
             actual = _BusinessObject.Login(_usagerPourTest.NomUsager, "MotDePasse");
-            Assert.IsNull(actual, "Login a retourné un usager après sa suppression");
+            Assert.IsTrue(string.IsNullOrEmpty( _usagerPourTest.MessageErreur), "Login a retourné un usager après sa suppression");
+        }
+
+        /// <summary>
+        ///A test for CreerAlerte
+        ///</summary>
+        [TestMethod()]
+        public void CreerAlerteTest()
+        {
+            Alerte_Entite alerte = new Alerte_Entite()
+            {
+                IDOiseau = 1,
+                IDUsager = 1
+            }; // TODO: Initialize to an appropriate value
+            
+            Alerte_Entite actual= _BusinessObject.CreerAlerte(alerte);
+            Assert.AreEqual(alerte.IDOiseau, actual.IDOiseau  );
+            Assert.AreEqual(alerte.IDUsager, actual.IDUsager );
+            Assert.IsTrue(alerte.ID >0);
+        }
+
+
+        /// <summary>
+        ///A test for LogOut
+        ///</summary>
+        [TestMethod()]
+        public void LogOutTest()
+        {
+            Usager_Entite actual = _BusinessObject.Login(_usagerPourTest.NomUsager, "MotDePasse");
+            Assert.IsTrue( _BusinessObject.database._session != null);
+            _BusinessObject.LogOut();
+            Assert.IsTrue(_BusinessObject.database._session.usager == null);
+        }
+
+        /// <summary>
+        ///A test for SupprimerAlerte
+        ///</summary>
+        [TestMethod()]
+        public void SupprimerAlerteTest()
+        {
+            Alerte_Entite alerte = new Alerte_Entite() {
+                IDOiseau = 1, 
+                IDUsager = 1
+            }; // TODO: Initialize to an appropriate value
+            
+            alerte=_BusinessObject.CreerAlerte(alerte);
+            int ID = alerte.ID;
+
+            bool resultat = _BusinessObject.SupprimerAlerte(alerte);
+            Assert.IsTrue(resultat);
+            List< Alerte_Entite> alertes = _BusinessObject.ObternirAlertes(alerte);
+            Assert.IsTrue(alertes.Count == 0);
         }
     }
 }
