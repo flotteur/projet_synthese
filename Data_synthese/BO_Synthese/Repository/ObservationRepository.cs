@@ -108,14 +108,11 @@ namespace BO_Synthese
         /// <param name="id">Le id de l'observation</param>
         /// <returns>L'observation contenant le ID en question</returns>
         public ObservationDTO GetObservationFromId(int id) {
-            var list = (from observation in dbContext.observation
+            var observationBd = (from observation in dbContext.observation
                         where observation.Id == id
-                        select observation).ToList();
+                        select observation).First();
 
-            foreach (observation observation in list)
-                return ObservationDbToDto(observation);
-
-            return null;
+            return ObservationDbToDto(observationBd);
         }
 
         /// <summary>
