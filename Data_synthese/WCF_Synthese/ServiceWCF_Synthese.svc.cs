@@ -287,14 +287,14 @@ namespace WCF_Synthese
             return pOiseau;
         }
 
-        public void DeleteCommentaire(string id)
+        public bool DeleteCommentaire(string id)
         {
             using(var repository = new CommentaireRepository())
             {
                 int numericId;
                 Int32.TryParse(id, out numericId);
 
-                repository.DeleteCommentaire(numericId);
+                return repository.DeleteCommentaire(numericId);
             }
         }
 

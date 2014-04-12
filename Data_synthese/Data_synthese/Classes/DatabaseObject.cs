@@ -9,7 +9,8 @@ namespace Data_synthese.Classes
 {
     public class DatabaseObject : IDisposable
     {
-        private readonly Session _session = Session.getInstance();
+        public readonly Session _session = Session.getInstance();
+        
         public static int erreur;
 
         public DatabaseObject()
@@ -112,7 +113,7 @@ namespace Data_synthese.Classes
         /// <returns></returns>
         public Usager_Entite GetUsager(string pUser)
         {
-            Usager_Entite usag = null;
+            Usager_Entite usag = new Usager_Entite();
             usager userRow = null;
 
             //Dans le cache

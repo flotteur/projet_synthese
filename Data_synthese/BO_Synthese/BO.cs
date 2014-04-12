@@ -14,7 +14,7 @@ namespace BO_Synthese
     public class BO : IDisposable
     {
         private DatabaseObject _database = new DatabaseObject();
-        public DatabaseObject database {get { return _database;} set {_database= value ;}}
+        public DatabaseObject database { get { return _database; } set { _database = value; } }
         private string _MessageErreur = string.Empty;
         public string MessageErreur
         {
@@ -34,7 +34,7 @@ namespace BO_Synthese
         //}
 
         #endregion
-        
+
         #region " Méthodes publiques "
 
         #region " Usager "
@@ -45,11 +45,13 @@ namespace BO_Synthese
         /// </summary>
         /// <param name="pID"></param>
         /// <returns></returns>
-        public Usager_Entite Getusager(int pID) {
+        public Usager_Entite Getusager(int pID)
+        {
             Usager_Entite retour = new Usager_Entite();
-            try{
+            try
+            {
 
-            retour = database.GetUsager(pID);
+                retour = database.GetUsager(pID);
             }
             catch (Exception ex)
             {
@@ -181,13 +183,14 @@ namespace BO_Synthese
             try
             {
                 usager = database.Login(pUser, pPassword);
-                usager.MotDePasse = string.Empty ;
+                if (usager != null)
+                    usager.MotDePasse = string.Empty;
             }
             catch (Exception ex)
             {
                 this._MessageErreur = ex.Message;
-                usager.MessageErreur = ex.Message ;
-                
+                usager.MessageErreur = ex.Message;
+
             }
 
             return usager;
@@ -197,11 +200,12 @@ namespace BO_Synthese
 
         #region " LogOut "
 
-        public void LogOut(){
-        
+        public void LogOut()
+        {
+
             database.Logout();
         }
-        #endregion 
+        #endregion
 
         #endregion
 
@@ -277,7 +281,7 @@ namespace BO_Synthese
             return retour;
         }
 
-       public bool SupprimerCriOiseau(int pID)
+        public bool SupprimerCriOiseau(int pID)
         {
 
             this._MessageErreur = string.Empty;
@@ -323,17 +327,18 @@ namespace BO_Synthese
                 return pCriOiseau;
             }
         }
-#endregion
+        #endregion
 
         #region " Oiseau "
 
-       public OiseauxList_Entite GetOiseaux(int pQte, int pStart){
-       
-           return  database.GetOiseaux(pQte,pStart);
+        public OiseauxList_Entite GetOiseaux(int pQte, int pStart)
+        {
 
-       }
+            return database.GetOiseaux(pQte, pStart);
+
+        }
         #region " GetOiseau "
-       /// <summary>
+        /// <summary>
         /// Obtient un Oiseau à partir de son ID
         /// </summary>
         /// <param name="pID"></param>
@@ -461,21 +466,26 @@ namespace BO_Synthese
                 return pOiseau;
             }
         }
-#endregion
+        #endregion
 
         #region " Alerte "
 
-        public void SendAlerte(int pOiseauID) {
+        public void SendAlerte(int pOiseauID)
+        {
             System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
             string nomEspece = string.Empty;
 
             // On obtient toutes les alertes reliées à cet oiseau
-            Alerte_Entite alerteEnt = new Alerte_Entite() { ID = 0,
-                                                         IDUsager = 0,
-                                                         IDOiseau = pOiseauID};
+            Alerte_Entite alerteEnt = new Alerte_Entite()
+            {
+                ID = 0,
+                IDUsager = 0,
+                IDOiseau = pOiseauID
+            };
 
             List<Alerte_Entite> alertes = database.GetAlertes(alerteEnt);
-            if (alertes.Count > 0) {
+            if (alertes.Count > 0)
+            {
                 nomEspece = alertes[0].Oiseau.Espece;
 
                 foreach (Alerte_Entite alerte in alertes)
@@ -485,13 +495,14 @@ namespace BO_Synthese
                     nomEspece);
                 message.From = new System.Net.Mail.MailAddress("synthese@periodiq.com");
                 message.Body = message.Subject;
-                using (SmtpClient smtp = new SmtpClient("smtp.periodiq.com")) {
+                using (SmtpClient smtp = new SmtpClient("smtp.periodiq.com"))
+                {
                     System.Net.NetworkCredential credential = new System.Net.NetworkCredential("synthese@periodiq.com", "TPUser2013");
                     smtp.Credentials = credential;
                     smtp.Send(message);
                 }
             }
-        } 
+        }
         public List<Alerte_Entite> ObternirAlertes(Alerte_Entite pAlerte)
         {
             return database.GetAlertes(pAlerte);
@@ -500,9 +511,10 @@ namespace BO_Synthese
         public Alerte_Entite CreerAlerte(Alerte_Entite pAlerte)
         {
             Alerte_Entite retour = new Alerte_Entite();
-            try {
-                retour =  database.insertAlert(pAlerte);
-               
+            try
+            {
+                retour = database.insertAlert(pAlerte);
+
             }
             catch (Exception ex)
             {
@@ -512,8 +524,9 @@ namespace BO_Synthese
             return retour;
         }
 
-        public bool SupprimerAlerte(Alerte_Entite pAlerte ){
-        
+        public bool SupprimerAlerte(Alerte_Entite pAlerte)
+        {
+
             return database.DeleteAlerte(pAlerte);
         }
         #endregion
@@ -543,7 +556,7 @@ namespace BO_Synthese
             return retour;
         }
 
-        
+
         #endregion
 
         #region " CreerPhoto "
@@ -572,7 +585,7 @@ namespace BO_Synthese
             return retour;
         }
 
-       public bool SupprimerPhoto(int pID)
+        public bool SupprimerPhoto(int pID)
         {
 
             this._MessageErreur = string.Empty;
@@ -618,7 +631,7 @@ namespace BO_Synthese
                 return pPhoto;
             }
         }
-#endregion
+        #endregion
 
         #endregion
 

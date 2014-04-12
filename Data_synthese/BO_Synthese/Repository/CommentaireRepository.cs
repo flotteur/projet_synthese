@@ -61,9 +61,10 @@ namespace BO_Synthese.Repository
         /// <returns></returns>
         public CommentaireDTO GetCommentaire(int id)
         {
-            Commentaire commentaire = (from Commentaire in dbContext.Commentaire
-                        where Commentaire.Id == id
-                        select Commentaire).First();
+            Commentaire commentaire = (from comment in dbContext.Commentaire
+                        where comment.Id == id
+                        orderby comment.DateCommentaire descending
+                        select comment).First();
 
             return ToDto(commentaire);
 
@@ -78,9 +79,10 @@ namespace BO_Synthese.Repository
         {
             var listCommentaireDto = new List<CommentaireDTO>();
 
-            List<Commentaire> commentaireList = (from Commentaire in dbContext.Commentaire
-                                                 where Commentaire.observationId == observationId
-                                                 select Commentaire).ToList();
+            List<Commentaire> commentaireList = (from comment in dbContext.Commentaire
+                                                 where comment.observationId == observationId
+                                                 orderby comment.DateCommentaire descending
+                                                 select comment).ToList();
 
             foreach (Commentaire commentaire in commentaireList)
             {
@@ -94,16 +96,31 @@ namespace BO_Synthese.Repository
         /// Permet de supprimer un commentaire 
         /// </summary>
         /// <param name="id">Id du commentaire</param>
-        public void DeleteCommentaire(int id)
+        public bool DeleteCommentaire(int id)
         {
             if ((session.usager != null) && (session.usager.EstAdministrateur == true))
             {
-                var commentaire = new Commentaire();
-                commentaire.Id = id;
+                //var commentaire = new Commentaire();
+                //commentaire.Id = id;
 
-                dbContext.Commentaire.Remove(commentaire);
+                var commentaireDb = (from comment in dbContext.Commentaire
+                                     where comment.Id == id
+                                     select comment).First();
+
+                if (commentaireDb != null)
+                {
+                    // Delete de l'observation
+                    dbContext.Commentaire.Remove(commentaireDb);
+                }
+                else
+                {
+                    return false;
+                }
+
                 dbContext.SaveChanges();
+                return true;
             }
+            return false;
         }
 
         /// <summary>

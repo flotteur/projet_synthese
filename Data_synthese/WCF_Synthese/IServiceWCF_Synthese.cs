@@ -281,7 +281,7 @@ namespace WCF_Synthese
         RequestFormat = WebMessageFormat.Json,
         ResponseFormat = WebMessageFormat.Json,
         UriTemplate = "deletecommentaire/{id}")]
-        void DeleteCommentaire(string id);
+        bool DeleteCommentaire(string id);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
